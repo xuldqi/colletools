@@ -1,0 +1,77 @@
+# 使用 Ubuntu 作为基础镜像，包含所有构建工具
+FROM ubuntu:22.04
+
+# 设置环境变量
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# 更新系统并安装所有必要的工具
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y \
+    curl \
+    wget \
+    gnupg \
+    software-properties-common \
+    python3 \
+    python3-pip \
+    build-essential \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    libpixman-1-dev \
+    libfreetype6-dev \
+    libfontconfig1-dev \
+    poppler-utils \
+    ghostscript \
+    libreoffice \
+    tesseract-ocr \
+    tesseract-ocr-chi-sim \
+    tesseract-ocr-eng \
+    ffmpeg \
+    chromium-browser \
+    chromium-chromedriver \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装 Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
+# 设置环境变量
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
+# 创建应用用户
+RUN groupadd -r colletools && useradd -r -g colletools colletools
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制 package.json 和 package-lock.json
+COPY package*.json ./
+
+# 安装依赖
+RUN npm ci --only=production
+
+# 复制源代码
+COPY . .
+
+# 创建必要的目录
+RUN mkdir -p uploads logs && \
+    chown -R colletools:colletools /app
+
+# 切换到应用用户
+USER colletools
+
+# 暴露端口
+EXPOSE 3000
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD curl -f http://localhost:3000/health || exit 1
+
+# 启动应用
+CMD ["node", "api/index.js"]
