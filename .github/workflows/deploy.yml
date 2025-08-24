@@ -1,0 +1,75 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build application
+      run: npm run build
+      
+    - name: Run tests
+      run: npm test --if-present
+      
+    - name: Build Docker image
+      run: |
+        docker build -t colletools:${{ github.sha }} .
+        docker tag colletools:${{ github.sha }} colletools:latest
+        
+    - name: Save Docker image
+      run: docker save colletools:latest | gzip > colletools-latest.tar.gz
+      
+    - name: Deploy to server
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        port: ${{ secrets.SERVER_PORT || 22 }}
+        script: |
+          # 停止现有容器
+          docker-compose -f /opt/colletools/docker-compose.yml down || true
+          
+          # 清理旧镜像
+          docker image prune -f
+          
+          # 拉取最新代码
+          cd /opt/colletools
+          git pull origin main
+          
+          # 构建并启动新容器
+          docker-compose up -d --build
+          
+          # 清理未使用的镜像
+          docker image prune -f
+          
+          # 检查容器状态
+          docker-compose ps
+          
+    - name: Notify deployment status
+      if: always()
+      run: |
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ Deployment successful!"
+        else
+          echo "❌ Deployment failed!"
+        fi
