@@ -76,6 +76,13 @@ if [ $? -eq 0 ]; then
     echo "🔄 重新加载 Nginx 配置..."
     docker-compose exec nginx nginx -s reload
     
+    # 设置自动续期
+    echo "🔄 设置 SSL 证书自动续期..."
+    if [ -f "setup-auto-renewal.sh" ]; then
+        chmod +x setup-auto-renewal.sh
+        ./setup-auto-renewal.sh
+    fi
+    
     echo ""
     echo "✅ 修复完成！"
     echo ""
@@ -89,6 +96,11 @@ if [ $? -eq 0 ]; then
     echo "- HTTP: http://colletools.com (应该重定向到 HTTPS)"
     echo "- HTTPS: https://colletools.com"
     echo "- HTTPS: https://www.colletools.com"
+    echo ""
+    echo "🔄 SSL 证书自动续期已设置"
+    echo "- 续期时间：每天凌晨 2:00"
+    echo "- 日志文件：logs/ssl-renewal.log"
+    echo "- 手动续期：./ssl-renew.sh"
     
 else
     echo "❌ SSL 证书申请失败"
