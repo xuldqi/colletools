@@ -1,5 +1,8 @@
-# 使用官方 Node.js 18 镜像作为基础镜像
-FROM node:18-alpine AS builder
+# 使用官方 Node.js 20 镜像作为基础镜像
+FROM node:20-alpine AS builder
+
+# 安装构建依赖（包括 Python）
+RUN apk add --no-cache python3 make g++
 
 # 设置工作目录
 WORKDIR /app
@@ -7,8 +10,8 @@ WORKDIR /app
 # 复制 package.json 和 package-lock.json
 COPY package*.json ./
 
-# 安装依赖
-RUN npm ci --only=production
+# 安装依赖（包含开发依赖用于构建）
+RUN npm ci
 
 # 复制源代码
 COPY . .
@@ -17,10 +20,10 @@ COPY . .
 RUN npm run build
 
 # 生产阶段
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
-# 安装 curl 用于健康检查
-RUN apk add --no-cache curl
+# 安装 curl 用于健康检查和 Python 用于可能的运行时依赖
+RUN apk add --no-cache curl python3
 
 # 创建非 root 用户
 RUN addgroup -g 1001 -S nodejs

@@ -45,13 +45,13 @@ echo "✅ 已创建简化的配置文件"
 echo "📁 创建必要目录..."
 mkdir -p uploads logs ssl
 
-# 启动基础服务
-echo "🚀 启动基础服务..."
-docker-compose up -d nginx colletools-app
+# 启动所有服务
+echo "🚀 启动所有服务..."
+docker-compose up -d --build
 
 # 等待服务启动
 echo "⏳ 等待服务启动..."
-sleep 10
+sleep 15
 
 # 检查状态
 echo "📊 检查服务状态..."
@@ -83,6 +83,13 @@ if [ $? -eq 0 ]; then
         ./setup-auto-renewal.sh
     fi
     
+    # 设置服务器重启后自动启动
+    echo "🚀 设置服务器重启后自动启动..."
+    if [ -f "setup-auto-start.sh" ]; then
+        chmod +x setup-auto-start.sh
+        sudo ./setup-auto-start.sh
+    fi
+    
     echo ""
     echo "✅ 修复完成！"
     echo ""
@@ -101,6 +108,11 @@ if [ $? -eq 0 ]; then
     echo "- 续期时间：每天凌晨 2:00"
     echo "- 日志文件：logs/ssl-renewal.log"
     echo "- 手动续期：./ssl-renew.sh"
+    echo ""
+    echo "🚀 服务器重启后自动启动已设置"
+    echo "- 服务名称：colletools"
+    echo "- 管理命令：sudo systemctl status colletools"
+    echo "- 查看日志：sudo journalctl -u colletools -f"
     
 else
     echo "❌ SSL 证书申请失败"
