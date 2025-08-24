@@ -1,8 +1,21 @@
 # 使用官方 Node.js 20 镜像作为基础镜像
 FROM node:20-alpine AS builder
 
-# 安装构建依赖（包括 Python）
-RUN apk add --no-cache python3 make g++
+# 安装构建依赖（包括 pkg-config 和其他必要工具）
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    pkgconfig \
+    pkg-config \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    musl-dev \
+    pixman-dev \
+    pangomm-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
 
 # 设置工作目录
 WORKDIR /app
@@ -22,8 +35,17 @@ RUN npm run build
 # 生产阶段
 FROM node:20-alpine AS production
 
-# 安装 curl 用于健康检查和 Python 用于可能的运行时依赖
-RUN apk add --no-cache curl python3
+# 安装运行时依赖
+RUN apk add --no-cache \
+    curl \
+    python3 \
+    cairo \
+    jpeg \
+    pango \
+    pixman \
+    pangomm \
+    libjpeg-turbo \
+    freetype
 
 # 创建非 root 用户
 RUN addgroup -g 1001 -S nodejs
