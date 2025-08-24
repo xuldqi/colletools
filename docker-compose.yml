@@ -17,8 +17,6 @@ services:
       - ./logs:/app/logs
     networks:
       - colletools-network
-    depends_on:
-      - nginx
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -84,6 +82,8 @@ services:
     command: certonly --webroot --webroot-path=/var/www/certbot --email ${SSL_EMAIL} --agree-tos --no-eff-email -d ${PRIMARY_DOMAIN} -d www.${PRIMARY_DOMAIN}
     depends_on:
       - nginx
+    networks:
+      - colletools-network
 
   # 第二域名 SSL 证书管理
   certbot-secondary:
@@ -95,6 +95,8 @@ services:
     command: certonly --webroot --webroot-path=/var/www/certbot --email ${SSL_EMAIL} --agree-tos --no-eff-email -d ${SECONDARY_DOMAIN} -d www.${SECONDARY_DOMAIN}
     depends_on:
       - nginx
+    networks:
+      - colletools-network
 
 volumes:
   uploads:

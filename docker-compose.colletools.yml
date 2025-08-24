@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # Colletools 应用容器
+  colletools-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: colletools-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DOMAIN=colletools.com
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    networks:
+      - colletools-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+      - certbot-www:/var/www/certbot:ro
+    environment:
+      - PRIMARY_DOMAIN=colletools.com
+      - SECONDARY_DOMAIN=colletools.com
+    depends_on:
+      - colletools-app
+    networks:
+      - colletools-network
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # SSL 证书管理
+  certbot:
+    image: certbot/certbot
+    container_name: certbot-colletools
+    volumes:
+      - ./ssl:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ${SSL_EMAIL:-admin@colletools.com} --agree-tos --no-eff-email -d colletools.com -d www.colletools.com
+    depends_on:
+      - nginx
+    networks:
+      - colletools-network
+
+volumes:
+  uploads:
+    driver: local
+  logs:
+    driver: local
+  ssl:
+    driver: local
+  certbot-www:
+    driver: local
+
+networks:
+  colletools-network:
+    driver: bridge
