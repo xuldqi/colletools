@@ -1,0 +1,886 @@
+{
+  "nav": {
+    "pdfTools": "PDF",
+    "imageTools": "이미지",
+    "videoTools": "비디오",
+    "ocrTools": "OCR",
+    "documentDataTools": "문서 및 데이터"
+  },
+  "home": {
+    "heroTitle": "무료 온라인 도구",
+    "heroSubtitle": "모든 것이 준비되어 있습니다",
+    "heroDescription": "PDF, 이미지, 비디오, AI 작성 등을 도와주는 100개 이상의 무료 도구. 등록 불필요, 완전 무료 사용.",
+    "exploreTools": "도구 탐색",
+    "learnMore": "자세히 알아보기",
+    "chooseCategory": "도구 카테고리 선택",
+    "categoryDescription": "카테고리별로 정리된 포괄적인 도구 컬렉션에서 선택하세요",
+    "popularTools": "인기 도구",
+    "popularDescription": "우리 도구를 신뢰하는 수백만 사용자와 함께하세요",
+    "useTool": "도구 사용",
+    "viewTools": "도구 보기",
+    "usedByUsers": "{{count}}만 명의 사용자가 이용",
+    "features": {
+      "free": {
+        "title": "100% 무료",
+        "description": "모든 도구는 숨겨진 요금이나 구독 없이 완전히 무료로 사용할 수 있습니다."
+      },
+      "secure": {
+        "title": "안전하고 비공개",
+        "description": "파일은 안전하게 처리되며 개인정보 보호를 위해 1시간 후 자동 삭제됩니다."
+      },
+      "fast": {
+        "title": "빠르고 쉬움",
+        "description": "등록이 필요하지 않습니다. 파일을 업로드하기만 하면 몇 초 안에 결과를 얻을 수 있습니다."
+      }
+    }
+  },
+  "footer": {
+    "zipic": "ZiPic",
+    "dropshare": "DropShare",
+    "email": "이메일",
+    "phone": "전화",
+    "address": "주소",
+    "toolCategories": "도구 카테고리",
+    "usefulLinks": "유용한 링크",
+    "privacyPolicy": "개인정보 보호정책",
+    "termsOfService": "이용약관",
+    "contactUs": "문의하기",
+    "contactDescription": "도구 사용 중 문제가 발생하면 언제든지 이메일을 보내주세요.",
+    "copyright": "© 2024 ColleTools. 모든 권리 보유.",
+    "cookiePolicy": "쿠키 정책",
+    "sitemap": "사이트맵"
+  },
+  "contact": {
+    "title": "문의하기",
+    "subtitle": "질문이나 제안이 있으시면 언제든지 피드백을 보내주세요.",
+    "contactInfo": {
+      "title": "연락처 정보",
+      "email": {
+        "title": "이메일",
+        "description": "일반 문의 및 기술 지원"
+      },
+      "chat": {
+        "title": "온라인 지원",
+        "description": "실시간 채팅 지원",
+        "hours": "평일 9:00-18:00"
+      },
+      "address": {
+        "title": "주소",
+        "line1": "중국 상하이시 푸둥신구",
+        "line2": "장장 하이테크 파크"
+      },
+      "hours": {
+        "title": "영업시간",
+        "weekdays": "월요일부터 금요일 9:00-18:00",
+        "saturday": "토요일 10:00-16:00",
+        "timezone": "베이징 시간 (UTC+8)"
+      }
+    },
+    "quickLinks": {
+      "title": "빠른 링크",
+      "helpCenter": "도움말 센터",
+      "apiDocs": "API 문서",
+      "privacy": "개인정보 보호정책",
+      "terms": "이용약관"
+    },
+    "form": {
+      "title": "메시지 보내기",
+      "name": "이름",
+      "namePlaceholder": "이름을 입력해주세요",
+      "email": "이메일",
+      "emailPlaceholder": "이메일을 입력해주세요",
+      "subject": "제목",
+      "subjectPlaceholder": "제목을 선택해주세요",
+      "subjects": {
+        "general": "일반 문의",
+        "technical": "기술 지원",
+        "bug": "버그 신고",
+        "feature": "기능 요청",
+        "business": "비즈니스 협력",
+        "other": "기타"
+      },
+      "message": "메시지 내용",
+      "messagePlaceholder": "질문이나 제안을 자세히 설명해주세요...",
+      "submit": "메시지 보내기"
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "questions": {
+        "howToUse": {
+          "question": "도구를 어떻게 사용하나요?",
+          "answer": "필요한 도구를 선택하고 파일을 업로드한 후 처리가 완료되면 결과를 다운로드하세요. 모든 도구에는 자세한 사용 설명이 있습니다."
+        },
+        "security": {
+          "question": "파일이 안전한가요?",
+          "answer": "네, SSL 암호화를 사용하여 전송하며, 처리 완료 후 1시간 이내에 파일을 자동 삭제하여 데이터 보안을 보장합니다."
+        },
+        "formats": {
+          "question": "어떤 파일 형식을 지원하나요?",
+          "answer": "PDF, Word, Excel, PowerPoint, 이미지, 비디오 등 다양한 일반적인 형식을 지원합니다. 구체적인 지원 형식은 각 도구 페이지를 확인해주세요."
+        },
+        "fileSize": {
+          "question": "파일 크기 제한이 있나요?",
+          "answer": "단일 파일 최대 지원은 100MB입니다. 더 큰 파일을 처리해야 하는 경우 기술 지원팀에 문의해주세요."
+        },
+        "processingTime": {
+          "question": "처리에 얼마나 걸리나요?",
+          "answer": "대부분의 파일은 몇 초에서 몇 분 내에 처리가 완료됩니다. 구체적인 시간은 파일 크기와 복잡성에 따라 다릅니다."
+        },
+        "support": {
+          "question": "기술 지원을 받으려면?",
+          "answer": "이메일, 온라인 채팅 또는 위의 양식을 통해 문의할 수 있습니다. 24시간 이내에 질문에 답변드리겠습니다."
+        }
+      },
+      "moreHelp": "더 많은 도움말 보기"
+    }
+  },
+  "about": {
+    "title": "ColleTools 소개",
+    "subtitle": "복잡한 파일 처리를 쉽고 간단하게 만드는 간단하고 빠르며 무료인 온라인 도구를 사용자에게 제공하는 것에 전념하고 있습니다.",
+    "mission": {
+      "title": "우리의 사명",
+      "description": "복잡한 소프트웨어를 설치하거나 전문 기술을 갖추지 않고도 누구나 다양한 파일 형식을 쉽게 처리할 수 있도록 하는 것입니다. 기술은 사람을 위해 봉사하고 작업을 더 효율적이고 간단하게 만들어야 한다고 믿습니다."
+    },
+    "vision": {
+      "title": "우리의 비전",
+      "description": "세계 최고의 온라인 도구 플랫폼이 되어 사용자에게 가장 포괄적이고 신뢰할 수 있는 파일 처리 솔루션을 제공하여 디지털 작업을 더욱 편리하게 만드는 것입니다."
+    },
+    "whyChooseUs": "왜 우리를 선택해야 할까요?",
+    "tools": {
+      "title": "우리의 도구",
+      "pdf": {
+        "title": "PDF 도구",
+        "description": "PDF 변환, 병합, 분할, 압축, OCR 인식 등 13가지 전문 도구"
+      },
+      "image": {
+        "title": "이미지 도구",
+        "description": "이미지 변환, 압축, 배경 제거, 워터마크 처리 등 13가지 이미지 처리 도구"
+      },
+      "video": {
+        "title": "비디오 도구",
+        "description": "비디오 압축, 변환, 편집, 병합, GIF 제작 등 9가지 비디오 처리 도구"
+      },
+      "ocr": {
+        "title": "OCR 도구",
+        "description": "이미지 텍스트 인식, PDF OCR, 손글씨 인식 등 9가지 텍스트 인식 도구"
+      },
+      "document": {
+        "title": "문서 및 데이터",
+        "description": "Excel, CSV, JSON 변환, 텍스트 처리, 개발자 도구 등 36가지 실용적인 도구"
+      }
+    },
+    "contact": {
+      "title": "질문이나 제안이 있으신가요?",
+      "description": "제품을 지속적으로 개선하는 데 도움이 되도록 여러분의 피드백을 듣고 싶습니다.",
+      "button": "문의하기"
+    }
+  },
+  "tools": {
+    "pdf": {
+      "title": "PDF 도구",
+      "description": "PDF 파일 변환, 병합, 분할, 편집",
+      "pageDescription": "포괄적인 PDF 도구 모음으로 PDF 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "pdfToWord": "PDF를 Word로",
+      "pdfToWordDesc": "PDF 문서를 편집 가능한 Word 파일로 변환",
+      "wordToPdf": "Word를 PDF로",
+      "wordToPdfDesc": "Word 문서를 PDF 형식으로 변환",
+      "pdfToExcel": "PDF를 Excel로",
+      "pdfToExcelDesc": "PDF 테이블을 Excel 스프레드시트로 변환",
+      "excelToPdf": "Excel을 PDF로",
+      "excelToPdfDesc": "Excel 스프레드시트를 PDF로 변환",
+      "pdfToPpt": "PDF를 PPT로",
+      "pdfToPptDesc": "PDF를 PowerPoint 프레젠테이션으로 변환",
+      "pptToPdf": "PPT를 PDF로",
+      "pptToPdfDesc": "PowerPoint 프레젠테이션을 PDF로 변환",
+      "pdfToJpg": "PDF를 JPG로",
+      "pdfToJpgDesc": "PDF 페이지를 JPG 이미지로 변환",
+      "jpgToPdf": "JPG를 PDF로",
+      "jpgToPdfDesc": "JPG 이미지를 PDF 문서로 변환",
+      "mergePdf": "PDF 병합",
+      "mergePdfDesc": "여러 PDF 파일을 하나로 결합",
+      "splitPdf": "PDF 분할",
+      "splitPdfDesc": "PDF를 별도의 페이지나 문서로 분할",
+      "compressPdf": "PDF 압축",
+      "compressPdfDesc": "품질 손실 없이 PDF 파일 크기 줄이기",
+      "rotatePdf": "PDF 회전",
+      "rotatePdfDesc": "PDF 페이지를 원하는 방향으로 회전",
+      "unlockPdf": "PDF 잠금 해제",
+      "unlockPdfDesc": "암호로 보호된 PDF에서 제한 제거",
+      "protectPdf": "PDF 보호",
+      "protectPdfDesc": "PDF에 암호 및 권한 추가",
+      "pdfOcr": "PDF 문자 인식",
+      "pdfFormFiller": "PDF 양식 작성",
+      "pdfSignature": "PDF 서명",
+      "pdfWatermark": "PDF 워터마크",
+      "pdfToPowerpoint": "PDF→PowerPoint",
+      "powerpointToPdf": "PowerPoint→PDF",
+      "qualityAssurance": "고품질 변환으로 원본 형식과 레이아웃을 유지합니다.",
+      "secureProcessing": "모든 파일은 안전하게 처리되며 처리 후 자동으로 삭제됩니다.",
+      "fastProcessing": "빠른 처리 속도로 시간을 절약하세요."
+    },
+    "image": {
+      "title": "이미지 도구",
+      "description": "이미지 편집, 변환, 최적화",
+      "pageDescription": "포괄적인 이미지 도구 모음으로 이미지 편집, 변환, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "backgroundRemover": "배경 제거",
+      "backgroundRemoverDesc": "AI를 사용하여 이미지에서 배경을 자동으로 제거",
+      "imageConverter": "이미지 변환",
+      "imageConverterDesc": "다양한 형식 간 이미지 변환 (JPG, PNG, WebP 등)",
+      "imageCompressor": "이미지 압축",
+      "imageCompressorDesc": "품질 손실 없이 이미지 파일 크기 줄이기",
+      "photoEnhancer": "사진 향상",
+      "photoEnhancerDesc": "AI 기술을 사용하여 이미지 품질 향상",
+      "imageCropper": "이미지 자르기",
+      "imageCropperDesc": "원하는 크기로 이미지 자르기 및 크기 조정",
+      "imageRotator": "이미지 회전",
+      "imageRotatorDesc": "임의의 각도로 이미지 회전 또는 수평/수직 뒤집기",
+      "imageUpscaler": "이미지 확대",
+      "imageUpscalerDesc": "AI 기술을 사용하여 더 나은 품질로 이미지 확대",
+      "watermarkRemover": "워터마크 제거",
+      "watermarkRemoverDesc": "이미지에서 워터마크를 자동으로 제거",
+      "imageResizer": "이미지 크기 조정",
+      "imageResizerDesc": "특정 크기나 백분율로 이미지 크기 조정"
+    },
+    "video": {
+      "title": "비디오 도구",
+      "description": "비디오 변환, 편집, 최적화",
+      "pageDescription": "포괄적인 비디오 도구 모음으로 비디오 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "videoConverter": "비디오 변환",
+      "videoConverterDesc": "다양한 형식 간 비디오 변환 (MP4, AVI, MOV 등)",
+      "videoCompressor": "비디오 압축",
+      "videoCompressorDesc": "품질 손실 없이 비디오 파일 크기 줄이기",
+      "videoTrimmer": "비디오 자르기",
+      "videoTrimmerDesc": "비디오의 특정 부분 잘라내기",
+      "videoMerger": "비디오 병합",
+      "videoMergerDesc": "여러 비디오 파일을 하나로 결합",
+      "videoRotator": "비디오 회전",
+      "videoRotatorDesc": "비디오를 임의의 각도로 회전",
+      "videoResizer": "비디오 크기 조정",
+      "videoResizerDesc": "비디오 해상도 및 크기 변경",
+      "videoSpeedChanger": "비디오 속도 변경",
+      "videoSpeedChangerDesc": "비디오 재생 속도 조정",
+      "videoToGif": "비디오를 GIF로",
+      "videoToGifDesc": "비디오 파일을 애니메이션 GIF로 변환",
+      "audioExtractor": "오디오 추출",
+      "audioExtractorDesc": "비디오에서 오디오 추출",
+      "secureProcessing": "안전한 처리로 개인정보 보호",
+      "readyToProcess": "처리할 준비가 되셨나요?",
+      "uploadAndStart": "비디오 파일을 업로드하고 처리 시작",
+      "supportedFormats": "지원되는 비디오 형식",
+      "supportedFormatsDesc": "최대 호환성을 위해 모든 주요 비디오 형식을 지원합니다"
+    },
+    "ocr": {
+      "title": "OCR 문자 인식 도구",
+      "description": "이미지와 문서에서 텍스트 추출",
+      "pageDescription": "이미지, PDF, 손글씨 등 다양한 인식 요구사항을 지원하는 강력한 OCR 도구 모음",
+      "imageToText": "이미지 문자 인식",
+      "imageToTextDesc": "이미지에서 텍스트 내용을 추출, 다국어 지원",
+      "pdfOcr": "PDF 문자 인식",
+      "pdfOcrDesc": "PDF 문서에서 텍스트 내용을 추출",
+      "handwritingRecognition": "손글씨 인식",
+      "handwritingRecognitionDesc": "손글씨를 인식하여 디지털 텍스트로 변환",
+      "documentScanner": "문서 스캐너",
+      "documentScannerDesc": "문서를 스캔하여 구조화된 텍스트를 추출",
+      "tableExtractor": "표 추출기",
+      "tableExtractorDesc": "이미지나 PDF에서 표 데이터를 추출",
+      "receiptScanner": "영수증 스캐너",
+      "receiptScannerDesc": "영수증을 스캔하여 주요 정보를 추출",
+      "businessCardScanner": "명함 스캐너",
+      "businessCardScannerDesc": "명함을 스캔하여 연락처 정보를 추출",
+      "licensePlateReader": "번호판 인식",
+      "licensePlateReaderDesc": "번호판 번호를 인식",
+      "qrCodeReader": "QR 코드 인식",
+      "qrCodeReaderDesc": "QR 코드 내용을 읽기",
+      "selectFile": "파일 선택",
+      "clickToSelectFile": "클릭하여 파일 선택",
+      "supportedFormats": "지원 형식",
+      "recognizing": "인식 중...",
+      "startRecognition": "인식 시작",
+      "recognitionResult": "인식 결과",
+      "copyResult": "결과 복사",
+      "recognitionComplete": "인식 완료",
+      "ocrComplete": "OCR 인식 완료!",
+      "ocrError": "OCR 처리에 실패했습니다. 다시 시도해주세요",
+      "processingError": "OCR 처리 오류:"
+    },
+    "documentData": {
+      "title": "문서 및 데이터 도구",
+      "description": "문서 처리, 텍스트 편집, 개발 도구, 형식 변환 도구의 포괄적인 컬렉션. 모든 데이터 처리 요구사항을 충족",
+      "fileProcessing": "파일 처리",
+      "textProcessing": "텍스트 처리",
+      "developerTools": "개발자 도구",
+      "converters": "변환기",
+      "csvSplit": "CSV 분할",
+      "csvSplitDesc": "큰 CSV 파일을 작은 청크로 분할",
+      "excelSplit": "Excel 분할",
+      "excelSplitDesc": "Excel 파일을 행 또는 시트별로 분할",
+      "xmlToExcel": "XML에서 Excel로",
+      "xmlToExcelDesc": "XML 파일을 Excel 형식으로 변환",
+      "excelToXml": "Excel에서 XML로",
+      "excelToXmlDesc": "Excel 파일을 XML 형식으로 변환",
+      "csvToExcel": "CSV에서 Excel로",
+      "csvToExcelDesc": "CSV 파일을 Excel 형식으로 변환",
+      "xmlToCsv": "XML에서 CSV로",
+      "xmlToCsvDesc": "XML 파일을 CSV 형식으로 변환",
+      "xmlToJson": "XML에서 JSON으로",
+      "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
+      "jsonToXml": "JSON에서 XML로",
+      "jsonToXmlDesc": "JSON 파일을 XML 형식으로 변환",
+      "csvToJson": "CSV에서 JSON으로",
+      "csvToJsonDesc": "CSV 파일을 JSON 형식으로 변환",
+      "wordCounter": "단어 카운터",
+      "wordCounterDesc": "텍스트의 단어 수, 문자 수, 단락 수, 줄 수를 계산",
+      "characterCounter": "문자 카운터",
+      "characterCounterDesc": "텍스트의 문자 수를 정확히 계산 (공백 포함/제외)",
+      "caseConverter": "대소문자 변환기",
+      "caseConverterDesc": "텍스트를 대문자, 소문자, 제목 케이스, 문장 케이스로 변환",
+      "textFormatter": "텍스트 포맷터",
+      "textFormatterDesc": "텍스트를 포맷하고 여분의 공백과 줄바꿈을 제거",
+      "lineCounter": "줄 카운터",
+      "lineCounterDesc": "텍스트의 총 줄 수와 비어있지 않은 줄 수를 계산",
+      "textReverser": "텍스트 뒤집기",
+      "textReverserDesc": "텍스트 내용을 뒤집기, 문자 또는 단어 단위 뒤집기 지원",
+      "textSorter": "텍스트 정렬",
+      "textSorterDesc": "텍스트 줄을 알파벳순 또는 숫자순으로 정렬",
+      "duplicateRemover": "중복 줄 제거",
+      "duplicateRemoverDesc": "텍스트에서 중복 줄을 제거하고 고유한 내용만 유지",
+      "textDiff": "텍스트 차이 검사기",
+      "textDiffDesc": "두 텍스트의 차이를 비교하고 차이점을 강조 표시",
+      "hashGenerator": "해시 생성기",
+      "hashGeneratorDesc": "MD5, SHA1, SHA256 등 다양한 해시 값을 생성",
+      "base64Encoder": "Base64 인코더/디코더",
+      "base64EncoderDesc": "텍스트의 Base64 인코딩 및 디코딩 작업",
+      "urlEncoder": "URL 인코더/디코더",
+      "urlEncoderDesc": "URL 인코딩 및 디코딩, 특수 문자 처리",
+      "jsonFormatter": "JSON 포맷터/검증기",
+      "jsonFormatterDesc": "JSON 데이터를 포맷하고 유효성을 검증",
+      "qrGenerator": "QR 코드 생성기",
+      "qrGeneratorDesc": "텍스트 또는 URL을 QR 코드 이미지로 변환",
+      "colorPicker": "색상 선택기/변환기",
+      "colorPickerDesc": "HEX, RGB, HSL 등 색상 형식 간 변환",
+      "timestampConverter": "타임스탬프 변환기",
+      "timestampConverterDesc": "Unix 타임스탬프와 날짜 시간 형식 간 상호 변환",
+      "uuidGenerator": "UUID 생성기",
+      "uuidGeneratorDesc": "다양한 버전의 UUID 고유 식별자를 생성",
+      "passwordGenerator": "비밀번호 생성기",
+      "passwordGeneratorDesc": "사용자 정의 규칙으로 안전한 랜덤 비밀번호를 생성",
+      "unitConverter": "단위 변환기",
+      "unitConverterDesc": "길이, 무게, 온도, 면적 등 다양한 단위 간 변환",
+      "currencyConverter": "통화 변환기",
+      "currencyConverterDesc": "실시간 환율 조회 및 통화 변환 계산",
+      "numberBaseConverter": "진법 변환기",
+      "numberBaseConverterDesc": "2진법, 8진법, 10진법, 16진법 간 변환",
+      "colorConverter": "색상 형식 변환기",
+      "colorConverterDesc": "RGB, HEX, HSL, CMYK 등 색상 형식 변환",
+      "timezoneConverter": "시간대 변환기",
+      "timezoneConverterDesc": "다른 시간대 간 시간 변환 및 계산",
+      "imageFormatConverter": "이미지 형식 변환기",
+      "imageFormatConverterDesc": "JPG, PNG, WebP, GIF 등 이미지 형식 변환",
+      "audioFormatConverter": "오디오 형식 변환기",
+      "audioFormatConverterDesc": "MP3, WAV, AAC, FLAC 등 오디오 형식 변환",
+      "documentFormatConverter": "문서 형식 변환기",
+      "documentFormatConverterDesc": "확장된 문서 형식 변환, 더 많은 형식 지원",
+      "encodingConverter": "인코딩 변환기",
+        "encodingConverterDesc": "UTF-8, GBK, ASCII 등 문자 인코딩 변환",
+        "popularTools": "인기 도구",
+        "hot": "인기",
+        "useNow": "지금 사용",
+        "whyChooseUs": "왜 우리 도구를 선택해야 할까요?",
+        "smartProcessing": "스마트 처리",
+        "smartProcessingDesc": "지능형 알고리즘이 효율적이고 정확한 처리 결과를 보장",
+        "formatConversion": "형식 변환",
+        "formatConversionDesc": "다양한 파일 형식 변환을 지원하여 다양한 요구사항 충족",
+        "dataSecurity": "데이터 보안",
+        "dataSecurityDesc": "모든 처리는 브라우저에서 로컬로 수행되어 데이터 개인정보 보호 및 보안 보장",
+        "developerFriendly": "개발자 친화적",
+        "developerFriendlyDesc": "풍부한 개발 도구로 개발 효율성과 코드 품질 향상",
+       "pageDescription": "포괄적인 문서 및 데이터 도구 모음으로 파일 처리, 텍스트 편집, 개발 작업을 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+       "textEditor": "텍스트 편집기",
+       "textEditorDesc": "온라인 텍스트 편집기로 텍스트 파일 편집",
+      "wordCounter": "단어 수 세기",
+      "wordCounterDesc": "텍스트의 문자 수, 단어 수, 단락 수 계산",
+      "jsonFormatter": "JSON 포맷터",
+      "jsonFormatterDesc": "JSON 데이터를 포맷하여 읽기 쉽게 만들기",
+      "csvConverter": "CSV 변환기",
+      "csvConverterDesc": "CSV 파일을 다른 형식으로 변환",
+      "xmlFormatter": "XML 포맷터",
+      "xmlFormatterDesc": "XML 데이터를 포맷하여 읽기 쉽게 만들기",
+      "base64Encoder": "Base64 인코더",
+      "base64EncoderDesc": "텍스트나 파일을 Base64 형식으로 인코드/디코드",
+      "urlEncoder": "URL 인코더",
+      "urlEncoderDesc": "URL을 인코드/디코드",
+      "hashGenerator": "해시 생성기",
+      "hashGeneratorDesc": "MD5, SHA1, SHA256 해시 생성",
+      "passwordGenerator": "비밀번호 생성기",
+      "passwordGeneratorDesc": "안전한 랜덤 비밀번호 생성"
+    }
+  },
+  "sitemap": {
+    "title": "사이트맵",
+    "subtitle": "모든 페이지와 도구를 탐색하여 필요한 기능을 빠르게 찾으세요",
+    "totalCount": "총 {count}개의 도구와 페이지",
+    "backToHome": "홈으로 돌아가기",
+    "categories": {
+      "mainPages": "주요 페이지",
+      "pdfTools": "PDF 도구",
+      "imageTools": "이미지 도구",
+      "videoTools": "비디오 도구",
+      "documentDataTools": "문서 및 데이터 도구",
+      "ocrTools": "OCR 도구",
+      "legalPolicy": "법적 사항 및 정책"
+    },
+    "pages": {
+      "home": {
+        "name": "홈",
+        "description": "메인 페이지 - 모든 도구와 서비스 개요"
+      },
+      "about": {
+        "name": "회사 소개",
+        "description": "회사 정보, 사명, 비전"
+      },
+      "contact": {
+        "name": "문의하기",
+        "description": "연락처 정보 및 지원"
+      },
+      "help": {
+        "name": "도움말 센터",
+        "description": "자주 묻는 질문 및 도구 가이드"
+      },
+      "sitemap": {
+        "name": "사이트맵",
+        "description": "모든 페이지와 도구의 완전한 목록"
+      }
+    },
+    "pdfTools": {
+      "pdfToWord": {
+        "name": "PDF→Word",
+        "description": "PDF 파일을 편집 가능한 Word 문서로 변환"
+      },
+      "wordToPdf": {
+        "name": "Word→PDF",
+        "description": "Word 문서를 PDF 형식으로 변환"
+      },
+      "pdfToExcel": {
+        "name": "PDF→Excel",
+        "description": "PDF에서 테이블을 Excel 스프레드시트로 추출"
+      },
+      "excelToPdf": {
+        "name": "Excel→PDF",
+        "description": "Excel 파일을 PDF 형식으로 변환"
+      },
+      "pdfToPowerpoint": {
+        "name": "PDF→PowerPoint",
+        "description": "PDF를 편집 가능한 PowerPoint 프레젠테이션으로 변환"
+      },
+      "powerpointToPdf": {
+        "name": "PowerPoint→PDF",
+        "description": "PowerPoint 프레젠테이션을 PDF로 변환"
+      },
+      "pdfToJpg": {
+        "name": "PDF→JPG",
+        "description": "PDF 페이지를 JPG 이미지로 변환"
+      },
+      "jpgToPdf": {
+        "name": "JPG→PDF",
+        "description": "JPG 이미지를 PDF 문서로 변환"
+      },
+      "mergePdf": {
+        "name": "PDF 병합",
+        "description": "여러 PDF 파일을 하나의 문서로 결합"
+      },
+      "splitPdf": {
+        "name": "PDF 분할",
+        "description": "PDF를 개별 페이지 또는 범위로 분할"
+      },
+      "compressPdf": {
+        "name": "PDF 압축",
+        "description": "품질을 유지하면서 PDF 파일 크기 줄이기"
+      },
+      "pdfOcr": {
+        "name": "PDF 문자 인식",
+        "description": "스캔된 PDF 문서에서 텍스트 추출"
+      },
+      "addSignature": {
+        "name": "서명 추가",
+        "description": "PDF 문서에 디지털 서명 추가"
+      }
+    },
+    "imageTools": {
+      "backgroundRemover": {
+        "name": "배경 제거",
+        "description": "AI를 사용하여 이미지에서 배경을 자동으로 제거"
+      },
+      "imageConverter": {
+        "name": "이미지 변환",
+        "description": "다양한 형식 간 이미지 변환 (JPG, PNG, WebP 등)"
+      },
+      "imageCompressor": {
+        "name": "이미지 압축",
+        "description": "품질 손실 없이 이미지 파일 크기 줄이기"
+      },
+      "photoEnhancer": {
+        "name": "사진 향상",
+        "description": "AI 기술을 사용하여 이미지 품질 향상"
+      },
+      "imageCropper": {
+        "name": "이미지 자르기",
+        "description": "원하는 크기로 이미지 자르기 및 크기 조정"
+      },
+      "imageRotator": {
+        "name": "이미지 회전",
+        "description": "임의의 각도로 이미지 회전 또는 수평/수직 뒤집기"
+      },
+      "imageUpscaler": {
+        "name": "이미지 확대",
+        "description": "AI 기술을 사용하여 더 나은 품질로 이미지 확대"
+      },
+      "watermarkRemover": {
+        "name": "워터마크 제거",
+        "description": "이미지에서 워터마크를 자동으로 제거"
+      },
+      "imageResizer": {
+        "name": "이미지 크기 조정",
+        "description": "특정 크기나 백분율로 이미지 크기 조정"
+      }
+    },
+    "videoTools": {
+      "videoConverter": {
+        "name": "비디오 변환",
+        "description": "다양한 형식 간 비디오 변환 (MP4, AVI, MOV 등)"
+      },
+      "videoCompressor": {
+        "name": "비디오 압축",
+        "description": "품질 손실 없이 비디오 파일 크기 줄이기"
+      },
+      "videoTrimmer": {
+        "name": "비디오 자르기",
+        "description": "비디오의 특정 부분 잘라내기"
+      },
+      "videoMerger": {
+        "name": "비디오 병합",
+        "description": "여러 비디오 파일을 하나로 결합"
+      },
+      "videoRotator": {
+        "name": "비디오 회전",
+        "description": "비디오를 임의의 각도로 회전"
+      },
+      "videoResizer": {
+        "name": "비디오 크기 조정",
+        "description": "비디오 해상도 및 크기 변경"
+      },
+      "videoSpeedChanger": {
+        "name": "비디오 속도 변경",
+        "description": "비디오 재생 속도 조정"
+      },
+      "videoToGif": {
+        "name": "비디오를 GIF로",
+        "description": "비디오 파일을 애니메이션 GIF로 변환"
+      },
+      "audioExtractor": {
+        "name": "오디오 추출",
+        "description": "비디오에서 오디오 추출"
+      }
+    },
+    "documentDataTools": {
+      "csvSplit": {
+        "name": "CSV 분할",
+        "description": "큰 CSV 파일을 작은 청크로 분할"
+      },
+      "excelSplit": {
+        "name": "Excel 분할",
+        "description": "Excel 파일을 행 또는 시트별로 분할"
+      },
+      "xmlToExcel": {
+        "name": "XML에서 Excel로",
+        "description": "XML 파일을 Excel 형식으로 변환"
+      },
+      "excelToXml": {
+        "name": "Excel에서 XML로",
+        "description": "Excel 파일을 XML 형식으로 변환"
+      },
+      "csvToExcel": {
+        "name": "CSV에서 Excel로",
+        "description": "CSV 파일을 Excel 형식으로 변환"
+      },
+      "xmlToCsv": {
+        "name": "XML에서 CSV로",
+        "description": "XML 파일을 CSV 형식으로 변환"
+      },
+      "xmlToJson": {
+        "name": "XML에서 JSON으로",
+        "description": "XML 파일을 JSON 형식으로 변환"
+      },
+      "jsonToXml": {
+        "name": "JSON에서 XML로",
+        "description": "JSON 파일을 XML 형식으로 변환"
+      },
+      "csvToJson": {
+        "name": "CSV에서 JSON으로",
+        "description": "CSV 파일을 JSON 형식으로 변환"
+      },
+      "wordCounter": {
+        "name": "단어 카운터",
+        "description": "텍스트의 단어 수, 문자 수, 단락 수, 줄 수를 계산"
+      },
+      "characterCounter": {
+        "name": "문자 카운터",
+        "description": "텍스트의 문자 수를 정확히 계산 (공백 포함/제외)"
+      },
+      "caseConverter": {
+        "name": "대소문자 변환기",
+        "description": "텍스트를 대문자, 소문자, 제목 케이스, 문장 케이스로 변환"
+      },
+      "textFormatter": {
+        "name": "텍스트 포맷터",
+        "description": "텍스트를 포맷하고 여분의 공백과 줄바꿈을 제거"
+      },
+      "lineCounter": {
+        "name": "줄 카운터",
+        "description": "텍스트의 총 줄 수와 비어있지 않은 줄 수를 계산"
+      },
+      "textReverser": {
+        "name": "텍스트 뒤집기",
+        "description": "텍스트 내용을 뒤집기, 문자 또는 단어 단위 뒤집기 지원"
+      },
+      "textSorter": {
+        "name": "텍스트 정렬",
+        "description": "텍스트 줄을 알파벳순 또는 숫자순으로 정렬"
+      },
+      "duplicateRemover": {
+        "name": "중복 줄 제거",
+        "description": "텍스트에서 중복 줄을 제거하고 고유한 내용만 유지"
+      },
+      "textDiff": {
+        "name": "텍스트 차이 검사기",
+        "description": "두 텍스트의 차이를 비교하고 차이점을 강조 표시"
+      },
+      "hashGenerator": {
+        "name": "해시 생성기",
+        "description": "MD5, SHA1, SHA256 등 다양한 해시 값을 생성"
+      },
+      "base64Encoder": {
+        "name": "Base64 인코더/디코더",
+        "description": "텍스트의 Base64 인코딩 및 디코딩 작업"
+      },
+      "urlEncoder": {
+        "name": "URL 인코더/디코더",
+        "description": "URL 인코딩 및 디코딩, 특수 문자 처리"
+      },
+      "jsonFormatter": {
+        "name": "JSON 포맷터/검증기",
+        "description": "JSON 데이터를 포맷하고 유효성을 검증"
+      },
+      "qrGenerator": {
+        "name": "QR 코드 생성기",
+        "description": "텍스트 또는 URL을 QR 코드 이미지로 변환"
+      },
+      "colorPicker": {
+        "name": "색상 선택기/변환기",
+        "description": "HEX, RGB, HSL 등 색상 형식 간 변환"
+      },
+      "timestampConverter": {
+        "name": "타임스탬프 변환기",
+        "description": "Unix 타임스탬프와 날짜 시간 형식 간 상호 변환"
+      },
+      "uuidGenerator": {
+        "name": "UUID 생성기",
+        "description": "다양한 버전의 UUID 고유 식별자를 생성"
+      },
+      "passwordGenerator": {
+        "name": "비밀번호 생성기",
+        "description": "사용자 정의 규칙으로 안전한 랜덤 비밀번호를 생성"
+      },
+      "unitConverter": {
+        "name": "단위 변환기",
+        "description": "길이, 무게, 온도, 면적 등 다양한 단위 간 변환"
+      },
+      "currencyConverter": {
+        "name": "통화 변환기",
+        "description": "실시간 환율 조회 및 통화 변환 계산"
+      },
+      "numberBaseConverter": {
+        "name": "진법 변환기",
+        "description": "2진법, 8진법, 10진법, 16진법 간 변환"
+      },
+      "colorConverter": {
+        "name": "색상 형식 변환기",
+        "description": "RGB, HEX, HSL, CMYK 등 색상 형식 변환"
+      },
+      "timezoneConverter": {
+        "name": "시간대 변환기",
+        "description": "다른 시간대 간 시간 변환 및 계산"
+      },
+      "imageFormatConverter": {
+        "name": "이미지 형식 변환기",
+        "description": "JPG, PNG, WebP, GIF 등 이미지 형식 변환"
+      },
+      "audioFormatConverter": {
+        "name": "오디오 형식 변환기",
+        "description": "MP3, WAV, AAC, FLAC 등 오디오 형식 변환"
+      },
+      "documentFormatConverter": {
+        "name": "문서 형식 변환기",
+        "description": "확장된 문서 형식 변환, 더 많은 형식 지원"
+      },
+      "encodingConverter": {
+        "name": "인코딩 변환기",
+        "description": "UTF-8, GBK, ASCII 등 문자 인코딩 변환"
+      }
+    },
+    "ocrTools": {
+      "imageToText": {
+        "name": "이미지 문자 인식",
+        "description": "이미지에서 텍스트 내용을 추출, 다국어 지원"
+      },
+      "pdfOcr": {
+        "name": "PDF 문자 인식",
+        "description": "PDF 문서에서 텍스트 내용을 추출"
+      },
+      "handwritingRecognition": {
+        "name": "손글씨 인식",
+        "description": "손글씨를 인식하여 디지털 텍스트로 변환"
+      },
+      "documentScanner": {
+        "name": "문서 스캐너",
+        "description": "문서를 스캔하여 구조화된 텍스트를 추출"
+      },
+      "tableExtractor": {
+        "name": "표 추출기",
+        "description": "이미지나 PDF에서 표 데이터를 추출"
+      },
+      "receiptScanner": {
+        "name": "영수증 스캐너",
+        "description": "영수증을 스캔하여 주요 정보를 추출"
+      },
+      "businessCardScanner": {
+        "name": "명함 스캐너",
+        "description": "명함을 스캔하여 연락처 정보를 추출"
+      },
+      "licensePlateReader": {
+        "name": "번호판 인식",
+        "description": "번호판 번호를 인식"
+      },
+      "qrCodeReader": {
+        "name": "QR 코드 인식",
+        "description": "QR 코드 내용을 읽기"
+      }
+    },
+    "legalPolicy": {
+      "privacyPolicy": {
+        "name": "개인정보 보호정책",
+        "description": "개인정보 수집, 사용, 보호에 관한 정책"
+      },
+      "termsOfService": {
+        "name": "서비스 약관",
+        "description": "서비스 이용에 관한 약관 및 조건"
+      },
+      "cookiePolicy": {
+        "name": "쿠키 정책",
+        "description": "쿠키 사용 및 관리에 관한 정책"
+      }
+    },
+    "quickStats": {
+      "title": "강력한 온라인 도구 컬렉션",
+      "description": "모든 파일 처리 요구사항을 충족하는 포괄적인 도구 세트",
+      "pdfToolsCount": "{count}개의 PDF 도구",
+      "imageToolsCount": "{count}개의 이미지 도구",
+      "videoToolsCount": "{count}개의 비디오 도구",
+      "dataToolsCount": "{count}개의 데이터 도구"
+    },
+    "searchPrompt": {
+      "title": "찾고 있는 도구가 없나요?",
+      "description": "홈페이지에서 검색하거나 도움말 센터에서 자세한 정보를 확인하세요",
+      "backToHome": "홈페이지에서 검색",
+      "helpCenter": "도움말 센터 보기",
+      "contactUs": "문의하기"
+    }
+  },
+  "help": {
+    "title": "도움말 센터",
+    "subtitle": "자주 묻는 질문과 도구 가이드로 필요한 답변을 찾으세요",
+    "searchPlaceholder": "질문이나 키워드를 검색하세요...",
+    "popularTopics": "인기 주제",
+    "allCategories": "모든 카테고리",
+    "moreTools": "기타 도구",
+    "viewAllTools": "모든 도구 보기",
+    "noResults": "관련 콘텐츠를 찾을 수 없습니다",
+    "clearSearch": "검색 조건 지우기",
+    "contactSupport": {
+      "title": "추가 지원이 필요하신가요?",
+      "description": "찾고 있는 답변을 찾을 수 없다면 언제든지 지원팀에 문의해 주세요.",
+      "contactButton": "지원팀에 문의",
+      "apiDocsButton": "API 문서 보기"
+    }
+  },
+  "common": {
+    "upload": "업로드",
+    "download": "다운로드",
+    "process": "처리",
+    "processing": "처리 중...",
+    "selectFile": "파일 선택",
+    "dragDropFile": "파일을 여기에 드래그 앤 드롭",
+    "or": "또는",
+    "clickToSelect": "클릭하여 선택",
+    "fileSelected": "파일이 선택됨",
+    "error": "오류",
+    "success": "성공",
+    "reset": "재설정",
+    "back": "뒤로",
+    "next": "다음",
+    "cancel": "취소",
+    "confirm": "확인",
+    "selectToolAndFile": "도구와 파일을 선택해주세요",
+    "processingFailed": "처리 실패",
+    "imageProcessingComplete": "이미지 처리 완료!",
+    "imageProcessingFailed": "이미지 처리에 실패했습니다. 다시 시도해주세요",
+    "return": "돌아가기",
+    "selectImageFile": "이미지 파일 선택",
+    "clickToSelectImageFile": "클릭하여 이미지 파일 선택",
+    "supportedFormats": "JPG, PNG, WebP, GIF 등의 형식을 지원합니다",
+    "selected": "선택됨:",
+    "originalPreview": "원본 미리보기",
+    "processResult": "처리 결과",
+    "startProcessing": "처리 시작",
+    "downloadImage": "이미지 다운로드",
+    "mostPopularTools": "가장 인기 있는 도구",
+    "useTool": "도구 사용",
+    "allTools": "모든 도구",
+    "popular": "인기",
+    "advancedProcessing": "고급 이미지 처리",
+    "aiPowered": "AI 기반",
+    "aiPoweredDesc": "배경 제거 및 이미지 향상을 위한 고급 AI 알고리즘",
+    "allFormats": "모든 형식",
+    "allFormatsDesc": "JPG, PNG, WebP, GIF 및 기타 많은 이미지 형식 지원",
+    "instantResults": "즉시 결과",
+    "instantResultsDesc": "대기나 서버 업로드 없이 즉시 이미지 처리",
+    "readyToEdit": "이미지를 편집할 준비가 되셨나요?",
+    "uploadAndStart": "이미지를 업로드하고 강력한 도구로 편집을 시작하세요",
+    "chooseImageFile": "이미지 파일 선택",
+    "chooseVideoFile": "비디오 파일 선택",
+    "fastProcessing": "빠른 처리",
+    "securePrivate": "안전하고 비공개",
+    "clickToSelectFile": "클릭하여 파일 선택",
+    "downloadFile": "파일 다운로드",
+    "extractedText": "추출된 텍스트",
+    "copyText": "텍스트 복사",
+    "loadingToolDetails": "도구 세부 정보 로딩 중...",
+    "toolNotFound": "도구를 찾을 수 없음",
+    "toolNotFoundDesc": "요청한 도구를 찾을 수 없습니다.",
+    "goHome": "홈으로 가기",
+    "uploadFiles": "파일 업로드",
+    "dropFilesHere": "파일을 여기에 드롭하거나 클릭하여 찾아보기",
+    "acceptedFormats": "지원 형식",
+    "maximumFiles": "최대 {{count}}개 파일",
+    "chooseFiles": "파일 선택",
+    "selectedFiles": "선택된 파일",
+    "remove": "제거",
+    "options": "옵션",
+    "processingFailedTryAgain": "처리에 실패했습니다. 다시 시도해 주세요.",
+    "results": "결과",
+    "processFilesToSeeResults": "파일을 처리하여 여기에서 결과를 확인하세요",
+    "processingComplete": "처리 완료",
+    "generatedText": "생성된 텍스트",
+    "wordCount": "단어 수",
+    "fileSize": "파일 크기"
+  }
+}

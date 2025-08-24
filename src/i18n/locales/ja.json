@@ -1,0 +1,249 @@
+{
+  "nav": {
+    "pdfTools": "PDF",
+    "imageTools": "画像",
+    "videoTools": "動画",
+    "ocrTools": "OCR",
+    "documentDataTools": "文書・データ"
+  },
+  "home": {
+    "heroTitle": "無料オンラインツール",
+    "heroSubtitle": "すべて",
+    "heroDescription": "PDF、画像、動画、AI文章作成など、100以上の無料ツールをご利用いただけます。登録不要、完全無料でお使いいただけます。",
+    "exploreTools": "ツールを探索",
+    "learnMore": "詳細を見る",
+    "chooseCategory": "ツールカテゴリを選択",
+    "categoryDescription": "カテゴリ別に整理された包括的なツールコレクションから選択",
+    "popularTools": "最も人気のツール",
+    "popularDescription": "私たちのツールを信頼する数百万のユーザーに参加",
+    "useTool": "ツールを使用",
+    "viewTools": "ツールを表示"
+  },
+  "features": {
+    "free": {
+      "title": "100%無料",
+      "description": "すべてのツールは隠れた料金やサブスクリプションなしで完全に無料でご利用いただけます。"
+    },
+    "secure": {
+      "title": "安全・プライベート",
+      "description": "ファイルは安全に処理され、プライバシー保護のため1時間後に自動削除されます。"
+    },
+    "fast": {
+      "title": "高速・簡単",
+      "description": "登録不要。ファイルをアップロードするだけで、数秒で結果を取得できます。"
+    }
+  },
+  "footer": {
+    "zipic": "ZiPic",
+    "dropshare": "DropShare",
+    "email": "メール",
+    "phone": "電話",
+    "address": "住所",
+    "toolCategories": "ツールカテゴリ",
+    "usefulLinks": "便利なリンク",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "contactUs": "お問い合わせ",
+    "contactDescription": "ツールの使用中に問題が発生した場合は、いつでもメールをお送りください。",
+    "copyright": "© 2024 ColleTools. 全著作権所有。",
+    "cookiePolicy": "クッキーポリシー",
+    "sitemap": "サイトマップ"
+  },
+  "sitemap": {
+    "title": "サイトマップ",
+    "subtitle": "すべてのページとツールを閲覧し、必要な機能を素早く見つけましょう",
+    "totalCount": "合計 {{count}} 個のツールとページ",
+    "itemCount": "{{count}} 項目",
+    "categories": {
+      "mainPages": "メインページ",
+      "pdfTools": "PDFツール",
+      "imageTools": "画像ツール",
+      "videoTools": "動画ツール",
+      "documentData": "文書・データ",
+      "ocrTools": "OCRツール",
+      "legalPolicy": "法的事項・ポリシー"
+    },
+    "quickStats": {
+      "title": "強力なオンラインツールコレクション",
+      "description": "すべてのファイル処理ニーズを満たす包括的なツールセット",
+      "pdfToolsCount": "{{count}} PDFツール",
+      "imageToolsCount": "{{count}} 画像ツール",
+      "videoToolsCount": "{{count}} 動画ツール",
+      "dataToolsCount": "{{count}} データツール"
+    },
+    "searchPrompt": {
+      "title": "必要なツールが見つかりませんか？",
+      "description": "メインページで検索するか、ヘルプセンターで詳細情報をご確認ください",
+      "backToHome": "メインページで検索",
+      "helpCenter": "ヘルプセンターを見る",
+      "contactUs": "お問い合わせ"
+    }
+  },
+  "help": {
+    "title": "ヘルプセンター",
+    "subtitle": "よくある質問とツールガイドで必要な回答を見つけましょう",
+    "searchPlaceholder": "質問やキーワードを検索...",
+    "popularTopics": "人気のトピック",
+    "allCategories": "すべてのカテゴリ",
+    "moreTools": "その他のツール",
+    "viewAllTools": "すべてのツールを表示",
+    "noResults": "関連するコンテンツが見つかりません",
+    "clearSearch": "検索をクリア",
+    "contactSupport": {
+      "title": "さらにサポートが必要ですか？",
+      "description": "お探しの回答が見つからない場合は、お気軽にサポートチームにお問い合わせください。",
+      "contactButton": "サポートに連絡",
+      "apiDocsButton": "APIドキュメントを見る"
+    }
+  },
+  "common": {
+    "upload": "アップロード",
+    "download": "ダウンロード",
+    "process": "処理",
+    "processing": "処理中...",
+    "selectFile": "ファイルを選択",
+    "dragDropFile": "ファイルをここにドラッグ&ドロップ",
+    "or": "または",
+    "clickToSelect": "クリックして選択",
+    "fileSelected": "ファイルが選択されました",
+    "error": "エラー",
+    "success": "成功",
+    "reset": "リセット",
+    "back": "戻る",
+    "next": "次へ",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "selectToolAndFile": "ツールとファイルを選択してください",
+    "processingFailed": "処理に失敗しました",
+    "imageProcessingComplete": "画像処理が完了しました！",
+    "imageProcessingFailed": "画像処理に失敗しました。もう一度お試しください",
+    "return": "戻る",
+    "selectImageFile": "画像ファイルを選択",
+    "clickToSelectImageFile": "クリックして画像ファイルを選択",
+    "supportedFormats": "JPG、PNG、WebP、GIFなどの形式をサポート",
+    "selected": "選択済み:",
+    "originalPreview": "元のプレビュー",
+    "processResult": "処理結果",
+    "startProcessing": "処理開始",
+    "downloadImage": "画像をダウンロード",
+    "mostPopularTools": "最も人気のツール",
+    "useTool": "ツールを使用",
+    "allTools": "すべてのツール",
+    "popular": "人気",
+    "advancedProcessing": "高度な画像処理",
+    "aiPowered": "AI搭載",
+    "aiPoweredDesc": "背景除去と画像強化のための高度なAIアルゴリズム",
+    "allFormats": "すべての形式",
+    "allFormatsDesc": "JPG、PNG、WebP、GIFなど多くの画像形式をサポート",
+    "instantResults": "即座の結果",
+    "instantResultsDesc": "待機やサーバーへのアップロードなしで画像を即座に処理",
+    "readyToEdit": "画像を編集する準備はできましたか？",
+    "uploadAndStart": "動画ファイルをアップロードして処理を開始",
+    "chooseImageFile": "画像ファイルを選択",
+    "chooseVideoFile": "動画ファイルを選択",
+    "fastProcessing": "高速処理",
+    "securePrivate": "安全・プライベート",
+    "clickToSelectFile": "クリックしてファイルを選択",
+    "downloadFile": "ファイルをダウンロード",
+    "extractedText": "抽出されたテキスト",
+    "copyText": "テキストをコピー",
+    "secureProcessing": "安全な処理でプライバシーを保護",
+    "readyToProcess": "処理の準備はできましたか？",
+    "supportedFormats": "対応動画形式",
+    "supportedFormatsDesc": "最大限の互換性のため、すべての主要な動画形式をサポート",
+    "copyResult": "結果をコピー",
+    "recognitionComplete": "認識完了",
+    "ocrComplete": "OCR認識完了",
+    "ocrError": "OCR認識失敗",
+    "processingError": "OCR処理エラー:",
+    "loadingToolDetails": "ツールの詳細を読み込み中...",
+    "toolNotFound": "ツールが見つかりません",
+    "toolNotFoundDesc": "要求されたツールが見つかりませんでした。",
+    "goHome": "ホームに戻る",
+    "uploadFiles": "ファイルをアップロード",
+    "dropFilesHere": "ファイルをここにドロップするかクリックして参照",
+    "acceptedFormats": "対応形式",
+    "maximumFiles": "最大{{count}}ファイル",
+    "chooseFiles": "ファイルを選択",
+    "selectedFiles": "選択されたファイル",
+    "remove": "削除",
+    "options": "オプション",
+    "processingFailedTryAgain": "処理に失敗しました。もう一度お試しください。",
+    "results": "結果",
+    "processFilesToSeeResults": "ファイルを処理して結果をここで確認してください",
+    "processingComplete": "処理完了",
+    "generatedText": "生成されたテキスト",
+    "wordCount": "文字数",
+    "fileSize": "ファイルサイズ"
+  },
+  "tools": {
+    "pdf": {
+      "title": "PDFツール",
+      "description": "PDF変換、結合、分割、圧縮、OCR認識など13の専門ツール",
+      "pdfToWord": "PDFをWordに",
+      "mergePdf": "PDF結合",
+      "splitPdf": "PDF分割",
+      "compressPdf": "PDF圧縮"
+    },
+    "image": {
+      "title": "画像ツール",
+      "description": "画像変換、圧縮、背景除去、透かし処理など13の画像処理ツール",
+      "imageConverter": "画像変換",
+      "backgroundRemover": "背景除去",
+      "imageCompressor": "画像圧縮",
+      "photoEnhancer": "写真強化"
+    },
+    "video": {
+      "title": "動画ツール",
+      "description": "動画圧縮、変換、編集、結合、GIF作成など9の動画処理ツール",
+      "videoConverter": "動画変換",
+      "videoCompressor": "動画圧縮",
+      "videoTrimmer": "動画トリミング",
+      "videoToGif": "動画をGIFに"
+    },
+    "ocr": {
+      "title": "OCRツール",
+      "description": "画像テキスト認識、PDF OCR、手書き認識など9のテキスト認識ツール",
+      "imageToText": "画像文字認識",
+      "pdfOcr": "PDF文字認識",
+      "handwritingRecognition": "手書き認識",
+      "qrCodeReader": "QRコード認識"
+    },
+    "documentData": {
+      "title": "文書・データ",
+      "description": "Excel、CSV、JSON変換、テキスト処理、開発者ツールなど36の実用的なツール",
+      "wordCounter": "文字カウンター",
+      "hashGenerator": "ハッシュ生成器",
+      "base64Encoder": "Base64エンコーダー",
+      "csvSplit": "CSV分割"
+    }
+  },
+  "home": {
+    "heroTitle": "無料オンラインツール",
+    "heroSubtitle": "すべて",
+    "heroDescription": "PDF、画像、動画、AI文章作成など、100以上の無料ツールをご利用いただけます。登録不要、完全無料でお使いいただけます。",
+    "exploreTools": "ツールを探索",
+    "learnMore": "詳細を見る",
+    "chooseCategory": "ツールカテゴリを選択",
+    "categoryDescription": "カテゴリ別に整理された包括的なツールコレクションから選択",
+    "popularTools": "最も人気のツール",
+    "popularDescription": "私たちのツールを信頼する数百万のユーザーに参加",
+    "useTool": "ツールを使用",
+    "viewTools": "ツールを表示",
+    "usedByUsers": "{{count}}万人のユーザーが利用",
+    "features": {
+      "free": {
+        "title": "100%無料",
+        "description": "すべてのツールは隠れた料金やサブスクリプションなしで完全に無料でご利用いただけます。"
+      },
+      "secure": {
+        "title": "安全・プライベート",
+        "description": "ファイルは安全に処理され、プライバシー保護のため1時間後に自動削除されます。"
+      },
+      "fast": {
+        "title": "高速・簡単",
+        "description": "登録不要。ファイルをアップロードするだけで、数秒で結果を取得できます。"
+      }
+    }
+  }
+}
