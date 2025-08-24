@@ -47,13 +47,13 @@ jobs:
         port: ${{ secrets.SERVER_PORT || 22 }}
         script: |
           # 停止现有容器
-          docker-compose -f /opt/colletools/docker-compose.yml down || true
+          docker-compose -f /var/www/colletools/docker-compose.yml down || true
           
           # 清理旧镜像
           docker image prune -f
           
           # 拉取最新代码
-          cd /opt/colletools
+          cd /var/www/colletools
           git pull origin main
           
           # 构建并启动新容器
