@@ -126,18 +126,21 @@ http {
 }
 EOF
 
-echo "🚀 4. 构建并启动生产服务..."
-cp docker-compose.production.yml docker-compose.yml
-cp nginx.production.conf nginx.conf
-docker-compose up -d --build
+echo "🚀 4. 生成nginx配置..."
+# 生成nginx配置文件
+./generate-nginx-config.sh
 
-echo "⏳ 5. 等待服务启动..."
+echo "🚀 5. 构建并启动生产服务..."
+# 使用独立的配置文件名，避免覆盖主配置
+docker-compose -f docker-compose.production.yml up -d --build
+
+echo "⏳ 6. 等待服务启动..."
 sleep 20
 
-echo "📋 6. 检查服务状态..."
+echo "📋 7. 检查服务状态..."
 docker ps
 
-echo "🌐 7. 测试访问..."
+echo "🌐 8. 测试访问..."
 SERVER_IP=$(curl -s ifconfig.me 2>/dev/null || echo "107.174.250.34")
 echo "服务器IP: $SERVER_IP"
 

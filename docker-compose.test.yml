@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  # 简单测试 - 只有一个服务
+  colletools-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.simple
+    container_name: colletools-test
+    restart: unless-stopped
+    ports:
+      - "8082:3000"  # 映射到8082端口避免冲突
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

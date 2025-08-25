@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  # 主域名应用容器
-  colletools-app:
+  # 主域名应用容器 - 使用唯一名称
+  colletools-app-prod:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: colletools-app
+    container_name: colletools-app-prod-${DEPLOY_ID:-default}
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -16,7 +16,7 @@ services:
       - ./uploads:/app/uploads
       - ./logs:/app/logs
     networks:
-      - colletools-network
+      - colletools-prod-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -24,12 +24,12 @@ services:
       retries: 3
       start_period: 40s
 
-  # 第二域名应用容器
-  colletools-app-secondary:
+  # 第二域名应用容器 - 使用唯一名称
+  colletools-app-secondary-prod:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: colletools-app-secondary
+    container_name: colletools-app-secondary-prod-${DEPLOY_ID:-default}
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -38,7 +38,7 @@ services:
     volumes:
       - ./logs-secondary:/app/logs
     networks:
-      - colletools-network
+      - colletools-prod-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -46,26 +46,28 @@ services:
       retries: 3
       start_period: 40s
 
-  nginx:
+  # nginx代理 - 使用项目特定名称
+  colletools-nginx-prod:
     image: nginx:alpine
-    container_name: nginx-proxy
+    container_name: colletools-nginx-prod-${DEPLOY_ID:-default}
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      # 使用环境变量配置端口，默认使用非标准端口避免冲突
+      - "${HTTP_PORT:-8080}:80"
+      - "${HTTPS_PORT:-8443}:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/nginx/ssl:ro
       - ./logs/nginx:/var/log/nginx
-      - certbot-www:/var/www/certbot:ro
+      - colletools-certbot-www:/var/www/certbot:ro
     environment:
       - PRIMARY_DOMAIN=${PRIMARY_DOMAIN}
       - SECONDARY_DOMAIN=${SECONDARY_DOMAIN}
     depends_on:
-      - colletools-app
-      - colletools-app-secondary
+      - colletools-app-prod
+      - colletools-app-secondary-prod
     networks:
-      - colletools-network
+      - colletools-prod-network
     healthcheck:
       test: ["CMD", "nginx", "-t"]
       interval: 30s
@@ -73,30 +75,30 @@ services:
       retries: 3
 
   # 主域名 SSL 证书管理
-  certbot-primary:
+  colletools-certbot-primary:
     image: certbot/certbot
-    container_name: certbot-primary
+    container_name: colletools-certbot-primary-${DEPLOY_ID:-default}
     volumes:
       - ./ssl:/etc/letsencrypt
-      - certbot-www:/var/www/certbot
+      - colletools-certbot-www:/var/www/certbot
     command: certonly --webroot --webroot-path=/var/www/certbot --email ${SSL_EMAIL} --agree-tos --no-eff-email -d ${PRIMARY_DOMAIN} -d www.${PRIMARY_DOMAIN}
     depends_on:
-      - nginx
+      - colletools-nginx-prod
     networks:
-      - colletools-network
+      - colletools-prod-network
 
   # 第二域名 SSL 证书管理
-  certbot-secondary:
+  colletools-certbot-secondary:
     image: certbot/certbot
-    container_name: certbot-secondary
+    container_name: colletools-certbot-secondary-${DEPLOY_ID:-default}
     volumes:
       - ./ssl:/etc/letsencrypt
-      - certbot-www:/var/www/certbot
+      - colletools-certbot-www:/var/www/certbot
     command: certonly --webroot --webroot-path=/var/www/certbot --email ${SSL_EMAIL} --agree-tos --no-eff-email -d ${SECONDARY_DOMAIN} -d www.${SECONDARY_DOMAIN}
     depends_on:
-      - nginx
+      - colletools-nginx-prod
     networks:
-      - colletools-network
+      - colletools-prod-network
 
 volumes:
   uploads:
@@ -105,9 +107,10 @@ volumes:
     driver: local
   ssl:
     driver: local
-  certbot-www:
+  colletools-certbot-www:
     driver: local
 
 networks:
-  colletools-network:
+  colletools-prod-network:
     driver: bridge
+    name: colletools-prod-network-${DEPLOY_ID:-default}

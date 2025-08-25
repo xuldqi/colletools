@@ -46,7 +46,7 @@ http {
     # 主域名 HTTP 服务器 - 重定向到 HTTPS
     server {
         listen 80;
-        server_name localhost www.localhost;
+        server_name PRIMARY_DOMAIN_PLACEHOLDER www.PRIMARY_DOMAIN_PLACEHOLDER;
         
         # Let's Encrypt 验证路径
         location /.well-known/acme-challenge/ {
@@ -62,7 +62,7 @@ http {
     # 第二域名 HTTP 服务器 - 重定向到 HTTPS
     server {
         listen 80;
-        server_name localhost www.localhost;
+        server_name SECONDARY_DOMAIN_PLACEHOLDER www.SECONDARY_DOMAIN_PLACEHOLDER;
         
         # Let's Encrypt 验证路径
         location /.well-known/acme-challenge/ {
@@ -78,11 +78,11 @@ http {
     # 主域名 HTTPS 服务器
     server {
         listen 443 ssl http2;
-        server_name localhost www.localhost;
+        server_name PRIMARY_DOMAIN_PLACEHOLDER www.PRIMARY_DOMAIN_PLACEHOLDER;
         
         # SSL 配置
-        ssl_certificate /etc/nginx/ssl/live/localhost/fullchain.pem;
-        ssl_certificate_key /etc/nginx/ssl/live/localhost/privkey.pem;
+        ssl_certificate /etc/nginx/ssl/live/PRIMARY_DOMAIN_PLACEHOLDER/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/live/PRIMARY_DOMAIN_PLACEHOLDER/privkey.pem;
         
         # SSL 安全设置
         ssl_protocols TLSv1.2 TLSv1.3;
@@ -108,7 +108,7 @@ http {
         # API 路由 - 应用速率限制
         location /api/ {
             limit_req zone=api burst=20 nodelay;
-            proxy_pass http://colletools-app-prod:3000;
+            proxy_pass http://colletools-app:3000;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -124,7 +124,7 @@ http {
         # 文件上传路由 - 特殊速率限制
         location /api/upload {
             limit_req zone=upload burst=10 nodelay;
-            proxy_pass http://colletools-app-prod:3000;
+            proxy_pass http://colletools-app:3000;
             proxy_http_version 1.1;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -137,7 +137,7 @@ http {
         
         # 主应用路由
         location / {
-            proxy_pass http://colletools-app-prod:3000;
+            proxy_pass http://colletools-app:3000;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -153,7 +153,7 @@ http {
         # 健康检查
         location /health {
             access_log off;
-            proxy_pass http://colletools-app-prod:3000/health;
+            proxy_pass http://colletools-app:3000/health;
             proxy_http_version 1.1;
             proxy_set_header Host $host;
         }
@@ -162,11 +162,11 @@ http {
     # 第二域名 HTTPS 服务器
     server {
         listen 443 ssl http2;
-        server_name localhost www.localhost;
+        server_name SECONDARY_DOMAIN_PLACEHOLDER www.SECONDARY_DOMAIN_PLACEHOLDER;
         
         # SSL 配置
-        ssl_certificate /etc/nginx/ssl/live/localhost/fullchain.pem;
-        ssl_certificate_key /etc/nginx/ssl/live/localhost/privkey.pem;
+        ssl_certificate /etc/nginx/ssl/live/SECONDARY_DOMAIN_PLACEHOLDER/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/live/SECONDARY_DOMAIN_PLACEHOLDER/privkey.pem;
         
         # SSL 安全设置
         ssl_protocols TLSv1.2 TLSv1.3;
@@ -192,7 +192,7 @@ http {
         # API 路由 - 应用速率限制
         location /api/ {
             limit_req zone=api burst=20 nodelay;
-            proxy_pass http://colletools-app-secondary-prod:3001;
+            proxy_pass http://colletools-app-secondary:3001;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -208,7 +208,7 @@ http {
         # 文件上传路由 - 特殊速率限制
         location /api/upload {
             limit_req zone=upload burst=10 nodelay;
-            proxy_pass http://colletools-app-secondary-prod:3001;
+            proxy_pass http://colletools-app-secondary:3001;
             proxy_http_version 1.1;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
@@ -221,7 +221,7 @@ http {
         
         # 主应用路由
         location / {
-            proxy_pass http://colletools-app-secondary-prod:3001;
+            proxy_pass http://colletools-app-secondary:3001;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -237,7 +237,7 @@ http {
         # 健康检查
         location /health {
             access_log off;
-            proxy_pass http://colletools-app-secondary-prod:3001/health;
+            proxy_pass http://colletools-app-secondary:3001/health;
             proxy_http_version 1.1;
             proxy_set_header Host $host;
         }

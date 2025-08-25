@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # 本地测试应用容器
+  colletools-app-local:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: colletools-app-local
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    networks:
+      - colletools-local-network
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 本地测试nginx
+  colletools-nginx-local:
+    image: nginx:alpine
+    container_name: colletools-nginx-local
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.local.conf:/etc/nginx/nginx.conf:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - colletools-app-local
+    networks:
+      - colletools-local-network
+
+networks:
+  colletools-local-network:
+    driver: bridge

@@ -27,12 +27,20 @@ app.use('/api/tools', toolsRoutes);
 app.use('/api/download', downloadRoutes);
 
 /**
- * health
+ * health endpoints
  */
 app.use('/api/health', (req: Request, res: Response): void => {
   res.status(200).json({
     success: true,
     message: 'ok'
+  });
+});
+
+app.use('/health', (req: Request, res: Response): void => {
+  res.status(200).json({
+    success: true,
+    message: 'ok',
+    timestamp: new Date().toISOString()
   });
 });
 
