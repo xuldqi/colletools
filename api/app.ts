@@ -45,6 +45,13 @@ app.use('/health', (req: Request, res: Response): void => {
 });
 
 /**
+ * 根路径处理
+ */
+app.get('/', (req: Request, res: Response): void => {
+  res.status(200).send('ColleTools is running!');
+});
+
+/**
  * error handler middleware
  */
 app.use((error: Error, _req: Request, res: Response) => {
