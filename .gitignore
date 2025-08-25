@@ -25,3 +25,17 @@ build/
 
 # OS generated files
 .DS_Store
+
+# Uploads and logs
+uploads/
+logs/
+
+# SSL certificates
+ssl/
+
+# Docker volumes
+data/
+
+# Temporary files
+*.tmp
+*.temp
