@@ -37,13 +37,14 @@ const resources = {
 
 }
 
-i18n
+const initI18n = i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
     fallbackLng: 'en',
     debug: false,
+    lng: 'zh', // 设置默认语言
     
     interpolation: {
       escapeValue: false // React已经默认转义
@@ -66,6 +67,9 @@ i18n
       }
     }
   })
+
+// 确保初始化完成
+export { initI18n }
 
 export default i18n
 

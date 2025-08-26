@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
-import './i18n'
+import { initI18n } from './i18n'
 
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
@@ -19,14 +19,17 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <App />
-        </Suspense>
-      </BrowserRouter>
-    </HelmetProvider>
-  </React.StrictMode>,
-)
+// 等待 i18n 初始化完成再渲染
+initI18n.then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <HelmetProvider>
+        <BrowserRouter>
+          <Suspense fallback={<div>Loading...</div>}>
+            <App />
+          </Suspense>
+        </BrowserRouter>
+      </HelmetProvider>
+    </React.StrictMode>,
+  )
+})
