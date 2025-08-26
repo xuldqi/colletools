@@ -2,7 +2,7 @@
  * This is a API server
  */
 
-import express, { type Request, type Response } from 'express';
+import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
@@ -54,7 +54,7 @@ app.get('/', (req: Request, res: Response): void => {
 /**
  * error handler middleware
  */
-app.use((error: Error, _req: Request, res: Response) => {
+app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   res.status(500).json({
     success: false,
     error: 'Server internal error'
@@ -64,7 +64,7 @@ app.use((error: Error, _req: Request, res: Response) => {
 /**
  * 404 handler
  */
-app.use((_req: Request, res: Response) => {
+app.use((_req: Request, res: Response, _next: NextFunction) => {
   res.status(404).json({
     success: false,
     error: 'API not found'
