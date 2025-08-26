@@ -1,5 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
 
+// 定义文件类型
+interface UploadedFile {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  size: number;
+  destination?: string;
+  filename?: string;
+  path?: string;
+  buffer?: Buffer;
+}
+
+// 扩展Request类型以包含multer的file和files属性
+interface MulterRequest extends Request {
+  file?: UploadedFile;
+  files?: UploadedFile[] | { [fieldname: string]: UploadedFile[] };
+}
+
 // 安全头中间件
 export const securityHeaders = (req: Request, res: Response, next: NextFunction) => {
   // Content Security Policy
@@ -89,12 +108,26 @@ export const createRateLimit = (windowMs: number, max: number, message?: string)
 };
 
 // 文件上传安全检查
-export const validateFileUpload = (req: Request, res: Response, next: NextFunction) => {
+export const validateFileUpload = (req: MulterRequest, res: Response, next: NextFunction) => {
   if (!req.file && !req.files) {
     return next();
   }
 
-  const file = req.file || (Array.isArray(req.files) ? req.files[0] : req.files);
+  let file: UploadedFile | undefined;
+  
+  if (req.file) {
+    file = req.file;
+  } else if (req.files) {
+    if (Array.isArray(req.files)) {
+      file = req.files[0];
+    } else {
+      // 如果是对象形式，取第一个字段的第一个文件
+      const firstField = Object.keys(req.files)[0];
+      if (firstField && Array.isArray(req.files[firstField])) {
+        file = req.files[firstField][0];
+      }
+    }
+  }
   
   if (!file) {
     return next();
@@ -125,7 +158,7 @@ export const validateFileUpload = (req: Request, res: Response, next: NextFuncti
   }
 
   // 检查文件名
-  const filename = file.originalname || file.name;
+  const filename = file.originalname;
   if (filename && !/^[a-zA-Z0-9._-]+$/.test(filename.replace(/\.[^.]+$/, ''))) {
     return res.status(400).json({
       error: 'Invalid filename. Only alphanumeric characters, dots, underscores, and hyphens are allowed.'
@@ -135,8 +168,8 @@ export const validateFileUpload = (req: Request, res: Response, next: NextFuncti
   next();
 };
 
-// API密钥验证中间件
-export const validateApiKey = (req: Request, res: Response, next: NextFunction) => {
+// 文件验证中间件
+export const validateFile = (req: MulterRequest, res: Response, next: NextFunction) => {
   const apiKey = req.headers['x-api-key'] || req.query.apiKey;
   
   // 在生产环境中，这里应该验证真实的API密钥
@@ -175,7 +208,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
 };
 
 // 健康检查端点
-export const healthCheck = (req: Request, res: Response) => {
+export const healthCheck = (_req: Request, res: Response) => {
   const healthData = {
     status: 'OK',
     timestamp: new Date().toISOString(),

@@ -65,11 +65,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const finalImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
   
   // Generate alternate language URLs
-  const finalAlternateUrls = {
-    'en': `${baseUrl}/en${location.pathname}`,
-    'zh': `${baseUrl}/zh${location.pathname}`,
-    'ja': `${baseUrl}/ja${location.pathname}`
-  };
+  // const alternateUrls = getAllLanguagePaths(location.pathname);
 
   return (
     <Helmet>

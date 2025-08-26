@@ -77,7 +77,7 @@ const routeTranslations = {
 // 语言检测和重定向组件
 const LanguageDetector: React.FC = () => {
   const location = useLocation();
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
   
   // 检测浏览器语言
   const detectLanguage = () => {

@@ -1,5 +1,13 @@
 import { useEffect } from 'react';
 
+// 声明gtag全局函数
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+const gtag = window.gtag;
+
 interface PerformanceMetrics {
   FCP?: number; // First Contentful Paint
   LCP?: number; // Largest Contentful Paint
@@ -19,7 +27,7 @@ const PerformanceMonitor: React.FC = () => {
         try {
           const lcpObserver = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            const lastEntry = entries[entries.length - 1] as any;
+            const lastEntry = entries[entries.length - 1] as PerformanceEntry & { startTime: number };
             metrics.LCP = lastEntry.startTime;
             console.log('LCP:', metrics.LCP);
             
@@ -35,12 +43,16 @@ const PerformanceMonitor: React.FC = () => {
         try {
           const fidObserver = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            entries.forEach((entry: any) => {
-              metrics.FID = entry.processingStart - entry.startTime;
+            entries.forEach((entry: PerformanceEntry & { processingStart?: number }) => {
+                if (entry.processingStart !== undefined) {
+                  metrics.FID = entry.processingStart - entry.startTime;
+                }
               console.log('FID:', metrics.FID);
               
               // 发送到分析服务
-              sendMetrics('FID', metrics.FID);
+              if (metrics.FID !== undefined) {
+                sendMetrics('FID', metrics.FID);
+              }
             });
           });
           fidObserver.observe({ entryTypes: ['first-input'] });
@@ -53,8 +65,8 @@ const PerformanceMonitor: React.FC = () => {
           let clsValue = 0;
           const clsObserver = new PerformanceObserver((entryList) => {
             const entries = entryList.getEntries();
-            entries.forEach((entry: any) => {
-              if (!entry.hadRecentInput) {
+            entries.forEach((entry: PerformanceEntry & { hadRecentInput?: boolean; value?: number }) => {
+              if (!entry.hadRecentInput && entry.value !== undefined) {
                 clsValue += entry.value;
               }
             });
@@ -92,7 +104,7 @@ const PerformanceMonitor: React.FC = () => {
       // 监控资源加载性能
       if ('performance' in window && 'getEntriesByType' in performance) {
         const resourceEntries = performance.getEntriesByType('resource');
-        const slowResources = resourceEntries.filter((entry: any) => entry.duration > 1000);
+        const slowResources = resourceEntries.filter((entry: PerformanceEntry & { duration: number }) => entry.duration > 1000);
         if (slowResources.length > 0) {
           console.warn('Slow loading resources:', slowResources);
           sendMetrics('slow_resources', slowResources.length);
@@ -110,7 +122,8 @@ const PerformanceMonitor: React.FC = () => {
     // 监控内存使用情况
     const monitorMemory = () => {
       if ('memory' in performance) {
-        const memory = (performance as any).memory;
+        const memory = (performance as Performance & { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+        if (!memory) return;
         const memoryUsage = {
           used: memory.usedJSHeapSize,
           total: memory.totalJSHeapSize,
