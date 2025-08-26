@@ -701,6 +701,26 @@
     "ocrTools": {
       "title": "OCR Tools - Free Online Text Recognition Tools",
       "description": "Free online OCR text recognition tools supporting image to text, PDF to text, handwriting recognition and more. Support for multiple languages with high accuracy, fast and convenient."
+    },
+    "home": {
+      "title": "Free Online Tools Collection - Image Processing, PDF Conversion, Video Editing Tools",
+      "description": "Discover our comprehensive collection of free online tools. From image editing to document conversion, we provide high-quality, easy-to-use tools to simplify your workflow. Support for PDF, images, videos, OCR and 100+ tools.",
+      "keywords": "free online tools,PDF conversion,image processing,video editing,OCR recognition,document conversion,online tool collection"
+    },
+    "about": {
+      "title": "About Us - Free Online Tools Platform",
+      "description": "Learn about our free online tools platform, dedicated to providing users with high-quality, secure, and fast file processing tools. No registration required, completely free to use.",
+      "keywords": "about us,online tools platform,free tools,file processing,secure tools"
+    },
+    "contact": {
+      "title": "Contact Us - Free Online Tools Platform",
+      "description": "If you have any questions or suggestions, please feel free to contact us. We are committed to providing users with the best online tools experience.",
+      "keywords": "contact us,customer support,online tools,technical support,user feedback"
+    },
+    "help": {
+      "title": "Help Center - Tool Usage Guide and FAQ",
+      "description": "Check our help center for tool usage guides, frequently asked questions and technical support. Help you better use our free online tools.",
+      "keywords": "help center,usage guide,FAQ,technical support,tool tutorials"
     }
   },
   "tools": {
@@ -1004,28 +1024,6 @@
     "searchPlaceholder": "Search for tools...",
     "noResults": "No tools found matching your search.",
     "tryDifferent": "Try different keywords or browse categories above."
-  },
-  "seo": {
-    "home": {
-      "title": "Free Online Tools Collection - Image Processing, PDF Conversion, Video Editing Tools",
-      "description": "Discover our comprehensive collection of free online tools. From image editing to document conversion, we provide high-quality, easy-to-use tools to simplify your workflow. Support for PDF, images, videos, OCR and 100+ tools.",
-      "keywords": "free online tools,PDF conversion,image processing,video editing,OCR recognition,document conversion,online tool collection"
-    },
-    "about": {
-      "title": "About Us - Free Online Tools Platform",
-      "description": "Learn about our free online tools platform, dedicated to providing users with high-quality, secure, and fast file processing tools. No registration required, completely free to use.",
-      "keywords": "about us,online tools platform,free tools,file processing,secure tools"
-    },
-    "contact": {
-      "title": "Contact Us - Free Online Tools Platform",
-      "description": "If you have any questions or suggestions, please feel free to contact us. We are committed to providing users with the best online tools experience.",
-      "keywords": "contact us,customer support,online tools,technical support,user feedback"
-    },
-    "help": {
-      "title": "Help Center - Tool Usage Guide and FAQ",
-      "description": "Check our help center for tool usage guides, frequently asked questions and technical support. Help you better use our free online tools.",
-      "keywords": "help center,usage guide,FAQ,technical support,tool tutorials"
-    }
   },
   "common": {
     "upload": "Upload",
