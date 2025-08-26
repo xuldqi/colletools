@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, Target, Award, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEOHead from '../components/SEOHead';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
   
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead seoKey="about" />
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

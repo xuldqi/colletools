@@ -19,6 +19,8 @@ import Help from './pages/Help'
 import ApiDocs from './pages/ApiDocs'
 import Cookies from './pages/Cookies'
 import Sitemap from './pages/Sitemap'
+import { NotFound } from './pages/NotFound'
+import PerformanceMonitor from './components/PerformanceMonitor'
 
 function App() {
   const location = useLocation()
@@ -34,16 +36,22 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      <PerformanceMonitor />
       <Navbar />
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pdf" element={<PDFTools />} />
+          <Route path="/pdf-tools" element={<PDFTools />} />
           <Route path="/image" element={<ImageTools />} />
+          <Route path="/image-tools" element={<ImageTools />} />
           <Route path="/ai-writing" element={<AIWriting />} />
           <Route path="/video" element={<VideoTools />} />
+          <Route path="/video-tools" element={<VideoTools />} />
           <Route path="/ocr" element={<OCRTools />} />
+          <Route path="/ocr-tools" element={<OCRTools />} />
           <Route path="/document-data" element={<DocumentDataTools />} />
+          <Route path="/document-data-tools" element={<DocumentDataTools />} />
           <Route path="/tool/:toolId" element={<ToolDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -53,6 +61,7 @@ function App() {
           <Route path="/api-docs" element={<ApiDocs />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

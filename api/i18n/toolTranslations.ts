@@ -69,6 +69,16 @@ export const toolTranslations: ToolTranslations = {
           options: ['원본 순서', '알파벳 순서', '사용자 정의']
         }
       }
+    },
+    de: {
+      name: 'PDF zusammenfügen',
+      description: 'Mehrere PDF-Dateien zu einem Dokument zusammenführen',
+      options: {
+        order: {
+          label: 'Dateireihenfolge',
+          options: ['Original', 'Alphabetisch', 'Benutzerdefiniert']
+        }
+      }
     }
   },
   'video-convert': {
@@ -141,6 +151,20 @@ export const toolTranslations: ToolTranslations = {
           options: ['낮음', '보통', '높음', '원본']
         }
       }
+    },
+    de: {
+      name: 'Video-Konverter',
+      description: 'Videos zwischen verschiedenen Formaten konvertieren',
+      options: {
+        format: {
+          label: 'Ausgabeformat',
+          options: ['mp4', 'avi', 'mov', 'webm', 'mkv']
+        },
+        quality: {
+          label: 'Videoqualität',
+          options: ['Niedrig', 'Mittel', 'Hoch', 'Original']
+        }
+      }
     }
   },
   'video-compress': {
@@ -206,6 +230,19 @@ export const toolTranslations: ToolTranslations = {
         },
         targetSize: {
           label: '목표 크기 (MB)'
+        }
+      }
+    },
+    de: {
+      name: 'Video-Kompressor',
+      description: 'Videodateien komprimieren, um die Größe zu reduzieren',
+      options: {
+        compressionLevel: {
+          label: 'Komprimierungsgrad',
+          options: ['Leicht', 'Mittel', 'Stark']
+        },
+        targetSize: {
+          label: 'Zielgröße (MB)'
         }
       }
     }
@@ -298,6 +335,24 @@ export const toolTranslations: ToolTranslations = {
         },
         contrast: {
           label: '대비'
+        }
+      }
+    },
+    de: {
+      name: 'Video-Editor',
+      description: 'Grundlegende Videobearbeitung und -schnitt',
+      options: {
+        startTime: {
+          label: 'Startzeit (Sekunden)'
+        },
+        endTime: {
+          label: 'Endzeit (Sekunden)'
+        },
+        brightness: {
+          label: 'Helligkeit'
+        },
+        contrast: {
+          label: 'Kontrast'
         }
       }
     }
@@ -397,6 +452,25 @@ export const toolTranslations: ToolTranslations = {
           label: '너비 (px)'
         }
       }
+    },
+    de: {
+      name: 'GIF-Ersteller',
+      description: 'Videos in animierte GIFs konvertieren',
+      options: {
+        startTime: {
+          label: 'Startzeit (Sekunden)'
+        },
+        duration: {
+          label: 'Dauer (Sekunden)'
+        },
+        fps: {
+          label: 'Bildrate',
+          options: ['10', '15', '20', '24', '30']
+        },
+        width: {
+          label: 'Breite (px)'
+        }
+      }
     }
   },
   'video-trimmer': {
@@ -457,6 +531,18 @@ export const toolTranslations: ToolTranslations = {
         },
         endTime: {
           label: '종료 시간 (초)'
+        }
+      }
+    },
+    de: {
+      name: 'Video-Trimmer',
+      description: 'Video-Clips trimmen und schneiden',
+      options: {
+        startTime: {
+          label: 'Startzeit (Sekunden)'
+        },
+        endTime: {
+          label: 'Endzeit (Sekunden)'
         }
       }
     }

@@ -5,15 +5,16 @@
     "about": "关于",
     "contact": "联系",
     "language": "语言",
-    "imageTools": "图像工具",
-    "videoTools": "视频工具",
+    "pdfTools": "PDF",
+    "imageTools": "图像",
+    "videoTools": "视频",
     "audioTools": "音频工具",
     "documentTools": "文档工具",
     "converterTools": "转换工具",
     "utilityTools": "实用工具",
     "aiTools": "AI工具",
-    "ocrTools": "OCR工具",
-    "documentDataTools": "文档数据工具"
+    "ocrTools": "OCR",
+    "documentDataTools": "文档数据"
   },
   "home": {
     "title": "免费在线工具集合",
@@ -64,25 +65,190 @@
   "footer": {
     "zipic": "ZiPic",
     "dropshare": "DropShare",
-    "description": "您值得信赖的免费在线工具平台，提供图像编辑、文档转换等多种服务。",
+    "description": "免费在线工具平台，提供100+工具用于PDF、图像、视频处理等。无需注册，完全免费使用。",
+    "copyright": "© 2024 ColleTools. 保留所有权利。",
     "toolCategories": "工具分类",
     "usefulLinks": "有用链接",
     "privacyPolicy": "隐私政策",
     "termsOfService": "服务条款",
+    "faq": "常见问题",
+    "helpCenter": "帮助中心",
     "contactUs": "联系我们",
-    "contactDescription": "如果使用中遇到什么问题，可以给我发邮件。",
+    "apiDocs": "API文档",
+    "email": "邮箱",
+    "phone": "电话",
+    "address": "地址",
+    "contactDescription": "如果您在使用我们的工具时遇到任何问题，请随时给我发邮件。",
     "cookiePolicy": "Cookie政策",
-    "sitemap": "网站地图",
-    "copyright": "© 2024 ColleTools. 保留所有权利。"
+    "sitemap": "网站地图"
   },
   "sitemap": {
     "title": "网站地图",
-    "description": "浏览我们网站的所有页面和工具",
-    "mainPages": "主要页面",
-    "toolCategories": "工具分类",
-    "individualTools": "单个工具"
+    "subtitle": "浏览我们所有的页面和工具，快速找到您需要的功能",
+    "totalCount": "总共 {{count}} 个工具和页面",
+    "itemCount": "{{count}} 项",
+    "categories": {
+      "mainPages": "主要页面",
+      "pdfTools": "PDF工具",
+      "imageTools": "图像工具",
+      "videoTools": "视频工具",
+      "documentData": "文档数据",
+      "ocrTools": "OCR工具",
+      "legalPolicy": "法律政策"
+    },
+    "help": {
+    "title": "帮助中心",
+    "subtitle": "常见问题和使用指南",
+    "searchPlaceholder": "搜索帮助内容...",
+    "categories": {
+      "gettingStarted": "入门指南",
+      "fileFormats": "文件格式",
+      "troubleshooting": "故障排除",
+      "privacy": "隐私安全",
+      "billing": "计费问题",
+      "technical": "技术支持"
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": {
+        "question": "这些工具是免费的吗？",
+        "answer": "是的，我们的所有工具都是完全免费的。您无需注册或付费即可使用所有功能。"
+      },
+      "q2": {
+        "question": "我的文件安全吗？",
+        "answer": "绝对安全。我们不会存储您的文件，所有处理都在您的浏览器中完成，或在处理后立即删除。"
+      },
+      "q3": {
+        "question": "支持哪些文件格式？",
+        "answer": "我们支持大多数常见的文件格式，包括PDF、Word、Excel、PowerPoint、图片格式（JPG、PNG、GIF等）、视频格式（MP4、AVI、MOV等）等。"
+      },
+      "q4": {
+        "question": "文件大小有限制吗？",
+        "answer": "为了确保最佳性能，我们对文件大小有一定限制。大多数工具支持最大100MB的文件，具体限制会在每个工具页面显示。"
+      },
+      "q5": {
+        "question": "如何联系技术支持？",
+        "answer": "如果您遇到任何问题，可以通过联系页面给我们发送邮件，我们会尽快回复您。"
+      }
+    },
+    "guides": {
+      "title": "使用指南",
+      "howToUse": "如何使用我们的工具",
+      "step1": "选择您需要的工具",
+      "step2": "上传您的文件",
+      "step3": "等待处理完成",
+      "step4": "下载处理后的文件",
+      "tips": {
+        "title": "使用技巧",
+        "tip1": "确保您的文件格式受支持",
+        "tip2": "检查文件大小是否在限制范围内",
+        "tip3": "使用稳定的网络连接",
+        "tip4": "处理大文件时请耐心等待"
+      }
+    },
+    "contact": {
+      "title": "联系我们",
+      "description": "如果您在帮助中心找不到答案，请随时联系我们。",
+      "email": "发送邮件",
+      "response": "我们通常在24小时内回复"
+    }
   },
-  "tools": {
+  "about": {
+    "title": "关于我们",
+    "subtitle": "了解我们的使命和愿景",
+    "mission": {
+      "title": "我们的使命",
+      "description": "为用户提供简单、快速、安全的在线工具，让文件处理变得轻松便捷。我们致力于打造最好用的免费在线工具平台。"
+    },
+    "features": {
+      "title": "平台特色",
+      "free": {
+        "title": "完全免费",
+        "description": "所有工具都是免费的，无需注册或付费"
+      },
+      "secure": {
+        "title": "安全可靠",
+        "description": "文件处理安全，不存储用户数据"
+      },
+      "fast": {
+        "title": "快速高效",
+        "description": "优化的算法确保快速处理"
+      },
+      "easy": {
+        "title": "简单易用",
+        "description": "直观的界面，无需学习成本"
+      }
+    },
+    "stats": {
+      "title": "平台数据",
+      "tools": "100+ 工具",
+      "users": "数万用户",
+      "files": "百万文件处理",
+      "satisfaction": "99% 满意度"
+    },
+    "team": {
+      "title": "我们的团队",
+      "description": "我们是一群热爱技术的开发者，致力于为用户提供最好的在线工具体验。"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "有问题或建议？我们很乐意听到您的声音",
+    "form": {
+      "name": "姓名",
+      "email": "邮箱",
+      "subject": "主题",
+      "message": "消息",
+      "send": "发送消息",
+      "sending": "发送中...",
+      "success": "消息发送成功！我们会尽快回复您。",
+      "error": "发送失败，请稍后重试。"
+    },
+    "info": {
+      "title": "联系信息",
+      "email": "邮箱",
+      "response": "回复时间",
+      "responseTime": "通常在24小时内回复"
+    },
+    "reasons": {
+      "title": "联系我们的原因",
+      "bug": "报告错误",
+      "feature": "功能建议",
+      "help": "使用帮助",
+      "business": "商务合作",
+      "other": "其他问题"
+    }
+  },
+
+    "stats": {
+      "title": "强大的在线工具集合",
+      "description": "我们提供超过 {{count}} 个免费在线工具，涵盖文档处理、图像编辑、视频处理、数据转换等"
+    },
+    "searchTip": {
+      "title": "找不到您需要的工具？",
+      "description": "您可以使用首页的搜索功能快速找到特定工具，或查看我们的帮助中心获取更多使用指导。",
+      "backToHome": "返回首页搜索",
+      "viewHelp": "查看帮助中心",
+      "contactUs": "联系我们"
+    }
+  },
+  "seo": {
+    "videoTools": {
+      "title": "视频工具 - 免费在线视频处理工具集合",
+      "description": "免费在线视频工具集合，支持视频转换、压缩、剪切、合并、旋转等。支持MP4、AVI、MOV等所有主要视频格式，快速处理，安全可靠。"
+    },
+    "imageTools": {
+      "title": "图片工具 - 免费在线图片处理工具集合",
+      "description": "免费在线图片工具集合，支持图片压缩、调整大小、裁剪、旋转、滤镜等。支持JPG、PNG、GIF等所有主要图片格式，快速处理，安全可靠。"
+    },
+    "pdfTools": {
+      "title": "PDF工具 - 免费在线PDF处理工具集合",
+      "description": "免费在线PDF工具集合，支持PDF转换、合并、分割、压缩、加密等。快速处理PDF文档，安全可靠，无需下载软件。"
+    },
+    "ocrTools": {
+      "title": "OCR工具 - 免费在线文字识别工具",
+      "description": "免费在线OCR文字识别工具，支持图片转文字、PDF转文字、手写文字识别等。支持多种语言识别，准确率高，快速便捷。"
+    },
     "imageResize": "图片调整大小",
     "imageResizeDesc": "调整图片尺寸而不损失质量",
     "imageCompress": "图片压缩",
@@ -504,7 +670,7 @@
       "supportedFormats": "支持MP4、AVI、MOV、WMV、FLV和许多其他视频格式",
       "fastProcessingDesc": "优化算法确保快速视频处理和转换",
       "secureProcessing": "所有处理都在您的浏览器中进行。您的视频永远不会离开您的设备",
-      "readyToProcess": "准备处理您的视频？",
+
       "uploadAndStart": "上传您的视频并使用我们强大的工具开始处理",
       "supportedFormatsDesc": "我们支持所有主要视频格式以实现最大兼容性"
     },
@@ -552,133 +718,185 @@
       "secureProcessingDesc": "处理后文件会自动删除以保护您的隐私",
       "fastProcessing": "快速处理",
       "fastProcessingDesc": "在几秒钟内获得转换后的文件，而不是几分钟"
+    },
+    "ocr": {
+      "title": "OCR文字识别工具",
+      "description": "从图像和文档中提取文字",
+      "pageDescription": "强大的OCR工具集合，支持图像、PDF、手写文字和各种识别需求",
+      "imageToText": "图像文字识别",
+      "imageToTextDesc": "从图像中提取文字内容，支持多种语言",
+      "pdfOcr": "PDF文字识别",
+      "pdfOcrDesc": "从PDF文档中提取文字内容",
+      "handwritingRecognition": "手写识别",
+      "handwritingRecognitionDesc": "识别手写文字并转换为数字文本",
+      "documentScanner": "文档扫描器",
+      "documentScannerDesc": "扫描文档并提取结构化文本",
+      "tableExtractor": "表格提取器",
+      "tableExtractorDesc": "从图像或PDF中提取表格数据",
+      "receiptScanner": "收据扫描器",
+      "receiptScannerDesc": "扫描收据并提取关键信息",
+      "businessCardScanner": "名片扫描器",
+      "businessCardScannerDesc": "扫描名片并提取联系信息",
+      "licensePlateReader": "车牌识别",
+      "licensePlateReaderDesc": "识别车牌号码",
+      "qrCodeReader": "二维码识别",
+      "qrCodeReaderDesc": "读取二维码内容",
+      "selectFile": "选择文件",
+      "clickToSelectFile": "点击选择文件",
+      "supportedFormats": "支持格式",
+      "recognizing": "识别中...",
+      "startRecognition": "开始识别",
+      "recognitionResult": "识别结果",
+      "copyResult": "复制结果",
+      "recognitionComplete": "识别完成",
+      "ocrComplete": "OCR识别完成！",
+      "ocrError": "OCR处理失败，请重试",
+      "processingError": "OCR处理错误："
+    },
+    "documentData": {
+      "title": "文档与数据工具",
+      "description": "全面的文档处理、文本编辑、开发工具和格式转换工具集合，满足您的各种数据处理需求",
+      "fileProcessing": "文件处理",
+      "textProcessing": "文本处理",
+      "developerTools": "开发工具",
+      "converters": "转换器",
+      "csvSplit": "CSV分割",
+      "csvSplitDesc": "将大型CSV文件分割成较小的块",
+      "excelSplit": "Excel分割",
+      "excelSplitDesc": "按行或工作表分割Excel文件",
+      "xmlToExcel": "XML转Excel",
+      "xmlToExcelDesc": "将XML文件转换为Excel格式",
+      "excelToXml": "Excel转XML",
+      "excelToXmlDesc": "将Excel文件转换为XML格式",
+      "csvToExcel": "CSV转Excel",
+      "csvToExcelDesc": "将CSV文件转换为Excel格式",
+      "xmlToCsv": "XML转CSV",
+      "xmlToCsvDesc": "将XML文件转换为CSV格式",
+      "xmlToJson": "XML转JSON",
+      "xmlToJsonDesc": "将XML文件转换为JSON格式",
+      "jsonToXml": "JSON转XML",
+      "jsonToXmlDesc": "将JSON文件转换为XML格式",
+      "csvToJson": "CSV转JSON",
+      "csvToJsonDesc": "将CSV文件转换为JSON格式",
+      "wordCounter": "字数统计",
+      "wordCounterDesc": "统计文本中的字数、字符数、段落数和行数",
+      "characterCounter": "字符计数",
+      "characterCounterDesc": "精确计算文本字符数，包含或不包含空格",
+      "caseConverter": "大小写转换",
+      "caseConverterDesc": "转换文本为大写、小写、标题格式或句子格式",
+      "textFormatter": "文本格式化",
+      "textFormatterDesc": "格式化文本，移除多余空格和换行符",
+      "lineCounter": "行数统计",
+      "lineCounterDesc": "统计文本的总行数和非空行数",
+      "textReverser": "文本反转",
+      "textReverserDesc": "反转文本内容，支持按字符或按单词反转",
+      "textSorter": "文本排序",
+      "textSorterDesc": "对文本行进行字母顺序或数字顺序排序",
+      "duplicateRemover": "重复行删除",
+      "duplicateRemoverDesc": "删除文本中的重复行，保留唯一内容",
+      "textDiff": "文本差异检查",
+      "textDiffDesc": "比较两个文本的差异，高亮显示不同之处",
+      "hashGenerator": "Hash生成器",
+      "hashGeneratorDesc": "生成MD5、SHA1、SHA256等多种哈希值",
+      "base64Encoder": "Base64编码/解码",
+      "base64EncoderDesc": "对文本进行Base64编码和解码操作",
+      "urlEncoder": "URL编码/解码",
+      "urlEncoderDesc": "对URL进行编码和解码，处理特殊字符",
+      "jsonFormatter": "JSON格式化/验证",
+      "jsonFormatterDesc": "格式化JSON数据并验证其有效性",
+      "qrGenerator": "二维码生成器",
+      "qrGeneratorDesc": "将文本或URL转换为二维码图片",
+      "colorPicker": "颜色选择器/转换",
+      "colorPickerDesc": "在HEX、RGB、HSL等颜色格式间转换",
+      "timestampConverter": "时间戳转换",
+      "timestampConverterDesc": "Unix时间戳与日期时间格式互相转换",
+      "uuidGenerator": "UUID生成器",
+      "uuidGeneratorDesc": "生成各种版本的UUID唯一标识符",
+      "passwordGenerator": "密码生成器",
+      "passwordGeneratorDesc": "生成安全的随机密码，可自定义规则",
+      "unitConverter": "单位转换器",
+      "unitConverterDesc": "长度、重量、温度、面积等各种单位间的转换",
+      "currencyConverter": "货币转换器",
+      "currencyConverterDesc": "实时汇率查询和货币转换计算",
+      "numberBaseConverter": "进制转换器",
+      "numberBaseConverterDesc": "二进制、八进制、十进制、十六进制间转换",
+      "colorConverter": "颜色格式转换",
+      "colorConverterDesc": "RGB、HEX、HSL、CMYK等颜色格式转换",
+      "timezoneConverter": "时区转换器",
+      "timezoneConverterDesc": "不同时区间的时间转换和计算",
+      "imageFormatConverter": "图片格式转换",
+      "imageFormatConverterDesc": "JPG、PNG、WebP、GIF等图片格式转换",
+      "audioFormatConverter": "音频格式转换",
+      "audioFormatConverterDesc": "MP3、WAV、AAC、FLAC等音频格式转换",
+      "documentFormatConverter": "文档格式转换",
+      "documentFormatConverterDesc": "扩展的文档格式转换，支持更多格式",
+      "encodingConverter": "编码转换器",
+      "encodingConverterDesc": "UTF-8、GBK、ASCII等字符编码转换",
+      "popularTools": "热门工具",
+      "hot": "热门",
+      "useNow": "立即使用",
+      "whyChooseUs": "为什么选择我们的工具？",
+      "smartProcessing": "智能处理",
+      "smartProcessingDesc": "智能算法确保高效准确的处理结果",
+      "formatConversion": "格式转换",
+      "formatConversionDesc": "支持多种文件格式转换，满足不同需求",
+      "dataSecurity": "数据安全",
+      "dataSecurityDesc": "所有处理都在浏览器本地完成，确保数据隐私安全",
+      "developerFriendly": "开发友好",
+      "developerFriendlyDesc": "丰富的开发工具，提升开发效率和代码质量"
     }
   },
-  "ocr": {
-    "title": "OCR文字识别工具",
-    "description": "从图像和文档中提取文字",
-    "pageDescription": "强大的OCR工具集合，支持图像、PDF、手写文字和各种识别需求",
-    "imageToText": "图像文字识别",
-    "imageToTextDesc": "从图像中提取文字内容，支持多种语言",
-    "pdfOcr": "PDF文字识别",
-    "pdfOcrDesc": "从PDF文档中提取文字内容",
-    "handwritingRecognition": "手写识别",
-    "handwritingRecognitionDesc": "识别手写文字并转换为数字文本",
-    "documentScanner": "文档扫描器",
-    "documentScannerDesc": "扫描文档并提取结构化文本",
-    "tableExtractor": "表格提取器",
-    "tableExtractorDesc": "从图像或PDF中提取表格数据",
-    "receiptScanner": "收据扫描器",
-    "receiptScannerDesc": "扫描收据并提取关键信息",
-    "businessCardScanner": "名片扫描器",
-    "businessCardScannerDesc": "扫描名片并提取联系信息",
-    "licensePlateReader": "车牌识别",
-    "licensePlateReaderDesc": "识别车牌号码",
-    "qrCodeReader": "二维码识别",
-    "qrCodeReaderDesc": "读取二维码内容",
-    "selectFile": "选择文件",
-    "clickToSelectFile": "点击选择文件",
-    "supportedFormats": "支持格式",
-    "recognizing": "识别中...",
-    "startRecognition": "开始识别",
-    "recognitionResult": "识别结果",
-    "copyResult": "复制结果",
-    "recognitionComplete": "识别完成",
-    "ocrComplete": "OCR识别完成！",
-    "ocrError": "OCR处理失败，请重试",
-    "processingError": "OCR处理错误："
-  },
-  "documentData": {
-    "title": "文档与数据工具",
-    "description": "全面的文档处理、文本编辑、开发工具和格式转换工具集合，满足您的各种数据处理需求",
-    "fileProcessing": "文件处理",
-    "textProcessing": "文本处理",
-    "developerTools": "开发工具",
-    "converters": "转换器",
-    "csvSplit": "CSV分割",
-    "csvSplitDesc": "将大型CSV文件分割成较小的块",
-    "excelSplit": "Excel分割",
-    "excelSplitDesc": "按行或工作表分割Excel文件",
-    "xmlToExcel": "XML转Excel",
-    "xmlToExcelDesc": "将XML文件转换为Excel格式",
-    "excelToXml": "Excel转XML",
-    "excelToXmlDesc": "将Excel文件转换为XML格式",
-    "csvToExcel": "CSV转Excel",
-    "csvToExcelDesc": "将CSV文件转换为Excel格式",
-    "xmlToCsv": "XML转CSV",
-    "xmlToCsvDesc": "将XML文件转换为CSV格式",
-    "xmlToJson": "XML转JSON",
-    "xmlToJsonDesc": "将XML文件转换为JSON格式",
-    "jsonToXml": "JSON转XML",
-    "jsonToXmlDesc": "将JSON文件转换为XML格式",
-    "csvToJson": "CSV转JSON",
-    "csvToJsonDesc": "将CSV文件转换为JSON格式",
-    "wordCounter": "字数统计",
-    "wordCounterDesc": "统计文本中的字数、字符数、段落数和行数",
-    "characterCounter": "字符计数",
-    "characterCounterDesc": "精确计算文本字符数，包含或不包含空格",
-    "caseConverter": "大小写转换",
-    "caseConverterDesc": "转换文本为大写、小写、标题格式或句子格式",
-    "textFormatter": "文本格式化",
-    "textFormatterDesc": "格式化文本，移除多余空格和换行符",
-    "lineCounter": "行数统计",
-    "lineCounterDesc": "统计文本的总行数和非空行数",
-    "textReverser": "文本反转",
-    "textReverserDesc": "反转文本内容，支持按字符或按单词反转",
-    "textSorter": "文本排序",
-    "textSorterDesc": "对文本行进行字母顺序或数字顺序排序",
-    "duplicateRemover": "重复行删除",
-    "duplicateRemoverDesc": "删除文本中的重复行，保留唯一内容",
-    "textDiff": "文本差异检查",
-    "textDiffDesc": "比较两个文本的差异，高亮显示不同之处",
-    "hashGenerator": "Hash生成器",
-    "hashGeneratorDesc": "生成MD5、SHA1、SHA256等多种哈希值",
-    "base64Encoder": "Base64编码/解码",
-    "base64EncoderDesc": "对文本进行Base64编码和解码操作",
-    "urlEncoder": "URL编码/解码",
-    "urlEncoderDesc": "对URL进行编码和解码，处理特殊字符",
-    "jsonFormatter": "JSON格式化/验证",
-    "jsonFormatterDesc": "格式化JSON数据并验证其有效性",
-    "qrGenerator": "二维码生成器",
-    "qrGeneratorDesc": "将文本或URL转换为二维码图片",
-    "colorPicker": "颜色选择器/转换",
-    "colorPickerDesc": "在HEX、RGB、HSL等颜色格式间转换",
-    "timestampConverter": "时间戳转换",
-    "timestampConverterDesc": "Unix时间戳与日期时间格式互相转换",
-    "uuidGenerator": "UUID生成器",
-    "uuidGeneratorDesc": "生成各种版本的UUID唯一标识符",
-    "passwordGenerator": "密码生成器",
-    "passwordGeneratorDesc": "生成安全的随机密码，可自定义规则",
-    "unitConverter": "单位转换器",
-    "unitConverterDesc": "长度、重量、温度、面积等各种单位间的转换",
-    "currencyConverter": "货币转换器",
-    "currencyConverterDesc": "实时汇率查询和货币转换计算",
-    "numberBaseConverter": "进制转换器",
-    "numberBaseConverterDesc": "二进制、八进制、十进制、十六进制间转换",
-    "colorConverter": "颜色格式转换",
-    "colorConverterDesc": "RGB、HEX、HSL、CMYK等颜色格式转换",
-    "timezoneConverter": "时区转换器",
-    "timezoneConverterDesc": "不同时区间的时间转换和计算",
-    "imageFormatConverter": "图片格式转换",
-    "imageFormatConverterDesc": "JPG、PNG、WebP、GIF等图片格式转换",
-    "audioFormatConverter": "音频格式转换",
-    "audioFormatConverterDesc": "MP3、WAV、AAC、FLAC等音频格式转换",
-    "documentFormatConverter": "文档格式转换",
-    "documentFormatConverterDesc": "扩展的文档格式转换，支持更多格式",
-    "encodingConverter": "编码转换器",
-    "encodingConverterDesc": "UTF-8、GBK、ASCII等字符编码转换",
-    "popularTools": "热门工具",
-    "hot": "热门",
-    "useNow": "立即使用",
-    "whyChooseUs": "为什么选择我们的工具？",
-    "smartProcessing": "智能处理",
-    "smartProcessingDesc": "智能算法确保高效准确的处理结果",
-    "formatConversion": "格式转换",
-    "formatConversionDesc": "支持多种文件格式转换，满足不同需求",
-    "dataSecurity": "数据安全",
-    "dataSecurityDesc": "所有处理都在浏览器本地完成，确保数据隐私安全",
-    "developerFriendly": "开发友好",
-    "developerFriendlyDesc": "丰富的开发工具，提升开发效率和代码质量"
+  "seo": {
+    "home": {
+      "title": "免费在线工具集合 - 图片处理、PDF转换、视频编辑工具",
+      "description": "发现我们全面的免费在线工具集合。从图像编辑到文档转换，我们为您提供高质量、易于使用的工具来简化您的工作流程。支持PDF、图片、视频、OCR等100+工具。",
+      "keywords": "免费在线工具,PDF转换,图片处理,视频编辑,OCR识别,文档转换,在线工具集合"
+    },
+    "about": {
+      "title": "关于我们 - 免费在线工具平台",
+      "description": "了解我们的免费在线工具平台，致力于为用户提供高质量、安全、快速的文件处理工具。无需注册，完全免费使用。",
+      "keywords": "关于我们,在线工具平台,免费工具,文件处理,安全工具"
+    },
+    "contact": {
+      "title": "联系我们 - 免费在线工具平台",
+      "description": "如有任何问题或建议，请随时联系我们。我们致力于为用户提供最好的在线工具体验。",
+      "keywords": "联系我们,客服支持,在线工具,技术支持,用户反馈"
+    },
+    "help": {
+      "title": "帮助中心 - 工具使用指南和常见问题",
+      "description": "查看我们的帮助中心，获取工具使用指南、常见问题解答和技术支持。让您更好地使用我们的免费在线工具。",
+      "keywords": "帮助中心,使用指南,常见问题,技术支持,工具教程"
+    },
+    "sitemap": {
+      "title": "网站地图 - 所有工具和页面导航",
+      "description": "浏览我们网站的完整地图，快速找到您需要的PDF、图片、视频、OCR和文档处理工具。",
+      "keywords": "网站地图,工具导航,PDF工具,图片工具,视频工具,OCR工具"
+    },
+    "pdf": {
+      "title": "PDF工具 - 免费PDF转换、合并、分割、压缩",
+      "description": "专业的PDF处理工具集合，支持PDF转Word、Excel、PowerPoint，PDF合并分割、压缩、OCR识别等功能。",
+      "keywords": "PDF工具,PDF转换,PDF合并,PDF分割,PDF压缩,PDF转Word,PDF转Excel"
+    },
+    "image": {
+      "title": "图片工具 - 免费图片处理、格式转换、背景移除",
+      "description": "强大的图片处理工具，支持图片格式转换、压缩、背景移除、尺寸调整、滤镜效果等功能。",
+      "keywords": "图片工具,图片处理,图片转换,背景移除,图片压缩,图片编辑"
+    },
+    "video": {
+      "title": "视频工具 - 免费视频转换、压缩、编辑、GIF制作",
+      "description": "专业的视频处理工具，支持视频格式转换、压缩、剪切、合并、GIF制作等功能。",
+      "keywords": "视频工具,视频转换,视频压缩,视频编辑,GIF制作,视频剪切"
+    },
+    "ocr": {
+      "title": "OCR工具 - 免费图片文字识别、PDF文字提取",
+      "description": "高精度OCR文字识别工具，支持图片文字识别、PDF文字提取、手写识别、多语言识别。",
+      "keywords": "OCR识别,文字识别,图片转文字,PDF文字提取,手写识别,多语言识别"
+    },
+    "documentData": {
+      "title": "文档数据工具 - 免费文档转换、数据处理、开发工具",
+      "description": "全面的文档和数据处理工具，支持Excel、CSV、JSON转换，文本处理，开发者工具等。",
+      "keywords": "文档工具,数据处理,Excel转换,CSV处理,JSON工具,开发工具"
+    }
   },
   "common": {
     "upload": "上传",

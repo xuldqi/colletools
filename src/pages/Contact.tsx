@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Mail, MapPin, Send, MessageCircle, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEOHead from '../components/SEOHead';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const Contact: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead seoKey="contact" />
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

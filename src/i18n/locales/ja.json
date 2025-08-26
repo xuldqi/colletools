@@ -8,75 +8,30 @@
   },
   "home": {
     "heroTitle": "無料オンラインツール",
-    "heroSubtitle": "すべて",
+    "heroSubtitle": "すべてのニーズに対応",
     "heroDescription": "PDF、画像、動画、AI文章作成など、100以上の無料ツールをご利用いただけます。登録不要、完全無料でお使いいただけます。",
     "exploreTools": "ツールを探索",
     "learnMore": "詳細を見る",
     "chooseCategory": "ツールカテゴリを選択",
-    "categoryDescription": "カテゴリ別に整理された包括的なツールコレクションから選択",
-    "popularTools": "最も人気のツール",
-    "popularDescription": "私たちのツールを信頼する数百万のユーザーに参加",
+    "categoryDescription": "カテゴリ別に整理された包括的なツールコレクションから選択してください",
+    "popularTools": "人気ツール",
+    "usedByUsers": "今月{{count}}人のユーザーが利用",
+    "popularDescription": "私たちのツールを信頼する数百万人のユーザーに参加してください",
     "useTool": "ツールを使用",
-    "viewTools": "ツールを表示"
-  },
-  "features": {
-    "free": {
-      "title": "100%無料",
-      "description": "すべてのツールは隠れた料金やサブスクリプションなしで完全に無料でご利用いただけます。"
-    },
-    "secure": {
-      "title": "安全・プライベート",
-      "description": "ファイルは安全に処理され、プライバシー保護のため1時間後に自動削除されます。"
-    },
-    "fast": {
-      "title": "高速・簡単",
-      "description": "登録不要。ファイルをアップロードするだけで、数秒で結果を取得できます。"
-    }
-  },
-  "footer": {
-    "zipic": "ZiPic",
-    "dropshare": "DropShare",
-    "email": "メール",
-    "phone": "電話",
-    "address": "住所",
-    "toolCategories": "ツールカテゴリ",
-    "usefulLinks": "便利なリンク",
-    "privacyPolicy": "プライバシーポリシー",
-    "termsOfService": "利用規約",
-    "contactUs": "お問い合わせ",
-    "contactDescription": "ツールの使用中に問題が発生した場合は、いつでもメールをお送りください。",
-    "copyright": "© 2024 ColleTools. 全著作権所有。",
-    "cookiePolicy": "クッキーポリシー",
-    "sitemap": "サイトマップ"
-  },
-  "sitemap": {
-    "title": "サイトマップ",
-    "subtitle": "すべてのページとツールを閲覧し、必要な機能を素早く見つけましょう",
-    "totalCount": "合計 {{count}} 個のツールとページ",
-    "itemCount": "{{count}} 項目",
-    "categories": {
-      "mainPages": "メインページ",
-      "pdfTools": "PDFツール",
-      "imageTools": "画像ツール",
-      "videoTools": "動画ツール",
-      "documentData": "文書・データ",
-      "ocrTools": "OCRツール",
-      "legalPolicy": "法的事項・ポリシー"
-    },
-    "quickStats": {
-      "title": "強力なオンラインツールコレクション",
-      "description": "すべてのファイル処理ニーズを満たす包括的なツールセット",
-      "pdfToolsCount": "{{count}} PDFツール",
-      "imageToolsCount": "{{count}} 画像ツール",
-      "videoToolsCount": "{{count}} 動画ツール",
-      "dataToolsCount": "{{count}} データツール"
-    },
-    "searchPrompt": {
-      "title": "必要なツールが見つかりませんか？",
-      "description": "メインページで検索するか、ヘルプセンターで詳細情報をご確認ください",
-      "backToHome": "メインページで検索",
-      "helpCenter": "ヘルプセンターを見る",
-      "contactUs": "お問い合わせ"
+    "viewTools": "ツールを表示",
+    "features": {
+      "free": {
+        "title": "100%無料",
+        "description": "すべてのツールは完全無料で、隠れた料金やサブスクリプションは一切ありません。"
+      },
+      "secure": {
+        "title": "安全・プライベート",
+        "description": "ファイルは安全に処理され、プライバシー保護のため1時間後に自動削除されます。"
+      },
+      "fast": {
+        "title": "高速・簡単",
+        "description": "登録不要。ファイルをアップロードするだけで、数秒で結果を取得できます。"
+      }
     }
   },
   "help": {
@@ -148,7 +103,7 @@
     "extractedText": "抽出されたテキスト",
     "copyText": "テキストをコピー",
     "secureProcessing": "安全な処理でプライバシーを保護",
-    "readyToProcess": "処理の準備はできましたか？",
+
     "supportedFormats": "対応動画形式",
     "supportedFormatsDesc": "最大限の互換性のため、すべての主要な動画形式をサポート",
     "copyResult": "結果をコピー",
@@ -177,6 +132,26 @@
     "fileSize": "ファイルサイズ"
   },
   "tools": {
+    "pdfCompress": "PDF圧縮",
+    "pdfCompressDesc": "PDFファイルサイズを削減",
+    "lengthConverter": "長さ変換",
+    "lengthConverterDesc": "様々な長さ単位を変換",
+    "weightConverter": "重量変換",
+    "weightConverterDesc": "様々な重量単位を変換",
+    "temperatureConverter": "温度変換",
+    "temperatureConverterDesc": "摂氏、華氏、ケルビンを変換",
+    "timeConverter": "時間変換",
+    "timeConverterDesc": "様々な時間単位を変換",
+    "currencyConverter": "通貨変換",
+    "currencyConverterDesc": "リアルタイム通貨レート変換",
+    "colorConverter": "色変換",
+    "colorConverterDesc": "RGB、HEX、HSL、CMYK色形式変換",
+    "qrGenerator": "QRコード生成器",
+    "qrGeneratorDesc": "カスタムQRコードを生成",
+    "passwordGenerator": "パスワード生成器",
+    "passwordGeneratorDesc": "安全なランダムパスワードを生成",
+    "base64Encoder": "Base64エンコード/デコード",
+    "base64EncoderDesc": "Base64形式のエンコードとデコード",
     "pdf": {
       "title": "PDFツール",
       "description": "PDF変換、結合、分割、圧縮、OCR認識など13の専門ツール",
@@ -201,6 +176,30 @@
       "videoTrimmer": "動画トリミング",
       "videoToGif": "動画をGIFに"
     },
+    "text": {
+      "title": "テキストツール",
+      "description": "テキスト処理、変換、分析、暗号化など多様なテキスト操作ツール",
+      "textCounter": "文字数カウント",
+      "textDiff": "テキスト比較",
+      "textEncryption": "テキスト暗号化",
+      "textFormatter": "テキスト整形"
+    },
+    "converter": {
+      "title": "変換ツール",
+      "description": "単位変換、通貨変換、色変換など様々な変換ツール",
+      "unitConverter": "単位変換",
+      "currencyConverter": "通貨変換",
+      "colorConverter": "色変換",
+      "timeConverter": "時間変換"
+    },
+    "developer": {
+      "title": "開発者ツール",
+      "description": "Base64エンコード、QRコード生成、パスワード生成など開発支援ツール",
+      "base64Encoder": "Base64エンコード",
+      "qrGenerator": "QRコード生成",
+      "passwordGenerator": "パスワード生成",
+      "jsonFormatter": "JSON整形"
+    },
     "ocr": {
       "title": "OCRツール",
       "description": "画像テキスト認識、PDF OCR、手書き認識など9のテキスト認識ツール",
@@ -218,32 +217,76 @@
       "csvSplit": "CSV分割"
     }
   },
-  "home": {
-    "heroTitle": "無料オンラインツール",
-    "heroSubtitle": "すべて",
-    "heroDescription": "PDF、画像、動画、AI文章作成など、100以上の無料ツールをご利用いただけます。登録不要、完全無料でお使いいただけます。",
-    "exploreTools": "ツールを探索",
-    "learnMore": "詳細を見る",
-    "chooseCategory": "ツールカテゴリを選択",
-    "categoryDescription": "カテゴリ別に整理された包括的なツールコレクションから選択",
-    "popularTools": "最も人気のツール",
-    "popularDescription": "私たちのツールを信頼する数百万のユーザーに参加",
-    "useTool": "ツールを使用",
-    "viewTools": "ツールを表示",
-    "usedByUsers": "{{count}}万人のユーザーが利用",
-    "features": {
-      "free": {
-        "title": "100%無料",
-        "description": "すべてのツールは隠れた料金やサブスクリプションなしで完全に無料でご利用いただけます。"
-      },
-      "secure": {
-        "title": "安全・プライベート",
-        "description": "ファイルは安全に処理され、プライバシー保護のため1時間後に自動削除されます。"
-      },
-      "fast": {
-        "title": "高速・簡単",
-        "description": "登録不要。ファイルをアップロードするだけで、数秒で結果を取得できます。"
-      }
+  "seo": {
+    "home": {
+      "title": "無料オンラインツール集 - 画像処理、PDF変換、動画編集ツール",
+      "description": "包括的な無料オンラインツールコレクションをご利用ください。画像編集から文書変換まで、ワークフローを簡素化する高品質で使いやすいツールを提供します。PDF、画像、動画、OCRなど100以上のツール。",
+      "keywords": "無料オンラインツール,PDF変換,画像処理,動画編集,OCR認識,文書変換,オンラインツール集"
+    },
+    "about": {
+      "title": "私たちについて - 無料オンラインツールプラットフォーム",
+      "description": "高品質で安全、高速なファイル処理ツールをユーザーに提供することを目指す無料オンラインツールプラットフォームについて学びましょう。登録不要、完全無料。",
+      "keywords": "私たちについて,オンラインツールプラットフォーム,無料ツール,ファイル処理,安全ツール"
+    },
+    "contact": {
+      "title": "お問い合わせ - 無料オンラインツールプラットフォーム",
+      "description": "ご質問やご提案がございましたら、いつでもお気軽にお問い合わせください。最高のオンラインツール体験を提供することをお約束します。",
+      "keywords": "お問い合わせ,カスタマーサポート,オンラインツール,技術サポート,ユーザーフィードバック"
+    },
+    "help": {
+      "title": "ヘルプセンター - ツール使用ガイドとよくある質問",
+      "description": "ヘルプセンターでツール使用ガイド、よくある質問、技術サポートをご確認ください。無料オンラインツールをより効果的にご利用いただけます。",
+      "keywords": "ヘルプセンター,使用ガイド,よくある質問,技術サポート,ツールチュートリアル"
+    },
+    "sitemap": {
+      "title": "サイトマップ - すべてのツールとページナビゲーション",
+      "description": "ウェブサイトの完全なマップを閲覧し、必要なPDF、画像、動画、OCR、文書処理ツールを素早く見つけましょう。",
+      "keywords": "サイトマップ,ツールナビゲーション,PDFツール,画像ツール,動画ツール,OCRツール"
+    },
+    "pdf": {
+      "title": "PDFツール - 無料PDF変換、結合、分割、圧縮",
+      "description": "プロフェッショナルなPDF処理ツールコレクション。PDFからWord、Excel、PowerPointへの変換、PDF結合分割、圧縮、OCR認識などの機能をサポート。",
+      "keywords": "PDFツール,PDF変換,PDF結合,PDF分割,PDF圧縮,PDFからWord,PDFからExcel"
+    },
+    "image": {
+      "title": "画像ツール - 無料画像処理、フォーマット変換、背景除去",
+      "description": "強力な画像処理ツール。画像フォーマット変換、圧縮、背景除去、サイズ調整、フィルター効果などの機能をサポート。",
+      "keywords": "画像ツール,画像処理,画像変換,背景除去,画像圧縮,画像編集"
+    },
+    "video": {
+      "title": "動画ツール - 無料動画変換、圧縮、編集、GIF作成",
+      "description": "プロフェッショナルな動画処理ツール。動画フォーマット変換、圧縮、カット、結合、GIF作成などの機能をサポート。",
+      "keywords": "動画ツール,動画変換,動画圧縮,動画編集,GIF作成,動画カット"
+    },
+    "videoTools": {
+      "title": "動画ツール - 無料オンライン動画処理ツール集",
+      "description": "動画変換、圧縮、カット、結合、回転などをサポートする無料オンライン動画ツール集。MP4、AVI、MOVなどすべての主要動画形式に対応し、高速処理で安全・信頼性が高い。",
+      "keywords": "動画ツール, 動画変換, 動画圧縮, 動画編集, オンライン動画処理"
+    },
+    "imageTools": {
+      "title": "画像ツール - 無料オンライン画像処理ツール集",
+      "description": "画像圧縮、リサイズ、トリミング、回転、フィルターなどをサポートする無料オンライン画像ツール集。JPG、PNG、GIFなどすべての主要画像形式に対応し、高速処理で安全・信頼性が高い。",
+      "keywords": "画像ツール, 画像圧縮, 画像リサイズ, 画像編集, オンライン画像処理"
+    },
+    "pdfTools": {
+      "title": "PDFツール - 無料オンラインPDF処理ツール集",
+      "description": "PDF変換、結合、分割、圧縮、暗号化などをサポートする無料オンラインPDFツール集。高速PDF文書処理で安全・信頼性が高く、ソフトウェアのダウンロード不要。",
+      "keywords": "PDFツール, PDF変換, PDF結合, PDF分割, オンラインPDF処理"
+    },
+    "ocrTools": {
+      "title": "OCRツール - 無料オンライン文字認識ツール",
+      "description": "画像からテキスト、PDFからテキスト、手書き文字認識などをサポートする無料オンラインOCR文字認識ツール。多言語認識に対応し、高精度で高速・便利。",
+      "keywords": "OCRツール, 文字認識, 画像からテキスト, PDF文字認識, オンラインOCR"
+    },
+    "ocr": {
+      "title": "OCRツール - 無料画像文字認識、PDFテキスト抽出",
+      "description": "高精度OCR文字認識ツール。画像文字認識、PDFテキスト抽出、手書き認識、多言語認識をサポート。",
+      "keywords": "OCR認識,文字認識,画像からテキスト,PDFテキスト抽出,手書き認識,多言語認識"
+    },
+    "documentData": {
+      "title": "文書データツール - 無料文書変換、データ処理、開発ツール",
+      "description": "包括的な文書とデータ処理ツール。Excel、CSV、JSON変換、テキスト処理、開発者ツールなどをサポート。",
+      "keywords": "文書ツール,データ処理,Excel変換,CSV処理,JSONツール,開発ツール"
     }
   }
 }

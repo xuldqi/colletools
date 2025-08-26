@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FileText, Image, Video, ArrowRight, Star, Scan, Settings } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData'
 
 const Home = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -17,7 +20,7 @@ const Home = () => {
       title: t('tools.pdf.title'),
       description: t('tools.pdf.description'),
       icon: FileText,
-      href: '/pdf',
+      href: '/pdf-tools',
       color: 'bg-red-500',
       tools: [t('tools.pdf.pdfToWord'), t('tools.pdf.mergePdf'), t('tools.pdf.splitPdf'), t('tools.pdf.compressPdf')]
     },
@@ -25,7 +28,7 @@ const Home = () => {
       title: t('tools.image.title'),
       description: t('tools.image.description'),
       icon: Image,
-      href: '/image',
+      href: '/image-tools',
       color: 'bg-green-500',
       tools: [t('tools.image.imageConverter'), t('tools.image.backgroundRemover'), t('tools.image.imageCompressor'), t('tools.image.photoEnhancer')]
     },
@@ -33,7 +36,7 @@ const Home = () => {
       title: t('tools.video.title'),
       description: t('tools.video.description'),
       icon: Video,
-      href: '/video',
+      href: '/video-tools',
       color: 'bg-blue-500',
       tools: [t('tools.video.videoConverter'), t('tools.video.videoCompressor'), t('tools.video.videoTrimmer'), t('tools.video.videoToGif')]
     },
@@ -41,7 +44,7 @@ const Home = () => {
       title: t('tools.ocr.title'),
       description: t('tools.ocr.description'),
       icon: Scan,
-      href: '/ocr',
+      href: '/ocr-tools',
       color: 'bg-purple-500',
       tools: [t('tools.ocr.imageToText'), t('tools.ocr.pdfOcr'), t('tools.ocr.handwritingRecognition'), t('tools.ocr.qrCodeReader')]
     },
@@ -49,22 +52,26 @@ const Home = () => {
       title: t('tools.documentData.title'),
       description: t('tools.documentData.description'),
       icon: Settings,
-      href: '/document-data',
+      href: '/document-data-tools',
       color: 'bg-indigo-600',
       tools: [t('tools.documentData.wordCounter'), t('tools.documentData.hashGenerator'), t('tools.documentData.base64Encoder'), t('tools.documentData.csvSplit')]
     }
   ]
 
   const popularTools = [
-    { name: t('tools.pdf.pdfToWord'), category: t('tools.pdf.title'), users: '2.5M' },
-    { name: t('tools.image.backgroundRemover'), category: t('tools.image.title'), users: '1.8M' },
-    { name: t('tools.video.videoConverter'), category: t('tools.video.title'), users: '1.2M' },
-    { name: t('tools.image.imageCompressor'), category: t('tools.image.title'), users: '800K' },
-    { name: t('tools.pdf.mergePdf'), category: t('tools.pdf.title'), users: '750K' }
+    { name: t('tools.pdf.pdfToWord'), category: t('tools.pdf.title'), users: '2.5M', href: '/pdf-tools' },
+    { name: t('tools.image.backgroundRemover'), category: t('tools.image.title'), users: '1.8M', href: '/image-tools' },
+    { name: t('tools.video.videoConverter'), category: t('tools.video.title'), users: '1.2M', href: '/video-tools' },
+    { name: t('tools.image.imageCompressor'), category: t('tools.image.title'), users: '800K', href: '/image-tools' },
+    { name: t('tools.pdf.mergePdf'), category: t('tools.pdf.title'), users: '750K', href: '/pdf-tools' }
   ]
 
   return (
     <div className="min-h-screen">
+      <SEOHead seoKey="home" />
+      <StructuredData type="WebSite" />
+      <StructuredData type="Organization" />
+      <StructuredData type="SoftwareApplication" />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -162,7 +169,10 @@ const Home = () => {
                 <p className="text-gray-600 text-sm mb-3">
                   {t('home.usedByUsers', { count: parseFloat(tool.users.replace(/[KM]/g, '')) })}
                 </p>
-                <button className="w-full bg-primary-600 text-white hover:bg-primary-700 py-2 rounded-md font-medium transition-colors">
+                <button 
+                  onClick={() => navigate(tool.href)}
+                  className="w-full bg-primary-600 text-white hover:bg-primary-700 py-2 rounded-md font-medium transition-colors"
+                >
                   {t('home.useTool')}
                 </button>
               </div>

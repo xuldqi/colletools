@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FileText, Download, Upload, Merge, Split, Minimize2, Edit, Scan, PenTool, Stamp, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData';
 
 interface PDFTool {
   id: string;
@@ -318,6 +320,8 @@ const PDFTools = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <SEOHead seoKey="pdfTools" />
+      <StructuredData type="SoftwareApplication" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">

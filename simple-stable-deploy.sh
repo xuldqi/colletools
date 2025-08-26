@@ -229,3 +229,4 @@ echo "DropShare: http://dropshare.tech:8080/dropshare"
 echo ""
 echo "✅ 这个配置是最简单的，应该能稳定工作"
 echo "📝 如果这个可以访问，我们再逐步添加复杂功能"
+

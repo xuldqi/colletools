@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Code, Copy, CheckCircle, Book, Zap, Shield, Globe } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 const ApiDocs: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -77,8 +79,39 @@ const ApiDocs: React.FC = () => {
     }
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "TinyWow API 文档",
+    "description": "集成我们的API到您的应用程序中，享受强大的文件处理能力",
+    "author": {
+      "@type": "Organization",
+      "name": "TinyWow"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TinyWow"
+    },
+    "datePublished": "2024-01-01",
+    "dateModified": "2024-01-01",
+    "mainEntity": {
+      "@type": "SoftwareApplication",
+      "name": "TinyWow API",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "description": "强大的文件处理API服务",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead seoKey="apiDocs" />
+      <StructuredData data={structuredData} />
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

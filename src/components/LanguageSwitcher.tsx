@@ -46,10 +46,7 @@ const LanguageSwitcher = () => {
                       : 'text-gray-700'
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span>{language.nativeName}</span>
-                    <span className="text-xs text-gray-500">{language.name}</span>
-                  </div>
+                  <span>{language.nativeName}</span>
                 </button>
               ))}
             </div>

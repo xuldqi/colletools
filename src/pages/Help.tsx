@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Search, HelpCircle, FileText, Image, Video, Eye, Database, ChevronDown, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import SEOHead from '../components/SEOHead';
 
 const Help: React.FC = () => {
   const { t } = useTranslation();
@@ -160,6 +161,7 @@ const Help: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead seoKey="help" />
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

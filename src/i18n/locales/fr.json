@@ -1,0 +1,876 @@
+{
+  "nav": {
+    "pdfTools": "PDF",
+    "imageTools": "Image",
+    "videoTools": "Vidéo",
+    "ocrTools": "OCR",
+    "documentDataTools": "Document & Données"
+  },
+  "home": {
+    "heroTitle": "Outils en ligne gratuits pour",
+    "heroSubtitle": "Tout",
+    "heroDescription": "Plus de 100 outils gratuits pour vous aider avec les PDF, les images, les vidéos, l'écriture par IA, et plus encore. Aucune inscription requise, utilisation entièrement gratuite.",
+    "exploreTools": "Explorer les outils",
+    "learnMore": "En savoir plus",
+    "chooseCategory": "Choisissez votre catégorie d'outils",
+    "categoryDescription": "Sélectionnez parmi notre collection complète d'outils organisés par catégorie",
+    "popularTools": "Outils les plus populaires",
+    "usedByUsers": "Utilisé par {{count}} utilisateurs ce mois-ci",
+    "popularDescription": "Rejoignez des millions d'utilisateurs qui font confiance à nos outils",
+    "useTool": "Utiliser l'outil",
+    "viewTools": "Voir les outils",
+    "features": {
+      "free": {
+        "title": "100% Gratuit",
+        "description": "Tous les outils sont entièrement gratuits, sans frais cachés ni abonnement requis."
+      },
+      "secure": {
+        "title": "Sécurisé & Privé",
+        "description": "Vos fichiers sont traités en toute sécurité et automatiquement supprimés après 1 heure pour votre confidentialité."
+      },
+      "fast": {
+        "title": "Rapide & Facile",
+        "description": "Aucune inscription requise. Il suffit de télécharger votre fichier et d'obtenir des résultats en quelques secondes."
+      }
+    }
+  },
+  "features": {
+    "free": {
+      "title": "100% Gratuit",
+      "description": "Tous les outils sont entièrement gratuits, sans frais cachés ni abonnement requis."
+    },
+    "secure": {
+      "title": "Sécurisé & Privé",
+      "description": "Vos fichiers sont traités en toute sécurité et automatiquement supprimés après 1 heure pour votre confidentialité."
+    },
+    "fast": {
+      "title": "Rapide & Facile",
+      "description": "Aucune inscription requise. Il suffit de télécharger votre fichier et d'obtenir des résultats en quelques secondes."
+    }
+  },
+  "footer": {
+    "zipic": "ZiPic",
+    "dropshare": "DropShare",
+    "description": "Plateforme d'outils en ligne gratuits proposant plus de 100 outils pour le traitement de PDF, d'images, de vidéos et plus encore. Aucune inscription requise, utilisation entièrement gratuite.",
+    "copyright": "© 2024 ColleTools. Tous droits réservés.",
+    "toolCategories": "Catégories d'outils",
+    "usefulLinks": "Liens utiles",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "faq": "FAQ",
+    "helpCenter": "Centre d'aide",
+    "contactUs": "Nous contacter",
+    "apiDocs": "Documentation de l'API",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "contactDescription": "Si vous rencontrez des problèmes lors de l'utilisation de nos outils, n'hésitez pas à m'envoyer un e-mail.",
+    "cookiePolicy": "Politique de cookies",
+    "sitemap": "Plan du site"
+  },
+  "sitemap": {
+    "title": "Plan du site",
+    "subtitle": "Parcourez toutes nos pages et tous nos outils, trouvez rapidement les fonctionnalités dont vous avez besoin",
+    "totalCount": "Total de {{count}} outils et pages",
+    "itemCount": "{{count}} éléments",
+    "categories": {
+      "mainPages": "Pages principales",
+      "pdfTools": "Outils PDF",
+      "imageTools": "Outils d'images",
+      "videoTools": "Outils vidéo",
+      "documentData": "Document & Données",
+      "ocrTools": "Outils OCR",
+      "legalPolicy": "Légal & Politique"
+    },
+    "tools": {
+      "home": "Accueil",
+      "about": "À propos",
+      "contact": "Contact",
+      "help": "Aide",
+      "sitemap": "Plan du site",
+      "pdfMerge": "Fusion de PDF",
+      "pdfSplit": "Division de PDF",
+      "pdfCompress": "Compression de PDF",
+      "pdfToWord": "PDF vers Word",
+      "wordToPdf": "Word vers PDF",
+      "pdfToExcel": "PDF vers Excel",
+      "excelToPdf": "Excel vers PDF",
+      "pdfToPpt": "PDF vers PPT",
+      "pptToPdf": "PPT vers PDF",
+      "pdfToImage": "PDF vers Image",
+      "imageToPdf": "Image vers PDF",
+      "pdfRotate": "Rotation de PDF",
+      "pdfWatermark": "Filigrane PDF",
+      "pdfPassword": "Mot de passe PDF",
+      "pdfUnlock": "Déverrouillage de PDF",
+      "pdfSign": "Signature de PDF",
+      "pdfEdit": "Édition de PDF",
+      "pdfReader": "Lecteur PDF",
+      "imageResize": "Redimensionnement d'image",
+      "imageCompress": "Compression d'image",
+      "imageFormat": "Format d'image",
+      "imageCrop": "Rognage d'image",
+      "imageRotate": "Rotation d'image",
+      "imageFilter": "Filtre d'image",
+      "imageBrightness": "Luminosité d'image",
+      "imageWatermark": "Filigrane d'image",
+      "backgroundRemove": "Suppression d'arrière-plan",
+      "imageUpscale": "Amélioration d'image",
+      "photoEditor": "Éditeur de photos",
+      "collagemaker": "Créateur de collages",
+      "videoCompress": "Compression vidéo",
+      "videoFormat": "Format vidéo",
+      "videoTrim": "Découpage vidéo",
+      "videoMerge": "Fusion vidéo",
+      "videoRotate": "Rotation vidéo",
+      "videoWatermark": "Filigrane vidéo",
+      "videoToAudio": "Vidéo vers Audio",
+      "audioToVideo": "Audio vers Vidéo",
+      "videoToGif": "Vidéo vers GIF",
+      "gifToVideo": "GIF vers Vidéo",
+      "videoSubtitle": "Sous-titres vidéo",
+      "videoSpeed": "Vitesse vidéo",
+      "csvToExcel": "CSV vers Excel",
+      "excelToCsv": "Excel vers CSV",
+      "jsonToCsv": "JSON vers CSV",
+      "csvToJson": "CSV vers JSON",
+      "xmlToJson": "XML vers JSON",
+      "jsonToXml": "JSON vers XML",
+      "splitCsv": "Division de CSV",
+      "splitExcel": "Division d'Excel",
+      "wordCounter": "Compteur de mots",
+      "caseConverter": "Convertisseur de casse",
+      "textFormatter": "Formateur de texte",
+      "hashGenerator": "Générateur de hachage",
+      "base64Encoder": "Encodeur Base64",
+      "urlEncoder": "Encodeur d'URL",
+      "jsonFormatter": "Formateur JSON",
+      "qrGenerator": "Générateur de QR",
+      "passwordGenerator": "Générateur de mot de passe",
+      "uuidGenerator": "Générateur d'UUID",
+      "colorPicker": "Sélecteur de couleurs",
+      "unitConverter": "Convertisseur d'unités",
+      "currencyConverter": "Convertisseur de devises",
+      "timezoneConverter": "Convertisseur de fuseaux horaires",
+      "dateCalculator": "Calculateur de dates",
+      "percentageCalculator": "Calculateur de pourcentages",
+      "loanCalculator": "Calculateur de prêt",
+      "bmiCalculator": "Calculateur d'IMC",
+      "ageCalculator": "Calculateur d'âge",
+      "randomGenerator": "Générateur aléatoire",
+      "textDiff": "Comparaison de texte",
+      "regexTester": "Testeur d'expressions régulières",
+      "htmlToText": "HTML vers Texte",
+      "markdownToHtml": "Markdown vers HTML",
+      "htmlFormatter": "Formateur HTML",
+      "cssFormatter": "Formateur CSS",
+      "jsFormatter": "Formateur JavaScript",
+      "sqlFormatter": "Formateur SQL",
+      "fileHash": "Hachage de fichier",
+      "imageToText": "Image vers Texte",
+      "pdfTextRecognition": "Reconnaissance de texte PDF",
+      "handwritingRecognition": "Reconnaissance d'écriture manuscrite",
+      "documentScanner": "Scanner de documents",
+      "tableRecognition": "Reconnaissance de tableau",
+      "idCardRecognition": "Reconnaissance de carte d'identité",
+      "bankCardRecognition": "Reconnaissance de carte bancaire",
+      "licensePlateRecognition": "Reconnaissance de plaque d'immatriculation",
+      "invoiceRecognition": "Reconnaissance de facture",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsOfService": "Conditions d'utilisation",
+      "cookiePolicy": "Politique de cookies"
+    },
+    "descriptions": {
+      "home": "Page principale avec tous les outils",
+      "about": "En savoir plus sur notre plateforme",
+      "contact": "Entrer en contact avec nous",
+      "help": "Centre d'aide et FAQ",
+      "sitemap": "Plan de navigation du site",
+      "pdfMerge": "Combiner plusieurs fichiers PDF en un seul",
+      "pdfSplit": "Diviser un PDF en plusieurs fichiers",
+      "pdfCompress": "Réduire la taille d'un fichier PDF",
+      "pdfToWord": "Convertir des fichiers PDF en documents Word modifiables",
+      "wordToPdf": "Convertir des documents Word au format PDF",
+      "pdfToExcel": "Extraire des tableaux d'un PDF vers des feuilles de calcul Excel",
+      "excelToPdf": "Convertir des fichiers Excel au format PDF",
+      "pdfToPpt": "Convertir un PDF en présentations PowerPoint modifiables",
+      "pptToPdf": "Convertir des présentations PowerPoint en PDF",
+      "pdfToImage": "Convertir des pages PDF en images JPG",
+      "imageToPdf": "Convertir des images JPG en documents PDF",
+      "pdfRotate": "Faire pivoter des pages PDF",
+      "pdfWatermark": "Ajouter un filigrane à un PDF",
+      "pdfPassword": "Ajouter une protection par mot de passe à un PDF",
+      "pdfUnlock": "Supprimer le mot de passe d'un PDF",
+      "pdfSign": "Ajouter une signature numérique à un PDF",
+      "pdfEdit": "Modifier le contenu d'un PDF",
+      "pdfReader": "Visualiser et lire des fichiers PDF",
+      "imageResize": "Redimensionner les dimensions d'une image",
+      "imageCompress": "Réduire la taille d'un fichier image",
+      "imageFormat": "Convertir les formats d'image",
+      "imageCrop": "Rogner et recadrer des images",
+      "imageRotate": "Faire pivoter et retourner des images",
+      "imageFilter": "Appliquer des filtres aux images",
+      "imageBrightness": "Ajuster la luminosité et le contraste d'une image",
+      "imageWatermark": "Ajouter un filigrane aux images",
+      "backgroundRemove": "Supprimer l'arrière-plan d'une image",
+      "imageUpscale": "Améliorer la résolution d'une image",
+      "photoEditor": "Édition de photos professionnelle",
+      "collagemaker": "Créer des collages de photos",
+      "videoCompress": "Réduire la taille d'un fichier vidéo",
+      "videoFormat": "Convertir les formats vidéo",
+      "videoTrim": "Découper et rogner des vidéos",
+      "videoMerge": "Combiner plusieurs vidéos",
+      "videoRotate": "Faire pivoter et retourner des vidéos",
+      "videoWatermark": "Ajouter un filigrane aux vidéos",
+      "videoToAudio": "Extraire l'audio d'une vidéo",
+      "audioToVideo": "Convertir l'audio en vidéo",
+      "videoToGif": "Convertir une vidéo en GIF",
+      "gifToVideo": "Convertir un GIF en vidéo",
+      "videoSubtitle": "Ajouter des sous-titres à une vidéo",
+      "videoSpeed": "Modifier la vitesse de lecture vidéo",
+      "csvToExcel": "Convertir des fichiers CSV en Excel",
+      "excelToCsv": "Convertir des fichiers Excel en CSV",
+      "jsonToCsv": "Convertir des données JSON en CSV",
+      "csvToJson": "Convertir des données CSV en JSON",
+      "xmlToJson": "Convertir des données XML en JSON",
+      "jsonToXml": "Convertir des données JSON en XML",
+      "splitCsv": "Diviser de gros fichiers CSV",
+      "splitExcel": "Diviser des feuilles de calcul Excel",
+      "wordCounter": "Compter les mots, les caractères et les paragraphes",
+      "caseConverter": "Convertir la casse du texte",
+      "textFormatter": "Formater et embellir le texte",
+      "hashGenerator": "Générer des hachages MD5, SHA et autres",
+      "base64Encoder": "Encodage et décodage Base64",
+      "urlEncoder": "Encodage et décodage d'URL",
+      "jsonFormatter": "Formater et valider les données JSON",
+      "qrGenerator": "Générer des codes QR",
+      "passwordGenerator": "Générer des mots de passe sécurisés",
+      "uuidGenerator": "Générer des identifiants uniques",
+      "colorPicker": "Outil de conversion de codes de couleurs",
+      "unitConverter": "Convertir les unités de longueur, de poids, de température",
+      "currencyConverter": "Conversion de devises en temps réel",
+      "timezoneConverter": "Conversion de fuseaux horaires mondiaux",
+      "dateCalculator": "Calcul de la différence de dates",
+      "percentageCalculator": "Calcul de pourcentages et de ratios",
+      "loanCalculator": "Calcul du prêt et des intérêts",
+      "bmiCalculator": "Calcul de l'indice de masse corporelle",
+      "ageCalculator": "Calcul précis de l'âge",
+      "randomGenerator": "Générer des nombres et des caractères aléatoires",
+      "textDiff": "Comparer les différences de texte",
+      "regexTester": "Tester et valider des expressions régulières",
+      "htmlToText": "Extraire le texte brut du HTML",
+      "markdownToHtml": "Convertir du Markdown en HTML",
+      "htmlFormatter": "Formater le code HTML",
+      "cssFormatter": "Formater le code CSS",
+      "jsFormatter": "Formater le code JavaScript",
+      "sqlFormatter": "Formater les requêtes SQL",
+      "fileHash": "Calculer les valeurs de hachage de fichier",
+      "imageToText": "Reconnaître et extraire le texte des images",
+      "pdfTextRecognition": "Extraire le texte des PDF scannés",
+      "handwritingRecognition": "Reconnaître le texte manuscrit",
+      "documentScanner": "Scanner des documents et convertir en texte",
+      "tableRecognition": "Reconnaître les données de tableau dans les images",
+      "idCardRecognition": "Reconnaître les informations de carte d'identité",
+      "bankCardRecognition": "Reconnaître les numéros de carte bancaire",
+      "licensePlateRecognition": "Reconnaître les numéros de plaque d'immatriculation",
+      "invoiceRecognition": "Reconnaître les informations de facture",
+      "privacyPolicy": "Notre politique de protection de la vie privée",
+      "termsOfService": "Conditions et règles de service",
+      "cookiePolicy": "Utilisation et gestion des cookies"
+    },
+    "stats": {
+      "title": "Collection d'outils en ligne puissants",
+      "description": "Nous fournissons plus de {{count}} outils en ligne gratuits couvrant le traitement de documents, l'édition d'images, le traitement vidéo, la conversion de données et plus encore"
+    },
+    "searchTip": {
+      "title": "Vous ne trouvez pas l'outil dont vous avez besoin ?",
+      "description": "Vous pouvez utiliser la fonction de recherche sur la page d'accueil pour trouver rapidement des outils spécifiques, ou consulter notre centre d'aide pour plus de conseils d'utilisation.",
+      "backToHome": "Retour à la recherche sur la page d'accueil",
+      "viewHelp": "Voir le centre d'aide",
+      "contactUs": "Nous contacter"
+    }
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "subtitle": "Vous avez des questions ou des suggestions ? Nous serions ravis d'avoir votre avis.",
+    "contactInfo": {
+      "title": "Informations de contact",
+      "email": {
+        "title": "E-mail",
+        "description": "Demandes générales et support technique"
+      },
+      "chat": {
+        "title": "Support en ligne",
+        "description": "Support par chat instantané",
+        "hours": "En semaine 9:00-18:00"
+      },
+      "address": {
+        "title": "Adresse",
+        "line1": "Nouveau district de Pudong, Shanghai, Chine",
+        "line2": "Parc de haute technologie de Zhangjiang"
+      },
+      "hours": {
+        "title": "Heures d'ouverture",
+        "weekdays": "Du lundi au vendredi de 9h00 à 18h00",
+        "saturday": "Samedi de 10h00 à 16h00",
+        "timezone": "Heure de Pékin (UTC+8)"
+      }
+    },
+    "quickLinks": {
+      "title": "Liens rapides",
+      "helpCenter": "Centre d'aide",
+      "apiDocs": "Documentation de l'API",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation"
+    },
+    "form": {
+      "title": "Envoyer un message",
+      "name": "Nom",
+      "namePlaceholder": "Veuillez entrer votre nom",
+      "email": "E-mail",
+      "emailPlaceholder": "Veuillez entrer votre e-mail",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Veuillez sélectionner un sujet",
+      "subjects": {
+        "general": "Demande générale",
+        "technical": "Support technique",
+        "bug": "Rapport de bug",
+        "feature": "Demande de fonctionnalité",
+        "business": "Coopération commerciale",
+        "other": "Autre"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Veuillez décrire votre question ou suggestion en détail...",
+      "submit": "Envoyer le message"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "questions": {
+        "howToUse": {
+          "question": "Comment utiliser les outils ?",
+          "answer": "Sélectionnez l'outil dont vous avez besoin, téléchargez votre fichier, attendez la fin du traitement, puis téléchargez le résultat. Tous les outils ont des instructions d'utilisation détaillées."
+        },
+        "security": {
+          "question": "Les fichiers sont-ils sécurisés ?",
+          "answer": "Oui, nous utilisons le cryptage SSL pour la transmission, et les fichiers sont automatiquement supprimés dans l'heure suivant le traitement pour garantir la sécurité de vos données."
+        },
+        "formats": {
+          "question": "Quels formats de fichiers sont pris en charge ?",
+          "answer": "Nous prenons en charge les PDF, Word, Excel, PowerPoint, les images, les vidéos et de nombreux autres formats courants. Veuillez consulter chaque page d'outil pour les formats spécifiques pris en charge."
+        },
+        "fileSize": {
+          "question": "Y a-t-il une limite de taille de fichier ?",
+          "answer": "La taille maximale d'un seul fichier est de 100 Mo. Si vous avez besoin de traiter des fichiers plus volumineux, veuillez contacter notre support technique."
+        },
+        "processingTime": {
+          "question": "Combien de temps prend le traitement ?",
+          "answer": "La plupart des fichiers sont traités en quelques secondes ou minutes, selon la taille et la complexité du fichier."
+        },
+        "support": {
+          "question": "Comment obtenir un support technique ?",
+          "answer": "Vous pouvez nous contacter par e-mail, par chat en ligne ou en remplissant le formulaire ci-dessus. Nous répondrons à vos questions dans les 24 heures."
+        }
+      },
+      "moreHelp": "Voir plus d'aide"
+    }
+  },
+  "help": {
+      "title": "Centre d'aide",
+      "subtitle": "Trouvez des réponses, obtenez de l'aide et apprenez à utiliser nos outils",
+      "searchPlaceholder": "Rechercher des sujets d'aide...",
+      "toolCategoriesTitle": "Guide des catégories d'outils",
+      "moreTools": "plus d'outils",
+      "viewAllTools": "Voir tous les outils",
+      "noResults": "Aucun contenu pertinent trouvé",
+      "clearSearch": "Effacer les critères de recherche",
+      "contact": {
+        "title": "Vous avez d'autres questions ?",
+        "description": "Si vous n'avez pas trouvé la réponse dont vous avez besoin, veuillez contacter notre équipe de support.",
+        "supportButton": "Contacter le support",
+        "apiDocsButton": "Voir la documentation de l'API"
+      },
+    "categories": {
+        "pdf": {
+          "title": "Outils PDF",
+          "tools": [
+            "Convertisseur PDF", "Fusion de PDF", "Diviseur de PDF", "Compresseur PDF",
+            "OCR de PDF", "Crypteur de PDF", "Décrypteur de PDF", "Signature PDF"
+          ]
+        },
+        "image": {
+          "title": "Outils d'images",
+          "tools": [
+            "Convertisseur d'image", "Compresseur d'image", "Redimensionneur d'image", "Suppresseur d'arrière-plan",
+            "Suppresseur de filigrane", "Améliorateur d'image", "Rogneur d'image", "Convertisseur de format"
+          ]
+        },
+        "video": {
+          "title": "Outils vidéo",
+          "tools": [
+            "Convertisseur vidéo", "Compresseur vidéo", "Découpeur vidéo", "Fusion vidéo",
+            "Rotateur vidéo", "Extracteur audio", "Vidéo vers GIF", "Éditeur vidéo"
+          ]
+        },
+        "ocr": {
+          "title": "Outils OCR",
+          "tools": [
+            "Image vers Texte", "Reconnaissance de texte PDF", "Reconnaissance d'écriture manuscrite", "Scanner de documents",
+            "Reconnaissance de tableau", "Reconnaissance de carte d'identité", "Reconnaissance de carte bancaire", "Reconnaissance de plaque d'immatriculation"
+          ]
+        },
+        "document": {
+          "title": "Outils de documents & de données",
+          "tools": [
+            "CSV vers Excel", "Excel vers CSV", "JSON vers CSV", "CSV vers JSON",
+            "XML vers JSON", "JSON vers XML", "Compteur de mots", "Formateur de texte"
+          ]
+        }
+      },
+    "faq": {
+      "title": "Questions fréquentes",
+      "sections": {
+        "gettingStarted": {
+          "title": "Démarrage",
+          "questions": {
+            "howToStart": {
+              "question": "Comment commencer à utiliser les outils ?",
+              "answer": "Sélectionnez l'outil dont vous avez besoin, téléchargez votre fichier, attendez la fin du traitement, puis téléchargez le résultat. Tous les outils sont gratuits et sans inscription."
+            },
+            "supportedFormats": {
+              "question": "Quels formats de fichiers sont pris en charge ?",
+              "answer": "Nous prenons en charge les PDF, Word, Excel, PowerPoint, divers formats d'image (JPG, PNG, GIF, etc.), les formats vidéo (MP4, AVI, MOV, etc.) et d'autres formats de documents courants."
+            },
+            "fileSize": {
+              "question": "Y a-t-il une limite de taille de fichier ?",
+              "answer": "La taille maximale d'un seul fichier est de 100 Mo. Cette limite est suffisante pour la plupart des utilisations quotidiennes."
+            }
+          }
+        },
+        "security": {
+          "title": "Sécurité & Confidentialité",
+          "questions": {
+            "fileSafety": {
+              "question": "Mes fichiers sont-ils en sécurité ?",
+              "answer": "Oui, nous utilisons le cryptage SSL pour la transmission, et les fichiers sont automatiquement supprimés dans l'heure suivant le traitement. Nous ne sauvegardons aucun de vos fichiers."
+            },
+            "fileStorage": {
+              "question": "Sauvegardez-vous mes fichiers ?",
+              "answer": "Non. Nous ne sauvegardons pas vos fichiers de manière permanente. Tous les fichiers téléchargés sont uniquement utilisés pour le traitement et sont automatiquement supprimés une fois terminé."
+            },
+            "sensitiveFiles": {
+              "question": "Puis-je traiter des fichiers sensibles ?",
+              "answer": "Bien que nous ayons des mesures de sécurité strictes, nous vous recommandons de ne pas télécharger de fichiers contenant des informations sensibles telles que des mots de passe, des numéros d'identification et d'autres informations de confidentialité personnelle."
+            }
+          }
+        },
+        "technical": {
+          "title": "Support technique",
+          "questions": {
+            "processingFailed": {
+              "question": "Que faire si le traitement échoue ?",
+              "answer": "Si le traitement échoue, veuillez vérifier si le format de fichier est correct et si le fichier est corrompu. Si le problème persiste, veuillez contacter notre support technique."
+            },
+            "slowProcessing": {
+              "question": "Que faire si le traitement est lent ?",
+              "answer": "La vitesse de traitement dépend de la taille du fichier et de la charge du serveur. Les fichiers volumineux nécessitent plus de temps pour être traités. S'il n'y a pas de réponse pendant une longue période, veuillez actualiser la page et réessayer."
+            },
+            "contactSupport": {
+              "question": "Comment contacter le support technique ?",
+              "answer": "Vous pouvez nous contacter par e-mail à support@colletools.com ou soumettre une question sur la page de contact. Nous vous répondrons dans les 24 heures."
+            }
+          }
+        },
+        "quality": {
+          "title": "Qualité & Résultats",
+          "questions": {
+            "processingQuality": {
+              "question": "Quelle est la qualité du traitement ?",
+              "answer": "Nous utilisons des algorithmes et des technologies avancés pour garantir des résultats de traitement de haute qualité. L'efficacité des différents outils peut varier en fonction de la qualité du fichier original."
+            },
+            "ocrAccuracy": {
+              "question": "Quelle est la précision de la reconnaissance OCR ?",
+              "answer": "La précision de la reconnaissance OCR est généralement supérieure à 95 %, mais elle peut être affectée par des facteurs tels que la qualité de l'image, les polices et la langue."
+            },
+            "compressionQuality": {
+              "question": "La compression affecte-t-elle la qualité ?",
+              "answer": "Nos algorithmes de compression maintiennent la qualité tout en réduisant la taille du fichier autant que possible. Vous pouvez choisir différents niveaux de compression selon vos besoins."
+            }
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "À propos de ColleTools",
+    "subtitle": "Nous nous engageons à fournir aux utilisateurs des outils en ligne simples, rapides et gratuits pour rendre le traitement de fichiers complexes facile et simple.",
+    "mission": {
+      "title": "Notre mission",
+      "description": "Permettre à chacun de gérer facilement différents formats de fichiers sans installer de logiciels complexes ou avoir de compétences professionnelles. Nous pensons que la technologie doit servir les gens et rendre le travail plus efficace et plus simple."
+    },
+    "vision": {
+      "title": "Notre vision",
+      "description": "Devenir la première plateforme d'outils en ligne au monde, offrant aux utilisateurs les solutions de traitement de fichiers les plus complètes et les plus fiables, rendant le travail numérique plus pratique."
+    },
+    "whyChooseUs": "Pourquoi nous choisir ?",
+    "features": {
+      "free": {
+        "title": "Entièrement gratuit",
+        "description": "Tous les outils sont entièrement gratuits, sans inscription ni abonnement requis, permettant à chacun de profiter de services de traitement de fichiers pratiques."
+      },
+      "easyToUse": {
+        "title": "Facile à utiliser",
+        "description": "Conception d'interface utilisateur intuitive sans courbe d'apprentissage, téléchargez des fichiers pour accomplir rapidement diverses tâches de traitement."
+      },
+      "secure": {
+        "title": "Sécurisé et fiable",
+        "description": "Les fichiers sont automatiquement supprimés après le traitement pour protéger la confidentialité de l'utilisateur, et des technologies de cryptage avancées sont utilisées pour garantir la sécurité des données."
+      }
+    },
+    "tools": {
+      "title": "Nos outils",
+      "pdf": {
+        "title": "Outils PDF",
+        "description": "Conversion, fusion, division, compression, reconnaissance OCR de PDF et 13 autres outils professionnels"
+      },
+      "image": {
+        "title": "Outils d'images",
+        "description": "Conversion, compression, suppression d'arrière-plan, traitement de filigrane d'image et 13 autres outils de traitement d'image"
+      },
+      "video": {
+        "title": "Outils vidéo",
+        "description": "Compression, conversion, édition, fusion, création de GIF vidéo et 9 autres outils de traitement vidéo"
+      },
+      "ocr": {
+        "title": "Outils OCR",
+        "description": "Reconnaissance de texte d'image, OCR de PDF, reconnaissance d'écriture manuscrite et 9 autres outils de reconnaissance de texte"
+      },
+      "document": {
+        "title": "Document & Données",
+        "description": "Conversion Excel, CSV, JSON, traitement de texte, outils de développeur et 36 autres outils pratiques"
+      }
+    },
+    "contact": {
+      "title": "Vous avez des questions ou des suggestions ?",
+      "description": "Nous serions ravis de recevoir vos commentaires pour nous aider à améliorer continuellement nos produits.",
+      "button": "Nous contacter"
+    }
+  },
+  "tools": {
+    "pdf": {
+      "title": "Outils PDF",
+      "description": "Convertir, fusionner, diviser et modifier des fichiers PDF",
+      "pageDescription": "Convertissez, fusionnez, divisez et modifiez des fichiers PDF avec notre collection complète d'outils PDF. Tous les outils sont gratuits et fonctionnent directement dans votre navigateur.",
+      "pdfToWord": "PDF vers Word",
+      "pdfToWordDesc": "Convertir des fichiers PDF en documents Word modifiables",
+      "wordToPdf": "Word vers PDF",
+      "wordToPdfDesc": "Convertir des documents Word au format PDF",
+      "pdfToExcel": "PDF vers Excel",
+      "pdfToExcelDesc": "Extraire des tableaux d'un PDF vers des feuilles de calcul Excel",
+      "excelToPdf": "Excel vers PDF",
+      "excelToPdfDesc": "Convertir des fichiers Excel au format PDF",
+      "pdfToPowerpoint": "PDF vers PowerPoint",
+      "pdfToPowerpointDesc": "Convertir un PDF en présentations PowerPoint modifiables",
+      "powerpointToPdf": "PowerPoint vers PDF",
+      "powerpointToPdfDesc": "Convertir des présentations PowerPoint en PDF",
+      "pdfToJpg": "PDF vers JPG",
+      "pdfToJpgDesc": "Convertir des pages PDF en images JPG",
+      "jpgToPdf": "JPG vers PDF",
+      "jpgToPdfDesc": "Convertir des images JPG en documents PDF",
+      "mergePdf": "Fusionner des PDF",
+      "mergePdfDesc": "Combiner plusieurs fichiers PDF en un seul document",
+      "splitPdf": "Diviser un PDF",
+      "splitPdfDesc": "Diviser un PDF en pages ou plages séparées",
+      "compressPdf": "Compresser un PDF",
+      "compressPdfDesc": "Réduire la taille d'un fichier PDF tout en conservant la qualité",
+      "pdfOcr": "OCR de PDF",
+      "pdfOcrDesc": "Extraire le texte de documents PDF scannés",
+      "addSignature": "Ajouter une signature",
+      "addSignatureDesc": "Ajouter des signatures numériques à des documents PDF",
+      "pdfFormFiller": "Remplisseur de formulaire PDF",
+      "pdfFormFillerDesc": "Remplir des formulaires PDF par programme",
+      "pdfSignature": "Signature PDF",
+      "pdfWatermark": "Filigrane PDF",
+      "pdfWatermarkDesc": "Ajouter des filigranes à des documents PDF",
+      "popularTools": "Outils PDF les plus populaires",
+      "allTools": "Tous les outils PDF",
+      "whyChoose": "Pourquoi choisir nos outils PDF ?",
+      "highQuality": "Haute qualité",
+      "highQualityDesc": "Maintenir le formatage et la qualité d'origine dans toutes les conversions",
+      "secureProcessing": "Traitement sécurisé",
+      "secureProcessingDesc": "Les fichiers sont automatiquement supprimés après le traitement pour votre confidentialité",
+      "fastProcessing": "Traitement rapide",
+      "fastProcessingDesc": "Obtenez vos fichiers convertis en quelques secondes, pas en minutes"
+    },
+    "image": {
+      "title": "Outils d'images",
+      "description": "Éditer, convertir et optimiser des images",
+      "pageDescription": "Éditez, convertissez et optimisez vos images avec notre puissante collection d'outils d'images. Tout le traitement se fait dans votre navigateur pour une confidentialité maximale.",
+      "backgroundRemover": "Suppresseur d'arrière-plan",
+      "backgroundRemoverDesc": "Supprimer automatiquement les arrière-plans des images à l'aide de l'IA",
+      "imageConverter": "Convertisseur d'image",
+      "imageConverterDesc": "Convertir des images entre différents formats (JPG, PNG, WebP, etc.)",
+      "imageCompressor": "Compresseur d'image",
+      "imageCompressorDesc": "Réduire la taille d'un fichier image tout en conservant la qualité",
+      "photoEditor": "Éditeur de photos",
+      "photoEditorDesc": "Outils d'édition de photos professionnels",
+      "imageEnhancer": "Améliorateur d'image",
+      "imageEnhancerDesc": "Améliorer la qualité et la résolution d'une image à l'aide de l'IA",
+      "imageCropper": "Rogneur d'image",
+      "imageCropperDesc": "Rogner et redimensionner des images selon les dimensions souhaitées",
+      "imageRotator": "Rotateur d'image",
+      "imageRotatorDesc": "Faire pivoter des images selon n'importe quel angle",
+      "imageUpscaler": "Améliorateur de résolution d'image",
+      "imageUpscalerDesc": "Augmenter la résolution et la taille d'une image à l'aide de l'IA",
+      "watermarkRemover": "Suppresseur de filigrane",
+      "watermarkRemoverDesc": "Supprimer automatiquement les filigranes des images",
+      "imageResizer": "Redimensionneur d'image",
+      "imageResizerDesc": "Redimensionner des images à des dimensions ou pourcentages spécifiques"
+    },
+    "video": {
+      "title": "Outils vidéo",
+      "description": "Convertir, éditer et optimiser des vidéos",
+      "pageDescription": "Convertissez, éditez et optimisez vos vidéos avec notre collection complète d'outils vidéo. Prise en charge de tous les principaux formats vidéo et traitement rapide.",
+      "videoConverter": "Convertisseur vidéo",
+      "videoConverterDesc": "Convertir des vidéos entre différents formats (MP4, AVI, MOV, etc.)",
+      "videoCompressor": "Compresseur vidéo",
+      "videoCompressorDesc": "Réduire la taille d'un fichier vidéo tout en conservant la qualité",
+      "videoTrimmer": "Découpeur vidéo",
+      "videoTrimmerDesc": "Couper et rogner des vidéos à la longueur souhaitée",
+      "videoToGif": "Créateur de GIF",
+      "videoToGifDesc": "Créer des GIFs animés à partir de vidéos ou d'images",
+      "videoEditor": "Éditeur vidéo",
+      "videoEditorDesc": "Outils d'édition vidéo professionnels",
+      "gifMaker": "Créateur de GIF",
+      "gifMakerDesc": "Créer des GIFs animés à partir de vidéos ou d'images",
+      "videoRotator": "Rotateur vidéo",
+      "videoRotatorDesc": "Faire pivoter des vidéos selon n'importe quel angle ou les retourner",
+      "audioExtractor": "Extracteur audio",
+      "audioExtractorDesc": "Extraire des pistes audio de fichiers vidéo",
+      "videoMerger": "Fusion vidéo",
+      "videoMergerDesc": "Combiner plusieurs vidéos en un seul fichier",
+      "professionalProcessing": "Traitement vidéo professionnel",
+      "supportedFormats": "Prise en charge des formats MP4, AVI, MOV, WMV, FLV et de nombreux autres formats vidéo",
+      "fastProcessingDesc": "Algorithmes optimisés pour un traitement et une conversion vidéo rapides",
+      "secureProcessing": "Tout le traitement se fait dans votre navigateur. Vos vidéos ne quittent jamais votre appareil",
+      "readyToProcess": "Prêt à traiter vos vidéos ?",
+      "uploadAndStart": "Téléchargez votre vidéo et commencez le traitement avec nos outils puissants",
+      "supportedFormatsDesc": "Nous prenons en charge tous les principaux formats vidéo pour une compatibilité maximale"
+    },
+    "ocr": {
+      "title": "Outils de reconnaissance de texte OCR",
+      "description": "Extraire le texte des images et des documents",
+      "pageDescription": "Collection d'outils OCR puissants prenant en charge les images, les PDF, le texte manuscrit et divers besoins de reconnaissance",
+      "imageToText": "Reconnaissance de texte d'image",
+      "imageToTextDesc": "Extraire le contenu textuel des images, prenant en charge plusieurs langues",
+      "pdfOcr": "Reconnaissance de texte PDF",
+      "pdfOcrDesc": "Extraire le contenu textuel de documents PDF",
+      "handwritingRecognition": "Reconnaissance d'écriture manuscrite",
+      "handwritingRecognitionDesc": "Reconnaître le texte manuscrit et le convertir en texte numérique",
+      "documentScanner": "Scanner de documents",
+      "documentScannerDesc": "Scanner des documents et extraire du texte structuré",
+      "tableExtractor": "Extracteur de tableau",
+      "tableExtractorDesc": "Extraire les données de tableau des images ou des PDF",
+      "receiptScanner": "Scanner de reçu",
+      "receiptScannerDesc": "Scanner des reçus et extraire les informations clés",
+      "businessCardScanner": "Scanner de carte de visite",
+      "businessCardScannerDesc": "Scanner des cartes de visite et extraire les informations de contact",
+      "licensePlateReader": "Reconnaissance de plaque d'immatriculation",
+      "licensePlateReaderDesc": "Reconnaître les numéros de plaque d'immatriculation",
+      "qrCodeReader": "Reconnaissance de code QR",
+      "qrCodeReaderDesc": "Lire le contenu des codes QR",
+      "selectFile": "Sélectionner un fichier",
+      "clickToSelectFile": "Cliquez pour sélectionner un fichier",
+      "supportedFormats": "Formats pris en charge",
+      "recognizing": "Reconnaissance en cours...",
+      "startRecognition": "Démarrer la reconnaissance",
+      "recognitionResult": "Résultat de la reconnaissance",
+      "copyResult": "Copier le résultat",
+      "recognitionComplete": "Reconnaissance terminée",
+      "ocrComplete": "Reconnaissance OCR terminée !",
+      "ocrError": "Le traitement OCR a échoué, veuillez réessayer",
+      "processingError": "Erreur de traitement OCR :"
+    },
+    "documentData": {
+      "title": "Outils de documents & de données",
+      "description": "Collection complète d'outils de traitement de documents, d'édition de texte, d'outils pour développeurs et de conversion de format pour répondre à tous vos besoins de traitement de données",
+      "fileProcessing": "Traitement de fichiers",
+      "textProcessing": "Traitement de texte",
+      "developerTools": "Outils pour développeurs",
+      "converters": "Convertisseurs",
+      "csvSplit": "Division de CSV",
+      "csvSplitDesc": "Diviser de gros fichiers CSV en morceaux plus petits",
+      "excelSplit": "Division d'Excel",
+      "excelSplitDesc": "Diviser les fichiers Excel par lignes ou par feuilles",
+      "xmlToExcel": "XML vers Excel",
+      "xmlToExcelDesc": "Convertir des fichiers XML au format Excel",
+      "excelToXml": "Excel vers XML",
+      "excelToXmlDesc": "Convertir des fichiers Excel au format XML",
+      "csvToExcel": "CSV vers Excel",
+      "csvToExcelDesc": "Convertir des fichiers CSV au format Excel",
+      "xmlToCsv": "XML vers CSV",
+      "xmlToCsvDesc": "Convertir des fichiers XML au format CSV",
+      "xmlToJson": "XML vers JSON",
+      "xmlToJsonDesc": "Convertir des fichiers XML au format JSON",
+      "jsonToXml": "JSON vers XML",
+      "jsonToXmlDesc": "Convertir des fichiers JSON au format XML",
+      "csvToJson": "CSV vers JSON",
+      "csvToJsonDesc": "Convertir des fichiers CSV au format JSON",
+      "wordCounter": "Compteur de mots",
+      "wordCounterDesc": "Compter les mots, les caractères, les paragraphes et les lignes dans le texte",
+      "characterCounter": "Compteur de caractères",
+      "characterCounterDesc": "Compter avec précision les caractères du texte, avec ou sans espaces",
+      "caseConverter": "Convertisseur de casse",
+      "caseConverterDesc": "Convertir le texte en majuscules, minuscules, casse de titre ou de phrase",
+      "textFormatter": "Formateur de texte",
+      "textFormatterDesc": "Formater le texte, supprimer les espaces et les sauts de ligne supplémentaires",
+      "lineCounter": "Compteur de lignes",
+      "lineCounterDesc": "Compter les lignes totales et les lignes non vides dans le texte",
+      "textReverser": "Inverseur de texte",
+      "textReverserDesc": "Inverser le contenu du texte, prend en charge l'inversion de caractères ou de mots",
+      "textSorter": "Trieur de texte",
+      "textSorterDesc": "Trier les lignes de texte par ordre alphabétique ou numérique",
+      "duplicateRemover": "Suppresseur de doublons",
+      "duplicateRemoverDesc": "Supprimer les lignes en double du texte, ne conserver que le contenu unique",
+      "textDiff": "Vérificateur de différences de texte",
+      "textDiffDesc": "Comparer les différences entre deux textes, mettre en évidence les différences",
+      "hashGenerator": "Générateur de hachage",
+      "hashGeneratorDesc": "Générer des valeurs de hachage MD5, SHA1, SHA256 et autres",
+      "base64Encoder": "Encodeur/Décodeur Base64",
+      "base64EncoderDesc": "Encoder et décoder le texte en utilisant Base64",
+      "urlEncoder": "Encodeur/Décodeur d'URL",
+      "urlEncoderDesc": "Encoder et décoder les URL, gérer les caractères spéciaux",
+      "jsonFormatter": "Formateur/Validateur JSON",
+      "jsonFormatterDesc": "Formater les données JSON et valider leur validité",
+      "qrGenerator": "Générateur de code QR",
+      "qrGeneratorDesc": "Convertir du texte ou une URL en image de code QR",
+      "colorPicker": "Sélecteur/Convertisseur de couleurs",
+      "colorPickerDesc": "Convertir entre les formats de couleur HEX, RGB, HSL et autres",
+      "timestampConverter": "Convertisseur d'horodatage",
+      "timestampConverterDesc": "Convertir entre l'horodatage Unix et les formats de date et d'heure",
+      "uuidGenerator": "Générateur d'UUID",
+      "uuidGeneratorDesc": "Générer diverses versions d'identifiants uniques UUID",
+      "passwordGenerator": "Générateur de mot de passe",
+      "passwordGeneratorDesc": "Générer des mots de passe aléatoires sécurisés avec des règles personnalisables",
+      "unitConverter": "Convertisseur d'unités",
+      "unitConverterDesc": "Convertir entre diverses unités comme la longueur, le poids, la température, la surface",
+      "currencyConverter": "Convertisseur de devises",
+      "currencyConverterDesc": "Consultation du taux de change en temps réel et calcul de conversion de devises",
+      "numberBaseConverter": "Convertisseur de base de nombres",
+      "numberBaseConverterDesc": "Convertir entre binaire, octal, décimal, hexadécimal",
+      "colorConverter": "Convertisseur de format de couleur",
+      "colorConverterDesc": "Convertir entre les formats de couleur RGB, HEX, HSL, CMYK",
+      "timezoneConverter": "Convertisseur de fuseaux horaires",
+      "timezoneConverterDesc": "Conversion et calcul de l'heure entre différents fuseaux horaires",
+      "imageFormatConverter": "Convertisseur de format d'image",
+      "imageFormatConverterDesc": "Convertir entre les formats d'image JPG, PNG, WebP, GIF",
+      "audioFormatConverter": "Convertisseur de format audio",
+      "audioFormatConverterDesc": "Convertir entre les formats audio MP3, WAV, AAC, FLAC",
+      "documentFormatConverter": "Convertisseur de format de document",
+      "documentFormatConverterDesc": "Conversion de format de document étendue, prend en charge plus de formats",
+      "encodingConverter": "Convertisseur d'encodage",
+      "encodingConverterDesc": "Convertir entre les encodages de caractères UTF-8, GBK, ASCII",
+      "popularTools": "Outils populaires",
+      "hot": "Populaire",
+      "useNow": "Utiliser maintenant",
+      "whyChooseUs": "Pourquoi choisir nos outils ?",
+      "smartProcessing": "Traitement intelligent",
+      "smartProcessingDesc": "Des algorithmes intelligents garantissent des résultats de traitement efficaces et précis",
+      "formatConversion": "Conversion de format",
+      "formatConversionDesc": "Prise en charge de plusieurs conversions de format de fichier pour répondre à des besoins divers",
+      "dataSecurity": "Sécurité des données",
+      "dataSecurityDesc": "Tout le traitement est effectué localement dans le navigateur, assurant la confidentialité et la sécurité des données",
+      "developerFriendly": "Convivial pour les développeurs",
+      "developerFriendlyDesc": "Outils de développement riches pour améliorer l'efficacité du développement et la qualité du code"
+    }
+  },
+  "common": {
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "process": "Traiter",
+    "processing": "Traitement en cours...",
+    "selectFile": "Sélectionner un fichier",
+    "dragDropFile": "Glissez-déposez votre fichier ici",
+    "or": "ou",
+    "clickToSelect": "cliquez pour sélectionner",
+    "fileSelected": "Fichier sélectionné",
+    "error": "Erreur",
+    "success": "Succès",
+    "reset": "Réinitialiser",
+    "back": "Retour",
+    "next": "Suivant",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "selectToolAndFile": "Veuillez sélectionner un outil et un fichier",
+    "processingFailed": "Échec du traitement",
+    "noTextRecognized": "Aucun texte reconnu",
+    "processingComplete": "Traitement terminé !",
+    "processingFailedRetry": "Échec du traitement, veuillez réessayer",
+    "imageProcessingComplete": "Traitement d'image terminé !",
+    "imageProcessingFailed": "Le traitement d'image a échoué, veuillez réessayer",
+    "return": "Retour",
+    "selectImageFile": "Sélectionner un fichier image",
+    "clickToSelectImageFile": "Cliquez pour sélectionner un fichier image",
+    "supportedFormats": "Prend en charge les formats JPG, PNG, WebP, GIF et autres",
+    "selected": "Sélectionné :",
+    "originalPreview": "Aperçu original",
+    "processResult": "Résultat du traitement",
+    "startProcessing": "Démarrer le traitement",
+    "downloadImage": "Télécharger l'image",
+    "mostPopularTools": "Outils les plus populaires",
+    "useTool": "Utiliser l'outil",
+    "allTools": "Tous les outils",
+    "popular": "Populaire",
+    "advancedProcessing": "Traitement d'image avancé",
+    "aiPowered": "Alimenté par l'IA",
+    "aiPoweredDesc": "Algorithmes IA avancés pour la suppression d'arrière-plan et l'amélioration d'image",
+    "allFormats": "Tous les formats",
+    "allFormatsDesc": "Prise en charge des formats JPG, PNG, WebP, GIF et de nombreux autres formats d'image",
+    "instantResults": "Résultats instantanés",
+    "instantResultsDesc": "Traitez les images instantanément sans attendre ni les télécharger sur des serveurs",
+    "readyToEdit": "Prêt à éditer vos images ?",
+    "uploadAndStart": "Téléchargez votre image et commencez à l'éditer avec nos outils puissants",
+    "chooseImageFile": "Choisir un fichier image",
+    "chooseVideoFile": "Choisir un fichier vidéo",
+    "fastProcessing": "Traitement rapide",
+    "securePrivate": "Sécurisé & Privé",
+    "clickToSelectFile": "Cliquez pour sélectionner un fichier",
+    "downloadFile": "Télécharger le fichier",
+    "extractedText": "Texte extrait",
+    "copyText": "Copier le texte",
+    "loadingToolDetails": "Chargement des détails de l'outil...",
+    "toolNotFound": "Outil introuvable",
+    "toolNotFoundDesc": "L'outil demandé n'a pas pu être trouvé.",
+    "goHome": "Aller à l'accueil",
+    "uploadFiles": "Télécharger des fichiers",
+    "dropFilesHere": "Déposez les fichiers ici ou cliquez pour parcourir",
+    "acceptedFormats": "Formats acceptés",
+    "maximumFiles": "Maximum {{count}} fichier{{count, plural, one {} other {s}}}",
+    "chooseFiles": "Choisir des fichiers",
+    "selectedFiles": "Fichiers sélectionnés",
+    "remove": "Supprimer",
+    "options": "Options",
+    "results": "Résultats",
+    "processFilesToSeeResults": "Traitez vos fichiers pour voir les résultats ici",
+    "generatedText": "Texte généré",
+    "wordCount": "Nombre de mots",
+    "fileSize": "Taille du fichier"
+  },
+  "seo": {
+    "videoTools": {
+      "title": "Outils Vidéo Gratuits en Ligne | Convertir, Compresser, Éditer des Vidéos",
+      "description": "Collection complète d'outils vidéo gratuits pour convertir, compresser, découper, fusionner et éditer des vidéos. Prise en charge de tous les formats populaires MP4, AVI, MOV, WMV."
+    },
+    "imageTools": {
+      "title": "Outils Image Gratuits en Ligne | Éditer, Convertir, Compresser des Images",
+      "description": "Outils d'édition d'images puissants et gratuits pour convertir, compresser, redimensionner, rogner et améliorer vos images. Prise en charge JPG, PNG, WebP, GIF et plus."
+    },
+    "pdfTools": {
+      "title": "Outils PDF Gratuits en Ligne | Convertir, Fusionner, Diviser des PDF",
+      "description": "Outils PDF complets et gratuits pour convertir, fusionner, diviser, compresser et éditer des fichiers PDF. Conversion vers Word, Excel, PowerPoint et images."
+    },
+    "ocrTools": {
+      "title": "Outils OCR Gratuits en Ligne | Reconnaissance de Texte d'Image et PDF",
+      "description": "Outils de reconnaissance de texte OCR avancés pour extraire le texte des images, PDF et documents manuscrits. Prise en charge multilingue et haute précision."
+    }
+  }
+}

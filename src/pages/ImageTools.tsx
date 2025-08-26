@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Image, Minimize2, Palette, Crop, RotateCw, Upload, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData';
 
 interface ImageTool {
   id: string;
@@ -239,7 +241,10 @@ const ImageTools = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <>
+      <SEOHead seoKey="imageTools" />
+      <StructuredData type="SoftwareApplication" />
+      <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -349,6 +354,7 @@ const ImageTools = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

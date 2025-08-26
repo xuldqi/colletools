@@ -1,6 +1,8 @@
 import { Video, Upload, Scissors, Minimize2, RotateCw, Volume2, FileVideo } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData'
 
 const VideoTools = () => {
   const { t } = useTranslation()
@@ -57,7 +59,10 @@ const VideoTools = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <>
+      <SEOHead seoKey="videoTools" />
+      <StructuredData type="SoftwareApplication" />
+      <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -172,16 +177,10 @@ const VideoTools = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-12 bg-white rounded-lg shadow-md p-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('tools.video.readyToProcess')}</h2>
-          <p className="text-gray-600 mb-6">{t('tools.video.uploadAndStart')}</p>
-          <button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-colors">
-            {t('common.chooseVideoFile')}
-          </button>
-        </div>
+
       </div>
     </div>
+    </>
   )
 }
 

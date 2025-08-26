@@ -50,6 +50,7 @@
     "qrcode-reader": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.6.1",
     "react-router-dom": "^6.20.1",
     "sharp": "^0.34.3",

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Map, FileText, Image, Video, Database, Eye, Wrench, Home, Info, Shield, Phone, HelpCircle } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData';
 
 const Sitemap: React.FC = () => {
   const { t } = useTranslation();
@@ -67,13 +69,13 @@ const Sitemap: React.FC = () => {
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
       links: [
-        { name: t('sitemap.categories.video.links.compressVideo.name'), path: '/compress-video', description: t('sitemap.categories.video.links.compressVideo.description') },
-        { name: t('sitemap.categories.video.links.videoConverter.name'), path: '/video-converter', description: t('sitemap.categories.video.links.videoConverter.description') },
-        { name: t('sitemap.categories.video.links.trimVideo.name'), path: '/trim-video', description: t('sitemap.categories.video.links.trimVideo.description') },
-        { name: t('sitemap.categories.video.links.mergeVideos.name'), path: '/merge-videos', description: t('sitemap.categories.video.links.mergeVideos.description') },
-        { name: t('sitemap.categories.video.links.rotateVideo.name'), path: '/rotate-video', description: t('sitemap.categories.video.links.rotateVideo.description') },
-        { name: t('sitemap.categories.video.links.extractAudio.name'), path: '/extract-audio', description: t('sitemap.categories.video.links.extractAudio.description') },
-        { name: t('sitemap.categories.video.links.videoToGif.name'), path: '/video-to-gif', description: t('sitemap.categories.video.links.videoToGif.description') },
+        { name: t('sitemap.categories.video.links.compressVideo.name'), path: '/tool/video-compress', description: t('sitemap.categories.video.links.compressVideo.description') },
+        { name: t('sitemap.categories.video.links.videoConverter.name'), path: '/tool/video-convert', description: t('sitemap.categories.video.links.videoConverter.description') },
+        { name: t('sitemap.categories.video.links.trimVideo.name'), path: '/tool/video-trimmer', description: t('sitemap.categories.video.links.trimVideo.description') },
+        { name: t('sitemap.categories.video.links.mergeVideos.name'), path: '/tool/video-merger', description: t('sitemap.categories.video.links.mergeVideos.description') },
+        { name: t('sitemap.categories.video.links.rotateVideo.name'), path: '/tool/video-rotator', description: t('sitemap.categories.video.links.rotateVideo.description') },
+        { name: t('sitemap.categories.video.links.extractAudio.name'), path: '/tool/audio-extractor', description: t('sitemap.categories.video.links.extractAudio.description') },
+        { name: t('sitemap.categories.video.links.videoToGif.name'), path: '/tool/gif-maker', description: t('sitemap.categories.video.links.videoToGif.description') },
         { name: t('sitemap.categories.video.links.editVideo.name'), path: '/edit-video', description: t('sitemap.categories.video.links.editVideo.description') },
         { name: t('sitemap.categories.video.links.videoInfo.name'), path: '/video-info', description: t('sitemap.categories.video.links.videoInfo.description') }
       ]
@@ -159,6 +161,8 @@ const Sitemap: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead seoKey="sitemap" />
+      <StructuredData type="WebPage" />
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

@@ -9,11 +9,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navigation = [
-    { name: t('nav.pdfTools'), href: '/pdf' },
-    { name: t('nav.imageTools'), href: '/image' },
-    { name: t('nav.videoTools'), href: '/video' },
-    { name: t('nav.ocrTools'), href: '/ocr' },
-    { name: t('nav.documentDataTools'), href: '/document-data' },
+    { name: t('nav.pdfTools'), href: '/pdf-tools' },
+    { name: t('nav.imageTools'), href: '/image-tools' },
+    { name: t('nav.videoTools'), href: '/video-tools' },
+    { name: t('nav.ocrTools'), href: '/ocr-tools' },
+    { name: t('nav.documentDataTools'), href: '/document-data-tools' },
   ]
 
   return (

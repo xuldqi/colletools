@@ -377,133 +377,20 @@
     }
   },
   "help": {
-    "title": "Help Center",
-    "subtitle": "Frequently Asked Questions and User Guides",
-    "searchPlaceholder": "Search help content...",
-    "categories": {
-      "gettingStarted": "Getting Started",
-      "fileFormats": "File Formats",
-      "troubleshooting": "Troubleshooting",
-      "privacy": "Privacy & Security",
-      "billing": "Billing Issues",
-      "technical": "Technical Support"
-    },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "q1": {
-        "question": "Are these tools free?",
-        "answer": "Yes, all our tools are completely free. You can use all features without registration or payment."
+      "title": "Help Center",
+      "subtitle": "Find answers, get help, and learn how to use our tools",
+      "searchPlaceholder": "Search for help topics...",
+      "toolCategoriesTitle": "Tool Categories Guide",
+      "moreTools": "more tools",
+      "viewAllTools": "View all tools",
+      "noResults": "No relevant content found",
+      "clearSearch": "Clear search criteria",
+      "contact": {
+        "title": "Have other questions?",
+        "description": "If you haven't found the answer you need, please contact our support team.",
+        "supportButton": "Contact Support",
+        "apiDocsButton": "View API Documentation"
       },
-      "q2": {
-        "question": "Are my files safe?",
-        "answer": "Absolutely safe. We don't store your files, all processing is done in your browser, or files are deleted immediately after processing."
-      },
-      "q3": {
-        "question": "What file formats are supported?",
-        "answer": "We support most common file formats including PDF, Word, Excel, PowerPoint, image formats (JPG, PNG, GIF, etc.), video formats (MP4, AVI, MOV, etc.), and more."
-      },
-      "q4": {
-        "question": "Is there a file size limit?",
-        "answer": "To ensure optimal performance, we have certain file size limits. Most tools support files up to 100MB, with specific limits displayed on each tool page."
-      },
-      "q5": {
-        "question": "How to contact technical support?",
-        "answer": "If you encounter any issues, you can send us an email through the contact page, and we'll respond as soon as possible."
-      }
-    },
-    "guides": {
-      "title": "User Guides",
-      "howToUse": "How to use our tools",
-      "step1": "Select the tool you need",
-      "step2": "Upload your file",
-      "step3": "Wait for processing to complete",
-      "step4": "Download the processed file",
-      "tips": {
-        "title": "Usage Tips",
-        "tip1": "Make sure your file format is supported",
-        "tip2": "Check if file size is within limits",
-        "tip3": "Use a stable internet connection",
-        "tip4": "Please be patient when processing large files"
-      }
-    },
-    "contact": {
-      "title": "Contact Us",
-      "description": "If you can't find the answer in the help center, feel free to contact us.",
-      "email": "Send Email",
-      "response": "We usually respond within 24 hours"
-    }
-  },
-  "sitemap": {
-    "title": "Site Map",
-    "subtitle": "Browse all our pages and tools, quickly find the features you need",
-    "totalCount": "Total {{count}} tools and pages",
-    "itemCount": "{{count}} items",
-    "categories": {
-      "mainPages": "Main Pages",
-      "pdfTools": "PDF Tools",
-      "imageTools": "Image Tools",
-      "videoTools": "Video Tools",
-      "documentData": "Document & Data",
-      "ocrTools": "OCR Tools",
-      "legalPolicy": "Legal & Policy"
-    },
-    "help": {
-    "title": "Help Center",
-    "subtitle": "Frequently Asked Questions and User Guides",
-    "searchPlaceholder": "Search help content...",
-    "categories": {
-      "gettingStarted": "Getting Started",
-      "fileFormats": "File Formats",
-      "troubleshooting": "Troubleshooting",
-      "privacy": "Privacy & Security",
-      "billing": "Billing Issues",
-      "technical": "Technical Support"
-    },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "q1": {
-        "question": "Are these tools free?",
-        "answer": "Yes, all our tools are completely free. You can use all features without registration or payment."
-      },
-      "q2": {
-        "question": "Are my files safe?",
-        "answer": "Absolutely safe. We don't store your files, all processing is done in your browser, or files are deleted immediately after processing."
-      },
-      "q3": {
-        "question": "What file formats are supported?",
-        "answer": "We support most common file formats including PDF, Word, Excel, PowerPoint, image formats (JPG, PNG, GIF, etc.), video formats (MP4, AVI, MOV, etc.), and more."
-      },
-      "q4": {
-        "question": "Is there a file size limit?",
-        "answer": "To ensure optimal performance, we have certain file size limits. Most tools support files up to 100MB, with specific limits displayed on each tool page."
-      },
-      "q5": {
-        "question": "How to contact technical support?",
-        "answer": "If you encounter any issues, you can send us an email through the contact page, and we'll respond as soon as possible."
-      }
-    },
-    "guides": {
-      "title": "User Guides",
-      "howToUse": "How to use our tools",
-      "step1": "Select the tool you need",
-      "step2": "Upload your file",
-      "step3": "Wait for processing to complete",
-      "step4": "Download the processed file",
-      "tips": {
-        "title": "Usage Tips",
-        "tip1": "Make sure your file format is supported",
-        "tip2": "Check if file size is within limits",
-        "tip3": "Use a stable internet connection",
-        "tip4": "Please be patient when processing large files"
-      }
-    },
-    "contact": {
-      "title": "Contact Us",
-      "description": "If you can't find the answer in the help center, feel free to contact us.",
-      "email": "Send Email",
-      "response": "We usually respond within 24 hours"
-    }
-  },
     "categories": {
         "pdf": {
           "title": "PDF Tools",
@@ -616,45 +503,30 @@
     }
   },
   "about": {
-    "title": "About Us",
-    "subtitle": "Learn about our mission and vision",
+    "title": "About ColleTools",
+    "subtitle": "We are committed to providing users with simple, fast, and free online tools to make complex file processing easy and simple.",
     "mission": {
       "title": "Our Mission",
-      "description": "To provide users with simple, fast, and secure online tools, making file processing easy and convenient. We are committed to building the best free online tool platform."
+      "description": "To make it easy for everyone to handle various file formats without installing complex software or having professional skills. We believe technology should serve people and make work more efficient and simpler."
     },
     "vision": {
       "title": "Our Vision",
       "description": "To become the world's leading online tool platform, providing users with the most comprehensive and reliable file processing solutions, making digital work more convenient."
     },
+    "whyChooseUs": "Why Choose Us?",
     "features": {
-      "title": "Platform Features",
       "free": {
         "title": "Completely Free",
-        "description": "All tools are free, no registration or payment required"
+        "description": "All tools are completely free to use, no registration or subscription required, allowing everyone to enjoy convenient file processing services."
+      },
+      "easyToUse": {
+        "title": "Easy to Use",
+        "description": "Intuitive user interface design with no learning curve, upload files to quickly complete various processing tasks."
       },
       "secure": {
         "title": "Secure and Reliable",
-        "description": "File processing is secure, no user data stored"
-      },
-      "fast": {
-        "title": "Fast and Efficient",
-        "description": "Optimized algorithms ensure fast processing"
-      },
-      "easy": {
-        "title": "Easy to Use",
-        "description": "Intuitive interface, no learning curve required"
+        "description": "Files are automatically deleted after processing to protect user privacy, using advanced encryption technology to ensure data security."
       }
-    },
-    "stats": {
-      "title": "Platform Statistics",
-      "tools": "100+ Tools",
-      "users": "Tens of thousands of users",
-      "files": "Millions of files processed",
-      "satisfaction": "99% Satisfaction rate"
-    },
-    "team": {
-      "title": "Our Team",
-      "description": "We are a group of technology-loving developers committed to providing users with the best online tool experience."
     },
     "tools": {
       "title": "Our Tools",
@@ -683,24 +555,6 @@
       "title": "Have Questions or Suggestions?",
       "description": "We'd love to hear your feedback to help us continuously improve our products.",
       "button": "Contact Us"
-    }
-  },
-  "seo": {
-    "videoTools": {
-      "title": "Video Tools - Free Online Video Processing Tools Collection",
-      "description": "Free online video tools collection supporting video conversion, compression, trimming, merging, rotation and more. Support for MP4, AVI, MOV and all major video formats with fast processing and secure handling."
-    },
-    "imageTools": {
-      "title": "Image Tools - Free Online Image Processing Tools Collection",
-      "description": "Free online image tools collection supporting image compression, resizing, cropping, rotation, filters and more. Support for JPG, PNG, GIF and all major image formats with fast processing and secure handling."
-    },
-    "pdfTools": {
-      "title": "PDF Tools - Free Online PDF Processing Tools Collection",
-      "description": "Free online PDF tools collection supporting PDF conversion, merging, splitting, compression, encryption and more. Fast PDF document processing, secure and reliable, no software download required."
-    },
-    "ocrTools": {
-      "title": "OCR Tools - Free Online Text Recognition Tools",
-      "description": "Free online OCR text recognition tools supporting image to text, PDF to text, handwriting recognition and more. Support for multiple languages with high accuracy, fast and convenient."
     }
   },
   "tools": {
@@ -800,7 +654,7 @@
       "supportedFormats": "Support for MP4, AVI, MOV, WMV, FLV, and many other video formats",
       "fastProcessingDesc": "Optimized algorithms for quick video processing and conversion",
       "secureProcessing": "All processing happens in your browser. Your videos never leave your device",
-      "readyToProcess": "Ready to Process Your Videos?",
+
       "uploadAndStart": "Upload your video and start processing with our powerful tools",
       "supportedFormats": "Supported Video Formats",
       "supportedFormatsDesc": "We support all major video formats for maximum compatibility"
@@ -932,101 +786,6 @@
       "developerFriendlyDesc": "Rich developer tools to improve development efficiency and code quality"
     }
   },
-  "moreTools": {
-    "title": "More Tools",
-    "subtitle": "Discover more useful tools to boost your productivity",
-    "description": "Explore our comprehensive collection of online tools designed to simplify your daily tasks. From document processing to media conversion, we have everything you need.",
-    "categories": {
-      "pdf": {
-        "title": "PDF Tools",
-        "description": "Complete PDF processing solutions",
-        "count": "15+ Tools"
-      },
-      "image": {
-        "title": "Image Tools",
-        "description": "Professional image editing and conversion",
-        "count": "20+ Tools"
-      },
-      "video": {
-        "title": "Video Tools",
-        "description": "Video processing and conversion tools",
-        "count": "12+ Tools"
-      },
-      "ocr": {
-        "title": "OCR Tools",
-        "description": "Text recognition and extraction",
-        "count": "8+ Tools"
-      },
-      "document": {
-        "title": "Document & Data Tools",
-        "description": "Document conversion and data processing",
-        "count": "25+ Tools"
-      },
-      "developer": {
-        "title": "Developer Tools",
-        "description": "Essential tools for developers",
-        "count": "15+ Tools"
-      },
-      "text": {
-        "title": "Text Tools",
-        "description": "Text processing and formatting",
-        "count": "10+ Tools"
-      }
-    },
-    "features": {
-      "title": "Why Choose Our Tools?",
-      "free": {
-        "title": "100% Free",
-        "description": "All tools are completely free to use"
-      },
-      "noRegistration": {
-        "title": "No Registration",
-        "description": "Start using immediately without signup"
-      },
-      "secure": {
-        "title": "Secure Processing",
-        "description": "Your files are processed securely and deleted automatically"
-      },
-      "fast": {
-        "title": "Lightning Fast",
-        "description": "Optimized for speed and efficiency"
-      }
-    },
-    "popular": {
-      "title": "Popular Tools",
-      "description": "Most used tools by our community"
-    },
-    "recent": {
-      "title": "Recently Added",
-      "description": "Latest tools added to our platform"
-    },
-    "allTools": "View All Tools",
-    "searchPlaceholder": "Search for tools...",
-    "noResults": "No tools found matching your search.",
-    "tryDifferent": "Try different keywords or browse categories above."
-  },
-  "seo": {
-    "home": {
-      "title": "Free Online Tools Collection - Image Processing, PDF Conversion, Video Editing Tools",
-      "description": "Discover our comprehensive collection of free online tools. From image editing to document conversion, we provide high-quality, easy-to-use tools to simplify your workflow. Support for PDF, images, videos, OCR and 100+ tools.",
-      "keywords": "free online tools,PDF conversion,image processing,video editing,OCR recognition,document conversion,online tool collection"
-    },
-    "about": {
-      "title": "About Us - Free Online Tools Platform",
-      "description": "Learn about our free online tools platform, dedicated to providing users with high-quality, secure, and fast file processing tools. No registration required, completely free to use.",
-      "keywords": "about us,online tools platform,free tools,file processing,secure tools"
-    },
-    "contact": {
-      "title": "Contact Us - Free Online Tools Platform",
-      "description": "If you have any questions or suggestions, please feel free to contact us. We are committed to providing users with the best online tools experience.",
-      "keywords": "contact us,customer support,online tools,technical support,user feedback"
-    },
-    "help": {
-      "title": "Help Center - Tool Usage Guide and FAQ",
-      "description": "Check our help center for tool usage guides, frequently asked questions and technical support. Help you better use our free online tools.",
-      "keywords": "help center,usage guide,FAQ,technical support,tool tutorials"
-    }
-  },
   "common": {
     "upload": "Upload",
     "download": "Download",
@@ -1098,5 +857,77 @@
     "generatedText": "Generated Text",
     "wordCount": "Word count",
     "fileSize": "File size"
+  },
+  "seo": {
+    "home": {
+      "title": "Free Online Tools Collection - Image Processing, PDF Conversion, Video Editing Tools",
+      "description": "Discover our comprehensive collection of free online tools. From image editing to document conversion, we provide high-quality, easy-to-use tools to simplify your workflow. 100+ tools for PDF, image, video, OCR and more.",
+      "keywords": "free online tools,PDF converter,image processing,video editing,OCR recognition,document conversion,online tool collection"
+    },
+    "about": {
+      "title": "About Us - Free Online Tools Platform",
+      "description": "Learn about our free online tools platform dedicated to providing users with high-quality, secure, and fast file processing tools. No registration required, completely free.",
+      "keywords": "about us,online tools platform,free tools,file processing,secure tools"
+    },
+    "contact": {
+      "title": "Contact Us - Free Online Tools Platform",
+      "description": "Have questions or suggestions? Feel free to contact us anytime. We're committed to providing you with the best online tools experience.",
+      "keywords": "contact us,customer support,online tools,technical support,user feedback"
+    },
+    "help": {
+      "title": "Help Center - Tool Usage Guide and FAQ",
+      "description": "Visit our help center for tool usage guides, frequently asked questions, and technical support to help you use our free online tools more effectively.",
+      "keywords": "help center,usage guide,FAQ,technical support,tool tutorials"
+    },
+    "sitemap": {
+      "title": "Site Map - All Tools and Page Navigation",
+      "description": "Browse the complete map of our website and quickly find the PDF, image, video, OCR, and document processing tools you need.",
+      "keywords": "sitemap,tool navigation,PDF tools,image tools,video tools,OCR tools"
+    },
+    "pdf": {
+      "title": "PDF Tools - Free PDF Conversion, Merge, Split, Compress",
+      "description": "Professional PDF processing tool collection. Support PDF to Word, Excel, PowerPoint conversion, PDF merge split, compression, OCR recognition and more.",
+      "keywords": "PDF tools,PDF converter,PDF merge,PDF split,PDF compress,PDF to Word,PDF to Excel"
+    },
+    "image": {
+      "title": "Image Tools - Free Image Processing, Format Conversion, Background Removal",
+      "description": "Powerful image processing tools. Support image format conversion, compression, background removal, resizing, filter effects and more.",
+      "keywords": "image tools,image processing,image converter,background removal,image compression,image editing"
+    },
+    "video": {
+      "title": "Video Tools - Free Video Conversion, Compression, Editing, GIF Creation",
+      "description": "Professional video processing tools. Support video format conversion, compression, cutting, merging, GIF creation and more.",
+      "keywords": "video tools,video converter,video compression,video editing,GIF creation,video cutting"
+    },
+    "videoTools": {
+      "title": "Video Tools - Free Video Conversion, Compression, Editing, GIF Creation",
+      "description": "Professional video processing tools. Support video format conversion, compression, cutting, merging, GIF creation and more.",
+      "keywords": "video tools,video converter,video compression,video editing,GIF creation,video cutting"
+    },
+    "imageTools": {
+      "title": "Image Tools - Free Image Processing, Format Conversion, Background Removal",
+      "description": "Powerful image processing tools. Support image format conversion, compression, background removal, resizing, filter effects and more.",
+      "keywords": "image tools,image processing,image converter,background removal,image compression,image editing"
+    },
+    "pdfTools": {
+      "title": "PDF Tools - Free PDF Conversion, Merge, Split, Compress",
+      "description": "Professional PDF processing tool collection. Support PDF to Word, Excel, PowerPoint conversion, PDF merge split, compression, OCR recognition and more.",
+      "keywords": "PDF tools,PDF converter,PDF merge,PDF split,PDF compress,PDF to Word,PDF to Excel"
+    },
+    "ocrTools": {
+      "title": "OCR Tools - Free Image Text Recognition, PDF Text Extraction",
+      "description": "High-precision OCR text recognition tools. Support image text recognition, PDF text extraction, handwriting recognition, multi-language recognition.",
+      "keywords": "OCR recognition,text recognition,image to text,PDF text extraction,handwriting recognition,multi-language recognition"
+    },
+    "ocr": {
+      "title": "OCR Tools - Free Image Text Recognition, PDF Text Extraction",
+      "description": "High-precision OCR text recognition tools. Support image text recognition, PDF text extraction, handwriting recognition, multi-language recognition.",
+      "keywords": "OCR recognition,text recognition,image to text,PDF text extraction,handwriting recognition,multi-language recognition"
+    },
+    "documentData": {
+      "title": "Document Data Tools - Free Document Conversion, Data Processing, Developer Tools",
+      "description": "Comprehensive document and data processing tools. Support Excel, CSV, JSON conversion, text processing, developer tools and more.",
+      "keywords": "document tools,data processing,Excel converter,CSV processing,JSON tools,developer tools"
+    }
   }
 }

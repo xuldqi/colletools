@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Upload, FileText, Camera, CreditCard, Car, QrCode, Receipt, Scan, Table } from 'lucide-react';
 import { toast } from 'sonner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
+import SEOHead from '../components/SEOHead'
+import StructuredData from '../components/StructuredData';
 
 interface OCRTool {
   id: string;
@@ -140,7 +142,10 @@ interface OCRTool {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+    <>
+      <SEOHead seoKey="ocrTools" />
+      <StructuredData type="SoftwareApplication" />
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -255,6 +260,7 @@ interface OCRTool {
         )}
       </div>
     </div>
+    </>
   );
 };
 

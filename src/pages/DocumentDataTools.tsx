@@ -7,6 +7,8 @@ import {
   Link as LinkIcon, Braces, QrCode, Palette, Clock, Key, Lock,
   Ruler, DollarSign, Binary, Globe, Image, Music
 } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import StructuredData from '../components/StructuredData';
 
 interface Tool {
   id: string;
@@ -298,8 +300,40 @@ const DocumentDataTools: React.FC = () => {
   const categories = [t('tools.documentData.fileProcessing'), t('tools.documentData.textProcessing'), t('tools.documentData.developerTools'), t('tools.documentData.converters')];
   const popularTools = tools.filter(tool => tool.popular);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": t('tools.documentData.title'),
+    "description": t('tools.documentData.description'),
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "permissions": "browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      t('tools.documentData.csvSplit'),
+      t('tools.documentData.excelSplit'),
+      t('tools.documentData.xmlToJson'),
+      t('tools.documentData.wordCounter'),
+      t('tools.documentData.characterCounter'),
+      t('tools.documentData.caseConverter'),
+      t('tools.documentData.hashGenerator'),
+      t('tools.documentData.base64Encoder'),
+      t('tools.documentData.urlEncoder'),
+      t('tools.documentData.unitConverter'),
+      t('tools.documentData.currencyConverter'),
+      t('tools.documentData.numberBaseConverter')
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100">
+    <>
+      <SEOHead seoKey="documentDataTools" />
+      <StructuredData data={structuredData} />
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -431,6 +465,7 @@ const DocumentDataTools: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -176,6 +176,26 @@
     }
   },
   "tools": {
+    "pdfCompress": "PDF 압축",
+    "pdfCompressDesc": "PDF 파일 크기 줄이기",
+    "lengthConverter": "길이 변환",
+    "lengthConverterDesc": "다양한 길이 단위 변환",
+    "weightConverter": "무게 변환",
+    "weightConverterDesc": "다양한 무게 단위 변환",
+    "temperatureConverter": "온도 변환",
+    "temperatureConverterDesc": "섭씨, 화씨, 켈빈 변환",
+    "timeConverter": "시간 변환",
+    "timeConverterDesc": "다양한 시간 단위 변환",
+    "currencyConverter": "통화 변환",
+    "currencyConverterDesc": "실시간 환율 변환",
+    "colorConverter": "색상 변환",
+    "colorConverterDesc": "RGB, HEX, HSL, CMYK 색상 형식 변환",
+    "qrGenerator": "QR 코드 생성기",
+    "qrGeneratorDesc": "맞춤형 QR 코드 생성",
+    "passwordGenerator": "비밀번호 생성기",
+    "passwordGeneratorDesc": "안전한 랜덤 비밀번호 생성",
+    "base64Encoder": "Base64 인코딩/디코딩",
+    "base64EncoderDesc": "Base64 형식 인코딩 및 디코딩",
     "pdf": {
       "title": "PDF 도구",
       "description": "PDF 파일 변환, 병합, 분할, 편집",
@@ -414,6 +434,30 @@
       "passwordGenerator": "비밀번호 생성기",
       "passwordGeneratorDesc": "안전한 랜덤 비밀번호 생성"
     }
+  },
+  "text": {
+    "title": "텍스트 도구",
+    "description": "텍스트 처리, 변환, 분석, 암호화 등 다양한 텍스트 조작 도구",
+    "textCounter": "글자 수 세기",
+    "textDiff": "텍스트 비교",
+    "textEncryption": "텍스트 암호화",
+    "textFormatter": "텍스트 포맷팅"
+  },
+  "converter": {
+    "title": "변환 도구",
+    "description": "단위 변환, 통화 변환, 색상 변환 등 다양한 변환 도구",
+    "unitConverter": "단위 변환",
+    "currencyConverter": "통화 변환",
+    "colorConverter": "색상 변환",
+    "timeConverter": "시간 변환"
+  },
+  "developer": {
+    "title": "개발자 도구",
+    "description": "Base64 인코딩, QR 코드 생성, 비밀번호 생성 등 개발 지원 도구",
+    "base64Encoder": "Base64 인코딩",
+    "qrGenerator": "QR 코드 생성",
+    "passwordGenerator": "비밀번호 생성",
+    "jsonFormatter": "JSON 포맷팅"
   },
   "sitemap": {
     "title": "사이트맵",
@@ -810,6 +854,24 @@
       "description": "찾고 있는 답변을 찾을 수 없다면 언제든지 지원팀에 문의해 주세요.",
       "contactButton": "지원팀에 문의",
       "apiDocsButton": "API 문서 보기"
+    }
+  },
+  "seo": {
+    "videoTools": {
+      "title": "비디오 도구 - 무료 온라인 비디오 편집 및 변환",
+      "description": "무료 온라인 비디오 도구로 비디오 변환, 압축, 편집, 병합을 수행하세요. MP4, AVI, MOV 등 모든 형식을 지원합니다."
+    },
+    "imageTools": {
+      "title": "이미지 도구 - 무료 온라인 이미지 편집 및 변환",
+      "description": "무료 온라인 이미지 도구로 배경 제거, 이미지 압축, 형식 변환, 크기 조정을 수행하세요. JPG, PNG, WebP 등 모든 형식을 지원합니다."
+    },
+    "pdfTools": {
+      "title": "PDF 도구 - 무료 온라인 PDF 편집 및 변환",
+      "description": "무료 온라인 PDF 도구로 PDF 변환, 병합, 분할, 압축을 수행하세요. Word, Excel, PowerPoint 등으로 변환 가능합니다."
+    },
+    "ocrTools": {
+      "title": "OCR 도구 - 무료 온라인 문자 인식 및 텍스트 추출",
+      "description": "무료 온라인 OCR 도구로 이미지와 PDF에서 텍스트를 추출하세요. 다국어 지원 및 손글씨 인식 기능을 제공합니다."
     }
   },
   "common": {
