@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF转Word简单测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            color: green;
+            background: #e6ffe6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        #fileInput {
+            margin: 10px 0;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>PDF转Word简单测试</h1>
+    
+    <div class="test-section">
+        <h3>选择PDF文件并测试转换</h3>
+        <input type="file" id="fileInput" accept=".pdf" />
+        <button onclick="testPDFToWord()">测试PDF转Word</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        
+        function log(message, type = 'info') {
+            const result = document.getElementById('result');
+            const timestamp = new Date().toLocaleTimeString();
+            result.innerHTML += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+        }
+
+        async function testPDFToWord() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                log('请先选择PDF文件', 'error');
+                return;
+            }
+
+            try {
+                log(`开始测试PDF转Word，文件: ${file.name}`);
+                const formData = new FormData();
+                formData.append('files', file);
+
+                log('发送请求到API...');
+                const response = await fetch(`${API_BASE}/tools/pdf-to-word/process`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                log(`收到响应: ${response.status} ${response.statusText}`);
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                log(`转换成功: ${JSON.stringify(data)}`, 'success');
+                
+                // 如果有文件ID，尝试下载
+                if (data.fileId) {
+                    log('尝试下载转换后的文件...');
+                    const downloadResponse = await fetch(`${API_BASE}/download/${data.fileId}`);
+                    if (downloadResponse.ok) {
+                        const blob = await downloadResponse.blob();
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = data.fileName || 'converted.docx';
+                        link.click();
+                        URL.revokeObjectURL(url);
+                        log('文件下载完成！', 'success');
+                    } else {
+                        log('文件下载失败', 'error');
+                    }
+                }
+                
+            } catch (error) {
+                log(`PDF转Word失败: ${error.message}`, 'error');
+                console.error('详细错误:', error);
+            }
+        }
+
+        // 页面加载时显示说明
+        window.onload = function() {
+            log('页面加载完成，请选择PDF文件进行测试');
+        };
+    </script>
+</body>
+</html>

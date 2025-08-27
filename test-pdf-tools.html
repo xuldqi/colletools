@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF转Word测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            color: green;
+            background: #e6ffe6;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        #fileInput {
+            margin: 10px 0;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>PDF转Word功能测试</h1>
+    
+    <div class="test-section">
+        <h3>1. 测试API连接</h3>
+        <button onclick="testAPI()">测试API连接</button>
+        <div id="apiResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. 测试工具列表</h3>
+        <button onclick="testToolsList()">获取工具列表</button>
+        <div id="toolsResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. 测试PDF转Word</h3>
+        <input type="file" id="fileInput" accept=".pdf" />
+        <button onclick="testPDFToWord()">测试PDF转Word</button>
+        <div id="pdfResult"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>4. 测试错误处理</h3>
+        <button onclick="testErrorHandling()">测试错误处理</button>
+        <div id="errorResult"></div>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        
+        function log(message, type = 'info') {
+            const result = document.getElementById('result');
+            const timestamp = new Date().toLocaleTimeString();
+            result.innerHTML += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+        }
+
+        async function testAPI() {
+            try {
+                log('开始测试API连接...');
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('apiResult').innerHTML = 
+                        `<div class="success">✅ API连接成功: ${JSON.stringify(data)}</div>`;
+                    log('API连接成功', 'success');
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                document.getElementById('apiResult').innerHTML = 
+                    `<div class="error">❌ API连接失败: ${error.message}</div>`;
+                log(`API连接失败: ${error.message}`, 'error');
+            }
+        }
+
+        async function testToolsList() {
+            try {
+                log('开始获取工具列表...');
+                const response = await fetch(`${API_BASE}/tools`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const tools = data.data || [];
+                    const pdfTools = tools.filter(tool => tool.category === 'pdf');
+                    document.getElementById('toolsResult').innerHTML = 
+                        `<div class="success">✅ 获取工具列表成功，找到 ${pdfTools.length} 个PDF工具</div>`;
+                    log(`获取工具列表成功，找到 ${pdfTools.length} 个PDF工具`, 'success');
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                document.getElementById('toolsResult').innerHTML = 
+                    `<div class="error">❌ 获取工具列表失败: ${error.message}</div>`;
+                log(`获取工具列表失败: ${error.message}`, 'error');
+            }
+        }
+
+        async function testPDFToWord() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                document.getElementById('pdfResult').innerHTML = 
+                    `<div class="error">❌ 请先选择PDF文件</div>`;
+                return;
+            }
+
+            try {
+                log(`开始测试PDF转Word，文件: ${file.name}`);
+                const formData = new FormData();
+                formData.append('files', file);
+
+                const response = await fetch(`${API_BASE}/tools/pdf-to-word/process`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('pdfResult').innerHTML = 
+                        `<div class="success">✅ PDF转Word成功: ${JSON.stringify(data)}</div>`;
+                    log('PDF转Word成功', 'success');
+                } else {
+                    throw new Error(data.error || `HTTP ${response.status}`);
+                }
+            } catch (error) {
+                document.getElementById('pdfResult').innerHTML = 
+                    `<div class="error">❌ PDF转Word失败: ${error.message}</div>`;
+                log(`PDF转Word失败: ${error.message}`, 'error');
+            }
+        }
+
+        async function testErrorHandling() {
+            try {
+                log('开始测试错误处理...');
+                const response = await fetch(`${API_BASE}/tools/nonexistent-tool/process`, {
+                    method: 'POST',
+                    body: new FormData()
+                });
+
+                const data = await response.json();
+                
+                if (response.status === 404) {
+                    document.getElementById('errorResult').innerHTML = 
+                        `<div class="success">✅ 错误处理正常: ${JSON.stringify(data)}</div>`;
+                    log('错误处理正常', 'success');
+                } else {
+                    throw new Error(`期望404错误，但得到${response.status}`);
+                }
+            } catch (error) {
+                document.getElementById('errorResult').innerHTML = 
+                    `<div class="error">❌ 错误处理测试失败: ${error.message}</div>`;
+                log(`错误处理测试失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 页面加载时自动测试API连接
+        window.onload = function() {
+            log('页面加载完成，开始自动测试...');
+            testAPI();
+        };
+    </script>
+</body>
+</html>
