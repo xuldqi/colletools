@@ -24,7 +24,7 @@ interface OCRTool {
       description: t('tools.ocr.imageToTextDesc'),
       icon: <FileText className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/image-to-text'
+      endpoint: '/api/tools/image-to-text/process'
     },
     {
       id: 'pdf-ocr',
@@ -32,7 +32,7 @@ interface OCRTool {
       description: t('tools.ocr.pdfOcrDesc'),
       icon: <Scan className="w-8 h-8" />,
       acceptedTypes: '.pdf',
-      endpoint: '/api/ocr/pdf-ocr'
+      endpoint: '/api/tools/pdf-ocr/process'
     },
     {
       id: 'handwriting-recognition',
@@ -40,7 +40,7 @@ interface OCRTool {
       description: t('tools.ocr.handwritingRecognitionDesc'),
       icon: <Camera className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/handwriting'
+      endpoint: '/api/tools/handwriting-recognition/process'
     },
     {
       id: 'document-scanner',
@@ -48,7 +48,7 @@ interface OCRTool {
       description: t('tools.ocr.documentScannerDesc'),
       icon: <Scan className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/document-scan'
+      endpoint: '/api/tools/document-scanner/process'
     },
     {
       id: 'table-extractor',
@@ -56,7 +56,7 @@ interface OCRTool {
       description: t('tools.ocr.tableExtractorDesc'),
       icon: <Table className="w-8 h-8" />,
       acceptedTypes: 'image/*,.pdf',
-      endpoint: '/api/ocr/table-extract'
+      endpoint: '/api/tools/table-extractor/process'
     },
     {
       id: 'receipt-scanner',
@@ -64,7 +64,7 @@ interface OCRTool {
       description: t('tools.ocr.receiptScannerDesc'),
       icon: <Receipt className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/receipt-scan'
+      endpoint: '/api/tools/receipt-scanner/process'
     },
     {
       id: 'business-card-scanner',
@@ -72,7 +72,7 @@ interface OCRTool {
       description: t('tools.ocr.businessCardScannerDesc'),
       icon: <CreditCard className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/business-card'
+      endpoint: '/api/tools/business-card-scanner/process'
     },
     {
       id: 'license-plate-reader',
@@ -80,7 +80,7 @@ interface OCRTool {
       description: t('tools.ocr.licensePlateReaderDesc'),
       icon: <Car className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/license-plate'
+      endpoint: '/api/tools/license-plate-reader/process'
     },
     {
       id: 'qr-code-reader',
@@ -88,7 +88,7 @@ interface OCRTool {
       description: t('tools.ocr.qrCodeReaderDesc'),
       icon: <QrCode className="w-8 h-8" />,
       acceptedTypes: 'image/*',
-      endpoint: '/api/ocr/qr-code'
+      endpoint: '/api/tools/qr-code-reader/process'
     }
   ];
   const [selectedTool, setSelectedTool] = useState<OCRTool | null>(null);
@@ -112,7 +112,7 @@ interface OCRTool {
 
     setIsProcessing(true);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('files', file);
 
     try {
       const response = await fetch(selectedTool.endpoint, {
@@ -121,15 +121,16 @@ interface OCRTool {
       });
 
       if (!response.ok) {
-        throw new Error(t('common.processingFailed'));
+        const errorData = await response.json();
+        throw new Error(errorData.error || t('common.processingFailed'));
       }
 
       const data = await response.json();
       setResult(data.text || data.result || t('tools.ocr.recognitionComplete'));
-      toast.success(t('tools.ocr.ocrComplete'));
+      toast.success(data.message || t('tools.ocr.ocrComplete'));
     } catch (error) {
       console.error(t('tools.ocr.processingError'), error);
-      toast.error(t('tools.ocr.ocrError'));
+      toast.error(error.message || t('tools.ocr.ocrError'));
     } finally {
       setIsProcessing(false);
     }

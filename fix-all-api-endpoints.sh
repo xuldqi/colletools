@@ -1,3 +1,44 @@
+#!/bin/bash
+
+echo "🔧 修复所有功能页面的API端点路径..."
+
+# 修复PDF工具页面
+echo "📄 修复PDF工具页面..."
+sed -i '' 's|endpoint: '\''/api/pdf/|endpoint: '\''/api/tools/|g' src/pages/PDFTools.tsx
+sed -i '' 's|endpoint: '\''/api/pdf/from-word'\''|endpoint: '\''/api/tools/word-to-pdf/process'\''|g' src/pages/PDFTools.tsx
+sed -i '' 's|endpoint: '\''/api/pdf/fill-form'\''|endpoint: '\''/api/tools/pdf-form-filler/process'\''|g' src/pages/PDFTools.tsx
+sed -i '' 's|endpoint: '\''/api/pdf/add-signature'\''|endpoint: '\''/api/tools/pdf-signature/process'\''|g' src/pages/PDFTools.tsx
+
+# 修复图片工具页面
+echo "🖼️ 修复图片工具页面..."
+sed -i '' 's|endpoint: '\''/api/image/|endpoint: '\''/api/tools/|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/convert'\''|endpoint: '\''/api/tools/image-convert/process'\''|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/compress'\''|endpoint: '\''/api/tools/image-compress/process'\''|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/enhance'\''|endpoint: '\''/api/tools/image-enhancer/process'\''|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/crop'\''|endpoint: '\''/api/tools/image-crop/process'\''|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/rotate'\''|endpoint: '\''/api/tools/image-rotate/process'\''|g' src/pages/ImageTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/resize'\''|endpoint: '\''/api/tools/image-resize/process'\''|g' src/pages/ImageTools.tsx
+
+# 修复OCR工具页面
+echo "📝 修复OCR工具页面..."
+sed -i '' 's|endpoint: '\''/api/ocr/|endpoint: '\''/api/tools/|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/image-to-text'\''|endpoint: '\''/api/tools/image-to-text/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/pdf-ocr'\''|endpoint: '\''/api/tools/pdf-ocr/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/handwriting'\''|endpoint: '\''/api/tools/handwriting-recognition/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/document-scan'\''|endpoint: '\''/api/tools/document-scanner/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/table-extract'\''|endpoint: '\''/api/tools/table-extractor/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/receipt-scan'\''|endpoint: '\''/api/tools/receipt-scanner/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/business-card'\''|endpoint: '\''/api/tools/business-card-scanner/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/license-plate'\''|endpoint: '\''/api/tools/license-plate-reader/process'\''|g' src/pages/OCRTools.tsx
+sed -i '' 's|endpoint: '\''/api/tools/qr-code'\''|endpoint: '\''/api/tools/qr-code-reader/process'\''|g' src/pages/OCRTools.tsx
+
+# 修复视频工具页面 - 需要添加endpoint字段
+echo "🎥 修复视频工具页面..."
+# 先备份原文件
+cp src/pages/VideoTools.tsx src/pages/VideoTools.tsx.backup
+
+# 创建修复后的视频工具页面
+cat > src/pages/VideoTools.tsx << 'EOF'
 import React, { useState } from 'react';
 import { Video, Upload, Scissors, Minimize2, RotateCw, Volume2, FileVideo, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
@@ -316,3 +357,43 @@ const VideoTools = () => {
 };
 
 export default VideoTools;
+EOF
+
+# 修复其他工具页面
+echo "🔧 修复其他工具页面..."
+
+# 修复文档数据处理工具页面
+if [ -f "src/pages/DocumentDataTools.tsx" ]; then
+  sed -i '' 's|endpoint: '\''/api/document/|endpoint: '\''/api/tools/|g' src/pages/DocumentDataTools.tsx
+fi
+
+# 修复文件工具页面
+if [ -f "src/pages/FileTools.tsx" ]; then
+  sed -i '' 's|endpoint: '\''/api/file/|endpoint: '\''/api/tools/|g' src/pages/FileTools.tsx
+fi
+
+# 修复文本工具页面
+if [ -f "src/pages/TextTools.tsx" ]; then
+  sed -i '' 's|endpoint: '\''/api/text/|endpoint: '\''/api/tools/|g' src/pages/TextTools.tsx
+fi
+
+# 修复开发者工具页面
+if [ -f "src/pages/DeveloperTools.tsx" ]; then
+  sed -i '' 's|endpoint: '\''/api/developer/|endpoint: '\''/api/tools/|g' src/pages/DeveloperTools.tsx
+fi
+
+# 修复转换工具页面
+if [ -f "src/pages/ConverterTools.tsx" ]; then
+  sed -i '' 's|endpoint: '\''/api/converter/|endpoint: '\''/api/tools/|g' src/pages/ConverterTools.tsx
+fi
+
+echo "✅ 所有API端点路径修复完成！"
+echo ""
+echo "📋 修复内容："
+echo "  - PDF工具: /api/pdf/* → /api/tools/*/process"
+echo "  - 图片工具: /api/image/* → /api/tools/*/process"
+echo "  - 视频工具: 添加了完整的处理逻辑和API端点"
+echo "  - OCR工具: /api/ocr/* → /api/tools/*/process"
+echo "  - 其他工具: 统一修复API路径"
+echo ""
+echo "�� 现在所有功能应该都能正常工作了！"

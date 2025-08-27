@@ -28,7 +28,7 @@ const ImageTools = () => {
       description: t('tools.image.imageConverterDesc'),
       icon: Image,
       popular: true,
-      endpoint: '/api/image/convert'
+      endpoint: '/api/tools/image-convert/process'
     },
     {
       id: 'image-compressor',
@@ -36,7 +36,7 @@ const ImageTools = () => {
       description: t('tools.image.imageCompressorDesc'),
       icon: Minimize2,
       popular: true,
-      endpoint: '/api/image/compress'
+      endpoint: '/api/tools/image-compress/process'
     },
     {
       id: 'photo-enhancer',
@@ -44,7 +44,7 @@ const ImageTools = () => {
       description: t('tools.image.photoEnhancerDesc'),
       icon: Palette,
       popular: true,
-      endpoint: '/api/image/enhance'
+      endpoint: '/api/tools/image-enhancer/process'
     },
     {
       id: 'image-cropper',
@@ -52,7 +52,7 @@ const ImageTools = () => {
       description: t('tools.image.imageCropperDesc'),
       icon: Crop,
       popular: true,
-      endpoint: '/api/image/crop'
+      endpoint: '/api/tools/image-crop/process'
     },
     {
       id: 'image-rotator',
@@ -60,7 +60,7 @@ const ImageTools = () => {
       description: t('tools.image.imageRotatorDesc'),
       icon: RotateCw,
       popular: false,
-      endpoint: '/api/image/rotate'
+      endpoint: '/api/tools/image-rotate/process'
     },
     {
       id: 'image-resizer',
@@ -68,7 +68,7 @@ const ImageTools = () => {
       description: t('tools.image.imageResizerDesc'),
       icon: Image,
       popular: false,
-      endpoint: '/api/image/resize'
+      endpoint: '/api/tools/image-resize/process'
     }
   ];
 
@@ -88,7 +88,7 @@ const ImageTools = () => {
 
     setIsProcessing(true);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('files', file);
 
     try {
       const response = await fetch(selectedTool.endpoint, {
@@ -97,16 +97,26 @@ const ImageTools = () => {
       });
 
       if (!response.ok) {
-        throw new Error(t('common.processingFailed'));
+        const errorData = await response.json();
+        throw new Error(errorData.error || t('common.processingFailed'));
       }
 
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      setProcessedImageUrl(url);
-      toast.success(t('common.processingComplete'));
+      const data = await response.json();
+      
+      // 下载处理后的文件
+      if (data.fileId) {
+        const downloadResponse = await fetch(`/api/download/${data.fileId}`);
+        if (downloadResponse.ok) {
+          const blob = await downloadResponse.blob();
+          const url = URL.createObjectURL(blob);
+          setProcessedImageUrl(url);
+        }
+      }
+      
+      toast.success(data.message || t('common.processingComplete'));
     } catch (error) {
       console.error('图片处理错误:', error);
-      toast.error(t('common.processingError'));
+      toast.error(error.message || t('common.processingError'));
     } finally {
       setIsProcessing(false);
     }

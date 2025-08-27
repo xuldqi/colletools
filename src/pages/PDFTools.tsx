@@ -30,7 +30,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfToWordDesc'),
       icon: Edit,
       popular: true,
-      endpoint: '/api/pdf/to-word',
+      endpoint: '/api/tools/pdf-to-word/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -39,7 +39,7 @@ const PDFTools = () => {
       description: t('tools.pdf.wordToPdfDesc'),
       icon: FileText,
       popular: true,
-      endpoint: '/api/pdf/from-word',
+      endpoint: '/api/tools/word-to-pdf/process',
       acceptedTypes: '.doc,.docx'
     },
     {
@@ -48,7 +48,7 @@ const PDFTools = () => {
       description: t('tools.pdf.mergePdfDesc'),
       icon: Merge,
       popular: true,
-      endpoint: '/api/pdf/merge',
+      endpoint: '/api/tools/pdf-merge/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -57,7 +57,7 @@ const PDFTools = () => {
       description: t('tools.pdf.splitPdfDesc'),
       icon: Split,
       popular: false,
-      endpoint: '/api/pdf/split',
+      endpoint: '/api/tools/pdf-split/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -66,7 +66,7 @@ const PDFTools = () => {
       description: t('tools.pdf.compressPdfDesc'),
       icon: Minimize2,
       popular: true,
-      endpoint: '/api/pdf/compress',
+      endpoint: '/api/tools/pdf-compress/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -75,7 +75,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfOcrDesc'),
       icon: Scan,
       popular: false,
-      endpoint: '/api/pdf/ocr',
+      endpoint: '/api/tools/pdf-ocr/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -84,7 +84,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfFormFillerDesc'),
       icon: Edit,
       popular: false,
-      endpoint: '/api/pdf/fill-form',
+      endpoint: '/api/tools/pdf-form-filler/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -93,7 +93,7 @@ const PDFTools = () => {
       description: t('tools.pdf.addSignatureDesc'),
       icon: PenTool,
       popular: false,
-      endpoint: '/api/pdf/add-signature',
+      endpoint: '/api/tools/pdf-signature/process',
       acceptedTypes: '.pdf'
     },
     {
@@ -102,7 +102,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfWatermarkDesc'),
       icon: Stamp,
       popular: false,
-      endpoint: '/api/pdf/add-watermark',
+      endpoint: '/api/tools/add-watermark',
       acceptedTypes: '.pdf'
     },
     {
@@ -111,7 +111,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfToExcelDesc'),
       icon: Download,
       popular: false,
-      endpoint: '/api/pdf/to-excel',
+      endpoint: '/api/tools/to-excel',
       acceptedTypes: '.pdf'
     },
     {
@@ -120,7 +120,7 @@ const PDFTools = () => {
       description: t('tools.pdf.excelToPdfDesc'),
       icon: Upload,
       popular: false,
-      endpoint: '/api/pdf/from-excel',
+      endpoint: '/api/tools/from-excel',
       acceptedTypes: '.xls,.xlsx'
     },
     {
@@ -129,7 +129,7 @@ const PDFTools = () => {
       description: t('tools.pdf.pdfToPowerpointDesc'),
       icon: Edit,
       popular: false,
-      endpoint: '/api/pdf/to-powerpoint',
+      endpoint: '/api/tools/to-powerpoint',
       acceptedTypes: '.pdf'
     },
     {
@@ -138,7 +138,7 @@ const PDFTools = () => {
       description: t('tools.pdf.powerpointToPdfDesc'),
       icon: FileText,
       popular: false,
-      endpoint: '/api/pdf/from-powerpoint',
+      endpoint: '/api/tools/from-powerpoint',
       acceptedTypes: '.ppt,.pptx'
     }
   ];
@@ -160,7 +160,7 @@ const PDFTools = () => {
 
     setIsProcessing(true);
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('files', file);
 
     try {
       const response = await fetch(selectedTool.endpoint, {
@@ -169,24 +169,32 @@ const PDFTools = () => {
       });
 
       if (!response.ok) {
-        throw new Error(t('common.processingFailed'));
+        const errorData = await response.json();
+        throw new Error(errorData.error || t('common.processingFailed'));
       }
 
+      const data = await response.json();
+      
       // 检查是否是OCR工具（返回文本）
       if (selectedTool.id === 'pdf-ocr') {
-        const data = await response.json();
         setExtractedText(data.text || t('common.noTextRecognized'));
       } else {
-        // 其他工具返回文件
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        setProcessedFileUrl(url);
+        // 其他工具返回文件信息，需要下载文件
+        if (data.fileId) {
+          // 下载处理后的文件
+          const downloadResponse = await fetch(`/api/download/${data.fileId}`);
+          if (downloadResponse.ok) {
+            const blob = await downloadResponse.blob();
+            const url = URL.createObjectURL(blob);
+            setProcessedFileUrl(url);
+          }
+        }
       }
       
-      toast.success(t('common.processingComplete'));
+      toast.success(data.message || t('common.processingComplete'));
     } catch (error) {
       console.error('PDF处理错误:', error);
-      toast.error(t('common.processingFailedRetry'));
+      toast.error(error.message || t('common.processingFailedRetry'));
     } finally {
       setIsProcessing(false);
     }
