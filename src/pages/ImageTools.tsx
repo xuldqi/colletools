@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next'
 import SEOHead from '../components/SEOHead'
 import StructuredData from '../components/StructuredData';
+import { ImagePluginLoader } from '../components/PluginLoader';
+import { pluginManager, loadOpenCV } from '../utils/pluginLoader';
 
 interface ImageTool {
   id: string;
@@ -11,7 +13,8 @@ interface ImageTool {
   description: string;
   icon: React.ComponentType<{ className?: string }>;
   popular: boolean;
-  endpoint: string;
+  requiredPlugin: string;
+  processingFunction: (file: File) => Promise<{ url?: string; }>;
 }
 
 const ImageTools = () => {
@@ -21,6 +24,198 @@ const ImageTools = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [processedImageUrl, setProcessedImageUrl] = useState<string>('');
 
+  // 图像处理函数
+  const processImageConvert = async (file: File) => {
+    toast.info('正在进行图像格式转换...');
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        
+        // 转换为PNG格式（无损）
+        canvas.toBlob((blob) => {
+          if (blob) {
+            toast.success('✅ 图像格式转换完成！已转换为PNG格式');
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/png');
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const processImageCompress = async (file: File) => {
+    toast.info('正在压缩图像...');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        // 尺寸压缩到85%，质量压缩到70%
+        canvas.width = Math.round(img.width * 0.85);
+        canvas.height = Math.round(img.height * 0.85);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const originalSize = (file.size / 1024 / 1024).toFixed(2);
+            const compressedSize = (blob.size / 1024 / 1024).toFixed(2);
+            const reduction = (((file.size - blob.size) / file.size) * 100).toFixed(1);
+            
+            toast.success(`✅ 图像压缩完成！${originalSize}MB → ${compressedSize}MB (减少${reduction}%)`);
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/jpeg', 0.7);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const processPhotoEnhancer = async (file: File) => {
+    toast.info('正在进行图像增强处理...');
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        
+        // 获取图像数据并进行增强处理
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        
+        // 应用亮度、对比度和饱和度增强
+        for (let i = 0; i < data.length; i += 4) {
+          // 增加亮度 (+10)
+          data[i] = Math.min(255, data[i] + 10);     // Red
+          data[i + 1] = Math.min(255, data[i + 1] + 10); // Green  
+          data[i + 2] = Math.min(255, data[i + 2] + 10); // Blue
+          
+          // 增强对比度 (1.1倍)
+          data[i] = Math.min(255, Math.max(0, (data[i] - 128) * 1.1 + 128));
+          data[i + 1] = Math.min(255, Math.max(0, (data[i + 1] - 128) * 1.1 + 128));
+          data[i + 2] = Math.min(255, Math.max(0, (data[i + 2] - 128) * 1.1 + 128));
+        }
+        
+        // 将处理后的数据放回canvas
+        ctx.putImageData(imageData, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            toast.success('✅ 图像增强完成！已提升亮度和对比度');
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/jpeg', 0.9);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const processImageCrop = async (file: File) => {
+    toast.info('正在裁剪图像（中心正方形）...');
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        // 计算正方形裁剪尺寸（取较小边的80%）
+        const cropSize = Math.min(img.width, img.height) * 0.8;
+        canvas.width = cropSize;
+        canvas.height = cropSize;
+        
+        // 计算居中裁剪的起始位置
+        const startX = (img.width - cropSize) / 2;
+        const startY = (img.height - cropSize) / 2;
+        
+        // 绘制裁剪后的图像
+        ctx.drawImage(
+          img,
+          startX, startY, cropSize, cropSize, // 源图像裁剪区域
+          0, 0, cropSize, cropSize            // 目标canvas区域
+        );
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            toast.success(`✅ 图像裁剪完成！裁剪为 ${cropSize.toFixed(0)}×${cropSize.toFixed(0)} 正方形`);
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/jpeg', 0.9);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const processImageRotate = async (file: File) => {
+    toast.info('正在旋转图像（顺时针90度）...');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        // 90度旋转后，宽高互换
+        canvas.width = img.height;
+        canvas.height = img.width;
+        
+        // 移动到中心点并旋转
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(Math.PI / 2); // 顺时针旋转90度
+        ctx.drawImage(img, -img.width / 2, -img.height / 2);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            toast.success(`✅ 图像旋转完成！${img.width}×${img.height} → ${img.height}×${img.width}`);
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/jpeg', 0.9);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const processImageResize = async (file: File) => {
+    toast.info('正在调整图像尺寸（宽度1000px）...');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const img = new Image();
+    
+    return new Promise<{ url: string }>((resolve) => {
+      img.onload = () => {
+        const targetWidth = 1000;
+        const aspectRatio = img.height / img.width;
+        
+        canvas.width = targetWidth;
+        canvas.height = Math.round(targetWidth * aspectRatio);
+        
+        // 高质量缩放
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            toast.success(`✅ 尺寸调整完成！${img.width}×${img.height} → ${canvas.width}×${canvas.height}`);
+            resolve({ url: URL.createObjectURL(blob) });
+          }
+        }, 'image/jpeg', 0.9);
+      };
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
   const imageTools: ImageTool[] = [
     {
       id: 'image-converter',
@@ -28,7 +223,8 @@ const ImageTools = () => {
       description: t('tools.image.imageConverterDesc'),
       icon: Image,
       popular: true,
-      endpoint: '/api/tools/image-convert/process'
+      requiredPlugin: 'canvas',
+      processingFunction: processImageConvert
     },
     {
       id: 'image-compressor',
@@ -36,7 +232,8 @@ const ImageTools = () => {
       description: t('tools.image.imageCompressorDesc'),
       icon: Minimize2,
       popular: true,
-      endpoint: '/api/tools/image-compress/process'
+      requiredPlugin: 'canvas',
+      processingFunction: processImageCompress
     },
     {
       id: 'photo-enhancer',
@@ -44,7 +241,8 @@ const ImageTools = () => {
       description: t('tools.image.photoEnhancerDesc'),
       icon: Palette,
       popular: true,
-      endpoint: '/api/tools/image-enhancer/process'
+      requiredPlugin: 'opencv',
+      processingFunction: processPhotoEnhancer
     },
     {
       id: 'image-cropper',
@@ -52,7 +250,8 @@ const ImageTools = () => {
       description: t('tools.image.imageCropperDesc'),
       icon: Crop,
       popular: true,
-      endpoint: '/api/tools/image-crop/process'
+      requiredPlugin: 'canvas',
+      processingFunction: processImageCrop
     },
     {
       id: 'image-rotator',
@@ -60,7 +259,8 @@ const ImageTools = () => {
       description: t('tools.image.imageRotatorDesc'),
       icon: RotateCw,
       popular: false,
-      endpoint: '/api/tools/image-rotate/process'
+      requiredPlugin: 'canvas',
+      processingFunction: processImageRotate
     },
     {
       id: 'image-resizer',
@@ -68,7 +268,8 @@ const ImageTools = () => {
       description: t('tools.image.imageResizerDesc'),
       icon: Image,
       popular: false,
-      endpoint: '/api/tools/image-resize/process'
+      requiredPlugin: 'canvas',
+      processingFunction: processImageResize
     }
   ];
 
@@ -87,35 +288,25 @@ const ImageTools = () => {
     }
 
     setIsProcessing(true);
-    const formData = new FormData();
-    formData.append('files', file);
 
     try {
-      const response = await fetch(selectedTool.endpoint, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || t('common.processingFailed'));
-      }
-
-      const data = await response.json();
-      
-      // 下载处理后的文件
-      if (data.fileId) {
-        const downloadResponse = await fetch(`/api/download/${data.fileId}`);
-        if (downloadResponse.ok) {
-          const blob = await downloadResponse.blob();
-          const url = URL.createObjectURL(blob);
-          setProcessedImageUrl(url);
-        }
+      // 如果需要OpenCV，加载插件
+      if (selectedTool.requiredPlugin === 'opencv') {
+        toast.info('正在加载OpenCV.js图像处理引擎...');
+        await loadOpenCV();
       }
       
-      toast.success(data.message || t('common.processingComplete'));
+      // 使用对应的处理函数
+      toast.info('正在处理图像...');
+      const result = await selectedTool.processingFunction(file);
+      
+      if (result.url) {
+        setProcessedImageUrl(result.url);
+      }
+      
+      toast.success(t('common.processingComplete'));
     } catch (error) {
-      console.error('图片处理错误:', error);
+      console.error('图像处理错误:', error);
       toast.error((error as Error).message || t('common.processingError'));
     } finally {
       setIsProcessing(false);
@@ -147,10 +338,15 @@ const ImageTools = () => {
   };
 
   if (selectedTool) {
+    const isPluginLoaded = selectedTool.requiredPlugin === 'canvas' ? true : pluginManager.isPluginLoaded(selectedTool.requiredPlugin);
+    
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
+            {selectedTool.requiredPlugin === 'opencv' && !isPluginLoaded && (
+              <ImagePluginLoader className="mb-6" onLoadComplete={() => toast.success('OpenCV.js图像处理引擎加载完成！')} />
+            )}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg">

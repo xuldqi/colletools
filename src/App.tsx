@@ -20,6 +20,10 @@ import ApiDocs from './pages/ApiDocs'
 import Cookies from './pages/Cookies'
 import Sitemap from './pages/Sitemap'
 import { NotFound } from './pages/NotFound'
+import PluginDemo from './pages/PluginDemo'
+import PluginTest from './pages/PluginTest'
+import CDNTest from './pages/CDNTest'
+import PDFDebug from './pages/PDFDebug'
 import PerformanceMonitor from './components/PerformanceMonitor'
 
 function App() {
@@ -61,6 +65,10 @@ function App() {
           <Route path="/api-docs" element={<ApiDocs />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/plugin-demo" element={<PluginDemo />} />
+          <Route path="/plugin-test" element={<PluginTest />} />
+          <Route path="/cdn-test" element={<CDNTest />} />
+          <Route path="/pdf-debug" element={<PDFDebug />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

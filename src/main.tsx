@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
 import { initI18n } from './i18n'
+import { preloadOCRResources } from './utils/ocrConfig'
 
 // Register Service Worker for PWA
 if ('serviceWorker' in navigator) {
@@ -18,6 +19,19 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// Preload OCR and other advanced features
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    preloadOCRResources().then(success => {
+      if (success) {
+        console.log('🚀 Advanced features (OCR, Image Processing) ready!');
+      } else {
+        console.log('⚠️ Advanced features will load on-demand');
+      }
+    });
+  }, 2000); // Delay to not interfere with initial page load
+});
 
 // 等待 i18n 初始化完成再渲染
 initI18n.then(() => {
