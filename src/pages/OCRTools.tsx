@@ -130,7 +130,7 @@ interface OCRTool {
       toast.success(data.message || t('tools.ocr.ocrComplete'));
     } catch (error) {
       console.error(t('tools.ocr.processingError'), error);
-      toast.error(error.message || t('tools.ocr.ocrError'));
+      toast.error((error as Error).message || t('tools.ocr.ocrError'));
     } finally {
       setIsProcessing(false);
     }

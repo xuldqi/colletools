@@ -194,7 +194,7 @@ const PDFTools = () => {
       toast.success(data.message || t('common.processingComplete'));
     } catch (error) {
       console.error('PDF处理错误:', error);
-      toast.error(error.message || t('common.processingFailedRetry'));
+      toast.error((error as Error).message || t('common.processingFailedRetry'));
     } finally {
       setIsProcessing(false);
     }

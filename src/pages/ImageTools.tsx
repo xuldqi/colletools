@@ -116,7 +116,7 @@ const ImageTools = () => {
       toast.success(data.message || t('common.processingComplete'));
     } catch (error) {
       console.error('图片处理错误:', error);
-      toast.error(error.message || t('common.processingError'));
+      toast.error((error as Error).message || t('common.processingError'));
     } finally {
       setIsProcessing(false);
     }
