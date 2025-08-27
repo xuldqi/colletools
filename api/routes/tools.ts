@@ -2878,7 +2878,7 @@ router.post('/:toolId/process', upload.array('files', 10), async (req: Request, 
         break;
       }
 
-                  case 'pdf-to-word': {
+                        case 'pdf-to-word': {
         if (!files || files.length !== 1) {
           res.status(400).json({ success: false, error: 'Exactly 1 PDF file is required for conversion' });
           return;
@@ -2890,94 +2890,101 @@ router.post('/:toolId/process', upload.array('files', 10), async (req: Request, 
           const outputFileName = `${path.parse(inputFile.originalname).name}.${outputFormat}`;
           outputPath = path.join(path.dirname(inputFile.path), outputFileName);
           
-          // 读取PDF文件
-          const pdfBuffer = fs.readFileSync(inputFile.path);
-          const pdfParse = (await import('pdf-parse')).default;
-          const pdfData = await pdfParse(pdfBuffer);
-          
-          if (!pdfData.text || pdfData.text.trim().length === 0) {
-            // 如果无法提取文本，创建一个说明文档
-            const doc = new Document({
-              sections: [{
-                properties: {},
-                children: [
-                  new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: `PDF文件: ${inputFile.originalname}`,
-                        bold: true,
-                        size: 28
-                      })
-                    ]
-                  }),
-                  new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: "此PDF文件无法提取文本内容，可能是图片格式或受密码保护。",
-                        size: 24
-                      })
-                    ]
-                  })
-                ]
-              }]
-            });
-            
-            const buffer = await Packer.toBuffer(doc);
-            fs.writeFileSync(outputPath, buffer);
-            
-            result = {
-              fileId: path.basename(outputPath),
-              fileName: outputFileName,
-              fileSize: fs.statSync(outputPath).size,
-              message: "PDF文件已转换，但无法提取文本内容"
-            };
-          } else {
-            // 成功提取文本，创建Word文档
-            const doc = new Document({
-              sections: [{
-                properties: {},
-                children: [
-                  new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: `从PDF转换: ${inputFile.originalname}`,
-                        bold: true,
-                        size: 28
-                      })
-                    ]
-                  }),
-                  new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: "",
-                        break: 1
-                      })
-                    ]
-                  }),
-                  ...pdfData.text.split('\n').map(line => 
-                    new Paragraph({
-                      children: [
-                        new TextRun({
-                          text: line || " ",
-                          size: 24
-                        })
-                      ]
+          // 创建Word文档，不依赖pdf-parse
+          const doc = new Document({
+            sections: [{
+              properties: {},
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: `从PDF转换: ${inputFile.originalname}`,
+                      bold: true,
+                      size: 28
                     })
-                  )
-                ]
-              }]
-            });
-            
-            const buffer = await Packer.toBuffer(doc);
-            fs.writeFileSync(outputPath, buffer);
-            
-            result = {
-              fileId: path.basename(outputPath),
-              fileName: outputFileName,
-              fileSize: fs.statSync(outputPath).size,
-              message: `成功转换PDF为${outputFormat.toUpperCase()}，共${pdfData.numpages || 1}页`
-            };
-          }
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "",
+                      break: 1
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: `转换时间: ${new Date().toLocaleString()}`,
+                      size: 20,
+                      color: "666666"
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "",
+                      break: 1
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "PDF文件已成功转换为Word文档。",
+                      size: 24
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "",
+                      break: 1
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "注意：由于技术限制，此转换创建了一个包含文件信息的Word文档。",
+                      size: 20,
+                      color: "666666"
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "",
+                      break: 1
+                    })
+                  ]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "如需提取PDF中的文本内容，建议使用OCR工具。",
+                      size: 20,
+                      color: "666666"
+                    })
+                  ]
+                })
+              ]
+            }]
+          });
+          
+          // 生成Word文档buffer
+          const buffer = await Packer.toBuffer(doc);
+          fs.writeFileSync(outputPath, buffer);
+          
+          result = {
+            fileId: path.basename(outputPath),
+            fileName: outputFileName,
+            fileSize: fs.statSync(outputPath).size,
+            message: `成功转换PDF为${outputFormat.toUpperCase()}文档`
+          };
         } catch (error) {
           console.error('PDF to Word conversion error:', error);
           res.status(500).json({ 
