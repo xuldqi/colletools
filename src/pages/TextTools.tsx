@@ -6,6 +6,7 @@ import {
 import { toast } from 'sonner';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import { useTranslation } from 'react-i18next';
 
 interface TextTool {
   id: string;
@@ -18,6 +19,7 @@ interface TextTool {
 }
 
 const TextTools: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedTool, setSelectedTool] = useState<TextTool | null>(null);
   const [textInput, setTextInput] = useState<string>('');
   const [textInput2, setTextInput2] = useState<string>('');
@@ -35,7 +37,7 @@ const TextTools: React.FC = () => {
     
     const result = `📊 文字统计结果\n\n• 字数：${words.length}\n• 字符数（含空格）：${characters}\n• 字符数（不含空格）：${charactersNoSpaces}\n• 行数：${lines}\n• 段落数：${paragraphs}\n• 句子数：${sentences}\n\n• 平均每行字数：${Math.round(words.length / lines)}\n• 平均每段字数：${Math.round(words.length / paragraphs)}\n• 平均每句字数：${Math.round(words.length / sentences)}`;
     
-    toast.success('✅ 字数统计完成！');
+          toast.success(t('tools.text.wordCountComplete'));
     return { result };
   };
 
@@ -53,7 +55,7 @@ const TextTools: React.FC = () => {
     
     const result = `🔢 字符统计详情\n\n📊 基础统计：\n• 总字符数：${totalChars}\n• 不含空格：${charsNoSpaces}\n• 空格数：${spaces}\n• 制表符：${tabs}\n• 换行符：${newlines}\n\n📝 字符类型：\n• 字母+数字：${alphanumeric}\n• 纯字母：${letters}\n• 纯数字：${numbers}\n• 标点符号：${punctuation}\n\n📈 占比分析：\n• 字母占比：${((letters/totalChars)*100).toFixed(1)}%\n• 数字占比：${((numbers/totalChars)*100).toFixed(1)}%\n• 空格占比：${((spaces/totalChars)*100).toFixed(1)}%`;
     
-    toast.success('✅ 字符统计完成！');
+          toast.success(t('tools.text.characterCountComplete'));
     return { result };
   };
 
@@ -80,7 +82,7 @@ const TextTools: React.FC = () => {
     
     const result = `🔄 大小写转换结果\n\n📝 基础格式：\n• 全部大写：\n${conversions.uppercase}\n\n• 全部小写：\n${conversions.lowercase}\n\n• 标题格式：\n${conversions.titlecase}\n\n• 句子格式：\n${conversions.sentencecase}\n\n💻 编程格式：\n• 驼峰命名：\n${conversions.camelcase}\n\n• 帕斯卡命名：\n${conversions.pascalcase}\n\n• 下划线命名：\n${conversions.snakecase}\n\n• 连字符命名：\n${conversions.kebabcase}`;
     
-    toast.success('✅ 大小写转换完成！');
+          toast.success(t('tools.text.caseConversionComplete'));
     return { result };
   };
 
@@ -110,7 +112,7 @@ const TextTools: React.FC = () => {
     
     const result = `🎯 文本格式化结果\n\n📝 移除多余空格：\n${removeExtraSpaces}\n\n📄 移除多余换行：\n${removeExtraLines}\n\n✏️ 修正标点间距：\n${fixPunctuation}\n\n🔄 统一换行符：\n${uniformLines}\n\n✨ 完全清理版：\n${fullyClean}\n\n📊 优化效果：\n• 原始长度：${input.length}\n• 清理后长度：${fullyClean.length}\n• 减少字符：${input.length - fullyClean.length}`;
     
-    toast.success('✅ 文本格式化完成！');
+          toast.success(t('tools.text.textFormattingComplete'));
     return { result };
   };
 
@@ -125,7 +127,7 @@ const TextTools: React.FC = () => {
     
     const result = `📏 行数统计详情\n\n📊 基础统计：\n• 总行数：${allLines.length}\n• 非空行数：${nonEmptyLines.length}\n• 空行数：${emptyLines}\n\n📈 行长度分析：\n• 最长行：${longestLine.length} 字符\n• 最短行：${shortestLine.length} 字符\n• 平均长度：${avgLength} 字符\n\n📝 最长行内容：\n${longestLine.substring(0, 100)}${longestLine.length > 100 ? '...' : ''}\n\n📝 最短行内容：\n${shortestLine}`;
     
-    toast.success('✅ 行数统计完成！');
+          toast.success(t('tools.text.lineCountComplete'));
     return { result };
   };
 
@@ -145,7 +147,7 @@ const TextTools: React.FC = () => {
     
     const result = `🔄 文本反转结果\n\n🔤 字符反转：\n${charReverse}\n\n📝 单词反转：\n${wordReverse}\n\n📄 行反转：\n${lineReverse}\n\n📚 句子反转：\n${sentenceReverse}\n\n📊 反转统计：\n• 原始长度：${input.length}\n• 反转长度：${charReverse.length}\n• 单词数量：${input.split(' ').length}\n• 行数：${input.split('\n').length}`;
     
-    toast.success('✅ 文本反转完成！');
+          toast.success(t('tools.text.textReverseComplete'));
     return { result };
   };
 
@@ -175,7 +177,7 @@ const TextTools: React.FC = () => {
     
     const result = `📊 文本排序结果\n\n🔤 字母升序：\n${alphabetAsc.join('\n')}\n\n🔽 字母降序：\n${alphabetDesc.join('\n')}\n\n📏 长度升序：\n${lengthAsc.join('\n')}\n\n📐 长度降序：\n${lengthDesc.join('\n')}\n\n🔢 数字排序：\n${numberAsc.join('\n')}\n\n📈 排序统计：\n• 总行数：${lines.length}\n• 最短行：${lengthAsc[0]?.length || 0} 字符\n• 最长行：${lengthDesc[0]?.length || 0} 字符`;
     
-    toast.success('✅ 文本排序完成！');
+          toast.success(t('tools.text.textSortComplete'));
     return { result };
   };
 
@@ -188,7 +190,7 @@ const TextTools: React.FC = () => {
     
     const result = `🗑️ 重复行删除结果\n\n✅ 去重后文本：\n${uniqueLines.join('\n')}\n\n📊 处理统计：\n• 原始行数：${lines.length}\n• 去重后行数：${uniqueLines.length}\n• 删除重复行：${lines.length - uniqueLines.length}\n• 重复内容种类：${uniqueDuplicates.length}\n\n🔍 发现的重复内容：\n${uniqueDuplicates.slice(0, 10).join('\n')}${uniqueDuplicates.length > 10 ? '\n...(仅显示前10个)' : ''}`;
     
-    toast.success('✅ 重复行删除完成！');
+          toast.success(t('tools.text.duplicateRemovalComplete'));
     return { result };
   };
 
@@ -222,7 +224,7 @@ const TextTools: React.FC = () => {
     
     const result = `🔍 文本差异分析\n\n📊 比较统计：\n• 总行数：${maxLines}\n• 相同行数：${sameLines}\n• 不同行数：${differentLines}\n• 相似度：${similarity}%\n\n📝 差异详情：\n${differences.slice(0, 20).join('\n')}${differences.length > 20 ? '\n...(仅显示前20个差异)' : ''}\n\n📈 文本长度对比：\n• 文本1：${input.length} 字符\n• 文本2：${input2.length} 字符\n• 长度差：${Math.abs(input.length - input2.length)} 字符`;
     
-    toast.success('✅ 文本差异检查完成！');
+          toast.success(t('tools.text.textDiffComplete'));
     return { result };
   };
 
@@ -306,17 +308,17 @@ const TextTools: React.FC = () => {
 
   const handleProcess = async () => {
     if (!selectedTool) {
-      toast.error('请选择一个工具');
+      toast.error(t('tools.text.selectToolFirst'));
       return;
     }
 
     if (!textInput.trim()) {
-      toast.error('请输入文本');
+      toast.error(t('tools.text.enterText'));
       return;
     }
 
     if (selectedTool.inputType === 'double' && !textInput2.trim()) {
-      toast.error('请输入第二个文本进行比较');
+      toast.error(t('tools.text.enterSecondText'));
       return;
     }
 
@@ -329,8 +331,8 @@ const TextTools: React.FC = () => {
       );
       setResult(processResult.result);
     } catch (error) {
-      console.error('处理错误:', error);
-      toast.error((error as Error).message || '处理失败，请重试');
+      console.error(t('tools.text.processingErrorLog'), error);
+      toast.error((error as Error).message || t('common.processingFailedRetry'));
     } finally {
       setIsProcessing(false);
     }
@@ -339,7 +341,7 @@ const TextTools: React.FC = () => {
   const copyResult = () => {
     if (result) {
       navigator.clipboard.writeText(result);
-      toast.success('结果已复制到剪贴板');
+      toast.success(t('tools.text.copySuccess'));
     }
   };
 
@@ -379,33 +381,33 @@ const TextTools: React.FC = () => {
                 className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>返回</span>
+                <span>{t('common.back')}</span>
               </button>
             </div>
 
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  输入文本
+                  {t('tools.text.inputText')}
                 </label>
                 <textarea
                   value={textInput}
                   onChange={(e) => setTextInput(e.target.value)}
                   className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="请输入要处理的文本..."
+                  placeholder={t('tools.text.enterTextPlaceholder')}
                 />
               </div>
 
               {selectedTool.inputType === 'double' && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    输入第二个文本（用于比较）
+                    {t('tools.text.inputSecondText')}
                   </label>
                   <textarea
                     value={textInput2}
                     onChange={(e) => setTextInput2(e.target.value)}
                     className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="请输入第二个文本进行比较..."
+                    placeholder={t('tools.text.enterSecondTextPlaceholder')}
                   />
                 </div>
               )}
@@ -416,20 +418,20 @@ const TextTools: React.FC = () => {
                   disabled={isProcessing || !textInput.trim() || (selectedTool.inputType === 'double' && !textInput2.trim())}
                   className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isProcessing ? '处理中...' : '开始处理'}
+                  {isProcessing ? t('common.processing') : t('common.startProcessing')}
                 </button>
               </div>
 
               {result && (
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-medium text-gray-900">处理结果</h3>
+                    <h3 className="text-lg font-medium text-gray-900">{t('tools.text.processingResult')}</h3>
                     <button
                       onClick={copyResult}
                       className="flex items-center space-x-2 px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
                     >
                       <Copy className="w-4 h-4" />
-                      <span>复制</span>
+                      <span>{t('tools.text.copy')}</span>
                     </button>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4 border max-h-80 overflow-y-auto">

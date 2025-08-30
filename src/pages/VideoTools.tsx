@@ -27,20 +27,17 @@ const VideoTools = () => {
 
   // 视频处理函数
   const processVideoConvert = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在转换视频格式 (MP4)...');
+    toast.info(t('tools.video.convertingVideoFormat'));
     
     try {
-      const { FFmpeg } = (window as any).FFmpegWASM;
-      const ffmpeg = new FFmpeg();
       
       // 模拟加载过程
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // 获取文件信息
-      const fileBuffer = await file.arrayBuffer();
       const originalSize = file.size;
       
       // 模拟视频处理（实际应该用FFmpeg处理）
@@ -55,14 +52,14 @@ const VideoTools = () => {
       ctx.fillStyle = 'white';
       ctx.font = '24px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('视频已转换为MP4格式', canvas.width/2, canvas.height/2 - 20);
-      ctx.fillText(`原始大小: ${(originalSize/1024/1024).toFixed(2)}MB`, canvas.width/2, canvas.height/2 + 20);
+      ctx.fillText(t('tools.video.videoConvertedToMP4'), canvas.width/2, canvas.height/2 - 20);
+      ctx.fillText(`${t('tools.video.originalSize')}: ${(originalSize/1024/1024).toFixed(2)}MB`, canvas.width/2, canvas.height/2 + 20);
       
       // 转换为blob（实际应该是处理后的视频文件）
       return new Promise<{ url: string }>((resolve) => {
         canvas.toBlob((blob) => {
           if (blob) {
-            toast.success(`✅ 视频格式转换完成！已转换为MP4格式 (${(originalSize/1024/1024).toFixed(2)}MB)`);
+            toast.success(t('tools.video.videoFormatConversionComplete', { size: (originalSize/1024/1024).toFixed(2) }));
             // 注意：这里返回的是图片，实际应该返回处理后的视频
             resolve({ url: URL.createObjectURL(blob) });
           }
@@ -70,16 +67,16 @@ const VideoTools = () => {
       });
       
     } catch (error) {
-      toast.error('视频转换失败，请重试');
+      toast.error(t('tools.video.videoConversionFailed'));
       throw error;
     }
   };
 
   const processVideoCompress = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在压缩视频文件...');
+    toast.info(t('tools.video.compressingVideoFile'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 2000)); // 模拟处理时间
@@ -94,23 +91,27 @@ const VideoTools = () => {
       return new Promise<{ url: string }>((resolve) => {
         reader.onload = () => {
           // 实际应该使用FFmpeg压缩，这里先返回原文件
-          toast.success(`✅ 视频压缩完成！${(originalSize/1024/1024).toFixed(2)}MB → ${(compressedSize/1024/1024).toFixed(2)}MB (减少${reduction}%)`);
+          toast.success(t('tools.video.videoCompressionComplete', { 
+            originalSize: (originalSize/1024/1024).toFixed(2), 
+            compressedSize: (compressedSize/1024/1024).toFixed(2), 
+            reduction 
+          }));
           resolve({ url: URL.createObjectURL(file) });
         };
         reader.readAsArrayBuffer(file);
       });
       
     } catch (error) {
-      toast.error('视频压缩失败，请重试');
+      toast.error(t('tools.video.videoCompressionFailed'));
       throw error;
     }
   };
 
   const processVideoTrim = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在剪辑视频 (提取前30秒)...');
+    toast.info(t('tools.video.trimmingVideo'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1500)); // 模拟处理时间
@@ -119,20 +120,20 @@ const VideoTools = () => {
       // 模拟剪辑后的大小
       const trimmedSize = originalSize * 0.3; // 假设提取30%长度
       
-      toast.success(`✅ 视频剪辑完成！提取前30秒片段 (${(trimmedSize/1024/1024).toFixed(2)}MB)`);
+      toast.success(t('tools.video.videoTrimComplete', { size: (trimmedSize/1024/1024).toFixed(2) }));
       return { url: URL.createObjectURL(file) };
       
     } catch (error) {
-      toast.error('视频剪辑失败，请重试');
+      toast.error(t('tools.video.videoTrimFailed'));
       throw error;
     }
   };
 
-  const processGIFMaker = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+  const processGIFMaker = async (_file: File) => {
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在将视频转换为GIF动图...');
+    toast.info(t('tools.video.convertingToGif'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 2500)); // 模拟处理时间
@@ -148,47 +149,47 @@ const VideoTools = () => {
       ctx.fillStyle = 'darkblue';
       ctx.font = '20px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('GIF动图', canvas.width/2, canvas.height/2 - 10);
-      ctx.fillText('已从视频生成', canvas.width/2, canvas.height/2 + 20);
+      ctx.fillText(t('tools.video.gifAnimation'), canvas.width/2, canvas.height/2 - 10);
+      ctx.fillText(t('tools.video.generatedFromVideo'), canvas.width/2, canvas.height/2 + 20);
       
       return new Promise<{ url: string }>((resolve) => {
         canvas.toBlob((blob) => {
           if (blob) {
-            toast.success(`✅ GIF动图生成完成！尺寸: 320×240`);
+            toast.success(t('tools.video.gifGenerationComplete'));
             resolve({ url: URL.createObjectURL(blob) });
           }
         }, 'image/jpeg');
       });
       
     } catch (error) {
-      toast.error('GIF生成失败，请重试');
+      toast.error(t('tools.video.gifGenerationFailed'));
       throw error;
     }
   };
 
   const processVideoRotate = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在旋转视频 (顺时针90度)...');
+    toast.info(t('tools.video.rotatingVideo'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1800)); // 模拟处理时间
       
-      toast.success('✅ 视频旋转完成！已顺时针旋转90度');
+      toast.success(t('tools.video.videoRotationComplete'));
       return { url: URL.createObjectURL(file) };
       
     } catch (error) {
-      toast.error('视频旋转失败，请重试');
+      toast.error(t('tools.video.videoRotationFailed'));
       throw error;
     }
   };
 
   const processAudioExtract = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在从视频中提取音频...');
+    toast.info(t('tools.video.extractingAudio'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1200)); // 模拟处理时间
@@ -197,23 +198,23 @@ const VideoTools = () => {
       const audioSize = originalSize * 0.1; // 假设音频占10%
       
       // 创建模拟音频文件信息
-      const audioInfo = `音频文件信息\n\n格式: MP3\n大小: ${(audioSize/1024/1024).toFixed(2)}MB\n比特率: 128kbps\n采样率: 44.1kHz\n\n✅ 从视频成功提取音频`;
+      const audioInfo = t('tools.video.audioFileInfo', { size: (audioSize/1024/1024).toFixed(2) });
       const blob = new Blob([audioInfo], { type: 'text/plain' });
       
-      toast.success(`✅ 音频提取完成！生成MP3文件 (${(audioSize/1024/1024).toFixed(2)}MB)`);
+      toast.success(t('tools.video.audioExtractionComplete', { size: (audioSize/1024/1024).toFixed(2) }));
       return { url: URL.createObjectURL(blob) };
       
     } catch (error) {
-      toast.error('音频提取失败，请重试');
+      toast.error(t('tools.video.audioExtractionFailed'));
       throw error;
     }
   };
 
   const processVideoMerge = async (file: File) => {
-    toast.info('正在加载FFmpeg.js引擎...');
+    toast.info(t('tools.video.loadingFFmpegEngine'));
     await loadFFmpeg();
     
-    toast.info('正在合并视频文件...');
+    toast.info(t('tools.video.mergingVideo'));
     
     try {
       await new Promise(resolve => setTimeout(resolve, 2200)); // 模拟处理时间
@@ -221,11 +222,11 @@ const VideoTools = () => {
       const originalSize = file.size;
       const mergedSize = originalSize * 1.8; // 假设合并后增加80%
       
-      toast.success(`✅ 视频合并完成！生成新文件 (${(mergedSize/1024/1024).toFixed(2)}MB)`);
+      toast.success(t('tools.video.videoMergeComplete', { size: (mergedSize/1024/1024).toFixed(2) }));
       return { url: URL.createObjectURL(file) };
       
     } catch (error) {
-      toast.error('视频合并失败，请重试');
+      toast.error(t('tools.video.videoMergeFailed'));
       throw error;
     }
   };
@@ -321,11 +322,11 @@ const VideoTools = () => {
 
     try {
       // 首先加载所需插件
-      toast.info('正在加载FFmpeg.js视频处理引擎...');
+      toast.info(t('tools.video.loadingFFmpegEngine'));
       await loadFFmpeg();
       
       // 使用对应的处理函数
-      toast.info('正在处理视频文件...');
+      toast.info(t('tools.video.processingVideoFile'));
       const result = await selectedTool.processingFunction(file);
       
       if (result.url) {
@@ -334,7 +335,7 @@ const VideoTools = () => {
       
       toast.success(t('common.processingComplete'));
     } catch (error) {
-      console.error('视频处理错误:', error);
+      console.error(t('tools.video.videoProcessingError'), error);
       toast.error((error as Error).message || t('common.processingFailedRetry'));
     } finally {
       setIsProcessing(false);
@@ -373,7 +374,7 @@ const VideoTools = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
             {!isPluginLoaded && (
-              <VideoPluginLoader className="mb-6" onLoadComplete={() => toast.success('FFmpeg.js视频处理引擎加载完成！')} />
+              <VideoPluginLoader className="mb-6" onLoadComplete={() => toast.success(t('tools.video.ffmpegEngineLoaded'))} />
             )}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">

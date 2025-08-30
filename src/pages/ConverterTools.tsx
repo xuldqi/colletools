@@ -4,6 +4,7 @@ import {
   Upload, ArrowLeft, Copy, Download, Calculator
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 
@@ -18,6 +19,7 @@ interface ConverterTool {
 }
 
 const ConverterTools: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedTool, setSelectedTool] = useState<ConverterTool | null>(null);
   const [textInput, setTextInput] = useState<string>('');
   const [textInput2, setTextInput2] = useState<string>('');
@@ -37,13 +39,13 @@ const ConverterTools: React.FC = () => {
     }
 
     if (!text.trim()) {
-      throw new Error('请输入要转换的数值和单位');
+      throw new Error(t('common.unitConverter.enterValueAndUnit'));
     }
 
     // 解析输入（例如："100 米" 或 "100m"）
     const match = text.match(/^([\d.]+)\s*(\w+)$/);
     if (!match) {
-      throw new Error('请输入正确格式，如：100 米 或 100m');
+      throw new Error(t('common.unitConverter.enterCorrectFormat'));
     }
 
     const value = parseFloat(match[1]);
@@ -51,20 +53,20 @@ const ConverterTools: React.FC = () => {
 
     // 长度单位转换
     const lengthUnits: { [key: string]: number } = {
-      'm': 1, '米': 1, 'meter': 1,
-      'km': 1000, '千米': 1000, 'kilometer': 1000,
-      'cm': 0.01, '厘米': 0.01, 'centimeter': 0.01,
-      'mm': 0.001, '毫米': 0.001, 'millimeter': 0.001,
-      'ft': 0.3048, '英尺': 0.3048, 'feet': 0.3048, 'foot': 0.3048,
-      'in': 0.0254, '英寸': 0.0254, 'inch': 0.0254
+      'm': 1, 'meter': 1,
+      'km': 1000, 'kilometer': 1000,
+      'cm': 0.01, 'centimeter': 0.01,
+      'mm': 0.001, 'millimeter': 0.001,
+      'ft': 0.3048, 'feet': 0.3048, 'foot': 0.3048,
+      'in': 0.0254, 'inch': 0.0254
     };
 
     // 重量单位转换
     const weightUnits: { [key: string]: number } = {
-      'kg': 1, '千克': 1, 'kilogram': 1,
-      'g': 0.001, '克': 0.001, 'gram': 0.001,
-      'lb': 0.453592, '磅': 0.453592, 'pound': 0.453592,
-      'oz': 0.0283495, '盎司': 0.0283495, 'ounce': 0.0283495
+      'kg': 1, 'kilogram': 1,
+      'g': 0.001, 'gram': 0.001,
+      'lb': 0.453592, 'pound': 0.453592,
+      'oz': 0.0283495, 'ounce': 0.0283495
     };
 
     let conversions: string[] = [];
@@ -73,31 +75,36 @@ const ConverterTools: React.FC = () => {
 
     if (lengthUnits[unit]) {
       baseValue = value * lengthUnits[unit]; // 转换为米
-      unitType = '长度';
+      unitType = t('common.unitConverter.length');
       conversions = [
-        `${(baseValue / lengthUnits['m']).toFixed(6)} 米`,
-        `${(baseValue / lengthUnits['km']).toFixed(6)} 千米`,
-        `${(baseValue / lengthUnits['cm']).toFixed(2)} 厘米`,
-        `${(baseValue / lengthUnits['mm']).toFixed(2)} 毫米`,
-        `${(baseValue / lengthUnits['ft']).toFixed(6)} 英尺`,
-        `${(baseValue / lengthUnits['in']).toFixed(6)} 英寸`
+        `${(baseValue / lengthUnits['m']).toFixed(6)} ${t('common.unitConverter.meters')}`,
+        `${(baseValue / lengthUnits['km']).toFixed(6)} ${t('common.unitConverter.kilometers')}`,
+        `${(baseValue / lengthUnits['cm']).toFixed(2)} ${t('common.unitConverter.centimeters')}`,
+        `${(baseValue / lengthUnits['mm']).toFixed(2)} ${t('common.unitConverter.millimeters')}`,
+        `${(baseValue / lengthUnits['ft']).toFixed(6)} ${t('common.unitConverter.feet')}`,
+        `${(baseValue / lengthUnits['in']).toFixed(6)} ${t('common.unitConverter.inches')}`
       ];
     } else if (weightUnits[unit]) {
       baseValue = value * weightUnits[unit]; // 转换为千克
-      unitType = '重量';
+      unitType = t('common.unitConverter.weight');
       conversions = [
-        `${(baseValue / weightUnits['kg']).toFixed(6)} 千克`,
-        `${(baseValue / weightUnits['g']).toFixed(2)} 克`,
-        `${(baseValue / weightUnits['lb']).toFixed(6)} 磅`,
-        `${(baseValue / weightUnits['oz']).toFixed(6)} 盎司`
+        `${(baseValue / weightUnits['kg']).toFixed(6)} ${t('common.unitConverter.kilograms')}`,
+        `${(baseValue / weightUnits['g']).toFixed(2)} ${t('common.unitConverter.grams')}`,
+        `${(baseValue / weightUnits['lb']).toFixed(6)} ${t('common.unitConverter.pounds')}`,
+        `${(baseValue / weightUnits['oz']).toFixed(6)} ${t('common.unitConverter.ounces')}`
       ];
     } else {
-      throw new Error(`不支持的单位：${unit}。支持长度单位（米、千米、厘米、毫米、英尺、英寸）和重量单位（千克、克、磅、盎司）`);
+      throw new Error(t('common.unitConverter.unsupportedUnit', { unit }));
     }
 
-    const result = `📏 ${unitType}单位转换结果\n\n📝 输入：${value} ${unit}\n\n🔄 转换结果：\n${conversions.join('\n')}\n\n💡 支持的单位：\n长度：米(m)、千米(km)、厘米(cm)、毫米(mm)、英尺(ft)、英寸(in)\n重量：千克(kg)、克(g)、磅(lb)、盎司(oz)`;
+    const result = t('common.unitConverter.conversionResult', { 
+      unitType, 
+      value, 
+      unit, 
+      conversions: conversions.join('\n') 
+    });
 
-    toast.success('✅ 单位转换完成！');
+    toast.success(t('common.unitConverterComplete'));
     return { result };
   };
 
@@ -111,12 +118,12 @@ const ConverterTools: React.FC = () => {
     }
 
     if (!text.trim()) {
-      throw new Error('请输入金额和货币，如：100 USD');
+      throw new Error(t('common.enterAmountAndCurrency'));
     }
 
     const match = text.match(/^([\d.]+)\s*(\w+)$/);
     if (!match) {
-      throw new Error('请输入正确格式，如：100 USD');
+      throw new Error(t('common.enterCorrectCurrencyFormat'));
     }
 
     const amount = parseFloat(match[1]);
@@ -124,18 +131,18 @@ const ConverterTools: React.FC = () => {
 
     // 模拟汇率（以USD为基准）
     const exchangeRates: { [key: string]: { rate: number, name: string } } = {
-      'USD': { rate: 1, name: '美元' },
-      'EUR': { rate: 0.85, name: '欧元' },
-      'GBP': { rate: 0.73, name: '英镑' },
-      'JPY': { rate: 110, name: '日元' },
-      'CNY': { rate: 6.45, name: '人民币' },
-      'KRW': { rate: 1180, name: '韩元' },
-      'CAD': { rate: 1.25, name: '加拿大元' },
-      'AUD': { rate: 1.35, name: '澳大利亚元' }
+      'USD': { rate: 1, name: t('common.currencies.usd') },
+      'EUR': { rate: 0.85, name: t('common.currencies.eur') },
+      'GBP': { rate: 0.73, name: t('common.currencies.gbp') },
+      'JPY': { rate: 110, name: t('common.currencies.jpy') },
+      'CNY': { rate: 6.45, name: t('common.currencies.cny') },
+      'KRW': { rate: 1180, name: t('common.currencies.krw') },
+      'CAD': { rate: 1.25, name: t('common.currencies.cad') },
+      'AUD': { rate: 1.35, name: t('common.currencies.aud') }
     };
 
     if (!exchangeRates[currency]) {
-      throw new Error(`不支持的货币：${currency}。支持：USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD`);
+      throw new Error(t('common.unsupportedCurrency', { currency, supported: 'USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD' }));
     }
 
     // 转换为USD基准
@@ -146,9 +153,14 @@ const ConverterTools: React.FC = () => {
       return `${convertedAmount.toFixed(2)} ${code} (${info.name})`;
     });
 
-    const result = `💰 货币转换结果\n\n📝 输入：${amount} ${currency} (${exchangeRates[currency].name})\n\n🔄 转换结果：\n${conversions.join('\n')}\n\n⚠️ 注意：汇率为模拟数据，实际交易请以银行汇率为准\n\n💡 支持货币：USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD`;
+    const result = t('common.currencyConversionResult', { 
+      amount, 
+      currency, 
+      currencyName: exchangeRates[currency].name,
+      conversions: conversions.join('\n')
+    });
 
-    toast.success('✅ 货币转换完成！');
+    toast.success(t('common.currencyConversionComplete'));
     return { result };
   };
 
@@ -162,7 +174,7 @@ const ConverterTools: React.FC = () => {
     }
 
     if (!text.trim()) {
-      throw new Error('请输入要转换的数字');
+      throw new Error(t('common.enterNumberToConvert'));
     }
 
     const numbers = text.trim().split(/\s+/);
@@ -191,7 +203,7 @@ const ConverterTools: React.FC = () => {
       }
 
       if (isNaN(num)) {
-        conversions.push(`❌ 无法解析：${numStr}`);
+        conversions.push(t('common.cannotParse', { value: numStr }));
         continue;
       }
 
@@ -203,9 +215,11 @@ const ConverterTools: React.FC = () => {
       conversions.push('');
     }
 
-    const result = `🔢 进制转换结果\n\n${conversions.join('\n')}\n💡 输入支持：\n• 十进制：123\n• 十六进制：0x7B 或 0X7B\n• 二进制：0b1111011 或 0B1111011\n• 八进制：0o173 或 0O173`;
+    const result = t('common.numberBaseConversionResult', { 
+      conversions: conversions.join('\n')
+    });
 
-    toast.success('✅ 进制转换完成！');
+    toast.success(t('common.numberBaseConversionComplete'));
     return { result };
   };
 
@@ -289,9 +303,24 @@ const ConverterTools: React.FC = () => {
     const rgbColor = `rgb(${r}, ${g}, ${b})`;
     const cmykColor = `cmyk(${Math.round(c * 100)}%, ${Math.round(m * 100)}%, ${Math.round(y * 100)}%, ${Math.round(k * 100)}%)`;
 
-    const result = `🎨 颜色格式转换结果\n\n🎯 输入颜色：${text}\n\n🔄 转换结果：\n• HEX：${hexColor}\n• RGB：${rgbColor}\n• HSL：${hslColor}\n• CMYK：${cmykColor}\n\n📊 颜色分析：\n• 红色分量：${r} (${((r/255)*100).toFixed(1)}%)\n• 绿色分量：${g} (${((g/255)*100).toFixed(1)}%)\n• 蓝色分量：${b} (${((b/255)*100).toFixed(1)}%)\n• 色相：${Math.round(h * 360)}°\n• 饱和度：${Math.round(s * 100)}%\n• 亮度：${Math.round(l * 100)}%\n\n💡 支持格式：HEX(#FF5733)、RGB(rgb(255,87,51))、颜色名称(red)`;
+    const result = t('common.colorConversionResult', {
+      input: text,
+      hex: hexColor,
+      rgb: rgbColor,
+      hsl: hslColor,
+      cmyk: cmykColor,
+      r: r,
+      rPercent: ((r/255)*100).toFixed(1),
+      g: g,
+      gPercent: ((g/255)*100).toFixed(1),
+      b: b,
+      bPercent: ((b/255)*100).toFixed(1),
+      hue: Math.round(h * 360),
+      saturation: Math.round(s * 100),
+      lightness: Math.round(l * 100)
+    });
 
-    toast.success('✅ 颜色转换完成！');
+    toast.success(t('common.colorConversionComplete'));
     return { result };
   };
 
@@ -318,15 +347,15 @@ const ConverterTools: React.FC = () => {
     // 主要时区转换
     const timezones = [
       { name: 'UTC', offset: 0, code: 'UTC' },
-      { name: '北京时间', offset: 8, code: 'CST' },
-      { name: '东京时间', offset: 9, code: 'JST' },
-      { name: '纽约时间', offset: -5, code: 'EST' }, // 冬令时
-      { name: '洛杉矶时间', offset: -8, code: 'PST' }, // 冬令时
-      { name: '伦敦时间', offset: 0, code: 'GMT' }, // 冬令时
-      { name: '巴黎时间', offset: 1, code: 'CET' }, // 冬令时
-      { name: '莫斯科时间', offset: 3, code: 'MSK' },
-      { name: '悉尼时间', offset: 11, code: 'AEDT' }, // 夏令时
-      { name: '印度时间', offset: 5.5, code: 'IST' }
+          { name: t('common.timezones.beijing'), offset: 8, code: 'CST' },
+    { name: t('common.timezones.tokyo'), offset: 9, code: 'JST' },
+    { name: t('common.timezones.newyork'), offset: -5, code: 'EST' }, // Winter time
+    { name: t('common.timezones.losangeles'), offset: -8, code: 'PST' }, // Winter time
+    { name: t('common.timezones.london'), offset: 0, code: 'GMT' }, // Winter time
+    { name: t('common.timezones.paris'), offset: 1, code: 'CET' }, // Winter time
+    { name: t('common.timezones.moscow'), offset: 3, code: 'MSK' },
+    { name: t('common.timezones.sydney'), offset: 11, code: 'AEDT' }, // Summer time
+    { name: t('common.timezones.india'), offset: 5.5, code: 'IST' }
     ];
 
     const conversions = timezones.map(tz => {
@@ -341,26 +370,29 @@ const ConverterTools: React.FC = () => {
       return `${tz.name} (${tz.code}): ${timeStr} (UTC${offsetStr})`;
     });
 
-    const result = `🌍 时区转换结果\n\n📅 输入时间：${targetDate.toISOString().slice(0, 19).replace('T', ' ')}\n\n🔄 各时区时间：\n${conversions.join('\n')}\n\n⚠️ 注意：\n• 夏令时/冬令时可能影响实际时间\n• 建议使用具体日期时间进行精确转换\n\n💡 输入格式示例：\n• 2024-01-01 12:00:00\n• 2024/01/01 12:00\n• 留空显示当前时间`;
+    const result = t('common.timezoneConversionResult', {
+      inputTime: targetDate.toISOString().slice(0, 19).replace('T', ' '),
+      conversions: conversions.join('\n')
+    });
 
-    toast.success('✅ 时区转换完成！');
+    toast.success(t('common.timezoneConversionComplete'));
     return { result };
   };
 
   // 图片格式转换器（使用Canvas API）
   const processImageConverter = async (input?: string | File) => {
     if (!(input instanceof File)) {
-      throw new Error('请选择图片文件');
+      throw new Error(t('common.pleaseSelectImageFile'));
     }
 
     if (!input.type.startsWith('image/')) {
-      throw new Error('请选择有效的图片文件');
+      throw new Error(t('common.errors.pleaseSelectValidImageFile'));
     }
 
     toast.info('正在处理图片转换...');
 
     return new Promise<{ result?: string; downloadUrl?: string; fileName?: string }>((resolve, reject) => {
-      const img = new Image();
+      const img = document.createElement('img') as HTMLImageElement;
       img.onload = () => {
         // 创建Canvas
         const canvas = document.createElement('canvas');
@@ -397,9 +429,15 @@ const ConverterTools: React.FC = () => {
           }
         });
 
-        const result = `🖼️ 图片格式转换结果\n\n📁 原始文件：${input.name}\n📏 尺寸：${img.width} × ${img.height} 像素\n📦 原始大小：${(input.size / 1024).toFixed(2)} KB\n\n🔄 转换结果：\n${conversions.join('\n')}\n\n💡 说明：\n• PNG：无损压缩，支持透明\n• JPEG：有损压缩，文件较小\n• WebP：现代格式，压缩效果好\n\n⬇️ 点击下载按钮获取PNG格式`;
+        const result = t('common.imageConversionResult', {
+          fileName: input.name,
+          width: img.width,
+          height: img.height,
+          size: (input.size / 1024).toFixed(2),
+          conversions: conversions.join('\n')
+        });
 
-        toast.success('✅ 图片转换完成！');
+        toast.success(t('common.imageConversionComplete'));
         resolve({ result, downloadUrl, fileName });
       };
 
@@ -414,11 +452,11 @@ const ConverterTools: React.FC = () => {
   // 音频格式转换器（模拟FFmpeg.js）
   const processAudioConverter = async (input?: string | File) => {
     if (!(input instanceof File)) {
-      throw new Error('请选择音频文件');
+      throw new Error(t('common.errors.pleaseSelectAudioFile'));
     }
 
     if (!input.type.startsWith('audio/')) {
-      throw new Error('请选择有效的音频文件');
+      throw new Error(t('common.errors.pleaseSelectValidAudioFile'));
     }
 
     toast.info('正在分析音频文件...');
@@ -443,9 +481,13 @@ const ConverterTools: React.FC = () => {
     const downloadUrl = URL.createObjectURL(blob);
     const fileName = input.name.replace(/\.[^.]+$/, '_converted.txt');
 
-    const result = `🎵 音频格式转换结果\n\n📁 原始文件：${input.name}\n📦 文件大小：${(input.size / 1024 / 1024).toFixed(2)} MB\n\n🔄 支持转换格式：\n${conversions.join('\n')}\n\n💡 FFmpeg.js 功能：\n• 支持几乎所有音频格式转换\n• 可调整比特率、采样率\n• 支持音频剪辑和合并\n• 完全在浏览器中处理\n\n⚠️ 演示模式：实际部署时会加载FFmpeg.js进行真实转换`;
+    const result = t('common.audioConversionResult', {
+      fileName: input.name,
+      size: (input.size / 1024 / 1024).toFixed(2),
+      conversions: conversions.join('\n')
+    });
 
-    toast.success('✅ 音频分析完成！');
+    toast.success(t('common.audioAnalysisComplete'));
     return { result, downloadUrl, fileName };
   };
 
@@ -467,7 +509,7 @@ const ConverterTools: React.FC = () => {
     ];
 
     if (!supportedTypes.includes(input.type) && !input.name.match(/\.(pdf|docx?|xlsx?|csv|json|xml|txt)$/i)) {
-      throw new Error('不支持的文档格式');
+      throw new Error(t('common.errors.unsupportedDocumentFormat'));
     }
 
     toast.info('正在分析文档格式...');
@@ -494,9 +536,14 @@ const ConverterTools: React.FC = () => {
     const downloadUrl = URL.createObjectURL(blob);
     const fileName = input.name.replace(/\.[^.]+$/, '_converted.txt');
 
-    const result = `📄 文档格式转换结果\n\n📁 原始文件：${input.name}\n📦 文件大小：${(input.size / 1024).toFixed(2)} KB\n📅 文件类型：${input.type || '未知'}\n\n🔄 支持的转换：\n${conversionList.join('\n')}\n\n🛠️ CDN库支持：\n• PDF-lib: PDF操作和转换\n• SheetJS: Excel文件处理\n• Mammoth.js: Word文档转换\n• Papa Parse: CSV文件解析\n\n⚠️ 演示模式：实际部署时会动态加载相应CDN库`;
+    const result = t('common.documentAnalysisResult', {
+      fileName: input.name,
+      size: (input.size / 1024).toFixed(2),
+      type: input.type || '未知',
+      conversions: conversionList.join('\n')
+    });
 
-    toast.success('✅ 文档分析完成！');
+    toast.success(t('common.documentAnalysisComplete'));
     return { result, downloadUrl, fileName };
   };
 
@@ -510,7 +557,7 @@ const ConverterTools: React.FC = () => {
     }
 
     if (!text.trim()) {
-      throw new Error('请输入要转换编码的文本');
+      throw new Error(t('common.enterTextForEncoding'));
     }
 
     // URL编码/解码
@@ -540,17 +587,27 @@ const ConverterTools: React.FC = () => {
       char.charCodeAt(0).toString(16).padStart(2, '0')
     ).join(' ');
 
-    const result = `🔤 编码转换结果\n\n📝 原始文本：\n${text.substring(0, 100)}${text.length > 100 ? '...' : ''}\n\n🔄 各种编码格式：\n\n• URL编码：\n${urlEncoded.substring(0, 200)}${urlEncoded.length > 200 ? '...' : ''}\n\n• Base64编码：\n${base64Encoded.substring(0, 200)}${base64Encoded.length > 200 ? '...' : ''}\n\n• HTML实体编码：\n${htmlEncoded.substring(0, 200)}${htmlEncoded.length > 200 ? '...' : ''}\n\n• Unicode编码：\n${unicodeEncoded.substring(0, 200)}${unicodeEncoded.length > 200 ? '...' : ''}\n\n• 十六进制编码：\n${hexEncoded.substring(0, 200)}${hexEncoded.length > 200 ? '...' : ''}\n\n📊 编码统计：\n• 原文长度：${text.length}\n• URL编码长度：${urlEncoded.length}\n• Base64编码长度：${base64Encoded.length}\n\n✅ 解码验证：\n• URL解码：${urlDecoded === text ? '正确' : '错误'}\n• Base64解码：${base64Decoded === text ? '正确' : '错误'}`;
+    const result = t('common.encodingConversionResult', {
+      originalText: text.substring(0, 100) + (text.length > 100 ? '...' : ''),
+      urlEncoded: urlEncoded.substring(0, 200) + (urlEncoded.length > 200 ? '...' : ''),
+      base64Encoded: base64Encoded.substring(0, 200) + (base64Encoded.length > 200 ? '...' : ''),
+      htmlEncoded: htmlEncoded.substring(0, 200) + (htmlEncoded.length > 200 ? '...' : ''),
+      originalLength: text.length,
+      urlLength: urlEncoded.length,
+      base64Length: base64Encoded.length,
+      urlDecoded: urlDecoded === text ? t('common.correct') : t('common.error'),
+      base64Decoded: base64Decoded === text ? t('common.correct') : t('common.error')
+    });
 
-    toast.success('✅ 编码转换完成！');
+    toast.success(t('common.encodingConversionComplete'));
     return { result };
   };
 
   const tools: ConverterTool[] = [
     {
       id: 'unit-converter',
-      name: '单位转换器',
-      description: '长度、重量、温度等各种单位间的转换',
+      name: t('common.unitConverter'),
+      description: t('common.unitConverterDesc'),
       icon: Ruler,
       popular: true,
       inputType: 'text',
@@ -558,8 +615,8 @@ const ConverterTools: React.FC = () => {
     },
     {
       id: 'currency-converter',
-      name: '货币转换器',
-      description: '模拟汇率转换和计算（演示数据）',
+      name: t('common.currencyConverter'),
+      description: t('common.currencyConverterDesc'),
       icon: DollarSign,
       popular: true,
       inputType: 'text',
@@ -567,8 +624,8 @@ const ConverterTools: React.FC = () => {
     },
     {
       id: 'number-base-converter',
-      name: '进制转换器',
-      description: '二进制、八进制、十进制、十六进制间转换',
+      name: t('common.numberBaseConverter'),
+      description: t('common.numberBaseConverterDesc'),
       icon: Binary,
       popular: true,
       inputType: 'text',
@@ -584,40 +641,40 @@ const ConverterTools: React.FC = () => {
     },
     {
       id: 'timezone-converter',
-      name: '时区转换器',
-      description: '不同时区间的时间转换和计算',
+      name: t('common.timezoneConverter'),
+      description: t('common.timezoneConverterDesc'),
       icon: Globe,
       inputType: 'text',
       processingFunction: processTimezoneConverter
     },
     {
       id: 'image-format-converter',
-      name: '图片格式转换',
-      description: 'JPG、PNG、WebP等图片格式转换（Canvas API）',
+      name: t('common.imageConverter'),
+      description: t('common.imageConverterDesc'),
       icon: Image,
       inputType: 'file',
       processingFunction: processImageConverter
     },
     {
       id: 'audio-format-converter',
-      name: '音频格式转换',
-      description: 'MP3、WAV、AAC等音频格式转换（FFmpeg.js）',
+      name: t('common.audioConverter'),
+      description: t('common.audioConverterDesc'),
       icon: Music,
       inputType: 'file',
       processingFunction: processAudioConverter
     },
     {
       id: 'document-format-converter',
-      name: '文档格式转换',
-      description: 'PDF、Word、Excel等文档格式转换（CDN库）',
+      name: t('common.documentConverter'),
+      description: t('common.documentConverterDesc'),
       icon: FileText,
       inputType: 'file',
       processingFunction: processDocumentConverter
     },
     {
       id: 'encoding-converter',
-      name: '编码转换器',
-      description: 'UTF-8、Base64、URL等字符编码转换',
+      name: t('common.encodingConverter'),
+      description: t('common.encodingConverterDesc'),
       icon: Type,
       inputType: 'text',
       processingFunction: processEncodingConverter
@@ -635,17 +692,17 @@ const ConverterTools: React.FC = () => {
 
   const handleProcess = async () => {
     if (!selectedTool) {
-      toast.error('请选择一个工具');
+      toast.error(t('common.selectTool'));
       return;
     }
 
     if (selectedTool.inputType === 'text' && !textInput.trim()) {
-      toast.error('请输入文本');
+      toast.error(t('common.enterText'));
       return;
     }
 
     if (selectedTool.inputType === 'file' && !file) {
-      toast.error('请选择文件');
+      toast.error(t('common.selectFile'));
       return;
     }
 
@@ -669,8 +726,8 @@ const ConverterTools: React.FC = () => {
         setFileName(processResult.fileName || 'converted_file');
       }
     } catch (error) {
-      console.error('处理错误:', error);
-      toast.error((error as Error).message || '处理失败，请重试');
+      console.error(t('common.processingError'), error);
+      toast.error((error as Error).message || t('common.processingFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -751,14 +808,14 @@ const ConverterTools: React.FC = () => {
                     value={textInput}
                     onChange={(e) => setTextInput(e.target.value)}
                     className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder={
-                      selectedTool.id === 'unit-converter' ? '请输入数值和单位，如：100 米' :
-                      selectedTool.id === 'currency-converter' ? '请输入金额和货币，如：100 USD' :
-                      selectedTool.id === 'number-base-converter' ? '请输入数字，如：123 或 0x7B' :
-                      selectedTool.id === 'color-converter' ? '请输入颜色值，如：#FF5733 或 red' :
-                      selectedTool.id === 'timezone-converter' ? '请输入日期时间，如：2024-01-01 12:00:00' :
-                      '请输入要处理的文本...'
-                    }
+                                          placeholder={
+                        selectedTool.id === 'unit-converter' ? t('common.unitConverter.enterValueAndUnit') :
+                        selectedTool.id === 'currency-converter' ? t('common.enterAmountAndCurrency') :
+                        selectedTool.id === 'number-base-converter' ? t('common.enterNumber') :
+                        selectedTool.id === 'color-converter' ? t('common.enterColorValue') :
+                        selectedTool.id === 'timezone-converter' ? t('common.enterDateTime') :
+                        t('common.enterTextToProcess')
+                      }
                   />
                 </div>
               )}
@@ -808,7 +865,7 @@ const ConverterTools: React.FC = () => {
                   disabled={isProcessing || (selectedTool.inputType === 'text' && !textInput.trim()) || (selectedTool.inputType === 'file' && !file)}
                   className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isProcessing ? '处理中...' : '开始转换'}
+                  {isProcessing ? t('common.processing') : t('common.startConverting')}
                 </button>
                 {downloadUrl && (
                   <button
@@ -930,6 +987,405 @@ const ConverterTools: React.FC = () => {
                       <span>使用工具</span>
                       <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的转换工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Calculator className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">精确转换</h3>
+                <p className="text-gray-600 text-sm">
+                  高精度的数学计算，确保转换结果准确可靠
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多格式支持</h3>
+                <p className="text-gray-600 text-sm">
+                  支持单位、颜色、编码等多种格式相互转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Globe className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">实时处理</h3>
+                <p className="text-gray-600 text-sm">
+                  即时转换，本地处理，保护数据隐私
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Binary className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">专业算法</h3>
+                <p className="text-gray-600 text-sm">
+                  基于标准算法实现，支持复杂的格式转换
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ConverterTools;
                       </svg>
                     </div>
                   </div>

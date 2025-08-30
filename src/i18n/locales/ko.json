@@ -1,24 +1,1617 @@
 {
+  "common": {
+    "maintainAspectRatio": "비율 유지",
+    "xmlParseError": "XML parsing failed, please check file format",
+    "tools": {
+      "fileTools": {
+        "excelToXml": "Excel에서 XML로",
+        "excelToXmlDesc": "Excel 파일을 표준 XML 형식으로 변환",
+        "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
+        "csvToExcelDesc": "CSV 파일을 Excel 형식으로 변환",
+        "jsonToXmlDesc": "JSON 파일을 XML 형식으로 변환",
+        "csvToExcel": "CSV에서 Excel로",
+        "xmlToExcel": "XML에서 Excel로",
+        "jsonToXml": "JSON에서 XML로",
+        "xmlToCsvDesc": "Convert XML files to CSV format",
+        "csvSplitDesc": "Split large CSV files into smaller chunks by row count",
+        "xmlToJson": "XML에서 JSON으로",
+        "csvSplit": "CSV File Split",
+        "excelSplit": "엑셀 파일 분할",
+        "csvToJson": "CSV to JSON",
+        "excelSplitDesc": "워크시트 또는 행 수별로 엑셀 파일 분할",
+        "csvToJsonDesc": "Convert CSV files to JSON format",
+        "xmlToCsv": "XML to CSV",
+        "xmlToExcelDesc": "XML 파일을 Excel에서 읽을 수 있는 CSV 형식으로 변환"
+      }
+    },
+    "developerFriendly": "개발자 친화적",
+    "instantResults": "즉시 결과",
+    "compressionQuality": "압축 품질",
+    "downloadImage": "이미지 다운로드",
+    "characters": "문자",
+    "duplicateRemovalComplete": "✅ 중복 제거 완료!",
+    "audioConversionResult": "🎵 Audio Format Conversion Result\n\n📁 Original file: {{fileName}}\n📦 File size: {{size}} MB\n\n🔄 Supported conversion formats:\n{{conversions}}\n\n💡 FFmpeg.js features:\n• Supports almost all audio format conversions\n• Can adjust bitrate, sample rate\n• Supports audio editing and merging\n• Completely processed in browser\n\n⚠️ Demo mode: Will load FFmpeg.js for real conversion in actual deployment",
+    "currencies": {
+      "eur": "유로",
+      "aud": "호주 달러",
+      "jpy": "일본 엔",
+      "cad": "캐나다 달러",
+      "cny": "중국 위안",
+      "krw": "South Korean Won",
+      "gbp": "British Pound",
+      "usd": "US Dollar"
+    },
+    "croppingImage": "Cropping image (center square)...",
+    "noTextRecognized": "❌ No text recognized, please ensure the image is clear and contains text.",
+    "popular": "Popular",
+    "wordCountComplete": "✅ 단어 수 계산 완료!",
+    "advancedProcessing": "Advanced Image Processing",
+    "imageConversionResult": "🖼️ Image Format Conversion Result\n\n📁 Original file: {{fileName}}\n📏 Dimensions: {{width}} × {{height}} pixels\n📦 Original size: {{size}} KB\n\n🔄 Conversion results:\n{{conversions}}\n\n💡 Description:\n• PNG: Lossless compression, supports transparency\n• JPEG: Lossy compression, smaller file size\n• WebP: Modern format, good compression\n\n⬇️ Click download button to get PNG format",
+    "timezoneConverterDesc": "Global timezone time conversion and calculation",
+    "xmlNoDataElements": "XML file has no data elements",
+    "textDiffComplete": "✅ 텍스트 차이점 확인 완료!",
+    "imageEnhancementComplete": "Image enhancement complete! Brightness and contrast improved",
+    "audioConverter": "Audio Converter",
+    "acceptedFormats": "Accepted formats",
+    "download": "Download",
+    "encodingConverterDesc": "URL, Base64, HTML entity and other encoding conversion",
+    "downloadFile": "Download File",
+    "outputFormat": "Output Format",
+    "smartProcessingDesc": "Advanced algorithms ensure accuracy and efficiency in data processing",
+    "encodingConversionResult": "🔤 Encoding Conversion Result\n\n📝 Original text:\n{{originalText}}\n\n🔄 Various encoding formats:\n\n• URL encoding:\n{{urlEncoded}}\n\n• Base64 encoding:\n{{base64Encoded}}\n\n• HTML entity encoding:\n{{htmlEncoded}}\n\n📊 Encoding statistics:\n• Original length: {{originalLength}}\n• URL encoding length: {{urlLength}}\n• Base64 encoding length: {{base64Length}}\n\n✅ Decoding verification:\n• URL decoding: {{urlDecoded}}\n• Base64 decoding: {{base64Decoded}}",
+    "mostPopularTools": "가장 인기있는 도구",
+    "imageCompressionError": "Image compression failed",
+    "timezones": {
+      "losangeles": "Los Angeles Time",
+      "moscow": "Moscow Time",
+      "paris": "Paris Time",
+      "tokyo": "Tokyo Time",
+      "beijing": "Beijing Time",
+      "india": "India Time",
+      "sydney": "Sydney Time",
+      "london": "London Time",
+      "newyork": "New York Time"
+    },
+    "selectTool": "Please select a tool",
+    "videoConversionFailed": "비디오 변환에 실패했습니다. 다시 시도해주세요",
+    "encodingConversionComplete": "✅ Encoding conversion complete!",
+    "back": "Back",
+    "imageConversionError": "Image conversion failed",
+    "uploadFiles": "Upload Files",
+    "convertingCSVToExcel": "Converting CSV to Excel format...",
+    "imageCroppingError": "Image cropping failed",
+    "options": "Options",
+    "processingFailedRetry": "Processing failed, please try again",
+    "success": "Success",
+    "imageConverter": "Image Converter",
+    "enterColorValue": "Please enter color value, e.g.: #FF5733 or red",
+    "aiPoweredDesc": "Advanced AI algorithms for background removal and image enhancement",
+    "convertingXMLToExcel": "Converting XML to Excel format...",
+    "wordCount": "Word count",
+    "imageProcessingError": "Image processing failed",
+    "allFormats": "All Formats",
+    "loaded": "loaded",
+    "chineseAndEnglish": "중국어 + 영어",
+    "processingImage": "Processing image...",
+    "csvToExcelResult": "📄 CSV to Excel Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Data rows: {{rows}}\n• Data columns: {{columns}}\n• Data types: {{dataTypes}}\n\n💡 Conversion Description:\n• CSV data converted to Excel format\n• Auto-detects data types\n• Supports formulas and formatting\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated Excel file contains formatted worksheets\nSupports formula calculations and data analysis",
+    "securePrivate": "Secure & Private",
+    "startConverting": "Start Converting",
+    "unitConverterComplete": "✅ Unit conversion complete!",
+    "clickToSelectFile": "Click to select file",
+    "enterNumberToConvert": "Please enter number to convert",
+    "readyToEdit": "Ready to Edit Your Images?",
+    "imageConverterDesc": "Image format conversion (PNG, JPEG, WebP, etc.)",
+    "xmlToCsvComplete": "✅ XML to CSV complete! Generated {{rows}} rows of data",
+    "or": "or",
+    "imageResizingComplete": "Image resizing complete!",
+    "originalSize": "Original size",
+    "needLoadAdvancedPlugin": "Need to load advanced feature plugin",
+    "confirm": "Confirm",
+    "documentAnalysisResult": "📄 Document Analysis Result\n\n📁 File name: {{fileName}}\n📦 File size: {{size}} KB\n📅 File type: {{type}}\n\n🔄 Supported conversions:\n{{conversions}}\n\n🛠️ CDN library support:\n• PDF-lib: PDF operations and conversion\n• SheetJS: Excel file processing\n• Mammoth.js: Word document conversion\n• Papa Parse: CSV file parsing\n\n⚠️ Demo mode: Will dynamically load corresponding CDN libraries in actual deployment",
+    "csvNoValidDataRows": "CSV file has no valid data rows",
+    "selectFile": "Please select a file",
+    "csvFileEmpty": "CSV file is empty",
+    "loadPlugin": "Load Plugin",
+    "textRecognitionComplete": "✅ Text recognition complete! Recognized",
+    "convertingXMLToJson": "Converting XML to JSON format...",
+    "scaleRatio": "Scale Ratio",
+    "supportedFormats": "Supports JPG, PNG, WebP, GIF and other formats",
+    "originalPreview": "Original Preview",
+    "enterTextForQRCode": "Please enter content to generate QR code",
+    "copyText": "Copy Text",
+    "enterTextForURLEncoding": "Please enter URL or text to encode",
+    "uploadAndStart": "Upload your image and start editing with our powerful tools",
+    "unitConverterDesc": "Convert between length, weight, temperature and other units",
+    "trimmingVideo": "비디오를 트리밍 중 (처음 30초 추출)...",
+    "convertingImageFormat": "Converting image format...",
+    "characterCountComplete": "✅ 문자 수 계산 완료!",
+    "imageRotationError": "Image rotation failed",
+    "chooseVideoFile": "Choose Video File",
+    "csvSplitResult": "📄 CSV Split Processing Result\n\n✅ Split Complete!\n\n📊 Processing Statistics:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Total lines: {{totalLines}}\n• Data lines: {{dataLines}}\n• After split: {{chunksCount}} files\n• Each file: max {{chunkSize}} lines\n\n📋 First file preview:\n{{preview}}\n\n💡 Note: Currently downloading the first chunk file, containing header and first {{firstChunkLines}} rows of data.",
+    "processingComplete": "Processing complete!",
+    "imageCompressionComplete": "Image compression complete!",
+    "caseConversionComplete": "✅ 대소문자 변환 완료!",
+    "videoConvertedToMP4": "비디오가 MP4 형식으로 변환되었습니다",
+    "numberBaseConverter": "Number Base Converter",
+    "enterAmountAndCurrency": "Please enter amount and currency, e.g.: 100 USD",
+    "enterCorrectCurrencyFormat": "Please enter correct format, e.g.: 100 USD",
+    "needLoadPluginDesc": "This feature requires loading professional plugins from CDN, click the button below to start loading",
+    "allTools": "All Tools",
+    "cannotParse": "❌ Cannot parse: {{value}}",
+    "processingResult": "처리 결과",
+    "videoCompressionComplete": "✅ 비디오 압축 완료! {{originalSize}}MB → {{compressedSize}}MB ({{reduction}}% 감소)",
+    "audioConverterDesc": "Audio format conversion (MP3, WAV, AAC, etc.)",
+    "encodingConverter": "Encoding Converter",
+    "textSortComplete": "✅ 텍스트 정렬 완료!",
+    "csvNeedAtLeast2Rows": "CSV file needs at least 2 rows of data",
+    "csvSplitComplete": "✅ CSV split complete! Generated {{count}} files",
+    "xmlToExcelResult": "📄 XML to Excel Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated tables: {{tableCount}}\n\n💡 Conversion Description:\n• XML structure parsed to table format\n• Supports nested node expansion\n• Auto-detects data types\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated Excel file contains multiple worksheets\nEach worksheet corresponds to an XML node type",
+    "loadingHandwritingRecognitionEngine": "Loading handwriting recognition engine...",
+    "startProcessing": "Start Processing",
+    "csvToExcelComplete": "✅ CSV to Excel complete! Generated {{rows}} rows of data",
+    "videoTrimComplete": "✅ 비디오 트리밍 완료! 처음 30초를 추출했습니다 ({{size}}MB)",
+    "currencyConversionResult": "💰 Currency Conversion Result\n\n📝 Input: {{amount}} {{currency}} ({{currencyName}})\n\n🔄 Conversion Results:\n{{conversions}}\n\n⚠️ Note: Exchange rates are simulated data, please refer to bank rates for actual transactions\n\n💡 Supported currencies: USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD",
+    "enhancementStrength": "향상 강도",
+    "timezoneConverter": "Timezone Converter",
+    "timezoneConversionComplete": "✅ Timezone conversion complete!",
+    "toolNotFoundDesc": "The requested tool could not be found.",
+    "clickToSelectImageFile": "Click to select image file",
+    "estimatedSize": "압축 후 예상 크기",
+    "convertingXMLToCsv": "Converting XML to CSV format...",
+    "textReverseComplete": "✅ 텍스트 반전 완료!",
+    "resizingImage": "Resizing image...",
+    "textFormattingComplete": "✅ 텍스트 포맷팅 완료!",
+    "csvToJsonComplete": "✅ CSV to JSON complete! Generated {{objectCount}} objects",
+    "documentConverterDesc": "Document format analysis and conversion support",
+    "useTool": "Use Tool",
+    "formatConversion": "Format Conversion",
+    "enhancingImage": "Enhancing image...",
+    "enterText": "Please enter text",
+    "enterTextForEncoding": "Please enter text for encoding",
+    "convertingExcelToXml": "Converting Excel to XML format...",
+    "loadingOpenCV": "Loading OpenCV.js image processing engine...",
+    "cancel": "Cancel",
+    "toolNotFound": "Tool Not Found",
+    "compressingImage": "Compressing image...",
+    "colorConversionResult": "🎨 Color Format Conversion Result\n\n🎯 Input color: {{input}}\n\n🔄 Conversion Results:\n• HEX: {{hex}}\n• RGB: {{rgb}}\n• HSL: {{hsl}}\n• CMYK: {{cmyk}}\n\n📊 Color Analysis:\n• Red component: {{r}} ({{rPercent}}%)\n• Green component: {{g}} ({{gPercent}}%)\n• Blue component: {{b}} ({{bPercent}}%)\n• Hue: {{hue}}°\n• Saturation: {{saturation}}%\n• Lightness: {{lightness}}%\n\n💡 Supported formats: HEX(#FF5733), RGB(rgb(255,87,51)), color names(red)",
+    "parsingCSVFile": "Parsing CSV file...",
+    "needLoadPlugin": "Need to load plugin",
+    "enterDateTime": "Please enter date time, e.g.: 2024-01-01 12:00:00",
+    "xmlToExcelComplete": "✅ XML to Excel complete! Generated {{tableCount}} tables",
+    "jsonToXmlResult": "📄 JSON to XML Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed objects: {{objectCount}}\n• Generated nodes: {{nodeCount}}\n• XML depth: {{depth}} levels\n\n💡 Conversion Description:\n• JSON data converted to XML format\n• Maintains object structure\n• Supports arrays and nested objects\n• Facilitates data exchange\n\n🎯 Output Format:\nGenerated XML file has clear structure\nSupports complex data structures",
+    "results": "Results",
+    "formatConversionDesc": "Support lossless conversion between multiple file formats",
+    "reset": "Reset",
+    "dataSecurityDesc": "Local processing, data will not be uploaded to server, protecting privacy",
+    "timezoneConversionResult": "🌍 Timezone Conversion Result\n\n📅 Input time: {{inputTime}}\n\n🔄 Times in different timezones:\n{{conversions}}\n\n⚠️ Note:\n• Daylight saving time may affect actual time\n• Recommend using specific date and time for precise conversion\n\n💡 Input format examples:\n• 2024-01-01 12:00:00\n• 2024/01/01 12:00\n• Leave empty to show current time",
+    "fastProcessing": "빠른 처리",
+    "maximumFiles": "Maximum {{count}} file{{count, plural, one {} other {s}}}",
+    "upload": "Upload",
+    "allFormatsDesc": "Support for JPG, PNG, WebP, GIF, and many other image formats",
+    "numberBaseConversionComplete": "✅ Number base conversion complete!",
+    "videoCompressionFailed": "비디오 압축에 실패했습니다. 다시 시도해주세요",
+    "aiPowered": "AI-Powered",
+    "csvToJsonResult": "📄 CSV to JSON Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Data rows: {{rows}}\n• Data columns: {{columns}}\n• Generated objects: {{objectCount}}\n\n💡 Conversion Description:\n• CSV data converted to JSON format\n• Each row corresponds to an object\n• Column headers as object properties\n• Supports data type detection\n\n🎯 Output Format:\nGenerated JSON file contains object arrays\nFacilitates JavaScript processing and analysis",
+    "unknownError": "Unknown error",
+    "colorConverter": "Color Converter",
+    "imageEnhancementError": "Image enhancement failed",
+    "ocrRecognitionFailed": "OCR recognition failed, please try again",
+    "documentAnalysisComplete": "✅ Document analysis complete!",
+    "estimated": "estimated",
+    "chooseFiles": "Choose Files",
+    "clickToSelect": "click to select",
+    "initializationError": "Initialization failed",
+    "excelSplitResult": "📊 Excel Split Processing Result\n\n✅ Processing Complete!\n\n📋 File Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Estimated rows: {{estimatedRows}}\n• Suggested split: {{sheetsCount}} worksheets\n\n💡 Processing Description:\n• Excel file split by worksheets\n• Each file contains about 1000 rows\n• Maintains original format and formulas\n• Auto-generates filenames\n\n🎯 Demo Output:\nGenerated files use CSV format for easy preview\nContains headers and sample data",
+    "percentComplete": "Complete",
+    "dragDropFile": "Drag and drop your file here",
+    "recognizingText": "Recognizing text...",
+    "convertingCSVToJson": "Converting CSV to JSON format...",
+    "resultCopied": "Result copied to clipboard",
+    "loadingFFmpegEngine": "FFmpeg.js 엔진을 로딩 중...",
+    "imageProcessingFailed": "Image processing failed, please try again",
+    "excelToXmlResult": "📄 Excel to XML Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Worksheets: {{sheetsCount}}\n• Total rows: {{totalRows}}\n• Total columns: {{totalColumns}}\n\n💡 Conversion Description:\n• Excel data converted to XML format\n• Each worksheet corresponds to an XML node\n• Maintains data structure and types\n• Supports complex nested relationships\n\n🎯 Output Format:\nGenerated XML file has clear structure\nFacilitates data exchange and processing",
+    "currencyConverterDesc": "Simulated exchange rate conversion and calculation (demo data)",
+    "fileSelected": "File selected",
+    "centerCropRatio": "Center Crop Ratio",
+    "englishAndNumbers": "영어 + 숫자",
+    "selected": "Selected:",
+    "chooseImageFile": "Choose Image File",
+    "error": "Error",
+    "loadFailed": "Load Failed",
+    "targetWidth": "Target Width (px)",
+    "videoFormatConversionComplete": "✅ 비디오 형식 변환 완료! MP4 형식으로 변환되었습니다 ({{size}}MB)",
+    "rotationAngle": "Rotation Angle (degrees)",
+    "processResult": "Process Result",
+    "imageCroppingComplete": "Image cropping complete!",
+    "return": "Return",
+    "loadingToolDetails": "Loading tool details...",
+    "unitConverter": "Unit Converter",
+    "loadingPlugin": "Loading Plugin",
+    "remove": "Remove",
+    "imageLoadError": "Image loading failed, please check file format",
+    "colorConverterDesc": "Convert between HEX, RGB, HSL, CMYK color formats",
+    "enterJSONText": "Please enter JSON text",
+    "needCSVFile": "CSV 파일이 필요합니다",
+    "colorConversionComplete": "✅ Color conversion complete!",
+    "generatedText": "Generated Text",
+    "compressingVideoFile": "비디오 파일을 압축 중...",
+    "numberBaseConverterDesc": "Convert between binary, octal, decimal, hexadecimal",
+    "currencyConverter": "Currency Converter",
+    "selectImageFile": "Select Image File",
+    "jpegLossy": "JPEG (Lossy)",
+    "extractedText": "Extracted Text",
+    "imageRotationComplete": "Image rotation complete!",
+    "retryLoad": "Retry Load",
+    "instantResultsDesc": "Process images instantly without waiting or uploading to servers",
+    "excelSplitComplete": "✅ Excel split complete! Generated {{count}} files",
+    "excelToXmlComplete": "✅ Excel to XML complete! Generated {{sheetsCount}} nodes",
+    "next": "Next",
+    "lineCountComplete": "✅ 줄 수 계산 완료!",
+    "webpBetter": "WEBP (Smaller & Clearer)",
+    "enterTextForHash": "해시를 생성할 텍스트를 입력하세요",
+    "imageFormatConversionComplete": "Image format conversion complete! Converted to",
+    "xmlToJsonResult": "📄 XML to JSON Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated objects: {{objectCount}}\n• JSON depth: {{depth}} levels\n\n💡 Conversion Description:\n• XML structure converted to JSON format\n• Maintains node hierarchy\n• Supports attributes and text content\n• Facilitates JavaScript processing\n\n🎯 Output Format:\nGenerated JSON file has complete structure\nSupports nested objects and arrays",
+    "processFilesToSeeResults": "Process your files to see results here",
+    "xmlToJsonComplete": "✅ XML to JSON complete! Generated {{objectCount}} objects",
+    "goHome": "Go Home",
+    "imageProcessingComplete": "Image processing complete!",
+    "dropFilesHere": "Drop files here or click to browse",
+    "convertingJsonToXml": "Converting JSON to XML format...",
+    "actualSize": "Actual size",
+    "selectedFiles": "Selected Files",
+    "pngLossless": "PNG (Lossless)",
+    "processingFailed": "Processing failed, please try again",
+    "processingError": "Processing error",
+    "supportedLanguages": "Supported Languages",
+    "loadingTesseractOCREngine": "Loading Tesseract.js OCR engine...",
+    "xmlToCsvResult": "📄 XML to CSV Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated rows: {{rows}}\n• Generated columns: {{columns}}\n\n💡 Conversion Description:\n• XML structure flattened to CSV format\n• Supports multi-level node expansion\n• Auto-generates column headers\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated CSV file has clear structure\nFacilitates data analysis and processing",
+    "processing": "Processing...",
+    "fileSize": "File size",
+    "canvasContextError": "Cannot create Canvas context, please check browser compatibility",
+    "enterTextToProcess": "Please enter text to process...",
+    "loadComplete": "Load Complete",
+    "developerFriendlyDesc": "Provide rich coding and formatting tools to improve development efficiency",
+    "selectToolAndFile": "Please select a tool and file",
+    "currencyConversionComplete": "✅ Currency conversion complete!",
+    "copy": "Copy",
+    "smartProcessing": "스마트 처리",
+    "imageResizingError": "Image resizing failed",
+    "jsonToXmlComplete": "✅ JSON to XML complete! Generated {{nodeCount}} nodes",
+    "audioAnalysisComplete": "✅ Audio analysis complete!",
+    "documentConverter": "Document Converter",
+    "numberBaseConversionResult": "🔢 Number Base Conversion Result\n\n{{conversions}}\n💡 Input support:\n• Decimal: 123\n• Hexadecimal: 0x7B or 0X7B\n• Binary: 0b1111011 or 0B1111011\n• Octal: 0o173 or 0O173",
+    "enterNumber": "Please enter number, e.g.: 123 or 0x7B",
+    "recognizingImageText": "Recognizing text in image (Chinese & English)...",
+    "rotatingImage": "Rotating image...",
+    "processingExcelFile": "Processing Excel file...",
+    "processedResult": "Processed Result",
+    "dataSecurity": "Data Security",
+    "convertingVideoFormat": "비디오 형식을 변환 중 (MP4)...",
+    "correct": "Correct",
+    "process": "Process",
+    "quality": "Quality",
+    "imageConversionComplete": "✅ Image conversion complete!",
+    "errors": {
+      "pleaseSelectValidImageFile": "유효한 이미지 파일을 선택해주세요",
+      "pleaseSelectAudioFile": "오디오 파일을 선택해주세요",
+      "pleaseSelectValidAudioFile": "유효한 오디오 파일을 선택해주세요",
+      "unsupportedDocumentFormat": "지원되지 않는 문서 형식",
+      "csvFormatIncorrect": "CSV 파일 형식이 올바르지 않습니다",
+      "xmlFileRequired": "XML 파일이 필요합니다",
+      "xmlFormatError": "XML 형식 오류",
+      "xmlParseFailed": "XML 파싱 실패:",
+      "pleaseSelectTool": "도구를 선택해주세요",
+      "pleaseEnterText": "텍스트를 입력해주세요",
+      "pleaseSelectFile": "파일을 선택해주세요",
+      "processingFailed": "처리 실패, 다시 시도해주세요"
+    },
+    "clickToSelectImage": "클릭하여 이미지 선택",
+    "language": "언어"
+  },
+  "tools": {
+    "convertingVideoFormat": "convertingVideoFormat",
+    "common": {
+      "quality": "Quality",
+      "csvToExcelComplete": "✅ CSV to Excel complete! Generated {{rows}} rows of data",
+      "dataSecurityDesc": "Local processing, data will not be uploaded to server, protecting privacy",
+      "colorConversionResult": "🎨 Color Format Conversion Result\n\n🎯 Input color: {{input}}\n\n🔄 Conversion Results:\n• HEX: {{hex}}\n• RGB: {{rgb}}\n• HSL: {{hsl}}\n• CMYK: {{cmyk}}\n\n📊 Color Analysis:\n• Red component: {{r}} ({{rPercent}}%)\n• Green component: {{g}} ({{gPercent}}%)\n• Blue component: {{b}} ({{bPercent}}%)\n• Hue: {{hue}}°\n• Saturation: {{saturation}}%\n• Lightness: {{lightness}}%\n\n💡 Supported formats: HEX(#FF5733), RGB(rgb(255,87,51)), color names(red)",
+      "needLoadAdvancedPlugin": "Need to load advanced feature plugin",
+      "encodingConverter": "Encoding Converter",
+      "processingComplete": "Processing complete!",
+      "currencyConversionComplete": "✅ Currency conversion complete!",
+      "colorConverter": "Color Converter",
+      "advancedProcessing": "Advanced Image Processing",
+      "selectFile": "Please select a file",
+      "processFilesToSeeResults": "Process your files to see results here",
+      "return": "Return",
+      "processingError": "Processing error",
+      "next": "Next",
+      "imageProcessingFailed": "Image processing failed, please try again",
+      "imageRotationComplete": "Image rotation complete!",
+      "chooseFiles": "Choose Files",
+      "csvSplitResult": "📄 CSV Split Processing Result\n\n✅ Split Complete!\n\n📊 Processing Statistics:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Total lines: {{totalLines}}\n• Data lines: {{dataLines}}\n• After split: {{chunksCount}} files\n• Each file: max {{chunkSize}} lines\n\n📋 First file preview:\n{{preview}}\n\n💡 Note: Currently downloading the first chunk file, containing header and first {{firstChunkLines}} rows of data.",
+      "supportedLanguages": "Supported Languages",
+      "toolNotFoundDesc": "The requested tool could not be found.",
+      "ocrRecognitionFailed": "OCR recognition failed, please try again",
+      "imageProcessingError": "Image processing failed",
+      "extractedText": "Extracted Text",
+      "supportedFormats": "Supports JPG, PNG, WebP, GIF and other formats",
+      "convertingExcelToXml": "Converting Excel to XML format...",
+      "fastProcessing": "빠른 처리",
+      "xmlToExcelResult": "📄 XML to Excel Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated tables: {{tableCount}}\n\n💡 Conversion Description:\n• XML structure parsed to table format\n• Supports nested node expansion\n• Auto-detects data types\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated Excel file contains multiple worksheets\nEach worksheet corresponds to an XML node type",
+      "smartProcessing": "스마트 처리",
+      "securePrivate": "Secure & Private",
+      "imageEnhancementError": "Image enhancement failed",
+      "reset": "Reset",
+      "characters": "문자",
+      "unitConverterComplete": "✅ Unit conversion complete!",
+      "pngLossless": "PNG (Lossless)",
+      "loadingPlugin": "Loading Plugin",
+      "enterTextForEncoding": "Please enter text for encoding",
+      "percentComplete": "Complete",
+      "cancel": "Cancel",
+      "processResult": "Process Result",
+      "parsingCSVFile": "Parsing CSV file...",
+      "imageResizingError": "Image resizing failed",
+      "convertingCSVToExcel": "Converting CSV to Excel format...",
+      "loadingHandwritingRecognitionEngine": "Loading handwriting recognition engine...",
+      "enterText": "Please enter text",
+      "imageCroppingError": "Image cropping failed",
+      "processingExcelFile": "Processing Excel file...",
+      "documentConverter": "Document Converter",
+      "centerCropRatio": "Center Crop Ratio",
+      "initializationError": "Initialization failed",
+      "imageLoadError": "Image loading failed, please check file format",
+      "imageConverter": "Image Converter",
+      "processingResult": "처리 결과",
+      "imageConversionComplete": "✅ Image conversion complete!",
+      "colorConversionComplete": "✅ Color conversion complete!",
+      "excelToXmlComplete": "✅ Excel to XML complete! Generated {{sheetsCount}} nodes",
+      "estimated": "estimated",
+      "aiPowered": "AI-Powered",
+      "jpegLossy": "JPEG (Lossy)",
+      "uploadAndStart": "Upload your image and start editing with our powerful tools",
+      "dataSecurity": "Data Security",
+      "processing": "Processing...",
+      "imageCompressionError": "Image compression failed",
+      "imageRotationError": "Image rotation failed",
+      "excelSplitComplete": "✅ Excel split complete! Generated {{count}} files",
+      "copyText": "Copy Text",
+      "popular": "Popular",
+      "estimatedSize": "압축 후 예상 크기",
+      "csvNoValidDataRows": "CSV file has no valid data rows",
+      "options": "Options",
+      "toolNotFound": "Tool Not Found",
+      "clickToSelectFile": "Click to select file",
+      "needLoadPluginDesc": "This feature requires loading professional plugins from CDN, click the button below to start loading",
+      "useTool": "Use Tool",
+      "selectToolAndFile": "Please select a tool and file",
+      "selectTool": "Please select a tool",
+      "excelToXmlResult": "📄 Excel to XML Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Worksheets: {{sheetsCount}}\n• Total rows: {{totalRows}}\n• Total columns: {{totalColumns}}\n\n💡 Conversion Description:\n• Excel data converted to XML format\n• Each worksheet corresponds to an XML node\n• Maintains data structure and types\n• Supports complex nested relationships\n\n🎯 Output Format:\nGenerated XML file has clear structure\nFacilitates data exchange and processing",
+      "timezoneConversionComplete": "✅ Timezone conversion complete!",
+      "enterColorValue": "Please enter color value, e.g.: #FF5733 or red",
+      "smartProcessingDesc": "Advanced algorithms ensure accuracy and efficiency in data processing",
+      "readyToEdit": "Ready to Edit Your Images?",
+      "numberBaseConversionComplete": "✅ Number base conversion complete!",
+      "confirm": "Confirm",
+      "documentAnalysisResult": "📄 Document Analysis Result\n\n📁 File name: {{fileName}}\n📦 File size: {{size}} KB\n📅 File type: {{type}}\n\n🔄 Supported conversions:\n{{conversions}}\n\n🛠️ CDN library support:\n• PDF-lib: PDF operations and conversion\n• SheetJS: Excel file processing\n• Mammoth.js: Word document conversion\n• Papa Parse: CSV file parsing\n\n⚠️ Demo mode: Will dynamically load corresponding CDN libraries in actual deployment",
+      "colorConverterDesc": "Convert between HEX, RGB, HSL, CMYK color formats",
+      "loadingOpenCV": "Loading OpenCV.js image processing engine...",
+      "recognizingImageText": "Recognizing text in image (Chinese & English)...",
+      "noTextRecognized": "❌ No text recognized, please ensure the image is clear and contains text.",
+      "fileSize": "File size",
+      "audioAnalysisComplete": "✅ Audio analysis complete!",
+      "correct": "Correct",
+      "retryLoad": "Retry Load",
+      "chooseVideoFile": "Choose Video File",
+      "compressionQuality": "압축 품질",
+      "outputFormat": "Output Format",
+      "needLoadPlugin": "Need to load plugin",
+      "imageCompressionComplete": "Image compression complete!",
+      "chooseImageFile": "Choose Image File",
+      "csvToJsonResult": "📄 CSV to JSON Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Data rows: {{rows}}\n• Data columns: {{columns}}\n• Generated objects: {{objectCount}}\n\n💡 Conversion Description:\n• CSV data converted to JSON format\n• Each row corresponds to an object\n• Column headers as object properties\n• Supports data type detection\n\n🎯 Output Format:\nGenerated JSON file contains object arrays\nFacilitates JavaScript processing and analysis",
+      "enterNumber": "Please enter number, e.g.: 123 or 0x7B",
+      "timezoneConverterDesc": "Global timezone time conversion and calculation",
+      "currencyConverterDesc": "Simulated exchange rate conversion and calculation (demo data)",
+      "canvasContextError": "Cannot create Canvas context, please check browser compatibility",
+      "convertingJsonToXml": "Converting JSON to XML format...",
+      "xmlNoDataElements": "XML file has no data elements",
+      "allFormatsDesc": "Support for JPG, PNG, WebP, GIF, and many other image formats",
+      "generatedText": "Generated Text",
+      "formatConversion": "Format Conversion",
+      "excelSplitResult": "📊 Excel Split Processing Result\n\n✅ Processing Complete!\n\n📋 File Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Estimated rows: {{estimatedRows}}\n• Suggested split: {{sheetsCount}} worksheets\n\n💡 Processing Description:\n• Excel file split by worksheets\n• Each file contains about 1000 rows\n• Maintains original format and formulas\n• Auto-generates filenames\n\n🎯 Demo Output:\nGenerated files use CSV format for easy preview\nContains headers and sample data",
+      "download": "Download",
+      "maintainAspectRatio": "비율 유지",
+      "loadComplete": "Load Complete",
+      "imageConverterDesc": "Image format conversion (PNG, JPEG, WebP, etc.)",
+      "processingFailed": "Processing failed, please try again",
+      "instantResultsDesc": "Process images instantly without waiting or uploading to servers",
+      "textRecognitionComplete": "✅ Text recognition complete! Recognized",
+      "imageResizingComplete": "Image resizing complete!",
+      "enhancingImage": "Enhancing image...",
+      "upload": "Upload",
+      "developerFriendlyDesc": "Provide rich coding and formatting tools to improve development efficiency",
+      "enterTextToProcess": "Please enter text to process...",
+      "results": "Results",
+      "downloadFile": "Download File",
+      "formatConversionDesc": "Support lossless conversion between multiple file formats",
+      "copy": "Copy",
+      "xmlToJsonComplete": "✅ XML to JSON complete! Generated {{objectCount}} objects",
+      "audioConverterDesc": "Audio format conversion (MP3, WAV, AAC, etc.)",
+      "unknownError": "Unknown error",
+      "convertingXMLToExcel": "Converting XML to Excel format...",
+      "selectedFiles": "Selected Files",
+      "jsonToXmlComplete": "✅ JSON to XML complete! Generated {{nodeCount}} nodes",
+      "webpBetter": "WEBP (Smaller & Clearer)",
+      "enterNumberToConvert": "Please enter number to convert",
+      "csvFileEmpty": "CSV file is empty",
+      "clickToSelectImageFile": "Click to select image file",
+      "currencyConverter": "Currency Converter",
+      "selectImageFile": "Select Image File",
+      "encodingConversionComplete": "✅ Encoding conversion complete!",
+      "audioConverter": "Audio Converter",
+      "process": "Process",
+      "convertingCSVToJson": "Converting CSV to JSON format...",
+      "enterCorrectCurrencyFormat": "Please enter correct format, e.g.: 100 USD",
+      "dragDropFile": "Drag and drop your file here",
+      "xmlToJsonResult": "📄 XML to JSON Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated objects: {{objectCount}}\n• JSON depth: {{depth}} levels\n\n💡 Conversion Description:\n• XML structure converted to JSON format\n• Maintains node hierarchy\n• Supports attributes and text content\n• Facilitates JavaScript processing\n\n🎯 Output Format:\nGenerated JSON file has complete structure\nSupports nested objects and arrays",
+      "enterJSONText": "Please enter JSON text",
+      "encodingConverterDesc": "URL, Base64, HTML entity and other encoding conversion",
+      "allTools": "All Tools",
+      "numberBaseConverter": "Number Base Converter",
+      "downloadImage": "이미지 다운로드",
+      "startConverting": "Start Converting",
+      "instantResults": "즉시 결과",
+      "fileSelected": "File selected",
+      "enterTextForHash": "해시를 생성할 텍스트를 입력하세요",
+      "xmlToExcelComplete": "✅ XML to Excel complete! Generated {{tableCount}} tables",
+      "xmlToCsvResult": "📄 XML to CSV Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed nodes: {{nodeCount}}\n• Generated rows: {{rows}}\n• Generated columns: {{columns}}\n\n💡 Conversion Description:\n• XML structure flattened to CSV format\n• Supports multi-level node expansion\n• Auto-generates column headers\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated CSV file has clear structure\nFacilitates data analysis and processing",
+      "timezoneConverter": "Timezone Converter",
+      "selected": "Selected:",
+      "encodingConversionResult": "🔤 Encoding Conversion Result\n\n📝 Original text:\n{{originalText}}\n\n🔄 Various encoding formats:\n\n• URL encoding:\n{{urlEncoded}}\n\n• Base64 encoding:\n{{base64Encoded}}\n\n• HTML entity encoding:\n{{htmlEncoded}}\n\n📊 Encoding statistics:\n• Original length: {{originalLength}}\n• URL encoding length: {{urlLength}}\n• Base64 encoding length: {{base64Length}}\n\n✅ Decoding verification:\n• URL decoding: {{urlDecoded}}\n• Base64 decoding: {{base64Decoded}}",
+      "goHome": "Go Home",
+      "processingImage": "Processing image...",
+      "loadingToolDetails": "Loading tool details...",
+      "xmlParseError": "XML parsing failed, please check file format",
+      "documentConverterDesc": "Document format analysis and conversion support",
+      "numberBaseConversionResult": "🔢 Number Base Conversion Result\n\n{{conversions}}\n💡 Input support:\n• Decimal: 123\n• Hexadecimal: 0x7B or 0X7B\n• Binary: 0b1111011 or 0B1111011\n• Octal: 0o173 or 0O173",
+      "resultCopied": "Result copied to clipboard",
+      "convertingImageFormat": "Converting image format...",
+      "dropFilesHere": "Drop files here or click to browse",
+      "allFormats": "All Formats",
+      "cannotParse": "❌ Cannot parse: {{value}}",
+      "acceptedFormats": "Accepted formats",
+      "csvToJsonComplete": "✅ CSV to JSON complete! Generated {{objectCount}} objects",
+      "uploadFiles": "Upload Files",
+      "imageConversionError": "Image conversion failed",
+      "unitConverterDesc": "Convert between length, weight, temperature and other units",
+      "loadFailed": "Load Failed",
+      "timezoneConversionResult": "🌍 Timezone Conversion Result\n\n📅 Input time: {{inputTime}}\n\n🔄 Times in different timezones:\n{{conversions}}\n\n⚠️ Note:\n• Daylight saving time may affect actual time\n• Recommend using specific date and time for precise conversion\n\n💡 Input format examples:\n• 2024-01-01 12:00:00\n• 2024/01/01 12:00\n• Leave empty to show current time",
+      "maximumFiles": "Maximum {{count}} file{{count, plural, one {} other {s}}}",
+      "documentAnalysisComplete": "✅ Document analysis complete!",
+      "processingFailedRetry": "Processing failed, please try again",
+      "enhancementStrength": "향상 강도",
+      "compressingImage": "Compressing image...",
+      "originalSize": "Original size",
+      "resizingImage": "Resizing image...",
+      "enterAmountAndCurrency": "Please enter amount and currency, e.g.: 100 USD",
+      "csvToExcelResult": "📄 CSV to Excel Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Data rows: {{rows}}\n• Data columns: {{columns}}\n• Data types: {{dataTypes}}\n\n💡 Conversion Description:\n• CSV data converted to Excel format\n• Auto-detects data types\n• Supports formulas and formatting\n• Maintains data integrity\n\n🎯 Output Format:\nGenerated Excel file contains formatted worksheets\nSupports formula calculations and data analysis",
+      "imageConversionResult": "🖼️ Image Format Conversion Result\n\n📁 Original file: {{fileName}}\n📏 Dimensions: {{width}} × {{height}} pixels\n📦 Original size: {{size}} KB\n\n🔄 Conversion results:\n{{conversions}}\n\n💡 Description:\n• PNG: Lossless compression, supports transparency\n• JPEG: Lossy compression, smaller file size\n• WebP: Modern format, good compression\n\n⬇️ Click download button to get PNG format",
+      "or": "or",
+      "actualSize": "Actual size",
+      "xmlToCsvComplete": "✅ XML to CSV complete! Generated {{rows}} rows of data",
+      "imageProcessingComplete": "Image processing complete!",
+      "csvSplitComplete": "✅ CSV split complete! Generated {{count}} files",
+      "scaleRatio": "Scale Ratio",
+      "startProcessing": "Start Processing",
+      "enterTextForQRCode": "Please enter content to generate QR code",
+      "success": "Success",
+      "jsonToXmlResult": "📄 JSON to XML Processing Result\n\n✅ Conversion Complete!\n\n📋 Conversion Information:\n• Original file: {{fileName}}\n• File size: {{fileSize}} KB\n• Parsed objects: {{objectCount}}\n• Generated nodes: {{nodeCount}}\n• XML depth: {{depth}} levels\n\n💡 Conversion Description:\n• JSON data converted to XML format\n• Maintains object structure\n• Supports arrays and nested objects\n• Facilitates data exchange\n\n🎯 Output Format:\nGenerated XML file has clear structure\nSupports complex data structures",
+      "mostPopularTools": "가장 인기있는 도구",
+      "convertingXMLToJson": "Converting XML to JSON format...",
+      "rotationAngle": "Rotation Angle (degrees)",
+      "csvNeedAtLeast2Rows": "CSV file needs at least 2 rows of data",
+      "loadingTesseractOCREngine": "Loading Tesseract.js OCR engine...",
+      "processedResult": "Processed Result",
+      "enterTextForURLEncoding": "Please enter URL or text to encode",
+      "numberBaseConverterDesc": "Convert between binary, octal, decimal, hexadecimal",
+      "croppingImage": "Cropping image (center square)...",
+      "error": "Error",
+      "rotatingImage": "Rotating image...",
+      "clickToSelect": "click to select",
+      "recognizingText": "Recognizing text...",
+      "unitConverter": "Unit Converter",
+      "developerFriendly": "개발자 친화적",
+      "loadPlugin": "Load Plugin",
+      "remove": "Remove",
+      "convertingXMLToCsv": "Converting XML to CSV format...",
+      "enterDateTime": "Please enter date time, e.g.: 2024-01-01 12:00:00",
+      "audioConversionResult": "🎵 Audio Format Conversion Result\n\n📁 Original file: {{fileName}}\n📦 File size: {{size}} MB\n\n🔄 Supported conversion formats:\n{{conversions}}\n\n💡 FFmpeg.js features:\n• Supports almost all audio format conversions\n• Can adjust bitrate, sample rate\n• Supports audio editing and merging\n• Completely processed in browser\n\n⚠️ Demo mode: Will load FFmpeg.js for real conversion in actual deployment",
+      "targetWidth": "Target Width (px)",
+      "aiPoweredDesc": "Advanced AI algorithms for background removal and image enhancement",
+      "wordCount": "Word count",
+      "imageCroppingComplete": "Image cropping complete!",
+      "imageEnhancementComplete": "Image enhancement complete! Brightness and contrast improved",
+      "originalPreview": "Original Preview",
+      "currencyConversionResult": "💰 Currency Conversion Result\n\n📝 Input: {{amount}} {{currency}} ({{currencyName}})\n\n🔄 Conversion Results:\n{{conversions}}\n\n⚠️ Note: Exchange rates are simulated data, please refer to bank rates for actual transactions\n\n💡 Supported currencies: USD, EUR, GBP, JPY, CNY, KRW, CAD, AUD",
+      "imageFormatConversionComplete": "Image format conversion complete! Converted to",
+      "back": "Back"
+    },
+    "ocr": {
+      "pdfOcr": "PDF 문자 인식",
+      "handwritingRecognition": "손글씨 인식",
+      "startRecognition": "인식 시작",
+      "documentScannerDesc": "문서를 스캔하여 구조화된 텍스트를 추출",
+      "qrCodeReader": "QR 코드 인식",
+      "receiptScannerDesc": "영수증을 스캔하여 주요 정보를 추출",
+      "recognitionComplete": "인식 완료",
+      "processingError": "OCR 처리 오류:",
+      "tableExtractorDesc": "이미지나 PDF에서 표 데이터를 추출",
+      "imageToText": "이미지 문자 인식",
+      "businessCardScannerDesc": "명함을 스캔하여 연락처 정보를 추출",
+      "receiptScanner": "영수증 스캐너",
+      "qrCodeReaderDesc": "QR 코드 내용을 읽기",
+      "supportedFormats": "지원 형식",
+      "description": "이미지와 문서에서 텍스트 추출",
+      "selectFile": "파일 선택",
+      "ocrError": "OCR 처리에 실패했습니다. 다시 시도해주세요",
+      "documentScanner": "문서 스캐너",
+      "recognitionResult": "인식 결과",
+      "imageToTextDesc": "이미지에서 텍스트 내용을 추출, 다국어 지원",
+      "recognizingHandwriting": "recognizingHandwriting",
+      "recognizing": "인식 중...",
+      "pdfOcrDesc": "PDF 문서에서 텍스트 내용을 추출",
+      "pageDescription": "이미지, PDF, 손글씨 등 다양한 인식 요구사항을 지원하는 강력한 OCR 도구 모음",
+      "copyResult": "결과 복사",
+      "handwritingRecognitionDesc": "손글씨를 인식하여 디지털 텍스트로 변환",
+      "clickToSelectFile": "클릭하여 파일 선택",
+      "tableExtractor": "표 추출기",
+      "licensePlateReaderDesc": "번호판 번호를 인식",
+      "licensePlateReader": "번호판 인식",
+      "businessCardScanner": "명함 스캐너",
+      "title": "OCR 문자 인식 도구",
+      "ocrComplete": "OCR 인식 완료!",
+      "features": "OCR 기능",
+      "multilingualSupport": "다국어 지원",
+      "multilingualSupportDesc": "한국어, 영어, 중국어, 일본어 등 40개 이상의 언어 지원",
+      "privacySecurity": "개인정보 보호 및 보안",
+      "privacySecurityDesc": "모든 처리는 브라우저에서 로컬로 수행됩니다. 이미지가 기기를 떠나지 않습니다",
+      "fastRecognition": "빠른 인식",
+      "fastRecognitionDesc": "고급 AI 기반 OCR 엔진이 정확하고 빠른 텍스트 인식을 제공합니다",
+      "subtitle": "AI 기반 OCR 기술로 이미지에서 텍스트를 추출하세요. 다국어 지원과 고정밀 텍스트 인식을 제공합니다."
+    },
+    "documentData": {
+      "title": "문서 및 데이터",
+      "description": "Excel, CSV, JSON 변환, 텍스트 처리, 개발 도구 및 36가지 실용적인 도구",
+      "count": "40+ 도구",
+      "wordCounter": "단어 카운터",
+      "hashGenerator": "해시 생성기",
+      "base64Encoder": "Base64 인코더/디코더",
+      "csvSplit": "CSV 분할",
+      "fileProcessing": "파일 처리",
+      "textProcessing": "텍스트 처리",
+      "encodingTools": "인코딩 도구",
+      "generators": "생성기",
+      "converters": "변환기",
+      "csvSplitDesc": "행 수별로 큰 CSV 파일을 작은 청크로 분할",
+      "csvToJson": "CSV에서 JSON으로",
+      "csvToJsonDesc": "CSV 파일을 JSON 형식으로 변환",
+      "xmlToJson": "XML에서 JSON으로",
+      "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
+      "wordCounterDesc": "텍스트의 단어, 문자, 단락, 줄 수를 세기",
+      "caseConverter": "대소문자 변환기",
+      "caseConverterDesc": "대문자, 소문자, 제목 형식 등 간에 텍스트 변환",
+      "base64EncoderDesc": "Base64 인코딩을 사용하여 텍스트 인코드 및 디코드",
+      "urlEncoder": "URL 인코더/디코더",
+      "urlEncoderDesc": "URL 인코드 및 디코드, 특수 문자 처리",
+      "hashGeneratorDesc": "MD5, SHA1, SHA256, SHA512 및 기타 해시 값 생성",
+      "uuidGenerator": "UUID 생성기",
+      "uuidGeneratorDesc": "다양한 형식의 고유 식별자(UUID) 생성",
+      "numberBaseConverter": "진법 변환기",
+      "numberBaseConverterDesc": "이진, 8진, 10진, 16진 간에 숫자 변환",
+      "needCSVFile": "CSV 파일이 필요합니다",
+      "parsingCSVFile": "CSV 파일 분석 중...",
+      "csvNeedAtLeast2Rows": "CSV 파일은 최소 2행의 데이터가 필요합니다",
+      "csvSplitComplete": "✅ CSV 분할 완료! {{count}}개의 파일이 생성되었습니다"
+    },
+    "tools": {
+      "fileTools": {
+        "excelSplitDesc": "워크시트 또는 행 수별로 엑셀 파일 분할",
+        "jsonToXml": "JSON에서 XML로",
+        "csvSplit": "CSV File Split",
+        "xmlToExcel": "XML에서 Excel로",
+        "csvToExcel": "CSV에서 Excel로",
+        "excelSplit": "엑셀 파일 분할",
+        "xmlToCsv": "XML to CSV",
+        "xmlToExcelDesc": "XML 파일을 Excel에서 읽을 수 있는 CSV 형식으로 변환",
+        "excelToXmlDesc": "Excel 파일을 표준 XML 형식으로 변환",
+        "xmlToCsvDesc": "Convert XML files to CSV format",
+        "csvToJsonDesc": "Convert CSV files to JSON format",
+        "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
+        "csvToJson": "CSV to JSON",
+        "csvToExcelDesc": "CSV 파일을 Excel 형식으로 변환",
+        "jsonToXmlDesc": "JSON 파일을 XML 형식으로 변환",
+        "xmlToJson": "XML에서 JSON으로",
+        "excelToXml": "Excel에서 XML로",
+        "csvSplitDesc": "Split large CSV files into smaller chunks by row count"
+      }
+    },
+    "textSortComplete": "textSortComplete",
+    "pdf": {
+      "wordToPdf": "Word를 PDF로",
+      "splitPdf": "PDF 분할",
+      "pageDescription": "포괄적인 PDF 도구 모음으로 PDF 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "powerpointToPdf": "PowerPoint→PDF",
+      "mergePdf": "PDF 병합",
+      "pdfSignature": "PDF 서명",
+      "powerpointToPdfDesc": "powerpointToPdfDesc",
+      "pdfOcrDesc": "pdfOcrDesc",
+      "jpgToPdfDesc": "JPG 이미지를 PDF 문서로 변환",
+      "compressPdf": "PDF 압축",
+      "jpgToPdf": "JPG를 PDF로",
+      "whyChoose": "whyChoose",
+      "pdfOcr": "PDF 문자 인식",
+      "splitPdfDesc": "PDF를 별도의 페이지나 문서로 분할",
+      "pdfToExcelDesc": "PDF 테이블을 Excel 스프레드시트로 변환",
+      "highQualityDesc": "고품질",
+      "pdfWatermark": "PDF 워터마크",
+      "pdfToWord": "PDF를 Word로",
+      "allTools": "allTools",
+      "pdfToJpgDesc": "PDF 페이지를 JPG 이미지로 변환",
+      "fastProcessingDesc": "fastProcessingDesc",
+      "description": "PDF 파일 변환, 병합, 분할, 편집",
+      "pdfFormFillerDesc": "pdfFormFillerDesc",
+      "compressPdfDesc": "품질 손실 없이 PDF 파일 크기 줄이기",
+      "pdfToJpg": "PDF를 JPG로",
+      "excelToPdf": "Excel을 PDF로",
+      "addSignatureDesc": "addSignatureDesc",
+      "mergePdfDesc": "여러 PDF 파일을 하나로 결합",
+      "highQuality": "고품질",
+      "pdfFormFiller": "PDF 양식 작성",
+      "excelToPdfDesc": "Excel 스프레드시트를 PDF로 변환",
+      "wordToPdfDesc": "Word 문서를 PDF 형식으로 변환",
+      "title": "PDF 도구",
+      "secureProcessing": "모든 파일은 안전하게 처리되며 처리 후 자동으로 삭제됩니다.",
+      "pdfToWordDesc": "PDF 문서를 편집 가능한 Word 파일로 변환",
+      "pdfToPowerpoint": "PDF→PowerPoint",
+      "pdfToExcel": "PDF를 Excel로",
+      "secureProcessingDesc": "secureProcessingDesc",
+      "fastProcessing": "빠른 처리 속도로 시간을 절약하세요.",
+      "pdfWatermarkDesc": "pdfWatermarkDesc",
+      "popularTools": "popularTools",
+      "pdfToPowerpointDesc": "pdfToPowerpointDesc",
+      "addSignature": "addSignature"
+    },
+    "video": {
+      "gifAnimation": "GIF 애니메이션",
+      "secureProcessing": "안전한 처리로 개인정보 보호",
+      "videoMergeFailed": "비디오 병합에 실패했습니다. 다시 시도해주세요",
+      "videoConvertedToMP4": "videoConvertedToMP4",
+      "videoConverterDesc": "다양한 형식 간 비디오 변환 (MP4, AVI, MOV 등)",
+      "trimmingVideo": "trimmingVideo",
+      "audioExtractorDesc": "비디오에서 오디오 추출",
+      "videoCompressionFailed": "videoCompressionFailed",
+      "originalSize": "originalSize",
+      "videoToGifDesc": "비디오 파일을 애니메이션 GIF로 변환",
+      "processingVideoFile": "비디오 파일을 처리 중...",
+      "loadingFFmpegVideoEngine": "FFmpeg.js 비디오 처리 엔진을 로딩 중...",
+      "supportedFormats": "지원되는 비디오 형식",
+      "ffmpegEngineLoaded": "FFmpeg.js 비디오 처리 엔진 로딩이 완료되었습니다!",
+      "videoCompressionComplete": "videoCompressionComplete",
+      "videoConversionFailed": "videoConversionFailed",
+      "audioExtractionFailed": "오디오 추출에 실패했습니다. 다시 시도해주세요",
+      "professionalProcessing": "professionalProcessing",
+      "mergingVideo": "비디오 파일을 병합 중...",
+      "gifMakerDesc": "gifMakerDesc",
+      "videoRotatorDesc": "비디오를 임의의 각도로 회전",
+      "videoCompressorDesc": "품질 손실 없이 비디오 파일 크기 줄이기",
+      "audioExtractor": "오디오 추출",
+      "videoToGif": "비디오를 GIF로",
+      "videoMerger": "비디오 병합",
+      "videoMergeComplete": "✅ 비디오 병합 완료! 새 파일을 생성했습니다 ({{size}}MB)",
+      "videoMergerDesc": "여러 비디오 파일을 하나로 결합",
+      "uploadAndStart": "비디오 파일을 업로드하고 처리 시작",
+      "videoCompressor": "비디오 압축",
+      "videoTrimFailed": "비디오 자르기에 실패했습니다. 다시 시도해주세요",
+      "gifMaker": "gifMaker",
+      "videoProcessingError": "비디오 처리 오류",
+      "videoTrimComplete": "videoTrimComplete",
+      "pageDescription": "포괄적인 비디오 도구 모음으로 비디오 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "extractingAudio": "비디오에서 오디오를 추출 중...",
+      "gifGenerationFailed": "GIF 생성에 실패했습니다. 다시 시도해주세요",
+      "videoEditorDesc": "videoEditorDesc",
+      "convertingVideoFormat": "convertingVideoFormat",
+      "videoTrimmerDesc": "비디오의 특정 부분 잘라내기",
+      "videoRotator": "비디오 회전",
+      "videoRotationFailed": "비디오 회전에 실패했습니다. 다시 시도해주세요",
+      "videoConverter": "비디오 변환",
+      "convertingToGif": "비디오를 GIF 애니메이션으로 변환 중...",
+      "videoEditor": "videoEditor",
+      "audioExtractionComplete": "✅ 오디오 추출 완료! MP3 파일을 생성했습니다 ({{size}}MB)",
+      "rotatingVideo": "비디오를 회전 중 (시계 방향 90도)...",
+      "loadingFFmpegEngine": "FFmpeg.js 엔진을 로딩 중...",
+      "readyToProcess": "처리할 준비가 되셨나요?",
+      "audioFileInfo": "오디오 파일 정보\n\n형식: MP3\n크기: {{size}}MB\n비트레이트: 128kbps\n샘플링 레이트: 44.1kHz\n\n✅ 비디오에서 오디오를 성공적으로 추출했습니다",
+      "videoTrimmer": "비디오 자르기",
+      "fastProcessingDesc": "fastProcessingDesc",
+      "gifGenerationComplete": "✅ GIF 애니메이션 생성 완료! 크기: 320×240",
+      "videoRotationComplete": "✅ 비디오 회전 완료! 시계 방향으로 90도 회전했습니다",
+      "description": "비디오 변환, 편집, 최적화",
+      "supportedFormatsDesc": "최대 호환성을 위해 모든 주요 비디오 형식을 지원합니다",
+      "title": "비디오 도구",
+      "generatedFromVideo": "비디오에서 생성됨",
+      "videoFormatConversionComplete": "videoFormatConversionComplete",
+      "compressingVideoFile": "compressingVideoFile"
+    },
+    "wordCountComplete": "wordCountComplete",
+    "developer": {
+      "qrGeneratorDesc": "Convert text or URL to QR code image",
+      "urlEncoderDesc": "Encoding, decoding and HTML entity conversion for URLs and text",
+      "urlError": "URL encoding failed: ",
+      "timestampResult": "🕐 Timestamp Conversion Result\n\n📅 Conversion Time: {{localTime}}\n\n📊 Multiple Format Display:\n• 10-digit timestamp: {{timestamp10}}\n• 13-digit timestamp: {{timestamp13}}\n• ISO format: {{iso}}\n• Local time: {{local}}\n• UTC time: {{utc}}\n• Date: {{date}}\n• Time: {{time}}\n\n📈 Detailed Information:\n• Year: {{year}}\n• Month: {{month}}\n• Day: {{day}}\n• Hour: {{hour}}\n• Minute: {{minute}}\n• Second: {{second}}\n• Weekday: {{weekday}}\n\n⏰ Current Time: {{currentTime}}",
+      "hashGeneratorDesc": "Generate MD5, SHA1, SHA256, SHA512 and other hash values",
+      "timestampComplete": "✅ Timestamp conversion complete!",
+      "medium": "Medium",
+      "urlEncoder": "URL Encoder/Decoder",
+      "uuidResult": "🆔 UUID Generation Result\n\n✅ Multiple UUIDs generated!\n\n📋 Standard UUID v4 (first 10):\n{{uuids}}\n\n🔗 Short UUID (8 characters):\n{{shortUUIDs}}\n\n📊 Generation Statistics:\n• Standard UUIDs: {{uuidCount}}\n• Short UUIDs: {{shortUUIDCount}}\n• UUID format: 8-4-4-4-12\n• Character set: 0-9, a-f\n• Version: v4 (random)\n\n💡 Usage Instructions:\n• Standard UUIDs for database primary keys\n• Short UUIDs for temporary identifiers\n• All UUIDs guarantee uniqueness\n\n🔄 Complete UUID List:\n{{allUUIDs}}",
+      "base64Error": "Base64 encoding failed: ",
+      "colorPickerDesc": "Color format conversion and analysis (HEX, RGB, HSL)",
+      "timestampParseError": "Unable to parse time format",
+      "qrGenerator": "QR Code Generator",
+      "colorPicker": "Color Picker/Converter",
+      "hashResult": "🔑 Multiple Hash Generation Result\n\n📝 Original Text:\n{{originalText}}\n\n🔐 Hash Values:\nMD5(Simulated): {{md5Hash}}\nSHA-1: {{sha1Hash}}\nSHA-256: {{sha256Hash}}\nSHA-512: {{sha512Hash}}\n\n📊 Statistics:\n• Original length: {{textLength}} characters\n• SHA-1 length: {{sha1Length}} characters\n• SHA-256 length: {{sha256Length}} characters\n• SHA-512 length: {{sha512Length}} characters",
+      "hashComplete": "✅ Hash generation complete!",
+      "strong": "Strong",
+      "hashGenerator": "Hash Generator",
+      "uuidComplete": "✅ UUID generation complete!",
+      "colorComplete": "✅ Color conversion complete!",
+      "colorResult": "🎨 Color Conversion Result\n\n🎯 Current Color: {{color}}\n{{colorBlock}} (Color Preview)\n\n📊 Color Format Conversion:\n• HEX: {{hex}}\n• RGB: {{rgb}}\n• HSL: {{hsl}}\n• CSS: {{css}}\n\n📈 Color Analysis:\n• Red component: {{red}} ({{redPercent}}%)\n• Green component: {{green}} ({{greenPercent}}%)\n• Blue component: {{blue}} ({{bluePercent}}%)\n• Lightness: {{lightness}}%\n• Saturation: {{saturation}}%\n• Hue: {{hue}}°",
+      "qrResult": "📱 QR Code Generation Result\n\n✅ QR code generated successfully!\n\n📝 Encoded Content:\n{{content}}\n\n📊 QR Code Information:\n• Content length: {{contentLength}} characters\n• Image size: {{qrSize}}×{{qrSize2}} pixels\n• File format: SVG\n• Encoding type: Text\n\n💡 Note: This is a demo version. The full version supports:\n• Multiple error correction levels\n• Custom colors and sizes\n• PNG, JPG export formats\n• Logo embedding functionality",
+      "jsonComplete": "✅ JSON validation passed!",
+      "jsonResult": "📋 JSON Formatting/Validation Result\n\n✅ JSON format is valid!\n\n📝 Formatted (2 spaces):\n{{formatted2}}\n\n🗜️ Minified version:\n{{minified}}\n\n📊 JSON Statistics:\n• Original length: {{textLength}} characters\n• Formatted length: {{formattedLength}} characters\n• Minified length: {{minifiedLength}} characters\n• Key count: {{keyCount}}\n• Nesting depth: {{depth}} levels\n• Compression ratio: {{compressionRatio}}%",
+      "jsonError": "❌ JSON Format Error\n\n🚫 Error Message:\n{{errorMsg}}\n\n📝 Input Content:\n{{inputText}}\n\n💡 Common Issues:\n• Check if brackets match\n• Ensure strings are enclosed in double quotes\n• Check comma usage\n• Ensure no trailing commas",
+      "urlResult": "🔗 URL Encoding/Decoding Result\n\n📝 Original Text:\n{{originalText}}\n\n🌐 Standard URL Encoding:\n{{encoded}}\n\n📄 HTML Entity Encoding:\n{{htmlEncoded}}\n\n🔄 Legacy Encoding (escape):\n{{escapeEncoded}}\n\n✅ Decode Verification:\n{{decoded}}\n\n📊 Encoding Statistics:\n• Original length: {{textLength}} characters\n• URL encoding length: {{encodedLength}} characters\n• HTML encoding length: {{htmlLength}} characters",
+      "base64Result": "🔐 Base64 Encoding/Decoding Result\n\n📝 Original Text:\n{{originalText}}\n\n✨ Standard Base64 Encoding:\n{{encoded}}\n\n🔗 URL-Safe Base64:\n{{urlSafeEncoded}}\n\n✅ Decode Verification:\n{{decoded}}\n\n📊 Encoding Statistics:\n• Original length: {{textLength}} characters\n• Encoded length: {{encodedLength}} characters\n• Compression ratio: {{compressionRatio}}%",
+      "qrComplete": "✅ QR code generation complete!",
+      "base64Complete": "✅ Base64 encoding complete!",
+      "urlComplete": "✅ URL encoding complete!",
+      "colorError": "Color format error, please enter a valid color value",
+      "jsonFormatter": "JSON Formatter/Validator",
+      "base64Encoder": "Base64 Encoder/Decoder",
+      "weak": "Weak",
+      "passwordComplete": "✅ Password generation complete!",
+      "veryStrong": "Very Strong",
+      "passwordResult": "🔐 Password Generation Result\n\n🛡️ Different Strength Passwords:\n\n🔹 Simple Password (8 characters):\n{{simplePassword}} [Strength: {{simpleStrength}}]\n\n🔸 Medium Password (12 characters):\n{{mediumPassword}} [Strength: {{mediumStrength}}]\n\n🔶 Strong Password (16 characters):\n{{strongPassword}} [Strength: {{strongStrength}}]\n\n🔴 Ultra Strong Password (32 characters):\n{{ultraStrongPassword}} [Strength: {{ultraStrongStrength}}]\n\n📋 Random Password List:\n{{randomPasswords}}\n\n💡 Password Security Tips:\n• Use at least 12 characters\n• Include uppercase, lowercase, numbers and symbols\n• Avoid personal information\n• Change passwords regularly\n• Use different passwords for different accounts",
+      "jsonFormatterDesc": "Format, validate JSON data and provide statistics",
+      "base64EncoderDesc": "Base64 encoding, decoding and URL-safe encoding for text",
+      "veryWeak": "Very Weak",
+      "jsonInvalid": "❌ JSON format is invalid",
+      "extremelyStrong": "Extremely Strong"
+    },
+    "parsingCSVFile": "parsingCSVFile",
+    "fileTools": {
+      "xmlToExcelDesc": "XML 파일을 Excel에서 읽을 수 있는 CSV 형식으로 변환",
+      "excelSplit": "엑셀 파일 분할",
+      "excelSplitDesc": "워크시트 또는 행 수별로 엑셀 파일 분할",
+      "xmlToExcel": "XML에서 Excel로",
+      "xmlToJson": "XML에서 JSON으로",
+      "csvSplit": "CSV File Split",
+      "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
+      "csvToExcel": "CSV에서 Excel로",
+      "jsonToXml": "JSON에서 XML로",
+      "csvSplitDesc": "Split large CSV files into smaller chunks by row count",
+      "jsonToXmlDesc": "JSON 파일을 XML 형식으로 변환",
+      "xmlToCsvDesc": "Convert XML files to CSV format",
+      "csvToExcelDesc": "CSV 파일을 Excel 형식으로 변환",
+      "excelToXmlDesc": "Excel 파일을 표준 XML 형식으로 변환",
+      "csvToJson": "CSV to JSON",
+      "xmlToCsv": "XML to CSV",
+      "excelToXml": "Excel에서 XML로",
+      "csvToJsonDesc": "Convert CSV files to JSON format"
+    },
+    "lineCountComplete": "lineCountComplete",
+    "text": {
+      "duplicateRemovalComplete": "✅ Duplicate removal complete!",
+      "characterCountComplete": "✅ Character count complete!",
+      "textDiffComplete": "✅ Text diff check complete!",
+      "textSortComplete": "✅ Text sort complete!",
+      "caseConversionComplete": "✅ Case conversion complete!",
+      "textFormattingComplete": "✅ Text formatting complete!",
+      "wordCountComplete": "✅ Word count complete!",
+      "textReverseComplete": "✅ Text reverse complete!",
+      "lineCountComplete": "✅ Line count complete!"
+    },
+    "textFormattingComplete": "textFormattingComplete",
+    "image": {
+      "imageRotator": "이미지 회전",
+      "photoEditor": "photoEditor",
+      "description": "이미지 편집, 변환, 최적화",
+      "imageResizer": "이미지 크기 조정",
+      "imageCompressorDesc": "품질 손실 없이 이미지 파일 크기 줄이기",
+      "watermarkRemoverDesc": "이미지에서 워터마크를 자동으로 제거",
+      "backgroundRemoverDesc": "AI를 사용하여 이미지에서 배경을 자동으로 제거",
+      "imageCompressor": "이미지 압축",
+      "imageCropperDesc": "원하는 크기로 이미지 자르기 및 크기 조정",
+      "imageEnhancerDesc": "imageEnhancerDesc",
+      "imageRotatorDesc": "임의의 각도로 이미지 회전 또는 수평/수직 뒤집기",
+      "imageResizerDesc": "특정 크기나 백분율로 이미지 크기 조정",
+      "watermarkRemover": "워터마크 제거",
+      "title": "이미지 도구",
+      "imageCropper": "이미지 자르기",
+      "imageConverter": "이미지 변환",
+      "imageUpscaler": "이미지 확대",
+      "imageEnhancer": "imageEnhancer",
+      "pageDescription": "포괄적인 이미지 도구 모음으로 이미지 편집, 변환, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
+      "imageUpscalerDesc": "AI 기술을 사용하여 더 나은 품질로 이미지 확대",
+      "photoEditorDesc": "photoEditorDesc",
+      "imageConverterDesc": "다양한 형식 간 이미지 변환 (JPG, PNG, WebP 등)",
+      "backgroundRemover": "배경 제거",
+      "photoEnhancer": "포토 인핸서",
+      "photoEnhancerDesc": "AI 기반 이미지 처리 기술로 사진을 향상시키세요",
+      "instantResults": "즉시 결과",
+      "instantResultsDesc": "원클릭 처리로 향상된 이미지를 즉시 얻으세요",
+      "readyToEdit": "편집 준비 완료",
+      "uploadAndStart": "업로드하고 시작",
+      "chooseImageFile": "이미지 파일 선택"
+    },
+    "originalSize": "originalSize",
+    "loadingFFmpegEngine": "loadingFFmpegEngine",
+    "videoConversionFailed": "videoConversionFailed",
+    "videoTrimComplete": "videoTrimComplete",
+    "textDiffComplete": "textDiffComplete",
+    "textReverseComplete": "textReverseComplete",
+    "videoConvertedToMP4": "videoConvertedToMP4",
+    "trimmingVideo": "trimmingVideo",
+    "characterCountComplete": "characterCountComplete",
+    "videoFormatConversionComplete": "videoFormatConversionComplete",
+    "caseConversionComplete": "caseConversionComplete",
+    "csvSplitResult": "csvSplitResult",
+    "videoCompressionFailed": "videoCompressionFailed",
+    "csvSplitComplete": "csvSplitComplete",
+    "compressingVideoFile": "compressingVideoFile",
+    "duplicateRemovalComplete": "중복 제거 완료",
+    "needCSVFile": "needCSVFile",
+    "csvNeedAtLeast2Rows": "csvNeedAtLeast2Rows",
+    "videoCompressionComplete": "videoCompressionComplete"
+  },
   "nav": {
-    "pdfTools": "PDF",
-    "imageTools": "이미지",
-    "videoTools": "비디오",
     "ocrTools": "OCR",
-    "documentDataTools": "문서 및 데이터"
+    "tools": "도구",
+    "audioTools": "오디오 도구",
+    "home": "홈",
+    "videoTools": "비디오",
+    "about": "회사 소개",
+    "pdfTools": "PDF",
+    "utilityTools": "유틸리티 도구",
+    "imageTools": "이미지",
+    "documentDataTools": "문서 및 데이터",
+    "language": "언어",
+    "contact": "문의하기",
+    "aiTools": "AI 도구",
+    "converterTools": "변환 도구",
+    "documentTools": "문서 도구"
+  },
+  "seo": {
+    "videoTools": {
+      "title": "비디오 도구 - 무료 온라인 비디오 편집 및 변환",
+      "description": "무료 온라인 비디오 도구로 비디오 변환, 압축, 편집, 병합을 수행하세요. MP4, AVI, MOV 등 모든 형식을 지원합니다."
+    },
+    "documentData": {
+      "title": "문서 데이터 도구 - 무료 문서 변환, 데이터 처리, 개발 도구",
+      "description": "포괄적인 문서 및 데이터 처리 도구. Excel, CSV, JSON 변환, 텍스트 처리, 개발자 도구 등을 지원합니다.",
+      "keywords": "문서 도구,데이터 처리,Excel 변환,CSV 처리,JSON 도구,개발 도구"
+    },
+    "home": {
+      "description": "무료로 사용할 수 있는 포괄적인 온라인 도구 모음. PDF 처리, 이미지 편집, 비디오 변환, 문서 데이터 처리, OCR 문자 인식 등 100개 이상의 유용한 도구를 제공합니다.",
+      "title": "무료 온라인 도구 모음 - PDF, 이미지, 비디오, 문서 처리 도구",
+      "keywords": "온라인 도구,무료 도구,PDF 처리,이미지 편집,비디오 변환,문서 처리,OCR,파일 변환"
+    },
+    "ocrTools": {
+      "title": "OCR 도구 - 무료 온라인 문자 인식 및 텍스트 추출",
+      "description": "무료 온라인 OCR 도구로 이미지와 PDF에서 텍스트를 추출하세요. 다국어 지원 및 손글씨 인식 기능을 제공합니다."
+    },
+    "sitemap": {
+      "description": "ColleTools의 모든 페이지와 도구를 한눈에 확인하세요. PDF, 이미지, 비디오, 문서 데이터, OCR 도구 등 전체 사이트 구조를 탐색할 수 있습니다.",
+      "title": "사이트맵 - 모든 페이지와 도구 목록",
+      "keywords": "사이트맵,페이지 목록,도구 목록,네비게이션,사이트 구조,전체 도구"
+    },
+    "ocr": {
+      "title": "OCR 도구 - 무료 이미지 문자 인식, PDF 텍스트 추출",
+      "description": "고정밀 OCR 문자 인식 도구. 이미지 문자 인식, PDF 텍스트 추출, 손글씨 인식, 다국어 인식을 지원합니다.",
+      "keywords": "OCR 인식,문자 인식,이미지 텍스트,PDF 텍스트 추출,손글씨 인식,다국어 인식"
+    },
+    "help": {
+      "keywords": "도움말 센터,자주 묻는 질문,FAQ,도구 가이드,사용 방법,문제 해결,지원",
+      "description": "자주 묻는 질문, 도구 사용 방법, 문제 해결 가이드 등 필요한 모든 정보를 찾을 수 있습니다.",
+      "title": "도움말 센터 - 자주 묻는 질문 및 도구 가이드"
+    },
+    "video": {
+      "keywords": "video tools,video conversion,video compression,video editing,GIF making,video cutting",
+      "title": "Video Tools - Free Video Conversion, Compression, Editing, GIF Making",
+      "description": "Professional video processing tools, supporting video format conversion, compression, cutting, merging, GIF making and other functions."
+    },
+    "image": {
+      "title": "Image Tools - Free Image Processing, Format Conversion, Background Removal",
+      "description": "Powerful image processing tools, supporting image format conversion, compression, background removal, size adjustment, filter effects and other functions.",
+      "keywords": "image tools,image processing,image conversion,background removal,image compression,image editing"
+    },
+    "pdf": {
+      "description": "Professional PDF processing tool collection, supporting PDF to Word, Excel, PowerPoint, PDF merge split, compression, OCR recognition and other functions.",
+      "keywords": "PDF tools,PDF conversion,PDF merge,PDF split,PDF compress,PDF to Word,PDF to Excel",
+      "title": "PDF Tools - Free PDF Conversion, Merge, Split, Compress"
+    },
+    "about": {
+      "description": "우리의 사명, 비전, 팀, 기술에 대해 알아보세요. 사용자에게 최고의 무료 온라인 도구 경험을 제공하는 것을 목표로 합니다.",
+      "keywords": "회사 소개,기업 정보,팀,사명,비전,온라인 도구,무료 서비스",
+      "title": "회사 소개 - 무료 온라인 도구 플랫폼"
+    },
+    "pdfTools": {
+      "title": "PDF 도구 - 무료 온라인 PDF 편집 및 변환",
+      "description": "무료 온라인 PDF 도구로 PDF 변환, 병합, 분할, 압축을 수행하세요. Word, Excel, PowerPoint 등으로 변환 가능합니다."
+    },
+    "imageTools": {
+      "description": "무료 온라인 이미지 도구로 배경 제거, 이미지 압축, 형식 변환, 크기 조정을 수행하세요. JPG, PNG, WebP 등 모든 형식을 지원합니다.",
+      "title": "이미지 도구 - 무료 온라인 이미지 편집 및 변환"
+    },
+    "contact": {
+      "description": "질문, 피드백, 기술 지원에 대해 언제든지 문의해 주세요. 신속하고 전문적인 지원을 제공합니다.",
+      "keywords": "문의하기,지원,피드백,기술 지원,고객 서비스,도움말",
+      "title": "문의하기 - 지원 및 피드백"
+    },
+    "documentDataTools": {
+      "title": "문서 및 데이터 도구",
+      "description": "무료 온라인 문서 및 데이터 처리 도구. 변환, 분할, 병합, 단어 수 세기, 해시 생성 등.",
+      "keywords": "문서 도구, 데이터 처리, 단어 카운터, 해시 생성기, CSV 도구, 텍스트 도구"
+    }
+  },
+  "sitemap": {
+    "tools": {
+      "base64Encoder": "Base64 Encoder",
+      "splitExcel": "Split Excel",
+      "imageCrop": "Image Crop",
+      "backgroundRemove": "Background Remove",
+      "imageBrightness": "Image Brightness",
+      "markdownToHtml": "Markdown to HTML",
+      "unitConverter": "Unit Converter",
+      "uuidGenerator": "UUID Generator",
+      "currencyConverter": "Currency Converter",
+      "excelToCsv": "Excel to CSV",
+      "imageToText": "Image to Text",
+      "fileHash": "File Hash",
+      "htmlToText": "HTML to Text",
+      "documentScanner": "Document Scanner",
+      "audioToVideo": "Audio to Video",
+      "gifToVideo": "GIF to Video",
+      "randomGenerator": "Random Generator",
+      "videoMerge": "Video Merge",
+      "pdfSign": "PDF Sign",
+      "tableRecognition": "Table Recognition",
+      "videoTrim": "Video Trim",
+      "imageRotate": "Image Rotate",
+      "handwritingRecognition": "Handwriting Recognition",
+      "ageCalculator": "Age Calculator",
+      "privacyPolicy": "Privacy Policy",
+      "videoSubtitle": "Video Subtitle",
+      "videoWatermark": "Video Watermark",
+      "wordToPdf": "Word to PDF",
+      "pdfCompress": "PDF Compress",
+      "photoEditor": "Photo Editor",
+      "imageFilter": "Image Filter",
+      "passwordGenerator": "Password Generator",
+      "wordCounter": "Word Counter",
+      "invoiceRecognition": "Invoice Recognition",
+      "hashGenerator": "Hash Generator",
+      "idCardRecognition": "ID Card Recognition",
+      "termsOfService": "Terms of Service",
+      "imageUpscale": "Image Upscale",
+      "csvToExcel": "CSV에서 Excel로",
+      "jsFormatter": "JavaScript Formatter",
+      "pdfUnlock": "PDF Unlock",
+      "videoFormat": "Video Format",
+      "pdfToWord": "PDF to Word",
+      "timezoneConverter": "Timezone Converter",
+      "pdfToPpt": "PDF to PPT",
+      "regexTester": "Regex Tester",
+      "imageCompress": "Image Compress",
+      "htmlFormatter": "HTML Formatter",
+      "pdfRotate": "PDF Rotate",
+      "pdfTextRecognition": "PDF Text Recognition",
+      "textDiff": "Text Diff",
+      "videoCompress": "Video Compress",
+      "imageToPdf": "Image to PDF",
+      "dateCalculator": "Date Calculator",
+      "imageResize": "Image Resize",
+      "about": "About",
+      "jsonToXml": "JSON에서 XML로",
+      "jsonFormatter": "JSON Formatter",
+      "splitCsv": "Split CSV",
+      "help": "Help",
+      "videoToAudio": "Video to Audio",
+      "bmiCalculator": "BMI Calculator",
+      "bankCardRecognition": "Bank Card Recognition",
+      "imageFormat": "Image Format",
+      "sitemap": "Site Map",
+      "jsonToCsv": "JSON to CSV",
+      "urlEncoder": "URL Encoder",
+      "csvToJson": "CSV to JSON",
+      "percentageCalculator": "Percentage Calculator",
+      "pdfPassword": "PDF Password",
+      "sqlFormatter": "SQL Formatter",
+      "videoRotate": "Video Rotate",
+      "excelToPdf": "Excel to PDF",
+      "pdfToImage": "PDF to Image",
+      "textFormatter": "Text Formatter",
+      "pdfSplit": "PDF Split",
+      "caseConverter": "Case Converter",
+      "qrGenerator": "QR Generator",
+      "pptToPdf": "PPT to PDF",
+      "licensePlateRecognition": "License Plate Recognition",
+      "xmlToJson": "XML에서 JSON으로",
+      "pdfMerge": "PDF Merge",
+      "videoSpeed": "Video Speed",
+      "loanCalculator": "Loan Calculator",
+      "cookiePolicy": "Cookie Policy",
+      "home": "Home",
+      "contact": "Contact",
+      "pdfWatermark": "PDF Watermark",
+      "pdfReader": "PDF Reader",
+      "videoToGif": "Video to GIF",
+      "pdfEdit": "PDF Edit",
+      "pdfToExcel": "PDF to Excel",
+      "collagemaker": "Collage Maker",
+      "colorPicker": "Color Picker",
+      "cssFormatter": "CSS Formatter",
+      "imageWatermark": "Image Watermark"
+    },
+    "descriptions": {
+      "videoSubtitle": "Add subtitles to video",
+      "handwritingRecognition": "Recognize handwritten text",
+      "imageCompress": "Reduce image file size",
+      "gifToVideo": "Convert GIF to video",
+      "passwordGenerator": "Generate secure passwords",
+      "imageResize": "Resize image dimensions",
+      "csvToExcel": "Convert CSV files to Excel",
+      "imageFilter": "Apply filters to images",
+      "colorPicker": "Color code conversion tool",
+      "imageFormat": "Convert image formats",
+      "excelToCsv": "Convert Excel files to CSV",
+      "jsFormatter": "Format JavaScript code",
+      "xmlToJson": "Convert XML data to JSON",
+      "help": "Help center and FAQ",
+      "htmlToText": "Extract plain text from HTML",
+      "home": "Main page with all tools",
+      "cssFormatter": "Format CSS code",
+      "videoFormat": "Convert video formats",
+      "jsonToCsv": "Convert JSON data to CSV",
+      "unitConverter": "Convert length, weight, temperature units",
+      "timezoneConverter": "World timezone conversion",
+      "jsonToXml": "Convert JSON data to XML",
+      "pdfMerge": "Combine multiple PDF files into one",
+      "pdfWatermark": "Add watermark to PDF",
+      "imageUpscale": "Enhance image resolution",
+      "fileHash": "Calculate file hash values",
+      "pdfPassword": "Add password protection to PDF",
+      "imageToPdf": "Convert images to PDF",
+      "pdfCompress": "Reduce PDF file size",
+      "excelToPdf": "Convert Excel to PDF",
+      "cookiePolicy": "Cookie usage and management",
+      "privacyPolicy": "Our privacy protection policy",
+      "bmiCalculator": "Body Mass Index calculation",
+      "pdfTextRecognition": "Extract text from scanned PDFs",
+      "uuidGenerator": "Generate unique identifiers",
+      "tableRecognition": "Recognize table data in images",
+      "dateCalculator": "Date difference and calculation",
+      "csvToJson": "Convert CSV data to JSON",
+      "termsOfService": "Service terms and rules",
+      "pdfToImage": "Convert PDF pages to images",
+      "splitCsv": "Split large CSV files",
+      "pdfToWord": "Convert PDF to Word document",
+      "regexTester": "Test and validate regular expressions",
+      "pdfEdit": "Edit PDF content",
+      "photoEditor": "Professional photo editing",
+      "randomGenerator": "Generate random numbers and characters",
+      "backgroundRemove": "Remove image background",
+      "videoToAudio": "Extract audio from video",
+      "videoToGif": "Convert video to GIF",
+      "pdfSplit": "Split PDF into multiple files",
+      "hashGenerator": "Generate MD5, SHA and other hashes",
+      "pdfToExcel": "Convert PDF to Excel spreadsheet",
+      "idCardRecognition": "Recognize ID card information",
+      "qrGenerator": "Generate QR codes",
+      "textFormatter": "Format and beautify text",
+      "contact": "Get in touch with us",
+      "imageWatermark": "Add watermark to images",
+      "imageCrop": "Crop and trim images",
+      "wordCounter": "Count words, characters and paragraphs",
+      "pptToPdf": "Convert PowerPoint to PDF",
+      "markdownToHtml": "Convert Markdown to HTML",
+      "percentageCalculator": "Percentage and ratio calculation",
+      "sitemap": "Site navigation map",
+      "bankCardRecognition": "Recognize bank card numbers",
+      "about": "Learn about our platform",
+      "imageRotate": "Rotate and flip images",
+      "invoiceRecognition": "Recognize invoice information",
+      "base64Encoder": "Base64 encoding and decoding",
+      "currencyConverter": "Real-time currency conversion",
+      "loanCalculator": "Loan interest and payment calculation",
+      "pdfSign": "Add digital signature to PDF",
+      "imageBrightness": "Adjust image brightness and contrast",
+      "pdfReader": "View and read PDF files",
+      "pdfRotate": "Rotate PDF pages",
+      "licensePlateRecognition": "Recognize license plate numbers",
+      "sqlFormatter": "Format SQL queries",
+      "videoWatermark": "Add watermark to videos",
+      "videoRotate": "Rotate and flip videos",
+      "documentScanner": "Scan documents and convert to text",
+      "splitExcel": "Split Excel worksheets",
+      "imageToText": "Recognize and extract text from images",
+      "ageCalculator": "Precise age calculation",
+      "pdfUnlock": "Remove password from PDF",
+      "urlEncoder": "URL encoding and decoding",
+      "htmlFormatter": "Format HTML code",
+      "jsonFormatter": "Format and validate JSON data",
+      "pdfToPpt": "Convert PDF to PowerPoint",
+      "videoCompress": "Reduce video file size",
+      "caseConverter": "Convert text case formats",
+      "textDiff": "Compare text differences",
+      "collagemaker": "Create photo collages",
+      "videoTrim": "Trim and cut videos",
+      "audioToVideo": "Convert audio to video",
+      "videoSpeed": "Change video playback speed",
+      "videoMerge": "Combine multiple videos",
+      "wordToPdf": "Convert Word to PDF"
+    },
+    "categories": {
+      "imageTools": "이미지 도구",
+      "legalPolicy": "법적 사항 및 정책",
+      "ocrTools": "OCR 도구",
+      "utilityTools": "유틸리티 도구",
+      "converterTools": "변환 도구",
+      "pdfTools": "PDF 도구",
+      "videoTools": "비디오 도구",
+      "documentData": "documentData",
+      "documentTools": "문서 도구",
+      "mainPages": "주요 페이지",
+      "audioTools": "오디오 도구",
+      "aiTools": "AI 도구"
+    },
+    "searchTip": {
+      "description": "You can use the search function on the homepage to quickly find specific tools, or check our help center for more usage guidance.",
+      "viewHelp": "View Help Center",
+      "backToHome": "Back to Home Search",
+      "title": "Can't find the tool you need?",
+      "contactUs": "Contact Us"
+    },
+    "itemCount": "itemCount",
+    "stats": {
+      "title": "Powerful Online Tool Collection",
+      "description": "We provide over {{count}} free online tools covering document processing, image editing, video processing, data conversion and more"
+    },
+    "title": "사이트맵",
+    "totalCount": "총 {count}개의 도구와 페이지",
+    "subtitle": "모든 페이지와 도구를 탐색하여 필요한 기능을 빠르게 찾으세요"
+  },
+  "about": {
+    "contact": {
+      "description": "제품을 지속적으로 개선하는 데 도움이 되도록 여러분의 피드백을 듣고 싶습니다.",
+      "response": "response",
+      "button": "문의하기",
+      "title": "질문이나 제안이 있으신가요?",
+      "email": "email"
+    },
+    "tools": {
+      "ocr": {
+        "title": "OCR 도구",
+        "description": "이미지 텍스트 인식, PDF OCR, 손글씨 인식 등 9가지 텍스트 인식 도구",
+        "count": "count"
+      },
+      "video": {
+        "count": "count",
+        "description": "비디오 압축, 변환, 편집, 병합, GIF 제작 등 9가지 비디오 처리 도구",
+        "title": "비디오 도구"
+      },
+      "image": {
+        "title": "이미지 도구",
+        "description": "이미지 변환, 압축, 배경 제거, 워터마크 처리 등 13가지 이미지 처리 도구",
+        "count": "count"
+      },
+      "description": "description",
+      "pdf": {
+        "description": "PDF 변환, 병합, 분할, 압축, OCR 인식 등 13가지 전문 도구",
+        "count": "count",
+        "title": "PDF 도구"
+      },
+      "title": "우리의 도구",
+      "document": {
+        "count": "count",
+        "description": "Excel, CSV, JSON 변환, 텍스트 처리, 개발자 도구 등 36가지 실용적인 도구",
+        "title": "문서 및 데이터"
+      }
+    },
+    "team": {
+      "description": "전 세계 사용자에게 최고의 온라인 도구 경험을 제공하는 것에 전념하는 열정적인 개발자와 디자이너 팀입니다.",
+      "values": {
+        "openness": {
+          "title": "Openness",
+          "description": "We welcome feedback and suggestions from users"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "We constantly explore new technologies and solutions"
+        },
+        "quality": {
+          "description": "We pursue excellence in every detail",
+          "title": "Quality"
+        },
+        "userFirst": {
+          "description": "User needs are our top priority",
+          "title": "User First"
+        }
+      },
+      "title": "우리 팀"
+    },
+    "technology": {
+      "security": {
+        "description": "Enterprise-grade security measures for data protection",
+        "title": "Security Technology"
+      },
+      "description": "We use the latest technologies to ensure optimal performance and user experience",
+      "backend": {
+        "description": "Robust server architecture for reliable processing",
+        "title": "Backend Technology"
+      },
+      "frontend": {
+        "title": "Frontend Technology",
+        "description": "Modern web technologies for smooth user experience"
+      },
+      "ai": {
+        "description": "Advanced AI algorithms for intelligent processing",
+        "title": "AI Technology"
+      },
+      "title": "Technology Stack"
+    },
+    "stats": {
+      "countries": "Available in 180+ countries",
+      "title": "Platform Statistics",
+      "tools": "100+ Tools",
+      "satisfaction": "99% Satisfaction rate",
+      "languages": "Support for 20+ languages",
+      "users": "Tens of thousands of users",
+      "description": "Numbers that demonstrate our commitment to excellence",
+      "files": "Millions of files processed"
+    },
+    "subtitle": "복잡한 파일 처리를 쉽고 간단하게 만드는 간단하고 빠르며 무료인 온라인 도구를 사용자에게 제공하는 것에 전념하고 있습니다.",
+    "mission": {
+      "title": "우리의 사명",
+      "points": {
+        "privacy": "Protect user privacy and data security",
+        "free": "Provide completely free services without any hidden costs",
+        "innovation": "Continuously innovate and improve user experience",
+        "accessibility": "Make professional tools accessible to everyone"
+      },
+      "description": "복잡한 소프트웨어를 설치하거나 전문 기술을 갖추지 않고도 누구나 다양한 파일 형식을 쉽게 처리할 수 있도록 하는 것입니다. 기술은 사람을 위해 봉사하고 작업을 더 효율적이고 간단하게 만들어야 한다고 믿습니다."
+    },
+    "features": {
+      "easy": {
+        "details": "We design simple and intuitive user interfaces so that anyone can easily use our tools without any technical background.",
+        "title": "Easy to Use",
+        "description": "Intuitive interface, no learning curve required"
+      },
+      "secure": {
+        "details": "We use the latest encryption technology to protect your files. All processing is done locally or on secure servers, and files are automatically deleted after processing.",
+        "title": "Secure and Reliable",
+        "description": "File processing is secure, no user data stored"
+      },
+      "title": "Platform Features",
+      "free": {
+        "details": "We believe that excellent tools should be accessible to everyone. All our tools are completely free with no usage limits or hidden charges.",
+        "description": "All tools are free, no registration or payment required",
+        "title": "Completely Free"
+      },
+      "fast": {
+        "description": "Optimized algorithms ensure fast processing",
+        "title": "Fast and Efficient",
+        "details": "Our team continuously optimizes algorithms to ensure the fastest processing speed. Most files can be processed within seconds."
+      }
+    },
+    "vision": {
+      "description": "세계 최고의 온라인 도구 플랫폼이 되어 사용자에게 가장 포괄적이고 신뢰할 수 있는 파일 처리 솔루션을 제공하여 디지털 작업을 더욱 편리하게 만드는 것입니다.",
+      "goals": {
+        "comprehensive": "Build the most comprehensive tool ecosystem",
+        "intelligent": "Integrate AI technology to enhance tool intelligence",
+        "global": "Serve users worldwide",
+        "sustainable": "Maintain sustainable development and continuous innovation"
+      },
+      "title": "우리의 비전"
+    },
+    "hero": {
+      "subtitle": "파일 처리를 간단하게 만드는 온라인 도구 플랫폼",
+      "description": "복잡한 소프트웨어를 설치하거나 전문 기술을 갖추지 않고도 누구나 다양한 파일 형식을 쉽게 처리할 수 있도록 하는 것에 전념하고 있습니다.",
+      "title": "우리는 ColleTools입니다"
+    },
+    "cta": {
+      "description": "80개 이상의 무료 온라인 도구로 파일 처리를 간단하게 만드세요",
+      "title": "지금 시작하세요",
+      "button": "도구 탐색"
+    },
+    "title": "ColleTools 소개"
+  },
+  "help": {
+    "faq": {
+      "q1": {
+        "answer": "Yes, all our tools are completely free. You can use all features without registration or payment.",
+        "question": "Are these tools free?"
+      },
+      "title": "Frequently Asked Questions",
+      "q2": {
+        "answer": "Absolutely safe. We don't store your files, all processing is done in your browser, or files are deleted immediately after processing.",
+        "question": "Are my files safe?"
+      },
+      "q3": {
+        "question": "What file formats are supported?",
+        "answer": "We support most common file formats including PDF, Word, Excel, PowerPoint, image formats (JPG, PNG, GIF, etc.), video formats (MP4, AVI, MOV, etc.), and more."
+      },
+      "q5": {
+        "question": "How to contact technical support?",
+        "answer": "If you encounter any issues, you can send us an email through the contact page, and we'll respond as soon as possible."
+      },
+      "q4": {
+        "question": "Is there a file size limit?",
+        "answer": "To ensure optimal performance, we have certain file size limits. Most tools support files up to 100MB, with specific limits displayed on each tool page."
+      }
+    },
+    "guides": {
+      "howToUse": "How to use our tools",
+      "tips": {
+        "tip3": "Use a stable internet connection",
+        "tip4": "Please be patient when processing large files",
+        "tip2": "Check if file size is within limits",
+        "title": "Usage Tips",
+        "tip1": "Make sure your file format is supported"
+      },
+      "step3": "Wait for processing to complete",
+      "step2": "Upload your file",
+      "step4": "Download the processed file",
+      "title": "User Guides",
+      "step1": "Select the tool you need"
+    },
+    "contact": {
+      "description": "If you can't find the answer in the help center, feel free to contact us.",
+      "response": "We usually respond within 24 hours",
+      "email": "Send Email",
+      "title": "Contact Us"
+    },
+    "subtitle": "자주 묻는 질문과 도구 가이드로 필요한 답변을 찾으세요",
+    "categories": {
+      "technical": "Technical Support",
+      "gettingStarted": "Getting Started",
+      "privacy": "Privacy & Security",
+      "billing": "Billing Issues",
+      "fileFormats": "File Formats",
+      "troubleshooting": "Troubleshooting"
+    },
+    "searchPlaceholder": "질문이나 키워드를 검색하세요...",
+    "title": "도움말 센터"
+  },
+  "footer": {
+    "usefulLinks": "유용한 링크",
+    "dropshare": "DropShare",
+    "contactDescription": "도구 사용 중 문제가 발생하면 언제든지 이메일을 보내주세요.",
+    "apiDocs": "apiDocs",
+    "copyright": "© 2024 ColleTools. 모든 권리 보유.",
+    "cookiePolicy": "쿠키 정책",
+    "sitemap": "사이트맵",
+    "privacyPolicy": "개인정보 보호정책",
+    "zipic": "ZiPic",
+    "helpCenter": "helpCenter",
+    "toolCategories": "도구 카테고리",
+    "termsOfService": "이용약관",
+    "faq": "faq",
+    "contactUs": "문의하기",
+    "description": "description",
+    "address": "주소",
+    "phone": "전화",
+    "email": "이메일"
+  },
+  "moreTools": {
+    "title": "More Tools",
+    "tryDifferent": "Try different keywords or browse categories above.",
+    "features": {
+      "free": {
+        "title": "100% Free",
+        "description": "All tools are completely free to use"
+      },
+      "fast": {
+        "description": "Optimized for speed and efficiency",
+        "title": "Lightning Fast"
+      },
+      "noRegistration": {
+        "title": "No Registration",
+        "description": "Start using immediately without signup"
+      },
+      "secure": {
+        "title": "Secure Processing",
+        "description": "Your files are processed securely and deleted automatically"
+      },
+      "title": "Why Choose Our Tools?"
+    },
+    "subtitle": "Discover more useful tools to boost your productivity",
+    "categories": {
+      "developer": {
+        "count": "15+ Tools",
+        "title": "Developer Tools",
+        "description": "Essential tools for developers"
+      },
+      "text": {
+        "description": "Text processing and formatting",
+        "title": "Text Tools",
+        "count": "10+ Tools"
+      },
+      "ocr": {
+        "count": "8+ Tools",
+        "title": "OCR Tools",
+        "description": "Text recognition and extraction"
+      },
+      "video": {
+        "description": "Video processing and conversion tools",
+        "count": "12+ Tools",
+        "title": "Video Tools"
+      },
+      "pdf": {
+        "count": "15+ Tools",
+        "title": "PDF Tools",
+        "description": "Complete PDF processing solutions"
+      },
+      "image": {
+        "count": "20+ Tools",
+        "description": "Professional image editing and conversion",
+        "title": "Image Tools"
+      },
+      "document": {
+        "title": "Document & Data Tools",
+        "count": "25+ Tools",
+        "description": "Document conversion and data processing"
+      }
+    },
+    "recent": {
+      "title": "Recently Added",
+      "description": "Latest tools added to our platform"
+    },
+    "searchPlaceholder": "Search for tools...",
+    "noResults": "No tools found matching your search.",
+    "allTools": "View All Tools",
+    "popular": {
+      "title": "Popular Tools",
+      "description": "Most used tools by our community"
+    },
+    "description": "Explore our comprehensive collection of online tools designed to simplify your daily tasks. From document processing to media conversion, we have everything you need."
+  },
+  "privacy": {
+    "dataCollection": {
+      "cookiesDesc": "Necessary cookies to improve user experience",
+      "description": "We are committed to protecting your privacy. When you use our services, we may collect the following information:",
+      "fileInfoDesc": "Files you upload are only used for processing purposes and are automatically deleted after processing",
+      "technicalInfoDesc": "Technical data such as IP address, browser type, device information",
+      "title": "Information Collection",
+      "cookies": "Cookies",
+      "technicalInfo": "Technical Information",
+      "usageDataDesc": "Anonymous usage statistics to improve our services",
+      "usageData": "Usage Data",
+      "fileInfo": "File Information"
+    },
+    "dataUsage": {
+      "improveQuality": "Improve our service quality",
+      "preventAbuse": "Prevent abuse and fraud",
+      "title": "Information Usage",
+      "provideServices": "Provide and maintain our services",
+      "complyLaws": "Comply with legal and regulatory requirements",
+      "description": "The information we collect is only used for the following purposes:",
+      "processFiles": "Process files you upload",
+      "analyzeUsage": "Analyze service usage"
+    },
+    "dataProtection": {
+      "encryptionDesc": "All data transmission uses SSL/TLS encryption",
+      "encryption": "Encrypted Transmission",
+      "securityMonitoringDesc": "Continuously monitor system security status",
+      "title": "Data Protection",
+      "description": "We take the following measures to protect your data security:",
+      "autoDeleteDesc": "Uploaded files are automatically deleted within 1 hour after processing",
+      "accessControl": "Access Control",
+      "accessControlDesc": "Strictly limit access to user data",
+      "autoDelete": "Automatic Deletion",
+      "regularAudit": "Regular Audits",
+      "securityMonitoring": "Security Monitoring",
+      "regularAuditDesc": "Regular security audits and vulnerability scans"
+    },
+    "lastUpdated": "Last updated: January 2024",
+    "title": "Privacy Policy"
+  },
+  "contact": {
+    "contactInfo": {
+      "email": {
+        "description": "일반 문의 및 기술 지원",
+        "title": "이메일"
+      },
+      "title": "연락처 정보",
+      "address": {
+        "title": "주소",
+        "line1": "중국 상하이시 푸둥신구",
+        "line2": "장장 하이테크 파크"
+      },
+      "chat": {
+        "hours": "평일 9:00-18:00",
+        "description": "실시간 채팅 지원",
+        "title": "온라인 지원"
+      },
+      "hours": {
+        "saturday": "토요일 10:00-16:00",
+        "timezone": "베이징 시간 (UTC+8)",
+        "title": "영업시간",
+        "weekdays": "월요일부터 금요일 9:00-18:00"
+      }
+    },
+    "form": {
+      "subjects": {
+        "feature": "기능 요청",
+        "other": "기타",
+        "general": "일반 문의",
+        "business": "비즈니스 협력",
+        "technical": "기술 지원",
+        "bug": "버그 신고"
+      },
+      "subject": "제목",
+      "subjectPlaceholder": "제목을 선택해주세요",
+      "submitSuccess": "submitSuccess",
+      "message": "메시지 내용",
+      "submit": "메시지 보내기",
+      "email": "이메일",
+      "messagePlaceholder": "질문이나 제안을 자세히 설명해주세요...",
+      "emailPlaceholder": "이메일을 입력해주세요",
+      "title": "메시지 보내기",
+      "namePlaceholder": "이름을 입력해주세요",
+      "name": "이름"
+    },
+    "faq": {
+      "questions": {
+        "howToUse": {
+          "answer": "필요한 도구를 선택하고 파일을 업로드한 후 처리가 완료되면 결과를 다운로드하세요. 모든 도구에는 자세한 사용 설명이 있습니다.",
+          "question": "도구를 어떻게 사용하나요?"
+        },
+        "security": {
+          "question": "파일이 안전한가요?",
+          "answer": "네, SSL 암호화를 사용하여 전송하며, 처리 완료 후 1시간 이내에 파일을 자동 삭제하여 데이터 보안을 보장합니다."
+        },
+        "processingTime": {
+          "question": "처리에 얼마나 걸리나요?",
+          "answer": "대부분의 파일은 몇 초에서 몇 분 내에 처리가 완료됩니다. 구체적인 시간은 파일 크기와 복잡성에 따라 다릅니다."
+        },
+        "support": {
+          "answer": "이메일, 온라인 채팅 또는 위의 양식을 통해 문의할 수 있습니다. 24시간 이내에 질문에 답변드리겠습니다.",
+          "question": "기술 지원을 받으려면?"
+        },
+        "formats": {
+          "question": "어떤 파일 형식을 지원하나요?",
+          "answer": "PDF, Word, Excel, PowerPoint, 이미지, 비디오 등 다양한 일반적인 형식을 지원합니다. 구체적인 지원 형식은 각 도구 페이지를 확인해주세요."
+        },
+        "fileSize": {
+          "question": "파일 크기 제한이 있나요?",
+          "answer": "단일 파일 최대 지원은 100MB입니다. 더 큰 파일을 처리해야 하는 경우 기술 지원팀에 문의해주세요."
+        }
+      },
+      "moreHelp": "더 많은 도움말 보기",
+      "title": "자주 묻는 질문"
+    },
+    "quickLinks": {
+      "privacy": "개인정보 보호정책",
+      "helpCenter": "도움말 센터",
+      "apiDocs": "API 문서",
+      "terms": "이용약관",
+      "title": "빠른 링크"
+    },
+    "subtitle": "질문이나 제안이 있으시면 언제든지 피드백을 보내주세요.",
+    "title": "문의하기"
   },
   "home": {
-    "heroTitle": "무료 온라인 도구",
-    "heroSubtitle": "모든 것이 준비되어 있습니다",
-    "heroDescription": "PDF, 이미지, 비디오, AI 작성 등을 도와주는 100개 이상의 무료 도구. 등록 불필요, 완전 무료 사용.",
-    "exploreTools": "도구 탐색",
-    "learnMore": "자세히 알아보기",
-    "chooseCategory": "도구 카테고리 선택",
-    "categoryDescription": "카테고리별로 정리된 포괄적인 도구 컬렉션에서 선택하세요",
-    "popularTools": "인기 도구",
-    "popularDescription": "우리 도구를 신뢰하는 수백만 사용자와 함께하세요",
-    "useTool": "도구 사용",
-    "viewTools": "도구 보기",
-    "usedByUsers": "{{count}}만 명의 사용자가 이용",
     "features": {
       "free": {
         "title": "100% 무료",
@@ -29,920 +1622,152 @@
         "description": "파일은 안전하게 처리되며 개인정보 보호를 위해 1시간 후 자동 삭제됩니다."
       },
       "fast": {
-        "title": "빠르고 쉬움",
-        "description": "등록이 필요하지 않습니다. 파일을 업로드하기만 하면 몇 초 안에 결과를 얻을 수 있습니다."
-      }
-    }
-  },
-  "footer": {
-    "zipic": "ZiPic",
-    "dropshare": "DropShare",
-    "email": "이메일",
-    "phone": "전화",
-    "address": "주소",
-    "toolCategories": "도구 카테고리",
-    "usefulLinks": "유용한 링크",
-    "privacyPolicy": "개인정보 보호정책",
-    "termsOfService": "이용약관",
-    "contactUs": "문의하기",
-    "contactDescription": "도구 사용 중 문제가 발생하면 언제든지 이메일을 보내주세요.",
-    "copyright": "© 2024 ColleTools. 모든 권리 보유.",
-    "cookiePolicy": "쿠키 정책",
-    "sitemap": "사이트맵"
-  },
-  "contact": {
-    "title": "문의하기",
-    "subtitle": "질문이나 제안이 있으시면 언제든지 피드백을 보내주세요.",
-    "contactInfo": {
-      "title": "연락처 정보",
-      "email": {
-        "title": "이메일",
-        "description": "일반 문의 및 기술 지원"
-      },
-      "chat": {
-        "title": "온라인 지원",
-        "description": "실시간 채팅 지원",
-        "hours": "평일 9:00-18:00"
-      },
-      "address": {
-        "title": "주소",
-        "line1": "중국 상하이시 푸둥신구",
-        "line2": "장장 하이테크 파크"
-      },
-      "hours": {
-        "title": "영업시간",
-        "weekdays": "월요일부터 금요일 9:00-18:00",
-        "saturday": "토요일 10:00-16:00",
-        "timezone": "베이징 시간 (UTC+8)"
+        "description": "등록이 필요하지 않습니다. 파일을 업로드하기만 하면 몇 초 안에 결과를 얻을 수 있습니다.",
+        "title": "빠르고 쉬움"
       }
     },
-    "quickLinks": {
-      "title": "빠른 링크",
-      "helpCenter": "도움말 센터",
-      "apiDocs": "API 문서",
-      "privacy": "개인정보 보호정책",
-      "terms": "이용약관"
-    },
-    "form": {
-      "title": "메시지 보내기",
-      "name": "이름",
-      "namePlaceholder": "이름을 입력해주세요",
-      "email": "이메일",
-      "emailPlaceholder": "이메일을 입력해주세요",
-      "subject": "제목",
-      "subjectPlaceholder": "제목을 선택해주세요",
-      "subjects": {
-        "general": "일반 문의",
-        "technical": "기술 지원",
-        "bug": "버그 신고",
-        "feature": "기능 요청",
-        "business": "비즈니스 협력",
-        "other": "기타"
-      },
-      "message": "메시지 내용",
-      "messagePlaceholder": "질문이나 제안을 자세히 설명해주세요...",
-      "submit": "메시지 보내기"
-    },
-    "faq": {
-      "title": "자주 묻는 질문",
-      "questions": {
-        "howToUse": {
-          "question": "도구를 어떻게 사용하나요?",
-          "answer": "필요한 도구를 선택하고 파일을 업로드한 후 처리가 완료되면 결과를 다운로드하세요. 모든 도구에는 자세한 사용 설명이 있습니다."
-        },
-        "security": {
-          "question": "파일이 안전한가요?",
-          "answer": "네, SSL 암호화를 사용하여 전송하며, 처리 완료 후 1시간 이내에 파일을 자동 삭제하여 데이터 보안을 보장합니다."
-        },
-        "formats": {
-          "question": "어떤 파일 형식을 지원하나요?",
-          "answer": "PDF, Word, Excel, PowerPoint, 이미지, 비디오 등 다양한 일반적인 형식을 지원합니다. 구체적인 지원 형식은 각 도구 페이지를 확인해주세요."
-        },
-        "fileSize": {
-          "question": "파일 크기 제한이 있나요?",
-          "answer": "단일 파일 최대 지원은 100MB입니다. 더 큰 파일을 처리해야 하는 경우 기술 지원팀에 문의해주세요."
-        },
-        "processingTime": {
-          "question": "처리에 얼마나 걸리나요?",
-          "answer": "대부분의 파일은 몇 초에서 몇 분 내에 처리가 완료됩니다. 구체적인 시간은 파일 크기와 복잡성에 따라 다릅니다."
-        },
-        "support": {
-          "question": "기술 지원을 받으려면?",
-          "answer": "이메일, 온라인 채팅 또는 위의 양식을 통해 문의할 수 있습니다. 24시간 이내에 질문에 답변드리겠습니다."
-        }
-      },
-      "moreHelp": "더 많은 도움말 보기"
-    }
-  },
-  "about": {
-    "title": "ColleTools 소개",
-    "subtitle": "복잡한 파일 처리를 쉽고 간단하게 만드는 간단하고 빠르며 무료인 온라인 도구를 사용자에게 제공하는 것에 전념하고 있습니다.",
-    "mission": {
-      "title": "우리의 사명",
-      "description": "복잡한 소프트웨어를 설치하거나 전문 기술을 갖추지 않고도 누구나 다양한 파일 형식을 쉽게 처리할 수 있도록 하는 것입니다. 기술은 사람을 위해 봉사하고 작업을 더 효율적이고 간단하게 만들어야 한다고 믿습니다."
-    },
-    "vision": {
-      "title": "우리의 비전",
-      "description": "세계 최고의 온라인 도구 플랫폼이 되어 사용자에게 가장 포괄적이고 신뢰할 수 있는 파일 처리 솔루션을 제공하여 디지털 작업을 더욱 편리하게 만드는 것입니다."
-    },
-    "whyChooseUs": "왜 우리를 선택해야 할까요?",
-    "tools": {
-      "title": "우리의 도구",
-      "pdf": {
-        "title": "PDF 도구",
-        "description": "PDF 변환, 병합, 분할, 압축, OCR 인식 등 13가지 전문 도구"
-      },
-      "image": {
-        "title": "이미지 도구",
-        "description": "이미지 변환, 압축, 배경 제거, 워터마크 처리 등 13가지 이미지 처리 도구"
-      },
-      "video": {
-        "title": "비디오 도구",
-        "description": "비디오 압축, 변환, 편집, 병합, GIF 제작 등 9가지 비디오 처리 도구"
-      },
-      "ocr": {
-        "title": "OCR 도구",
-        "description": "이미지 텍스트 인식, PDF OCR, 손글씨 인식 등 9가지 텍스트 인식 도구"
-      },
-      "document": {
-        "title": "문서 및 데이터",
-        "description": "Excel, CSV, JSON 변환, 텍스트 처리, 개발자 도구 등 36가지 실용적인 도구"
-      }
-    },
-    "contact": {
-      "title": "질문이나 제안이 있으신가요?",
-      "description": "제품을 지속적으로 개선하는 데 도움이 되도록 여러분의 피드백을 듣고 싶습니다.",
-      "button": "문의하기"
-    }
-  },
-  "tools": {
-    "pdfCompress": "PDF 압축",
-    "pdfCompressDesc": "PDF 파일 크기 줄이기",
-    "lengthConverter": "길이 변환",
-    "lengthConverterDesc": "다양한 길이 단위 변환",
-    "weightConverter": "무게 변환",
-    "weightConverterDesc": "다양한 무게 단위 변환",
-    "temperatureConverter": "온도 변환",
-    "temperatureConverterDesc": "섭씨, 화씨, 켈빈 변환",
-    "timeConverter": "시간 변환",
-    "timeConverterDesc": "다양한 시간 단위 변환",
-    "currencyConverter": "통화 변환",
-    "currencyConverterDesc": "실시간 환율 변환",
-    "colorConverter": "색상 변환",
-    "colorConverterDesc": "RGB, HEX, HSL, CMYK 색상 형식 변환",
-    "qrGenerator": "QR 코드 생성기",
-    "qrGeneratorDesc": "맞춤형 QR 코드 생성",
-    "passwordGenerator": "비밀번호 생성기",
-    "passwordGeneratorDesc": "안전한 랜덤 비밀번호 생성",
-    "base64Encoder": "Base64 인코딩/디코딩",
-    "base64EncoderDesc": "Base64 형식 인코딩 및 디코딩",
-    "pdf": {
-      "title": "PDF 도구",
-      "description": "PDF 파일 변환, 병합, 분할, 편집",
-      "pageDescription": "포괄적인 PDF 도구 모음으로 PDF 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
-      "pdfToWord": "PDF를 Word로",
-      "pdfToWordDesc": "PDF 문서를 편집 가능한 Word 파일로 변환",
-      "wordToPdf": "Word를 PDF로",
-      "wordToPdfDesc": "Word 문서를 PDF 형식으로 변환",
-      "pdfToExcel": "PDF를 Excel로",
-      "pdfToExcelDesc": "PDF 테이블을 Excel 스프레드시트로 변환",
-      "excelToPdf": "Excel을 PDF로",
-      "excelToPdfDesc": "Excel 스프레드시트를 PDF로 변환",
-      "pdfToPpt": "PDF를 PPT로",
-      "pdfToPptDesc": "PDF를 PowerPoint 프레젠테이션으로 변환",
-      "pptToPdf": "PPT를 PDF로",
-      "pptToPdfDesc": "PowerPoint 프레젠테이션을 PDF로 변환",
-      "pdfToJpg": "PDF를 JPG로",
-      "pdfToJpgDesc": "PDF 페이지를 JPG 이미지로 변환",
-      "jpgToPdf": "JPG를 PDF로",
-      "jpgToPdfDesc": "JPG 이미지를 PDF 문서로 변환",
-      "mergePdf": "PDF 병합",
-      "mergePdfDesc": "여러 PDF 파일을 하나로 결합",
-      "splitPdf": "PDF 분할",
-      "splitPdfDesc": "PDF를 별도의 페이지나 문서로 분할",
-      "compressPdf": "PDF 압축",
-      "compressPdfDesc": "품질 손실 없이 PDF 파일 크기 줄이기",
-      "rotatePdf": "PDF 회전",
-      "rotatePdfDesc": "PDF 페이지를 원하는 방향으로 회전",
-      "unlockPdf": "PDF 잠금 해제",
-      "unlockPdfDesc": "암호로 보호된 PDF에서 제한 제거",
-      "protectPdf": "PDF 보호",
-      "protectPdfDesc": "PDF에 암호 및 권한 추가",
-      "pdfOcr": "PDF 문자 인식",
-      "pdfFormFiller": "PDF 양식 작성",
-      "pdfSignature": "PDF 서명",
-      "pdfWatermark": "PDF 워터마크",
-      "pdfToPowerpoint": "PDF→PowerPoint",
-      "powerpointToPdf": "PowerPoint→PDF",
-      "qualityAssurance": "고품질 변환으로 원본 형식과 레이아웃을 유지합니다.",
-      "secureProcessing": "모든 파일은 안전하게 처리되며 처리 후 자동으로 삭제됩니다.",
-      "fastProcessing": "빠른 처리 속도로 시간을 절약하세요."
-    },
-    "image": {
-      "title": "이미지 도구",
-      "description": "이미지 편집, 변환, 최적화",
-      "pageDescription": "포괄적인 이미지 도구 모음으로 이미지 편집, 변환, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
-      "backgroundRemover": "배경 제거",
-      "backgroundRemoverDesc": "AI를 사용하여 이미지에서 배경을 자동으로 제거",
-      "imageConverter": "이미지 변환",
-      "imageConverterDesc": "다양한 형식 간 이미지 변환 (JPG, PNG, WebP 등)",
-      "imageCompressor": "이미지 압축",
-      "imageCompressorDesc": "품질 손실 없이 이미지 파일 크기 줄이기",
-      "photoEnhancer": "사진 향상",
-      "photoEnhancerDesc": "AI 기술을 사용하여 이미지 품질 향상",
-      "imageCropper": "이미지 자르기",
-      "imageCropperDesc": "원하는 크기로 이미지 자르기 및 크기 조정",
-      "imageRotator": "이미지 회전",
-      "imageRotatorDesc": "임의의 각도로 이미지 회전 또는 수평/수직 뒤집기",
-      "imageUpscaler": "이미지 확대",
-      "imageUpscalerDesc": "AI 기술을 사용하여 더 나은 품질로 이미지 확대",
-      "watermarkRemover": "워터마크 제거",
-      "watermarkRemoverDesc": "이미지에서 워터마크를 자동으로 제거",
-      "imageResizer": "이미지 크기 조정",
-      "imageResizerDesc": "특정 크기나 백분율로 이미지 크기 조정"
-    },
-    "video": {
-      "title": "비디오 도구",
-      "description": "비디오 변환, 편집, 최적화",
-      "pageDescription": "포괄적인 비디오 도구 모음으로 비디오 변환, 편집, 최적화를 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
-      "videoConverter": "비디오 변환",
-      "videoConverterDesc": "다양한 형식 간 비디오 변환 (MP4, AVI, MOV 등)",
-      "videoCompressor": "비디오 압축",
-      "videoCompressorDesc": "품질 손실 없이 비디오 파일 크기 줄이기",
-      "videoTrimmer": "비디오 자르기",
-      "videoTrimmerDesc": "비디오의 특정 부분 잘라내기",
-      "videoMerger": "비디오 병합",
-      "videoMergerDesc": "여러 비디오 파일을 하나로 결합",
-      "videoRotator": "비디오 회전",
-      "videoRotatorDesc": "비디오를 임의의 각도로 회전",
-      "videoResizer": "비디오 크기 조정",
-      "videoResizerDesc": "비디오 해상도 및 크기 변경",
-      "videoSpeedChanger": "비디오 속도 변경",
-      "videoSpeedChangerDesc": "비디오 재생 속도 조정",
-      "videoToGif": "비디오를 GIF로",
-      "videoToGifDesc": "비디오 파일을 애니메이션 GIF로 변환",
-      "audioExtractor": "오디오 추출",
-      "audioExtractorDesc": "비디오에서 오디오 추출",
-      "secureProcessing": "안전한 처리로 개인정보 보호",
-      "readyToProcess": "처리할 준비가 되셨나요?",
-      "uploadAndStart": "비디오 파일을 업로드하고 처리 시작",
-      "supportedFormats": "지원되는 비디오 형식",
-      "supportedFormatsDesc": "최대 호환성을 위해 모든 주요 비디오 형식을 지원합니다"
-    },
-    "ocr": {
-      "title": "OCR 문자 인식 도구",
-      "description": "이미지와 문서에서 텍스트 추출",
-      "pageDescription": "이미지, PDF, 손글씨 등 다양한 인식 요구사항을 지원하는 강력한 OCR 도구 모음",
-      "imageToText": "이미지 문자 인식",
-      "imageToTextDesc": "이미지에서 텍스트 내용을 추출, 다국어 지원",
-      "pdfOcr": "PDF 문자 인식",
-      "pdfOcrDesc": "PDF 문서에서 텍스트 내용을 추출",
-      "handwritingRecognition": "손글씨 인식",
-      "handwritingRecognitionDesc": "손글씨를 인식하여 디지털 텍스트로 변환",
-      "documentScanner": "문서 스캐너",
-      "documentScannerDesc": "문서를 스캔하여 구조화된 텍스트를 추출",
-      "tableExtractor": "표 추출기",
-      "tableExtractorDesc": "이미지나 PDF에서 표 데이터를 추출",
-      "receiptScanner": "영수증 스캐너",
-      "receiptScannerDesc": "영수증을 스캔하여 주요 정보를 추출",
-      "businessCardScanner": "명함 스캐너",
-      "businessCardScannerDesc": "명함을 스캔하여 연락처 정보를 추출",
-      "licensePlateReader": "번호판 인식",
-      "licensePlateReaderDesc": "번호판 번호를 인식",
-      "qrCodeReader": "QR 코드 인식",
-      "qrCodeReaderDesc": "QR 코드 내용을 읽기",
-      "selectFile": "파일 선택",
-      "clickToSelectFile": "클릭하여 파일 선택",
-      "supportedFormats": "지원 형식",
-      "recognizing": "인식 중...",
-      "startRecognition": "인식 시작",
-      "recognitionResult": "인식 결과",
-      "copyResult": "결과 복사",
-      "recognitionComplete": "인식 완료",
-      "ocrComplete": "OCR 인식 완료!",
-      "ocrError": "OCR 처리에 실패했습니다. 다시 시도해주세요",
-      "processingError": "OCR 처리 오류:"
-    },
-    "documentData": {
-      "title": "문서 및 데이터 도구",
-      "description": "문서 처리, 텍스트 편집, 개발 도구, 형식 변환 도구의 포괄적인 컬렉션. 모든 데이터 처리 요구사항을 충족",
-      "fileProcessing": "파일 처리",
-      "textProcessing": "텍스트 처리",
-      "developerTools": "개발자 도구",
-      "converters": "변환기",
-      "csvSplit": "CSV 분할",
-      "csvSplitDesc": "큰 CSV 파일을 작은 청크로 분할",
-      "excelSplit": "Excel 분할",
-      "excelSplitDesc": "Excel 파일을 행 또는 시트별로 분할",
-      "xmlToExcel": "XML에서 Excel로",
-      "xmlToExcelDesc": "XML 파일을 Excel 형식으로 변환",
-      "excelToXml": "Excel에서 XML로",
-      "excelToXmlDesc": "Excel 파일을 XML 형식으로 변환",
-      "csvToExcel": "CSV에서 Excel로",
-      "csvToExcelDesc": "CSV 파일을 Excel 형식으로 변환",
-      "xmlToCsv": "XML에서 CSV로",
-      "xmlToCsvDesc": "XML 파일을 CSV 형식으로 변환",
-      "xmlToJson": "XML에서 JSON으로",
-      "xmlToJsonDesc": "XML 파일을 JSON 형식으로 변환",
-      "jsonToXml": "JSON에서 XML로",
-      "jsonToXmlDesc": "JSON 파일을 XML 형식으로 변환",
-      "csvToJson": "CSV에서 JSON으로",
-      "csvToJsonDesc": "CSV 파일을 JSON 형식으로 변환",
-      "wordCounter": "단어 카운터",
-      "wordCounterDesc": "텍스트의 단어 수, 문자 수, 단락 수, 줄 수를 계산",
-      "characterCounter": "문자 카운터",
-      "characterCounterDesc": "텍스트의 문자 수를 정확히 계산 (공백 포함/제외)",
-      "caseConverter": "대소문자 변환기",
-      "caseConverterDesc": "텍스트를 대문자, 소문자, 제목 케이스, 문장 케이스로 변환",
-      "textFormatter": "텍스트 포맷터",
-      "textFormatterDesc": "텍스트를 포맷하고 여분의 공백과 줄바꿈을 제거",
-      "lineCounter": "줄 카운터",
-      "lineCounterDesc": "텍스트의 총 줄 수와 비어있지 않은 줄 수를 계산",
-      "textReverser": "텍스트 뒤집기",
-      "textReverserDesc": "텍스트 내용을 뒤집기, 문자 또는 단어 단위 뒤집기 지원",
-      "textSorter": "텍스트 정렬",
-      "textSorterDesc": "텍스트 줄을 알파벳순 또는 숫자순으로 정렬",
-      "duplicateRemover": "중복 줄 제거",
-      "duplicateRemoverDesc": "텍스트에서 중복 줄을 제거하고 고유한 내용만 유지",
-      "textDiff": "텍스트 차이 검사기",
-      "textDiffDesc": "두 텍스트의 차이를 비교하고 차이점을 강조 표시",
-      "hashGenerator": "해시 생성기",
-      "hashGeneratorDesc": "MD5, SHA1, SHA256 등 다양한 해시 값을 생성",
-      "base64Encoder": "Base64 인코더/디코더",
-      "base64EncoderDesc": "텍스트의 Base64 인코딩 및 디코딩 작업",
-      "urlEncoder": "URL 인코더/디코더",
-      "urlEncoderDesc": "URL 인코딩 및 디코딩, 특수 문자 처리",
-      "jsonFormatter": "JSON 포맷터/검증기",
-      "jsonFormatterDesc": "JSON 데이터를 포맷하고 유효성을 검증",
-      "qrGenerator": "QR 코드 생성기",
-      "qrGeneratorDesc": "텍스트 또는 URL을 QR 코드 이미지로 변환",
-      "colorPicker": "색상 선택기/변환기",
-      "colorPickerDesc": "HEX, RGB, HSL 등 색상 형식 간 변환",
-      "timestampConverter": "타임스탬프 변환기",
-      "timestampConverterDesc": "Unix 타임스탬프와 날짜 시간 형식 간 상호 변환",
-      "uuidGenerator": "UUID 생성기",
-      "uuidGeneratorDesc": "다양한 버전의 UUID 고유 식별자를 생성",
-      "passwordGenerator": "비밀번호 생성기",
-      "passwordGeneratorDesc": "사용자 정의 규칙으로 안전한 랜덤 비밀번호를 생성",
-      "unitConverter": "단위 변환기",
-      "unitConverterDesc": "길이, 무게, 온도, 면적 등 다양한 단위 간 변환",
-      "currencyConverter": "통화 변환기",
-      "currencyConverterDesc": "실시간 환율 조회 및 통화 변환 계산",
-      "numberBaseConverter": "진법 변환기",
-      "numberBaseConverterDesc": "2진법, 8진법, 10진법, 16진법 간 변환",
-      "colorConverter": "색상 형식 변환기",
-      "colorConverterDesc": "RGB, HEX, HSL, CMYK 등 색상 형식 변환",
-      "timezoneConverter": "시간대 변환기",
-      "timezoneConverterDesc": "다른 시간대 간 시간 변환 및 계산",
-      "imageFormatConverter": "이미지 형식 변환기",
-      "imageFormatConverterDesc": "JPG, PNG, WebP, GIF 등 이미지 형식 변환",
-      "audioFormatConverter": "오디오 형식 변환기",
-      "audioFormatConverterDesc": "MP3, WAV, AAC, FLAC 등 오디오 형식 변환",
-      "documentFormatConverter": "문서 형식 변환기",
-      "documentFormatConverterDesc": "확장된 문서 형식 변환, 더 많은 형식 지원",
-      "encodingConverter": "인코딩 변환기",
-        "encodingConverterDesc": "UTF-8, GBK, ASCII 등 문자 인코딩 변환",
-        "popularTools": "인기 도구",
-        "hot": "인기",
-        "useNow": "지금 사용",
-        "whyChooseUs": "왜 우리 도구를 선택해야 할까요?",
-        "smartProcessing": "스마트 처리",
-        "smartProcessingDesc": "지능형 알고리즘이 효율적이고 정확한 처리 결과를 보장",
-        "formatConversion": "형식 변환",
-        "formatConversionDesc": "다양한 파일 형식 변환을 지원하여 다양한 요구사항 충족",
-        "dataSecurity": "데이터 보안",
-        "dataSecurityDesc": "모든 처리는 브라우저에서 로컬로 수행되어 데이터 개인정보 보호 및 보안 보장",
-        "developerFriendly": "개발자 친화적",
-        "developerFriendlyDesc": "풍부한 개발 도구로 개발 효율성과 코드 품질 향상",
-       "pageDescription": "포괄적인 문서 및 데이터 도구 모음으로 파일 처리, 텍스트 편집, 개발 작업을 수행하세요. 모든 도구는 무료이며 브라우저에서 직접 작동합니다.",
-       "textEditor": "텍스트 편집기",
-       "textEditorDesc": "온라인 텍스트 편집기로 텍스트 파일 편집",
-      "wordCounter": "단어 수 세기",
-      "wordCounterDesc": "텍스트의 문자 수, 단어 수, 단락 수 계산",
-      "jsonFormatter": "JSON 포맷터",
-      "jsonFormatterDesc": "JSON 데이터를 포맷하여 읽기 쉽게 만들기",
-      "csvConverter": "CSV 변환기",
-      "csvConverterDesc": "CSV 파일을 다른 형식으로 변환",
-      "xmlFormatter": "XML 포맷터",
-      "xmlFormatterDesc": "XML 데이터를 포맷하여 읽기 쉽게 만들기",
-      "base64Encoder": "Base64 인코더",
-      "base64EncoderDesc": "텍스트나 파일을 Base64 형식으로 인코드/디코드",
-      "urlEncoder": "URL 인코더",
-      "urlEncoderDesc": "URL을 인코드/디코드",
-      "hashGenerator": "해시 생성기",
-      "hashGeneratorDesc": "MD5, SHA1, SHA256 해시 생성",
-      "passwordGenerator": "비밀번호 생성기",
-      "passwordGeneratorDesc": "안전한 랜덤 비밀번호 생성"
-    }
-  },
-  "text": {
-    "title": "텍스트 도구",
-    "description": "텍스트 처리, 변환, 분석, 암호화 등 다양한 텍스트 조작 도구",
-    "textCounter": "글자 수 세기",
-    "textDiff": "텍스트 비교",
-    "textEncryption": "텍스트 암호화",
-    "textFormatter": "텍스트 포맷팅"
-  },
-  "converter": {
-    "title": "변환 도구",
-    "description": "단위 변환, 통화 변환, 색상 변환 등 다양한 변환 도구",
-    "unitConverter": "단위 변환",
-    "currencyConverter": "통화 변환",
-    "colorConverter": "색상 변환",
-    "timeConverter": "시간 변환"
-  },
-  "developer": {
-    "title": "개발자 도구",
-    "description": "Base64 인코딩, QR 코드 생성, 비밀번호 생성 등 개발 지원 도구",
-    "base64Encoder": "Base64 인코딩",
-    "qrGenerator": "QR 코드 생성",
-    "passwordGenerator": "비밀번호 생성",
-    "jsonFormatter": "JSON 포맷팅"
-  },
-  "sitemap": {
-    "title": "사이트맵",
-    "subtitle": "모든 페이지와 도구를 탐색하여 필요한 기능을 빠르게 찾으세요",
-    "totalCount": "총 {count}개의 도구와 페이지",
-    "backToHome": "홈으로 돌아가기",
-    "categories": {
-      "mainPages": "주요 페이지",
-      "pdfTools": "PDF 도구",
-      "imageTools": "이미지 도구",
-      "videoTools": "비디오 도구",
-      "documentDataTools": "문서 및 데이터 도구",
-      "ocrTools": "OCR 도구",
-      "legalPolicy": "법적 사항 및 정책"
-    },
-    "pages": {
-      "home": {
-        "name": "홈",
-        "description": "메인 페이지 - 모든 도구와 서비스 개요"
-      },
-      "about": {
-        "name": "회사 소개",
-        "description": "회사 정보, 사명, 비전"
-      },
-      "contact": {
-        "name": "문의하기",
-        "description": "연락처 정보 및 지원"
-      },
-      "help": {
-        "name": "도움말 센터",
-        "description": "자주 묻는 질문 및 도구 가이드"
-      },
-      "sitemap": {
-        "name": "사이트맵",
-        "description": "모든 페이지와 도구의 완전한 목록"
-      }
-    },
-    "pdfTools": {
-      "pdfToWord": {
-        "name": "PDF→Word",
-        "description": "PDF 파일을 편집 가능한 Word 문서로 변환"
-      },
-      "wordToPdf": {
-        "name": "Word→PDF",
-        "description": "Word 문서를 PDF 형식으로 변환"
-      },
-      "pdfToExcel": {
-        "name": "PDF→Excel",
-        "description": "PDF에서 테이블을 Excel 스프레드시트로 추출"
-      },
-      "excelToPdf": {
-        "name": "Excel→PDF",
-        "description": "Excel 파일을 PDF 형식으로 변환"
-      },
-      "pdfToPowerpoint": {
-        "name": "PDF→PowerPoint",
-        "description": "PDF를 편집 가능한 PowerPoint 프레젠테이션으로 변환"
-      },
-      "powerpointToPdf": {
-        "name": "PowerPoint→PDF",
-        "description": "PowerPoint 프레젠테이션을 PDF로 변환"
-      },
-      "pdfToJpg": {
-        "name": "PDF→JPG",
-        "description": "PDF 페이지를 JPG 이미지로 변환"
-      },
-      "jpgToPdf": {
-        "name": "JPG→PDF",
-        "description": "JPG 이미지를 PDF 문서로 변환"
-      },
-      "mergePdf": {
-        "name": "PDF 병합",
-        "description": "여러 PDF 파일을 하나의 문서로 결합"
-      },
-      "splitPdf": {
-        "name": "PDF 분할",
-        "description": "PDF를 개별 페이지 또는 범위로 분할"
-      },
-      "compressPdf": {
-        "name": "PDF 압축",
-        "description": "품질을 유지하면서 PDF 파일 크기 줄이기"
-      },
-      "pdfOcr": {
-        "name": "PDF 문자 인식",
-        "description": "스캔된 PDF 문서에서 텍스트 추출"
-      },
-      "addSignature": {
-        "name": "서명 추가",
-        "description": "PDF 문서에 디지털 서명 추가"
-      }
-    },
-    "imageTools": {
-      "backgroundRemover": {
-        "name": "배경 제거",
-        "description": "AI를 사용하여 이미지에서 배경을 자동으로 제거"
-      },
-      "imageConverter": {
-        "name": "이미지 변환",
-        "description": "다양한 형식 간 이미지 변환 (JPG, PNG, WebP 등)"
-      },
-      "imageCompressor": {
-        "name": "이미지 압축",
-        "description": "품질 손실 없이 이미지 파일 크기 줄이기"
-      },
-      "photoEnhancer": {
-        "name": "사진 향상",
-        "description": "AI 기술을 사용하여 이미지 품질 향상"
-      },
-      "imageCropper": {
-        "name": "이미지 자르기",
-        "description": "원하는 크기로 이미지 자르기 및 크기 조정"
-      },
-      "imageRotator": {
-        "name": "이미지 회전",
-        "description": "임의의 각도로 이미지 회전 또는 수평/수직 뒤집기"
-      },
-      "imageUpscaler": {
-        "name": "이미지 확대",
-        "description": "AI 기술을 사용하여 더 나은 품질로 이미지 확대"
-      },
-      "watermarkRemover": {
-        "name": "워터마크 제거",
-        "description": "이미지에서 워터마크를 자동으로 제거"
-      },
-      "imageResizer": {
-        "name": "이미지 크기 조정",
-        "description": "특정 크기나 백분율로 이미지 크기 조정"
-      }
-    },
-    "videoTools": {
-      "videoConverter": {
-        "name": "비디오 변환",
-        "description": "다양한 형식 간 비디오 변환 (MP4, AVI, MOV 등)"
-      },
-      "videoCompressor": {
-        "name": "비디오 압축",
-        "description": "품질 손실 없이 비디오 파일 크기 줄이기"
-      },
-      "videoTrimmer": {
-        "name": "비디오 자르기",
-        "description": "비디오의 특정 부분 잘라내기"
-      },
-      "videoMerger": {
-        "name": "비디오 병합",
-        "description": "여러 비디오 파일을 하나로 결합"
-      },
-      "videoRotator": {
-        "name": "비디오 회전",
-        "description": "비디오를 임의의 각도로 회전"
-      },
-      "videoResizer": {
-        "name": "비디오 크기 조정",
-        "description": "비디오 해상도 및 크기 변경"
-      },
-      "videoSpeedChanger": {
-        "name": "비디오 속도 변경",
-        "description": "비디오 재생 속도 조정"
-      },
-      "videoToGif": {
-        "name": "비디오를 GIF로",
-        "description": "비디오 파일을 애니메이션 GIF로 변환"
-      },
-      "audioExtractor": {
-        "name": "오디오 추출",
-        "description": "비디오에서 오디오 추출"
-      }
-    },
-    "documentDataTools": {
-      "csvSplit": {
-        "name": "CSV 분할",
-        "description": "큰 CSV 파일을 작은 청크로 분할"
-      },
-      "excelSplit": {
-        "name": "Excel 분할",
-        "description": "Excel 파일을 행 또는 시트별로 분할"
-      },
-      "xmlToExcel": {
-        "name": "XML에서 Excel로",
-        "description": "XML 파일을 Excel 형식으로 변환"
-      },
-      "excelToXml": {
-        "name": "Excel에서 XML로",
-        "description": "Excel 파일을 XML 형식으로 변환"
-      },
-      "csvToExcel": {
-        "name": "CSV에서 Excel로",
-        "description": "CSV 파일을 Excel 형식으로 변환"
-      },
-      "xmlToCsv": {
-        "name": "XML에서 CSV로",
-        "description": "XML 파일을 CSV 형식으로 변환"
-      },
-      "xmlToJson": {
-        "name": "XML에서 JSON으로",
-        "description": "XML 파일을 JSON 형식으로 변환"
-      },
-      "jsonToXml": {
-        "name": "JSON에서 XML로",
-        "description": "JSON 파일을 XML 형식으로 변환"
-      },
-      "csvToJson": {
-        "name": "CSV에서 JSON으로",
-        "description": "CSV 파일을 JSON 형식으로 변환"
-      },
-      "wordCounter": {
-        "name": "단어 카운터",
-        "description": "텍스트의 단어 수, 문자 수, 단락 수, 줄 수를 계산"
-      },
-      "characterCounter": {
-        "name": "문자 카운터",
-        "description": "텍스트의 문자 수를 정확히 계산 (공백 포함/제외)"
-      },
-      "caseConverter": {
-        "name": "대소문자 변환기",
-        "description": "텍스트를 대문자, 소문자, 제목 케이스, 문장 케이스로 변환"
-      },
-      "textFormatter": {
-        "name": "텍스트 포맷터",
-        "description": "텍스트를 포맷하고 여분의 공백과 줄바꿈을 제거"
-      },
-      "lineCounter": {
-        "name": "줄 카운터",
-        "description": "텍스트의 총 줄 수와 비어있지 않은 줄 수를 계산"
-      },
-      "textReverser": {
-        "name": "텍스트 뒤집기",
-        "description": "텍스트 내용을 뒤집기, 문자 또는 단어 단위 뒤집기 지원"
-      },
-      "textSorter": {
-        "name": "텍스트 정렬",
-        "description": "텍스트 줄을 알파벳순 또는 숫자순으로 정렬"
-      },
-      "duplicateRemover": {
-        "name": "중복 줄 제거",
-        "description": "텍스트에서 중복 줄을 제거하고 고유한 내용만 유지"
-      },
-      "textDiff": {
-        "name": "텍스트 차이 검사기",
-        "description": "두 텍스트의 차이를 비교하고 차이점을 강조 표시"
-      },
-      "hashGenerator": {
-        "name": "해시 생성기",
-        "description": "MD5, SHA1, SHA256 등 다양한 해시 값을 생성"
-      },
-      "base64Encoder": {
-        "name": "Base64 인코더/디코더",
-        "description": "텍스트의 Base64 인코딩 및 디코딩 작업"
-      },
-      "urlEncoder": {
-        "name": "URL 인코더/디코더",
-        "description": "URL 인코딩 및 디코딩, 특수 문자 처리"
-      },
-      "jsonFormatter": {
-        "name": "JSON 포맷터/검증기",
-        "description": "JSON 데이터를 포맷하고 유효성을 검증"
-      },
-      "qrGenerator": {
-        "name": "QR 코드 생성기",
-        "description": "텍스트 또는 URL을 QR 코드 이미지로 변환"
-      },
-      "colorPicker": {
-        "name": "색상 선택기/변환기",
-        "description": "HEX, RGB, HSL 등 색상 형식 간 변환"
-      },
-      "timestampConverter": {
-        "name": "타임스탬프 변환기",
-        "description": "Unix 타임스탬프와 날짜 시간 형식 간 상호 변환"
-      },
-      "uuidGenerator": {
-        "name": "UUID 생성기",
-        "description": "다양한 버전의 UUID 고유 식별자를 생성"
-      },
-      "passwordGenerator": {
-        "name": "비밀번호 생성기",
-        "description": "사용자 정의 규칙으로 안전한 랜덤 비밀번호를 생성"
-      },
-      "unitConverter": {
-        "name": "단위 변환기",
-        "description": "길이, 무게, 온도, 면적 등 다양한 단위 간 변환"
-      },
-      "currencyConverter": {
-        "name": "통화 변환기",
-        "description": "실시간 환율 조회 및 통화 변환 계산"
-      },
-      "numberBaseConverter": {
-        "name": "진법 변환기",
-        "description": "2진법, 8진법, 10진법, 16진법 간 변환"
-      },
-      "colorConverter": {
-        "name": "색상 형식 변환기",
-        "description": "RGB, HEX, HSL, CMYK 등 색상 형식 변환"
-      },
-      "timezoneConverter": {
-        "name": "시간대 변환기",
-        "description": "다른 시간대 간 시간 변환 및 계산"
-      },
-      "imageFormatConverter": {
-        "name": "이미지 형식 변환기",
-        "description": "JPG, PNG, WebP, GIF 등 이미지 형식 변환"
-      },
-      "audioFormatConverter": {
-        "name": "오디오 형식 변환기",
-        "description": "MP3, WAV, AAC, FLAC 등 오디오 형식 변환"
-      },
-      "documentFormatConverter": {
-        "name": "문서 형식 변환기",
-        "description": "확장된 문서 형식 변환, 더 많은 형식 지원"
-      },
-      "encodingConverter": {
-        "name": "인코딩 변환기",
-        "description": "UTF-8, GBK, ASCII 등 문자 인코딩 변환"
-      }
-    },
-    "ocrTools": {
-      "imageToText": {
-        "name": "이미지 문자 인식",
-        "description": "이미지에서 텍스트 내용을 추출, 다국어 지원"
-      },
-      "pdfOcr": {
-        "name": "PDF 문자 인식",
-        "description": "PDF 문서에서 텍스트 내용을 추출"
-      },
-      "handwritingRecognition": {
-        "name": "손글씨 인식",
-        "description": "손글씨를 인식하여 디지털 텍스트로 변환"
-      },
-      "documentScanner": {
-        "name": "문서 스캐너",
-        "description": "문서를 스캔하여 구조화된 텍스트를 추출"
-      },
-      "tableExtractor": {
-        "name": "표 추출기",
-        "description": "이미지나 PDF에서 표 데이터를 추출"
-      },
-      "receiptScanner": {
-        "name": "영수증 스캐너",
-        "description": "영수증을 스캔하여 주요 정보를 추출"
-      },
-      "businessCardScanner": {
-        "name": "명함 스캐너",
-        "description": "명함을 스캔하여 연락처 정보를 추출"
-      },
-      "licensePlateReader": {
-        "name": "번호판 인식",
-        "description": "번호판 번호를 인식"
-      },
-      "qrCodeReader": {
-        "name": "QR 코드 인식",
-        "description": "QR 코드 내용을 읽기"
-      }
-    },
-    "legalPolicy": {
-      "privacyPolicy": {
-        "name": "개인정보 보호정책",
-        "description": "개인정보 수집, 사용, 보호에 관한 정책"
-      },
-      "termsOfService": {
-        "name": "서비스 약관",
-        "description": "서비스 이용에 관한 약관 및 조건"
-      },
-      "cookiePolicy": {
-        "name": "쿠키 정책",
-        "description": "쿠키 사용 및 관리에 관한 정책"
-      }
-    },
-    "quickStats": {
-      "title": "강력한 온라인 도구 컬렉션",
-      "description": "모든 파일 처리 요구사항을 충족하는 포괄적인 도구 세트",
-      "pdfToolsCount": "{count}개의 PDF 도구",
-      "imageToolsCount": "{count}개의 이미지 도구",
-      "videoToolsCount": "{count}개의 비디오 도구",
-      "dataToolsCount": "{count}개의 데이터 도구"
-    },
-    "searchPrompt": {
-      "title": "찾고 있는 도구가 없나요?",
-      "description": "홈페이지에서 검색하거나 도움말 센터에서 자세한 정보를 확인하세요",
-      "backToHome": "홈페이지에서 검색",
-      "helpCenter": "도움말 센터 보기",
-      "contactUs": "문의하기"
-    }
-  },
-  "help": {
-    "title": "도움말 센터",
-    "subtitle": "자주 묻는 질문과 도구 가이드로 필요한 답변을 찾으세요",
-    "searchPlaceholder": "질문이나 키워드를 검색하세요...",
-    "popularTopics": "인기 주제",
-    "allCategories": "모든 카테고리",
-    "moreTools": "기타 도구",
-    "viewAllTools": "모든 도구 보기",
-    "noResults": "관련 콘텐츠를 찾을 수 없습니다",
-    "clearSearch": "검색 조건 지우기",
-    "contactSupport": {
-      "title": "추가 지원이 필요하신가요?",
-      "description": "찾고 있는 답변을 찾을 수 없다면 언제든지 지원팀에 문의해 주세요.",
-      "contactButton": "지원팀에 문의",
-      "apiDocsButton": "API 문서 보기"
-    }
-  },
-  "seo": {
-    "videoTools": {
-      "title": "비디오 도구 - 무료 온라인 비디오 편집 및 변환",
-      "description": "무료 온라인 비디오 도구로 비디오 변환, 압축, 편집, 병합을 수행하세요. MP4, AVI, MOV 등 모든 형식을 지원합니다."
-    },
-    "imageTools": {
-      "title": "이미지 도구 - 무료 온라인 이미지 편집 및 변환",
-      "description": "무료 온라인 이미지 도구로 배경 제거, 이미지 압축, 형식 변환, 크기 조정을 수행하세요. JPG, PNG, WebP 등 모든 형식을 지원합니다."
-    },
-    "pdfTools": {
-      "title": "PDF 도구 - 무료 온라인 PDF 편집 및 변환",
-      "description": "무료 온라인 PDF 도구로 PDF 변환, 병합, 분할, 압축을 수행하세요. Word, Excel, PowerPoint 등으로 변환 가능합니다."
-    },
-    "ocrTools": {
-      "title": "OCR 도구 - 무료 온라인 문자 인식 및 텍스트 추출",
-      "description": "무료 온라인 OCR 도구로 이미지와 PDF에서 텍스트를 추출하세요. 다국어 지원 및 손글씨 인식 기능을 제공합니다."
-    }
-  },
-  "common": {
-    "upload": "업로드",
-    "download": "다운로드",
-    "process": "처리",
-    "processing": "처리 중...",
-    "selectFile": "파일 선택",
-    "dragDropFile": "파일을 여기에 드래그 앤 드롭",
-    "or": "또는",
-    "clickToSelect": "클릭하여 선택",
-    "fileSelected": "파일이 선택됨",
-    "error": "오류",
-    "success": "성공",
-    "reset": "재설정",
-    "back": "뒤로",
-    "next": "다음",
-    "cancel": "취소",
-    "confirm": "확인",
-    "selectToolAndFile": "도구와 파일을 선택해주세요",
-    "processingFailed": "처리 실패",
-    "imageProcessingComplete": "이미지 처리 완료!",
-    "imageProcessingFailed": "이미지 처리에 실패했습니다. 다시 시도해주세요",
-    "return": "돌아가기",
-    "selectImageFile": "이미지 파일 선택",
-    "clickToSelectImageFile": "클릭하여 이미지 파일 선택",
-    "supportedFormats": "JPG, PNG, WebP, GIF 등의 형식을 지원합니다",
-    "selected": "선택됨:",
-    "originalPreview": "원본 미리보기",
-    "processResult": "처리 결과",
-    "startProcessing": "처리 시작",
-    "downloadImage": "이미지 다운로드",
-    "mostPopularTools": "가장 인기 있는 도구",
+    "heroTitle": "무료 온라인 도구",
+    "usedByUsers": "{{count}}만 명의 사용자가 이용",
+    "popularTools": "인기 도구",
+    "heroSubtitle": "모든 것이 준비되어 있습니다",
+    "categoryDescription": "카테고리별로 정리된 포괄적인 도구 컬렉션에서 선택하세요",
+    "chooseCategory": "도구 카테고리 선택",
+    "heroDescription": "PDF, 이미지, 비디오, AI 작성 등을 도와주는 100개 이상의 무료 도구. 등록 불필요, 완전 무료 사용.",
     "useTool": "도구 사용",
-    "allTools": "모든 도구",
-    "popular": "인기",
-    "advancedProcessing": "고급 이미지 처리",
-    "aiPowered": "AI 기반",
-    "aiPoweredDesc": "배경 제거 및 이미지 향상을 위한 고급 AI 알고리즘",
-    "allFormats": "모든 형식",
-    "allFormatsDesc": "JPG, PNG, WebP, GIF 및 기타 많은 이미지 형식 지원",
-    "instantResults": "즉시 결과",
-    "instantResultsDesc": "대기나 서버 업로드 없이 즉시 이미지 처리",
-    "readyToEdit": "이미지를 편집할 준비가 되셨나요?",
-    "uploadAndStart": "이미지를 업로드하고 강력한 도구로 편집을 시작하세요",
-    "chooseImageFile": "이미지 파일 선택",
-    "chooseVideoFile": "비디오 파일 선택",
-    "fastProcessing": "빠른 처리",
-    "securePrivate": "안전하고 비공개",
-    "clickToSelectFile": "클릭하여 파일 선택",
-    "downloadFile": "파일 다운로드",
-    "extractedText": "추출된 텍스트",
-    "copyText": "텍스트 복사",
-    "loadingToolDetails": "도구 세부 정보 로딩 중...",
-    "toolNotFound": "도구를 찾을 수 없음",
-    "toolNotFoundDesc": "요청한 도구를 찾을 수 없습니다.",
-    "goHome": "홈으로 가기",
-    "uploadFiles": "파일 업로드",
-    "dropFilesHere": "파일을 여기에 드롭하거나 클릭하여 찾아보기",
-    "acceptedFormats": "지원 형식",
-    "maximumFiles": "최대 {{count}}개 파일",
-    "chooseFiles": "파일 선택",
-    "selectedFiles": "선택된 파일",
-    "remove": "제거",
-    "options": "옵션",
-    "processingFailedTryAgain": "처리에 실패했습니다. 다시 시도해 주세요.",
-    "results": "결과",
-    "processFilesToSeeResults": "파일을 처리하여 여기에서 결과를 확인하세요",
-    "processingComplete": "처리 완료",
-    "generatedText": "생성된 텍스트",
-    "wordCount": "단어 수",
-    "fileSize": "파일 크기"
+    "exploreTools": "도구 탐색",
+    "popularDescription": "우리 도구를 신뢰하는 수백만 사용자와 함께하세요",
+    "viewTools": "도구 보기",
+    "learnMore": "자세히 알아보기"
+  },
+  "features": {
+    "free": {
+      "title": "100% Free",
+      "description": "All tools are completely free to use with no hidden charges or subscriptions required."
+    },
+    "fast": {
+      "description": "No registration required. Simply upload your file and get results in seconds.",
+      "title": "Fast & Easy"
+    },
+    "secure": {
+      "description": "Your files are processed securely and automatically deleted after 1 hour for your privacy.",
+      "title": "Secure & Private"
+    }
+  },
+  "cookies": {
+    "analytics": {
+      "examples": {
+        "behavior": "User behavior analysis",
+        "tracking": "Error tracking",
+        "pageViews": "Page view statistics",
+        "performance": "Performance monitoring"
+      },
+      "name": "Analytics Cookies",
+      "description": "These cookies help us understand how visitors use the site to improve services."
+    },
+    "necessary": {
+      "examples": {
+        "session": "Session management",
+        "basic": "Basic site features",
+        "security": "Security verification",
+        "monitoring": "Error monitoring"
+      },
+      "name": "Necessary Cookies",
+      "description": "These cookies are essential for basic website functionality and cannot be disabled."
+    },
+    "enabled": "Enabled",
+    "management": {
+      "firefox": "Options → Privacy & Security → Cookies and Site Data",
+      "desc": "Most browsers let you control cookie settings. You can block cookies or be notified when cookies are set. Disabling cookies may affect some site functionality.",
+      "title": "How to Manage Cookies",
+      "safari": "Preferences → Privacy → Cookies and website data",
+      "browserSettings": "Browser Settings",
+      "chrome": "Settings → Privacy and security → Cookies and other site data",
+      "edge": "Settings → Cookies and site permissions → Cookies and stored data"
+    },
+    "whatAreCookies": "What are Cookies?",
+    "intro": {
+      "p1": "Cookies are small text files stored on your device, sent by websites to your browser when you visit.",
+      "p2": "We use cookies to improve your browsing experience, analyze site usage, and provide personalized content. This policy explains how we use cookies and how you can control them."
+    },
+    "saveSettings": "Save Cookie Settings",
+    "functional": {
+      "examples": {
+        "forms": "Form data saving",
+        "preferences": "User preferences",
+        "language": "Language preference",
+        "theme": "Theme settings"
+      },
+      "description": "These cookies enhance site features and personalization.",
+      "name": "Functional Cookies"
+    },
+    "examplesTitle": "Examples:",
+    "disabled": "Disabled",
+    "thirdParty": {
+      "ga": {
+        "desc": "Used for website traffic analysis and user behavior statistics",
+        "title": "Google Analytics"
+      },
+      "social": {
+        "title": "Social Media Plugins",
+        "desc": "Used for social sharing features"
+      },
+      "cdn": {
+        "title": "CDN Service",
+        "desc": "Used to accelerate content delivery and improve performance"
+      },
+      "note": "These third-party services have their own cookie policies; we recommend reviewing their policies for details.",
+      "title": "Third-party Cookies",
+      "intro": "Our site may include cookies from third-party providers that help us analyze site usage or provide additional features:"
+    },
+    "required": "Required",
+    "title": "Cookie Policy",
+    "marketing": {
+      "examples": {
+        "personalization": "Ad personalization",
+        "conversion": "Conversion tracking",
+        "retargeting": "Retargeting ads",
+        "social": "Social media integration"
+      },
+      "description": "These cookies track site activity to show relevant and personalized ads.",
+      "name": "Marketing Cookies"
+    },
+    "cookieTypes": "Types of Cookies We Use",
+    "lastUpdated": "Last updated: Jan 2024",
+    "settingsSaved": "Cookie settings saved"
+  },
+  "demo": {
+    "tesseractReady": "Tesseract.js Ready!",
+    "ocr": {
+      "success": "✅ Image file \"{{fileName}}\" successfully loaded Tesseract.js engine!\n📄 File size: {{fileSize}} MB\n🔍 Recognize text, multi-language OCR\n📝 Tesseract.js is ready and supports 40+ languages",
+      "title": "OCR Text Recognition Demo",
+      "description": "Use Tesseract.js for text recognition"
+    },
+    "startDemo": "Start Demo",
+    "opencvReadyDesc": "Image processing engine loaded, you can start processing image files",
+    "tesseractReadyDesc": "OCR engine loaded, you can start recognizing text in images",
+    "image": {
+      "description": "Use OpenCV.js for advanced image processing",
+      "title": "Image Processing Demo",
+      "success": "✅ Image file \"{{fileName}}\" successfully loaded OpenCV.js engine!\n🖼️ File size: {{fileSize}} MB\n🎨 Apply filters, transforms, feature detection\n⚡ OpenCV.js is ready for advanced image processing"
+    },
+    "selectFunction": "Select a demo function",
+    "ffmpegReadyDesc": "Video processing engine loaded, you can start processing video files",
+    "pluginLoadingStatus": "Plugin Loading Status",
+    "uploadTestFile": "Upload a test file",
+    "ffmpegReady": "FFmpeg.js Ready!",
+    "opencvReady": "OpenCV.js Ready!",
+    "selectFunctionToStart": "Please select a function to start the demo",
+    "video": {
+      "title": "Video Processing Demo",
+      "description": "Use FFmpeg.js for video conversion and processing",
+      "success": "✅ Video file \"{{fileName}}\" successfully loaded FFmpeg.js engine!\n📊 File size: {{fileSize}} MB\n🎬 You can convert, compress, trim, etc.\n🔧 FFmpeg.js is ready and supports all major video formats"
+    },
+    "title": "🚀 Advanced Plugin Demo Center",
+    "subtitle": "Experience pro plugins loaded from CDN dynamically"
+  },
+  "pages": {
+    "video": {
+      "pageDescription": "온라인에서 비디오 변환, 자르기, 압축 및 편집을 위한 포괄적인 비디오 처리 도구"
+    }
   }
 }

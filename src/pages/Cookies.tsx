@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Cookie, Settings, Shield, BarChart, CheckCircle, XCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Cookies: React.FC = () => {
+  const { t } = useTranslation();
   const [cookieSettings, setCookieSettings] = useState({
     necessary: true,
     functional: true,
@@ -11,7 +13,7 @@ const Cookies: React.FC = () => {
   });
 
   const handleCookieToggle = (type: keyof typeof cookieSettings) => {
-    if (type === 'necessary') return; // 必要Cookie不能关闭
+    if (type === 'necessary') return; // Necessary cookies cannot be disabled
     setCookieSettings(prev => ({
       ...prev,
       [type]: !prev[type]
@@ -19,72 +21,72 @@ const Cookies: React.FC = () => {
   };
 
   const saveCookieSettings = () => {
-    // 这里可以添加保存Cookie设置的逻辑
+    // Here you can add logic to save cookie settings
     localStorage.setItem('cookieSettings', JSON.stringify(cookieSettings));
-    alert('Cookie设置已保存');
+    alert(t('cookies.settingsSaved'));
   };
 
   const cookieTypes = [
     {
       id: 'necessary',
-      name: '必要Cookie',
+      name: t('cookies.necessary.name'),
       icon: Shield,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
-      description: '这些Cookie对于网站的基本功能是必需的，无法禁用。',
+      description: t('cookies.necessary.description'),
       examples: [
-        '会话管理',
-        '安全验证',
-        '基本网站功能',
-        '错误监控'
+        t('cookies.necessary.examples.session'),
+        t('cookies.necessary.examples.security'),
+        t('cookies.necessary.examples.basic'),
+        t('cookies.necessary.examples.monitoring')
       ],
       enabled: cookieSettings.necessary,
       required: true
     },
     {
       id: 'functional',
-      name: '功能Cookie',
+      name: t('cookies.functional.name'),
       icon: Settings,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
-      description: '这些Cookie用于增强网站功能和个性化体验。',
+      description: t('cookies.functional.description'),
       examples: [
-        '语言偏好',
-        '主题设置',
-        '用户偏好',
-        '表单数据保存'
+        t('cookies.functional.examples.language'),
+        t('cookies.functional.examples.theme'),
+        t('cookies.functional.examples.preferences'),
+        t('cookies.functional.examples.forms')
       ],
       enabled: cookieSettings.functional,
       required: false
     },
     {
       id: 'analytics',
-      name: '分析Cookie',
+      name: t('cookies.analytics.name'),
       icon: BarChart,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
-      description: '这些Cookie帮助我们了解访问者如何使用网站，以便改进服务。',
+      description: t('cookies.analytics.description'),
       examples: [
-        '页面访问统计',
-        '用户行为分析',
-        '性能监控',
-        '错误跟踪'
+        t('cookies.analytics.examples.pageViews'),
+        t('cookies.analytics.examples.behavior'),
+        t('cookies.analytics.examples.performance'),
+        t('cookies.analytics.examples.tracking')
       ],
       enabled: cookieSettings.analytics,
       required: false
     },
     {
       id: 'marketing',
-      name: '营销Cookie',
+      name: t('cookies.marketing.name'),
       icon: Cookie,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      description: '这些Cookie用于跟踪访问者的网站活动，目的是显示相关和个性化的广告。',
+      description: t('cookies.marketing.description'),
       examples: [
-        '广告个性化',
-        '转化跟踪',
-        '重定向广告',
-        '社交媒体集成'
+        t('cookies.marketing.examples.personalization'),
+        t('cookies.marketing.examples.conversion'),
+        t('cookies.marketing.examples.retargeting'),
+        t('cookies.marketing.examples.social')
       ],
       enabled: cookieSettings.marketing,
       required: false
@@ -101,7 +103,7 @@ const Cookies: React.FC = () => {
             className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            返回首页
+            {t('common.backToHome')}
           </Link>
         </div>
       </div>
@@ -114,35 +116,28 @@ const Cookies: React.FC = () => {
             <Cookie className="w-16 h-16 text-blue-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Cookie 政策
+            {t('cookies.title')}
           </h1>
           <p className="text-lg text-gray-600">
-            最后更新时间：2024年1月
+            {t('cookies.lastUpdated')}
           </p>
         </div>
 
         {/* Introduction */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            什么是Cookie？
+            {t('cookies.whatAreCookies')}
           </h2>
           <div className="space-y-4 text-gray-600">
-            <p>
-              Cookie是存储在您设备上的小型文本文件，当您访问网站时由网站发送到您的浏览器。
-              Cookie使网站能够记住您的操作和偏好（如登录、语言、字体大小和其他显示偏好），
-              这样您就不必在每次返回网站或浏览网站页面时重新输入这些信息。
-            </p>
-            <p>
-              我们使用Cookie来改善您的浏览体验，分析网站使用情况，并提供个性化内容。
-              本政策解释了我们如何使用Cookie以及您如何控制它们。
-            </p>
+            <p>{t('cookies.intro.p1')}</p>
+            <p>{t('cookies.intro.p2')}</p>
           </div>
         </div>
 
         {/* Cookie Types */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            我们使用的Cookie类型
+            {t('cookies.cookieTypes')}
           </h2>
           
           <div className="space-y-6">
@@ -161,7 +156,7 @@ const Cookies: React.FC = () => {
                         </h3>
                         {type.required && (
                           <span className="ml-2 px-2 py-1 bg-red-100 text-red-800 text-xs rounded">
-                            必需
+                            {t('cookies.required')}
                           </span>
                         )}
                       </div>
@@ -171,7 +166,7 @@ const Cookies: React.FC = () => {
                       </p>
                       
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">用途示例：</h4>
+                        <h4 className="font-medium text-gray-900 mb-2">{t('cookies.examplesTitle')}</h4>
                         <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
                           {type.examples.map((example, index) => (
                             <li key={index}>{example}</li>
@@ -201,7 +196,7 @@ const Cookies: React.FC = () => {
                           <XCircle className="w-4 h-4 text-red-600 mr-1" />
                         )}
                         <span className="text-xs text-gray-500">
-                          {type.enabled ? '已启用' : '已禁用'}
+                          {type.enabled ? t('cookies.enabled') : t('cookies.disabled')}
                         </span>
                       </div>
                     </div>
@@ -216,7 +211,7 @@ const Cookies: React.FC = () => {
               onClick={saveCookieSettings}
               className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
             >
-              保存Cookie设置
+              {t('cookies.saveSettings')}
             </button>
           </div>
         </div>
@@ -224,58 +219,51 @@ const Cookies: React.FC = () => {
         {/* Third Party Cookies */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            第三方Cookie
+            {t('cookies.thirdParty.title')}
           </h2>
           <div className="space-y-4 text-gray-600">
-            <p>
-              我们的网站可能包含来自第三方服务提供商的Cookie，这些服务帮助我们分析网站使用情况或提供额外功能：
-            </p>
+            <p>{t('cookies.thirdParty.intro')}</p>
             <ul className="list-disc list-inside space-y-2">
-              <li><strong>Google Analytics：</strong>用于网站流量分析和用户行为统计</li>
-              <li><strong>CDN服务：</strong>用于加速内容传输和提高网站性能</li>
-              <li><strong>社交媒体插件：</strong>用于社交分享功能</li>
+              <li><strong>{t('cookies.thirdParty.ga.title')}：</strong>{t('cookies.thirdParty.ga.desc')}</li>
+              <li><strong>{t('cookies.thirdParty.cdn.title')}：</strong>{t('cookies.thirdParty.cdn.desc')}</li>
+              <li><strong>{t('cookies.thirdParty.social.title')}：</strong>{t('cookies.thirdParty.social.desc')}</li>
             </ul>
-            <p>
-              这些第三方服务有自己的Cookie政策，我们建议您查阅相关政策以了解详情。
-            </p>
+            <p>{t('cookies.thirdParty.note')}</p>
           </div>
         </div>
 
         {/* Cookie Management */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            如何管理Cookie
+            {t('cookies.management.title')}
           </h2>
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">浏览器设置</h3>
-              <p className="text-gray-600 mb-4">
-                大多数浏览器允许您控制Cookie设置。您可以设置浏览器拒绝Cookie，或在设置Cookie时通知您。
-                但是，如果您禁用Cookie，网站的某些功能可能无法正常工作。
-              </p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('cookies.management.browserSettings')}</h3>
+              <p className="text-gray-600 mb-4">{t('cookies.management.desc')}</p>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="border border-gray-200 rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">Chrome</h4>
                   <p className="text-sm text-gray-600">
-                    设置 → 隐私设置和安全性 → Cookie及其他网站数据
+                    {t('cookies.management.chrome')}
                   </p>
                 </div>
                 <div className="border border-gray-200 rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">Firefox</h4>
                   <p className="text-sm text-gray-600">
-                    选项 → 隐私与安全 → Cookie和网站数据
+                    {t('cookies.management.firefox')}
                   </p>
                 </div>
                 <div className="border border-gray-200 rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">Safari</h4>
                   <p className="text-sm text-gray-600">
-                    偏好设置 → 隐私 → Cookie和网站数据
+                    {t('cookies.management.safari')}
                   </p>
                 </div>
                 <div className="border border-gray-200 rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">Edge</h4>
                   <p className="text-sm text-gray-600">
-                    设置 → Cookie和站点权限 → Cookie和存储的数据
+                    {t('cookies.management.edge')}
                   </p>
                 </div>
               </div>

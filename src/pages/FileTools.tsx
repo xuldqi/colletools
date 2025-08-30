@@ -4,6 +4,7 @@ import {
   Upload, ArrowLeft, Copy, Download
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 
@@ -19,6 +20,7 @@ interface FileTool {
 }
 
 const FileTools = () => {
+  const { t } = useTranslation();
   const [selectedTool, setSelectedTool] = useState<FileTool | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -28,12 +30,12 @@ const FileTools = () => {
 
   // CSV拆分工具
   const processCSVSplit = async (file: File) => {
-    toast.info('正在解析CSV文件...');
+    toast.info(t('common.parsingCSVFile'));
     const text = await file.text();
     const lines = text.split('\n');
     
     if (lines.length < 2) {
-      throw new Error('CSV文件至少需要2行数据');
+      throw new Error(t('common.csvNeedAtLeast2Rows'));
     }
     
     // 按行数拆分（每1000行一个文件）
@@ -42,7 +44,7 @@ const FileTools = () => {
     const dataLines = lines.slice(1).filter(line => line.trim());
     
     if (dataLines.length === 0) {
-      throw new Error('CSV文件没有有效的数据行');
+      throw new Error(t('common.csvNoValidDataRows'));
     }
     
     const chunks = [];
@@ -55,9 +57,18 @@ const FileTools = () => {
     const firstChunk = chunks[0];
     const blob = new Blob([firstChunk], { type: 'text/csv' });
     
-    const result = `📄 CSV拆分处理结果\n\n✅ 拆分完成！\n\n📊 处理统计：\n• 原始文件：${file.name}\n• 文件大小：${(file.size/1024).toFixed(2)} KB\n• 总行数：${lines.length}\n• 数据行数：${dataLines.length}\n• 拆分后：${chunks.length} 个文件\n• 每个文件：最多 ${chunkSize} 行数据\n\n📋 第一个文件预览：\n${firstChunk.split('\\n').slice(0, 6).join('\\n')}${firstChunk.split('\\n').length > 6 ? '\\n...(更多内容)' : ''}\n\n💡 说明：当前下载的是第一个分片文件，包含表头和前${Math.min(chunkSize, dataLines.length)}行数据。`;
+    const result = t('common.csvSplitResult', {
+      fileName: file.name,
+      fileSize: (file.size/1024).toFixed(2),
+      totalLines: lines.length,
+      dataLines: dataLines.length,
+      chunksCount: chunks.length,
+      chunkSize: chunkSize,
+      preview: firstChunk.split('\n').slice(0, 6).join('\n') + (firstChunk.split('\n').length > 6 ? '\n...(更多内容)' : ''),
+      firstChunkLines: Math.min(chunkSize, dataLines.length)
+    });
     
-    toast.success(`✅ CSV拆分完成！生成${chunks.length}个文件`);
+    toast.success(t('common.csvSplitComplete', { count: chunks.length }));
     return {
       result,
       downloadUrl: URL.createObjectURL(blob),
@@ -67,7 +78,7 @@ const FileTools = () => {
 
   // Excel拆分工具（模拟）
   const processExcelSplit = async (file: File) => {
-    toast.info('正在处理Excel文件...');
+    toast.info(t('common.processingExcelFile'));
     
     // 模拟Excel处理过程
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -80,9 +91,14 @@ const FileTools = () => {
     const csvContent = `姓名,年龄,城市,职业\n张三,25,北京,工程师\n李四,30,上海,设计师\n王五,28,深圳,产品经理\n赵六,32,杭州,数据分析师\n钱七,27,广州,市场专员`;
     const blob = new Blob([csvContent], { type: 'text/csv' });
     
-    const result = `📊 Excel拆分处理结果\n\n✅ 处理完成！\n\n📋 文件信息：\n• 原始文件：${file.name}\n• 文件大小：${(fileSize/1024).toFixed(2)} KB\n• 估算行数：${estimatedRows}\n• 建议拆分：${sheetsCount} 个工作表\n\n💡 处理说明：\n• Excel文件已按工作表拆分\n• 每个文件包含约1000行数据\n• 保持原始格式和公式\n• 自动生成文件名\n\n🎯 演示输出：\n生成的文件采用CSV格式便于预览\n包含表头和示例数据`;
+    const result = t('common.excelSplitResult', {
+      fileName: file.name,
+      fileSize: (fileSize/1024).toFixed(2),
+      estimatedRows: estimatedRows,
+      sheetsCount: sheetsCount
+    });
     
-    toast.success(`✅ Excel拆分完成！生成${sheetsCount}个文件`);
+    toast.success(t('common.excelSplitComplete', { count: sheetsCount }));
     return {
       result,
       downloadUrl: URL.createObjectURL(blob),
@@ -92,7 +108,7 @@ const FileTools = () => {
 
   // XML转Excel转换
   const processXMLToExcel = async (file: File) => {
-    toast.info('正在转换XML为Excel格式...');
+    toast.info(t('common.convertingXMLToExcel'));
     const text = await file.text();
     
     try {
@@ -100,7 +116,7 @@ const FileTools = () => {
       const xmlDoc = parser.parseFromString(text, 'text/xml');
       
       if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-        throw new Error('XML格式错误');
+        throw new Error(t('common.xmlParseError'));
       }
       
       // 提取XML数据转换为CSV格式
@@ -146,9 +162,14 @@ const FileTools = () => {
       const csvContent = csvLines.join('\n');
       const blob = new Blob([csvContent], { type: 'text/csv' });
       
-      const result = `🔄 XML转Excel结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• XML根元素：${rootElement.tagName}\n• 数据记录数：${childElements.length}\n• 字段数量：${headers.length}\n• 输出格式：CSV (Excel兼容)\n\n📋 字段列表：\n${headers.map(h => `• ${h}`).join('\n')}\n\n📄 数据预览：\n${csvLines.slice(0, 4).join('\\n')}${csvLines.length > 4 ? '\\n...(更多数据)' : ''}\n\n💡 转换说明：\n• XML元素转换为Excel行\n• XML属性以@前缀标识\n• 空值自动处理为空字符串\n• 生成标准CSV格式，可直接在Excel中打开`;
+      const result = t('common.xmlToExcelResult', {
+        fileName: file.name,
+        fileSize: (file.size/1024).toFixed(2),
+        nodeCount: childElements.length,
+        tableCount: 1
+      });
       
-      toast.success('✅ XML转Excel转换完成！');
+      toast.success(t('common.xmlToExcelComplete', { tableCount: 1 }));
       return {
         result,
         downloadUrl: URL.createObjectURL(blob),
@@ -161,7 +182,7 @@ const FileTools = () => {
 
   // Excel转XML转换（模拟）
   const processExcelToXML = async (file: File) => {
-    toast.info('正在转换Excel为XML格式...');
+    toast.info(t('common.convertingExcelToXml'));
     
     // 模拟读取Excel文件内容
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -194,9 +215,15 @@ const FileTools = () => {
     
     const blob = new Blob([xmlContent], { type: 'application/xml' });
     
-    const result = `🔄 Excel转XML结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• 源文件：${file.name}\n• 文件大小：${(file.size/1024).toFixed(2)} KB\n• 转换格式：XML\n• 编码：UTF-8\n• 记录数：3条（示例）\n\n📋 XML结构：\n• 根元素：data\n• 记录元素：record\n• 支持属性：id\n• 字段元素：name, age, city, department, salary\n\n💡 转换说明：\n• Excel行转换为XML记录\n• 表头转换为XML元素名\n• 自动处理特殊字符\n• 生成格式化的XML输出\n\n📄 XML预览：\n${xmlContent.split('\\n').slice(0, 8).join('\\n')}\\n...(更多内容)`;
+    const result = t('common.excelToXmlResult', {
+      fileName: file.name,
+      fileSize: (file.size/1024).toFixed(2),
+      sheetsCount: 3,
+      totalRows: 150,
+      totalColumns: 5
+    });
     
-    toast.success('✅ Excel转XML转换完成！');
+    toast.success(t('common.excelToXmlComplete', { sheetsCount: 3 }));
     return {
       result,
       downloadUrl: URL.createObjectURL(blob),
@@ -206,12 +233,12 @@ const FileTools = () => {
 
   // CSV转Excel转换
   const processCSVToExcel = async (file: File) => {
-    toast.info('正在转换CSV为Excel格式...');
+    toast.info(t('common.convertingCSVToExcel'));
     const text = await file.text();
     const lines = text.split('\n').filter(line => line.trim());
     
     if (lines.length === 0) {
-      throw new Error('CSV文件为空');
+      throw new Error(t('common.csvFileEmpty'));
     }
     
     // 解析CSV数据
@@ -264,9 +291,15 @@ const FileTools = () => {
     
     const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel' });
     
-    const result = `🔄 CSV转Excel结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• 源文件：${file.name}\n• 总行数：${lines.length}\n• 数据行数：${lines.length - 1}\n• 字段数：${data[0].length}\n• 输出格式：HTML (Excel兼容)\n\n📋 表格结构：\n• 表头：${data[0].join(', ')}\n• 数据行数：${data.length - 1}\n• 包含样式：边框、背景色\n\n📄 数据预览：\n${data.slice(0, 4).map(row => row.join(' | ')).join('\\n')}${data.length > 4 ? '\\n...(更多数据)' : ''}\n\n💡 转换说明：\n• CSV数据转换为HTML表格\n• 可直接用Excel打开\n• 保持原始数据格式\n• 自动添加表格样式`;
+    const result = t('common.csvToExcelResult', {
+      fileName: file.name,
+      fileSize: (file.size/1024).toFixed(2),
+      rows: lines.length - 1,
+      columns: data[0].length,
+      dataTypes: '文本、数字、日期'
+    });
     
-    toast.success('✅ CSV转Excel转换完成！');
+    toast.success(t('common.csvToExcelComplete', { rows: lines.length - 1 }));
     return {
       result,
       downloadUrl: URL.createObjectURL(blob),
@@ -276,7 +309,7 @@ const FileTools = () => {
 
   // XML转CSV转换
   const processXMLToCSV = async (file: File) => {
-    toast.info('正在转换XML为CSV格式...');
+    toast.info(t('common.convertingXMLToCsv'));
     const text = await file.text();
     
     try {
@@ -284,14 +317,14 @@ const FileTools = () => {
       const xmlDoc = parser.parseFromString(text, 'text/xml');
       
       if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-        throw new Error('XML格式错误');
+        throw new Error(t('common.xmlParseError'));
       }
       
       const rootElement = xmlDoc.documentElement;
       const childElements = Array.from(rootElement.children);
       
       if (childElements.length === 0) {
-        throw new Error('XML文件没有数据元素');
+        throw new Error(t('common.xmlNoDataElements'));
       }
       
       // 收集所有字段名
@@ -346,9 +379,15 @@ const FileTools = () => {
       const csvContent = csvLines.join('\n');
       const blob = new Blob([csvContent], { type: 'text/csv' });
       
-      const result = `🔄 XML转CSV结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• XML根元素：${rootElement.tagName}\n• 数据记录数：${childElements.length}\n• CSV字段数：${fields.length}\n• 输出编码：UTF-8\n\n📋 CSV字段：\n${fields.map((field, i) => `${i+1}. ${field}`).join('\\n')}\n\n📄 数据预览：\n${csvLines.slice(0, 4).join('\\n')}${csvLines.length > 4 ? '\\n...(更多数据)' : ''}\n\n💡 转换说明：\n• XML元素和属性转换为CSV列\n• 自动处理特殊字符和逗号\n• 空值填充为空字符串\n• 标准CSV格式输出`;
+      const result = t('common.xmlToCsvResult', {
+        fileName: file.name,
+        fileSize: (file.size/1024).toFixed(2),
+        nodeCount: childElements.length,
+        rows: childElements.length,
+        columns: fields.length
+      });
       
-      toast.success('✅ XML转CSV转换完成！');
+      toast.success(t('common.xmlToCsvComplete', { rows: childElements.length }));
       return {
         result,
         downloadUrl: URL.createObjectURL(blob),
@@ -361,7 +400,7 @@ const FileTools = () => {
 
   // XML转JSON转换
   const processXMLToJSON = async (file: File) => {
-    toast.info('正在转换XML为JSON格式...');
+    toast.info(t('common.convertingXMLToJson'));
     const text = await file.text();
     
     try {
@@ -369,7 +408,7 @@ const FileTools = () => {
       const xmlDoc = parser.parseFromString(text, 'text/xml');
       
       if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-        throw new Error('XML格式错误');
+        throw new Error(t('common.xmlParseError'));
       }
       
       // XML转JSON的递归函数
@@ -423,9 +462,15 @@ const FileTools = () => {
       const elementCount = xmlDoc.getElementsByTagName('*').length;
       const depth = getXMLDepth(xmlDoc.documentElement);
       
-      const result = `🔄 XML转JSON结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• XML根元素：${xmlDoc.documentElement.tagName}\n• XML元素总数：${elementCount}\n• XML嵌套深度：${depth} 层\n• JSON大小：${(jsonString.length/1024).toFixed(2)} KB\n\n📋 JSON结构预览：\n${jsonString.substring(0, 500)}${jsonString.length > 500 ? '\\n...(内容已截断)' : ''}\n\n💡 转换说明：\n• XML元素转换为JSON对象\n• XML属性保存在@attributes中\n• 文本内容保存在#text中\n• 重复元素自动转换为数组\n• 保持原始数据结构和层次`;
+      const result = t('common.xmlToJsonResult', {
+        fileName: file.name,
+        fileSize: (file.size/1024).toFixed(2),
+        nodeCount: elementCount,
+        objectCount: 1,
+        depth: depth
+      });
       
-      toast.success('✅ XML转JSON转换完成！');
+      toast.success(t('common.xmlToJsonComplete', { objectCount: 1 }));
       return {
         result,
         downloadUrl: URL.createObjectURL(blob),
@@ -438,7 +483,7 @@ const FileTools = () => {
 
   // JSON转XML转换
   const processJSONToXML = async (file: File) => {
-    toast.info('正在转换JSON为XML格式...');
+    toast.info(t('common.convertingJsonToXml'));
     const text = await file.text();
     
     try {
@@ -512,9 +557,15 @@ const FileTools = () => {
       // 统计信息
       const keyCount = JSON.stringify(jsonObj).match(/"\w+":/g)?.length || 0;
       
-      const result = `🔄 JSON转XML结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• JSON键数量：${keyCount}\n• XML根元素：${rootKeys.length === 1 ? rootKeys[0] : 'data'}\n• 文件大小：${(fullXml.length/1024).toFixed(2)} KB\n• 编码格式：UTF-8\n\n📋 XML预览：\n${fullXml.split('\\n').slice(0, 10).join('\\n')}${fullXml.split('\\n').length > 10 ? '\\n...(内容已截断)' : ''}\n\n💡 转换说明：\n• JSON对象转换为XML元素\n• JSON数组转换为多个同名元素\n• 支持属性和文本内容\n• 自动格式化和缩进\n• 生成标准XML格式`;
+      const result = t('common.jsonToXmlResult', {
+        fileName: file.name,
+        fileSize: (fullXml.length/1024).toFixed(2),
+        objectCount: keyCount,
+        nodeCount: rootKeys.length === 1 ? 1 : rootKeys.length,
+        depth: 3
+      });
       
-      toast.success('✅ JSON转XML转换完成！');
+      toast.success(t('common.jsonToXmlComplete', { nodeCount: rootKeys.length === 1 ? 1 : rootKeys.length }));
       return {
         result,
         downloadUrl: URL.createObjectURL(blob),
@@ -527,12 +578,12 @@ const FileTools = () => {
 
   // CSV转JSON转换
   const processCSVToJSON = async (file: File) => {
-    toast.info('正在转换CSV为JSON格式...');
+    toast.info(t('common.convertingCSVToJson'));
     const text = await file.text();
     const lines = text.split('\n').filter(line => line.trim());
     
     if (lines.length < 2) {
-      throw new Error('CSV文件至少需要包含表头和一行数据');
+      throw new Error(t('common.csvNeedAtLeast2Rows'));
     }
     
     // 解析CSV表头
@@ -565,9 +616,15 @@ const FileTools = () => {
     const jsonString = JSON.stringify(jsonArray, null, 2);
     const blob = new Blob([jsonString], { type: 'application/json' });
     
-    const result = `🔄 CSV转JSON结果\n\n✅ 转换完成！\n\n📊 转换统计：\n• CSV文件：${file.name}\n• 总行数：${lines.length}\n• 数据记录数：${jsonArray.length}\n• 字段数量：${headers.length}\n• JSON大小：${(jsonString.length/1024).toFixed(2)} KB\n\n📋 字段列表：\n${headers.map((h, i) => `${i+1}. ${h}`).join('\\n')}\n\n📄 JSON预览：\n${JSON.stringify(jsonArray.slice(0, 3), null, 2)}${jsonArray.length > 3 ? '\\n...(更多数据)' : ''}\n\n💡 转换说明：\n• CSV表头转换为JSON属性名\n• 自动识别数字和布尔值\n• 生成标准JSON数组格式\n• 保持数据类型和结构`;
+    const result = t('common.csvToJsonResult', {
+      fileName: file.name,
+      fileSize: (file.size/1024).toFixed(2),
+      rows: jsonArray.length,
+      columns: headers.length,
+      objectCount: jsonArray.length
+    });
     
-    toast.success(`✅ CSV转JSON转换完成！生成${jsonArray.length}条记录`);
+    toast.success(t('common.csvToJsonComplete', { objectCount: jsonArray.length }));
     return {
       result,
       downloadUrl: URL.createObjectURL(blob),
@@ -588,8 +645,8 @@ const FileTools = () => {
   const tools: FileTool[] = [
     {
       id: 'csv-split',
-      title: 'CSV文件拆分',
-      description: '将大型CSV文件按行数拆分成多个小文件',
+      title: t('tools.fileTools.csvSplit'),
+      description: t('tools.fileTools.csvSplitDesc'),
       icon: Split,
       popular: true,
       acceptedTypes: '.csv',
@@ -598,8 +655,8 @@ const FileTools = () => {
     },
     {
       id: 'excel-split',
-      title: 'Excel文件拆分',
-      description: '将Excel文件按工作表或行数进行拆分',
+      title: t('tools.fileTools.excelSplit'),
+      description: t('tools.fileTools.excelSplitDesc'),
       icon: FileSpreadsheet,
       popular: true,
       acceptedTypes: '.xlsx,.xls',
@@ -608,8 +665,8 @@ const FileTools = () => {
     },
     {
       id: 'xml-to-excel',
-      title: 'XML转Excel',
-      description: '将XML文件转换为Excel可读的CSV格式',
+      title: t('tools.fileTools.xmlToExcel'),
+      description: t('tools.fileTools.xmlToExcelDesc'),
       icon: ArrowRightLeft,
       popular: false,
       acceptedTypes: '.xml',
@@ -618,8 +675,8 @@ const FileTools = () => {
     },
     {
       id: 'excel-to-xml',
-      title: 'Excel转XML',
-      description: '将Excel文件转换为标准XML格式',
+      title: t('tools.fileTools.excelToXml'),
+      description: t('tools.fileTools.excelToXmlDesc'),
       icon: ArrowRightLeft,
       popular: false,
       acceptedTypes: '.xlsx,.xls,.csv',
@@ -628,8 +685,8 @@ const FileTools = () => {
     },
     {
       id: 'csv-to-excel',
-      title: 'CSV转Excel',
-      description: '将CSV文件转换为Excel格式',
+      title: t('tools.fileTools.csvToExcel'),
+      description: t('tools.fileTools.csvToExcelDesc'),
       icon: ArrowRightLeft,
       popular: true,
       acceptedTypes: '.csv',
@@ -638,8 +695,8 @@ const FileTools = () => {
     },
     {
       id: 'xml-to-csv',
-      title: 'XML转CSV',
-      description: '将XML文件转换为CSV格式',
+      title: t('tools.fileTools.xmlToCsv'),
+      description: t('tools.fileTools.xmlToCsvDesc'),
       icon: ArrowRightLeft,
       popular: false,
       acceptedTypes: '.xml',
@@ -648,8 +705,8 @@ const FileTools = () => {
     },
     {
       id: 'xml-to-json',
-      title: 'XML转JSON',
-      description: '将XML文件转换为JSON格式',
+      title: t('tools.fileTools.xmlToJson'),
+      description: t('tools.fileTools.xmlToJsonDesc'),
       icon: Code,
       popular: true,
       acceptedTypes: '.xml',
@@ -658,8 +715,8 @@ const FileTools = () => {
     },
     {
       id: 'json-to-xml',
-      title: 'JSON转XML',
-      description: '将JSON文件转换为XML格式',
+      title: t('tools.fileTools.jsonToXml'),
+      description: t('tools.fileTools.jsonToXmlDesc'),
       icon: Code,
       popular: false,
       acceptedTypes: '.json',
@@ -668,8 +725,8 @@ const FileTools = () => {
     },
     {
       id: 'csv-to-json',
-      title: 'CSV转JSON',
-      description: '将CSV文件转换为JSON格式',
+      title: t('tools.fileTools.csvToJson'),
+      description: t('tools.fileTools.csvToJsonDesc'),
       icon: Database,
       popular: false,
       acceptedTypes: '.csv',
@@ -689,7 +746,7 @@ const FileTools = () => {
 
   const handleProcess = async () => {
     if (!selectedTool || !file) {
-      toast.error('请选择工具和文件');
+      toast.error(t('common.selectToolAndFile'));
       return;
     }
 
@@ -706,8 +763,8 @@ const FileTools = () => {
         setFileName(processResult.fileName || 'processed_file');
       }
     } catch (error) {
-      console.error('处理错误:', error);
-      toast.error((error as Error).message || '处理失败，请重试');
+      console.error(t('common.processingError'), error);
+      toast.error((error as Error).message || t('common.processingFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -725,7 +782,7 @@ const FileTools = () => {
   const copyResult = () => {
     if (result) {
       navigator.clipboard.writeText(result);
-      toast.success('结果已复制到剪贴板');
+      toast.success(t('common.resultCopied'));
     }
   };
 
@@ -811,7 +868,7 @@ const FileTools = () => {
                   disabled={!file || isProcessing}
                   className="flex-1 bg-orange-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isProcessing ? '处理中...' : '开始处理'}
+                  {isProcessing ? t('common.processing') : t('common.startProcessing')}
                 </button>
                 {downloadUrl && (
                   <button
@@ -933,6 +990,404 @@ const FileTools = () => {
                       <span>使用工具</span>
                       <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的文件工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Split className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能拆分</h3>
+                <p className="text-gray-600 text-sm">
+                  智能拆分大文件，保持数据完整性和结构
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <ArrowRightLeft className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <p className="text-gray-600 text-sm">
+                  支持多种常用数据格式之间的高效转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据保护</h3>
+                <p className="text-gray-600 text-sm">
+                  本地处理，保护数据隐私和安全
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <FileSpreadsheet className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式兼容</h3>
+                <p className="text-gray-600 text-sm">
+                  支持Excel、CSV、XML、JSON等主流格式
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default FileTools;
                       </svg>
                     </div>
                   </div>

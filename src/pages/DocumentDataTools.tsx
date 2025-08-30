@@ -33,14 +33,14 @@ const DocumentDataTools: React.FC = () => {
 
   // CSV处理函数
   const processCSVSplit = async (input: File | string) => {
-    if (!(input instanceof File)) throw new Error('需要CSV文件');
+    if (!(input instanceof File)) throw new Error(t('tools.documentData.needCSVFile'));
     
-    toast.info('正在解析CSV文件...');
+    toast.info(t('tools.documentData.parsingCSVFile'));
     const text = await input.text();
     const lines = text.split('\n');
     
     if (lines.length < 2) {
-      throw new Error('CSV文件至少需要2行数据');
+      throw new Error(t('tools.documentData.csvNeedAtLeast2Rows'));
     }
     
     // 按行数拆分（每1000行一个文件）
@@ -58,23 +58,28 @@ const DocumentDataTools: React.FC = () => {
     const firstChunk = chunks[0];
     const blob = new Blob([firstChunk], { type: 'text/csv' });
     
-    toast.success(`✅ CSV拆分完成！共生成${chunks.length}个文件`);
+    toast.success(t('tools.documentData.csvSplitComplete', { count: chunks.length }));
     return {
-      result: `CSV文件拆分完成\n\n原始文件：${dataLines.length}行数据\n拆分后：${chunks.length}个文件\n每个文件：最多${chunkSize}行\n\n第一个文件预览：\n${firstChunk.split('\n').slice(0, 5).join('\n')}${firstChunk.split('\n').length > 5 ? '\n...' : ''}`,
+      result: t('tools.documentData.csvSplitResult', { 
+        originalRows: dataLines.length, 
+        fileCount: chunks.length, 
+        maxRows: chunkSize,
+        preview: firstChunk.split('\n').slice(0, 5).join('\n') + (firstChunk.split('\n').length > 5 ? '\n...' : '')
+      }),
       downloadUrl: URL.createObjectURL(blob),
       fileName: `split_1_of_${chunks.length}.csv`
     };
   };
 
   const processCSVToJSON = async (input: File | string) => {
-    if (!(input instanceof File)) throw new Error('需要CSV文件');
+    if (!(input instanceof File)) throw new Error(t('common.needCSVFile'));
     
     toast.info('正在转换CSV为JSON...');
     const text = await input.text();
     const lines = text.trim().split('\n');
     
     if (lines.length < 2) {
-      throw new Error('CSV文件格式不正确');
+      throw new Error(t('common.errors.csvFormatIncorrect'));
     }
     
     const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
@@ -101,7 +106,7 @@ const DocumentDataTools: React.FC = () => {
   };
 
   const processXMLToJSON = async (input: File | string) => {
-    if (!(input instanceof File)) throw new Error('需要XML文件');
+    if (!(input instanceof File)) throw new Error(t('common.errors.xmlFileRequired'));
     
     toast.info('正在转换XML为JSON...');
     const text = await input.text();
@@ -111,7 +116,7 @@ const DocumentDataTools: React.FC = () => {
       const xmlDoc = parser.parseFromString(text, 'text/xml');
       
       if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
-        throw new Error('XML格式错误');
+        throw new Error(t('common.errors.xmlFormatError'));
       }
       
       // 简单XML到JSON转换
@@ -167,7 +172,7 @@ const DocumentDataTools: React.FC = () => {
         fileName: 'converted.json'
       };
     } catch (error) {
-      throw new Error('XML解析失败：' + (error as Error).message);
+      throw new Error(t('common.errors.xmlParseFailed') + (error as Error).message);
     }
   };
 
@@ -340,33 +345,33 @@ const DocumentDataTools: React.FC = () => {
     // 文件处理工具
     {
       id: 'csv-split',
-      name: 'CSV文件拆分',
-      description: '将大型CSV文件按行数拆分成多个小文件',
+      name: t('tools.documentData.csvSplit'),
+      description: t('tools.documentData.csvSplitDesc'),
       icon: Split,
       popular: true,
-      category: '文件处理',
+      category: t('tools.documentData.fileProcessing'),
       inputType: 'file',
       acceptedTypes: '.csv',
       processingFunction: processCSVSplit
     },
     {
       id: 'csv-to-json',
-      name: 'CSV转JSON',
-      description: '将CSV格式文件转换为JSON格式',
+      name: t('tools.documentData.csvToJson'),
+      description: t('tools.documentData.csvToJsonDesc'),
       icon: ArrowRightLeft,
       popular: true,
-      category: '文件处理',
+      category: t('tools.documentData.fileProcessing'),
       inputType: 'file',
       acceptedTypes: '.csv',
       processingFunction: processCSVToJSON
     },
     {
       id: 'xml-to-json',
-      name: 'XML转JSON',
-      description: '将XML文档转换为JSON格式',
+      name: t('tools.documentData.xmlToJson'),
+      description: t('tools.documentData.xmlToJsonDesc'),
       icon: Code,
       popular: true,
-      category: '文件处理',
+      category: t('tools.documentData.fileProcessing'),
       inputType: 'file',
       acceptedTypes: '.xml',
       processingFunction: processXMLToJSON
@@ -375,21 +380,21 @@ const DocumentDataTools: React.FC = () => {
     // 文本处理工具
     {
       id: 'word-counter',
-      name: '字数统计',
-      description: '统计文本的字数、字符数、行数等信息',
+      name: t('tools.documentData.wordCounter'),
+      description: t('tools.documentData.wordCounterDesc'),
       icon: Calculator,
       popular: true,
-      category: '文本处理',
+      category: t('tools.documentData.textProcessing'),
       inputType: 'text',
       processingFunction: processWordCounter
     },
     {
       id: 'case-converter',
-      name: '大小写转换',
-      description: '转换文本的大小写格式（大写、小写、标题格式等）',
+      name: t('tools.documentData.caseConverter'),
+      description: t('tools.documentData.caseConverterDesc'),
       icon: Type,
       popular: true,
-      category: '文本处理',
+      category: t('tools.documentData.textProcessing'),
       inputType: 'text',
       processingFunction: processCaseConverter
     },
@@ -397,31 +402,31 @@ const DocumentDataTools: React.FC = () => {
     // 编码工具
     {
       id: 'base64-encoder',
-      name: 'Base64编码',
-      description: '对文本进行Base64编码和解码',
+      name: t('tools.documentData.base64Encoder'),
+      description: t('tools.documentData.base64EncoderDesc'),
       icon: Code,
       popular: true,
-      category: '编码工具',
+      category: t('tools.documentData.encodingTools'),
       inputType: 'text',
       processingFunction: processBase64Encoder
     },
     {
       id: 'url-encoder',
-      name: 'URL编码',
-      description: '对URL进行编码和解码处理',
+      name: t('tools.documentData.urlEncoder'),
+      description: t('tools.documentData.urlEncoderDesc'),
       icon: LinkIcon,
       popular: true,
-      category: '编码工具',
+      category: t('tools.documentData.encodingTools'),
       inputType: 'text',
       processingFunction: processURLEncoder
     },
     {
       id: 'hash-generator',
-      name: '哈希生成器',
-      description: '生成文本的SHA-256等哈希值',
+      name: t('tools.documentData.hashGenerator'),
+      description: t('tools.documentData.hashGeneratorDesc'),
       icon: Hash,
       popular: true,
-      category: '编码工具',
+      category: t('tools.documentData.encodingTools'),
       inputType: 'text',
       processingFunction: processHashGenerator
     },
@@ -429,27 +434,33 @@ const DocumentDataTools: React.FC = () => {
     // 生成器工具
     {
       id: 'uuid-generator',
-      name: 'UUID生成器',
-      description: '生成标准UUID格式的唯一标识符',
+      name: t('tools.documentData.uuidGenerator'),
+      description: t('tools.documentData.uuidGeneratorDesc'),
       icon: Key,
       popular: true,
-      category: '生成器',
+      category: t('tools.documentData.generators'),
       inputType: 'text',
       processingFunction: processUUIDGenerator
     },
     {
       id: 'number-base-converter',
-      name: '进制转换器',
-      description: '转换数字的进制（二进制、八进制、十六进制）',
+      name: t('tools.documentData.numberBaseConverter'),
+      description: t('tools.documentData.numberBaseConverterDesc'),
       icon: Binary,
       popular: true,
-      category: '转换器',
+      category: t('tools.documentData.converters'),
       inputType: 'text',
       processingFunction: processNumberBaseConverter
     }
   ];
 
-  const categories = ['文件处理', '文本处理', '编码工具', '生成器', '转换器'];
+  const categories = [
+    t('tools.documentData.fileProcessing'),
+    t('tools.documentData.textProcessing'),
+    t('tools.documentData.encodingTools'),
+    t('tools.documentData.generators'),
+    t('tools.documentData.converters')
+  ];
   const popularTools = tools.filter(tool => tool.popular);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -463,17 +474,17 @@ const DocumentDataTools: React.FC = () => {
 
   const handleProcess = async () => {
     if (!selectedTool) {
-      toast.error('请选择一个工具');
+      toast.error(t('common.selectTool'));
       return;
     }
 
     if (selectedTool.inputType === 'file' && !file) {
-      toast.error('请选择文件');
+      toast.error(t('common.selectFile'));
       return;
     }
 
     if (selectedTool.inputType === 'text' && !textInput.trim()) {
-      toast.error('请输入文本');
+      toast.error(t('common.enterText'));
       return;
     }
 
@@ -492,7 +503,7 @@ const DocumentDataTools: React.FC = () => {
       }
     } catch (error) {
       console.error('处理错误:', error);
-      toast.error((error as Error).message || '处理失败，请重试');
+      toast.error((error as Error).message || t('common.processingFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -510,7 +521,7 @@ const DocumentDataTools: React.FC = () => {
   const copyResult = () => {
     if (result) {
       navigator.clipboard.writeText(result);
-      toast.success('结果已复制到剪贴板');
+      toast.success(t('common.resultCopied'));
     }
   };
 
@@ -558,7 +569,7 @@ const DocumentDataTools: React.FC = () => {
                 className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>返回</span>
+                <span>{t('common.back')}</span>
               </button>
             </div>
 
@@ -566,7 +577,7 @@ const DocumentDataTools: React.FC = () => {
               {selectedTool.inputType === 'file' ? (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    选择文件
+                    {t('common.selectFile')}
                   </label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-400 transition-colors">
                     <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -581,14 +592,14 @@ const DocumentDataTools: React.FC = () => {
                       htmlFor="file-upload"
                       className="cursor-pointer text-purple-600 hover:text-purple-700 font-medium"
                     >
-                      点击选择文件
+                      {t('common.clickToSelectFile')}
                     </label>
                     <p className="text-gray-500 text-sm mt-2">
-                      支持格式: {selectedTool.acceptedTypes}
+                      {t('common.supportedFormats')}: {selectedTool.acceptedTypes}
                     </p>
                     {file && (
                       <p className="text-green-600 text-sm mt-2">
-                        已选择: {file.name}
+                        {t('common.selected')}: {file.name}
                       </p>
                     )}
                   </div>
@@ -596,13 +607,13 @@ const DocumentDataTools: React.FC = () => {
               ) : (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    输入文本
+                    {t('common.enterText')}
                   </label>
                   <textarea
                     value={textInput}
                     onChange={(e) => setTextInput(e.target.value)}
                     className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="请输入要处理的文本..."
+                    placeholder={t('common.enterTextToProcess')}
                   />
                 </div>
               )}
@@ -613,14 +624,14 @@ const DocumentDataTools: React.FC = () => {
                   disabled={isProcessing || (selectedTool.inputType === 'file' ? !file : !textInput.trim())}
                   className="flex-1 bg-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isProcessing ? '处理中...' : '开始处理'}
+                  {isProcessing ? t('common.processing') : t('common.startProcessing')}
                 </button>
                 {downloadUrl && (
                   <button
                     onClick={downloadFile}
                     className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
                   >
-                    下载文件
+                    {t('common.downloadFile')}
                   </button>
                 )}
               </div>
@@ -628,13 +639,13 @@ const DocumentDataTools: React.FC = () => {
               {result && (
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-medium text-gray-900">处理结果</h3>
+                    <h3 className="text-lg font-medium text-gray-900">{t('common.processingResult')}</h3>
                     <button
                       onClick={copyResult}
                       className="flex items-center space-x-2 px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                     >
                       <Copy className="w-4 h-4" />
-                      <span>复制</span>
+                      <span>{t('common.copy')}</span>
                     </button>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4 border max-h-80 overflow-y-auto">
@@ -662,15 +673,15 @@ const DocumentDataTools: React.FC = () => {
             <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <FileText className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">文档数据工具</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.documentData.title')}</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              强大的文档处理和数据转换工具集合，支持CSV、JSON、XML等格式转换和文本处理
+              {t('tools.documentData.description')}
             </p>
           </div>
 
           {/* Popular Tools Section */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">🔥 热门工具</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">🔥 {t('common.popularTools')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {popularTools.map((tool) => {
                 const IconComponent = tool.icon;
@@ -693,7 +704,7 @@ const DocumentDataTools: React.FC = () => {
                     </div>
                     <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
                     <button className="w-full bg-purple-600 text-white hover:bg-purple-700 py-2 rounded-md font-medium transition-colors">
-                      使用工具
+                      {t('common.useTool')}
                     </button>
                   </div>
                 );
@@ -722,7 +733,7 @@ const DocumentDataTools: React.FC = () => {
                           <IconComponent className="w-6 h-6 text-purple-600 group-hover:text-purple-700 transition-colors" />
                           {tool.popular && (
                             <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-                              热门
+                              {t('common.popular')}
                             </span>
                           )}
                         </div>
@@ -736,7 +747,7 @@ const DocumentDataTools: React.FC = () => {
                         </p>
                         
                         <div className="flex items-center text-purple-600 text-sm font-medium">
-                          <span>使用工具</span>
+                          <span>{t('common.useTool')}</span>
                           <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -751,42 +762,42 @@ const DocumentDataTools: React.FC = () => {
 
           {/* Features Section */}
           <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的工具？</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t('common.whyChooseUs')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Split className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">智能处理</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('common.smartProcessing')}</h3>
                 <p className="text-gray-600 text-sm">
-                  先进的算法确保数据处理的准确性和效率
+                  {t('common.smartProcessingDesc')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <ArrowRightLeft className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式转换</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('common.formatConversion')}</h3>
                 <p className="text-gray-600 text-sm">
-                  支持多种文件格式之间的无损转换
+                  {t('common.formatConversionDesc')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Database className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">数据安全</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('common.dataSecurity')}</h3>
                 <p className="text-gray-600 text-sm">
-                  本地处理，数据不会上传到服务器，保护隐私
+                  {t('common.dataSecurityDesc')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Code className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">开发者友好</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('common.developerFriendly')}</h3>
                 <p className="text-gray-600 text-sm">
-                  提供丰富的编码和格式化工具，提升开发效率
+                  {t('common.developerFriendlyDesc')}
                 </p>
               </div>
             </div>

@@ -23,198 +23,366 @@ const ImageTools = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processedImageUrl, setProcessedImageUrl] = useState<string>('');
+  // 通用参数（根据不同工具显示/使用）
+  const [convertFormat, setConvertFormat] = useState<'png' | 'jpeg' | 'webp'>('png');
+  const [quality, setQuality] = useState<number>(80); // 0-100
+  const [targetWidth, setTargetWidth] = useState<number>(1000);
+  const [maintainAspect, setMaintainAspect] = useState<boolean>(true);
+  const [cropPercent, setCropPercent] = useState<number>(80); // 取较小边百分比
+  const [rotateAngle, setRotateAngle] = useState<number>(90);
+  const [enhanceStrength, setEnhanceStrength] = useState<number>(10); // 亮度/对比度增益
+  const [originalSizeMB, setOriginalSizeMB] = useState<string>('');
+  const [estimatedSizeMB, setEstimatedSizeMB] = useState<string>('');
+  const [processedSizeMB, setProcessedSizeMB] = useState<string>('');
 
   // 图像处理函数
+  const dataUrlToBlob = (dataUrl: string): Blob => {
+    const arr = dataUrl.split(',');
+    const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  };
   const processImageConvert = async (file: File) => {
-    toast.info('正在进行图像格式转换...');
+    toast.info(t('common.convertingImageFormat'));
     
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
-    
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        
-        // 转换为PNG格式（无损）
-        canvas.toBlob((blob) => {
-          if (blob) {
-            toast.success('✅ 图像格式转换完成！已转换为PNG格式');
-            resolve({ url: URL.createObjectURL(blob) });
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            
+            const mime = convertFormat === 'png' ? 'image/png' : convertFormat === 'webp' ? 'image/webp' : 'image/jpeg';
+            const q = convertFormat === 'png' ? undefined : Math.min(1, Math.max(0, quality / 100));
+            canvas.toBlob((blob) => {
+              try {
+                if (blob) {
+                  toast.success(`✅ ${t('common.imageFormatConversionComplete')}${convertFormat.toUpperCase()}`);
+                  resolve({ url: URL.createObjectURL(blob) });
+                } else {
+                  // 兜底：使用 dataURL 转 blob
+                  const dataUrl = canvas.toDataURL(mime, q as number | undefined);
+                  const fallbackBlob = dataUrlToBlob(dataUrl);
+                  toast.success(`✅ ${t('common.imageFormatConversionComplete')}`);
+                  resolve({ url: URL.createObjectURL(fallbackBlob) });
+                }
+              } catch (e) {
+                reject(new Error(`${t('common.imageConversionError')}: ${(e as Error).message}`));
+              }
+            }, mime, q);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/png');
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
 
   const processImageCompress = async (file: File) => {
-    toast.info('正在压缩图像...');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
+    toast.info(t('common.compressingImage'));
     
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        // 尺寸压缩到85%，质量压缩到70%
-        canvas.width = Math.round(img.width * 0.85);
-        canvas.height = Math.round(img.height * 0.85);
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const originalSize = (file.size / 1024 / 1024).toFixed(2);
-            const compressedSize = (blob.size / 1024 / 1024).toFixed(2);
-            const reduction = (((file.size - blob.size) / file.size) * 100).toFixed(1);
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            // 尺寸压缩到指定百分比（cropPercent 充当缩放百分比控制）
+            const scale = Math.max(10, Math.min(100, cropPercent)) / 100;
+            canvas.width = Math.round(img.width * scale);
+            canvas.height = Math.round(img.height * scale);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             
-            toast.success(`✅ 图像压缩完成！${originalSize}MB → ${compressedSize}MB (减少${reduction}%)`);
-            resolve({ url: URL.createObjectURL(blob) });
+            const q = Math.min(1, Math.max(0, quality / 100));
+            canvas.toBlob((blob) => {
+              try {
+                let outBlob = blob;
+                if (!outBlob) {
+                  const dataUrl = canvas.toDataURL('image/jpeg', q);
+                  outBlob = dataUrlToBlob(dataUrl);
+                }
+                const originalSize = (file.size / 1024 / 1024).toFixed(2);
+                const compressedSize = (outBlob.size / 1024 / 1024).toFixed(2);
+                const reduction = file.size > 0 ? (((file.size - outBlob.size) / file.size) * 100).toFixed(1) : '0.0';
+                toast.success(t('common.imageCompressionCompleteWithSize', { originalSize, compressedSize, reduction }));
+                setProcessedSizeMB(compressedSize);
+                if (processedImageUrl) URL.revokeObjectURL(processedImageUrl);
+                resolve({ url: URL.createObjectURL(outBlob) });
+              } catch (e) {
+                reject(new Error(`${t('common.imageCompressionError')}: ${(e as Error).message}`));
+              }
+            }, 'image/jpeg', q);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/jpeg', 0.7);
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
 
   const processPhotoEnhancer = async (file: File) => {
-    toast.info('正在进行图像增强处理...');
+    toast.info(t('common.enhancingImage'));
     
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
-    
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        
-        // 获取图像数据并进行增强处理
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
-        
-        // 应用亮度、对比度和饱和度增强
-        for (let i = 0; i < data.length; i += 4) {
-          // 增加亮度 (+10)
-          data[i] = Math.min(255, data[i] + 10);     // Red
-          data[i + 1] = Math.min(255, data[i + 1] + 10); // Green  
-          data[i + 2] = Math.min(255, data[i + 2] + 10); // Blue
-          
-          // 增强对比度 (1.1倍)
-          data[i] = Math.min(255, Math.max(0, (data[i] - 128) * 1.1 + 128));
-          data[i + 1] = Math.min(255, Math.max(0, (data[i + 1] - 128) * 1.1 + 128));
-          data[i + 2] = Math.min(255, Math.max(0, (data[i + 2] - 128) * 1.1 + 128));
-        }
-        
-        // 将处理后的数据放回canvas
-        ctx.putImageData(imageData, 0, 0);
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            toast.success('✅ 图像增强完成！已提升亮度和对比度');
-            resolve({ url: URL.createObjectURL(blob) });
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            
+            // 获取图像数据并进行增强处理
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // 应用亮度、对比度增强（强度可调）
+            for (let i = 0; i < data.length; i += 4) {
+              const brightness = enhanceStrength; // -50 ~ +50（这里只用正增益）
+              const contrastFactor = 1 + enhanceStrength / 100; // 1.0~1.5
+              data[i] = Math.min(255, Math.max(0, (data[i] + brightness - 128) * contrastFactor + 128));
+              data[i + 1] = Math.min(255, Math.max(0, (data[i + 1] + brightness - 128) * contrastFactor + 128));
+              data[i + 2] = Math.min(255, Math.max(0, (data[i + 2] + brightness - 128) * contrastFactor + 128));
+            }
+            
+            // 将处理后的数据放回canvas
+            ctx.putImageData(imageData, 0, 0);
+            
+            canvas.toBlob((blob) => {
+              try {
+                const outBlob = blob || dataUrlToBlob(canvas.toDataURL('image/jpeg', 0.9));
+                toast.success(`✅ ${t('common.imageEnhancementComplete')}`);
+                resolve({ url: URL.createObjectURL(outBlob) });
+              } catch (e) {
+                reject(new Error(`${t('common.imageEnhancementError')}: ${(e as Error).message}`));
+              }
+            }, 'image/jpeg', 0.9);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/jpeg', 0.9);
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
 
   const processImageCrop = async (file: File) => {
-    toast.info('正在裁剪图像（中心正方形）...');
+    toast.info('t("common.croppingImage")');
     
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
-    
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        // 计算正方形裁剪尺寸（取较小边的80%）
-        const cropSize = Math.min(img.width, img.height) * 0.8;
-        canvas.width = cropSize;
-        canvas.height = cropSize;
-        
-        // 计算居中裁剪的起始位置
-        const startX = (img.width - cropSize) / 2;
-        const startY = (img.height - cropSize) / 2;
-        
-        // 绘制裁剪后的图像
-        ctx.drawImage(
-          img,
-          startX, startY, cropSize, cropSize, // 源图像裁剪区域
-          0, 0, cropSize, cropSize            // 目标canvas区域
-        );
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            toast.success(`✅ 图像裁剪完成！裁剪为 ${cropSize.toFixed(0)}×${cropSize.toFixed(0)} 正方形`);
-            resolve({ url: URL.createObjectURL(blob) });
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            // 计算正方形裁剪尺寸（取较小边的 cropPercent%）
+            const cropSize = Math.min(img.width, img.height) * Math.max(10, Math.min(100, cropPercent)) / 100;
+            canvas.width = cropSize;
+            canvas.height = cropSize;
+            
+            // 计算居中裁剪的起始位置
+            const startX = (img.width - cropSize) / 2;
+            const startY = (img.height - cropSize) / 2;
+            
+            // 绘制裁剪后的图像
+            ctx.drawImage(
+              img,
+              startX, startY, cropSize, cropSize, // 源图像裁剪区域
+              0, 0, cropSize, cropSize            // 目标canvas区域
+            );
+            
+            canvas.toBlob((blob) => {
+              try {
+                const outBlob = blob || dataUrlToBlob(canvas.toDataURL('image/jpeg', 0.9));
+                toast.success(t('common.imageCroppingCompleteWithSize', { size: cropSize.toFixed(0) }));
+                resolve({ url: URL.createObjectURL(outBlob) });
+              } catch (e) {
+                reject(new Error(t('common.imageCroppingError', { error: (e as Error).message })));
+              }
+            }, 'image/jpeg', 0.9);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/jpeg', 0.9);
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
 
   const processImageRotate = async (file: File) => {
-    toast.info('正在旋转图像（顺时针90度）...');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
+    toast.info(t('common.rotatingImage'));
     
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        // 90度旋转后，宽高互换
-        canvas.width = img.height;
-        canvas.height = img.width;
-        
-        // 移动到中心点并旋转
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(Math.PI / 2); // 顺时针旋转90度
-        ctx.drawImage(img, -img.width / 2, -img.height / 2);
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            toast.success(`✅ 图像旋转完成！${img.width}×${img.height} → ${img.height}×${img.width}`);
-            resolve({ url: URL.createObjectURL(blob) });
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            const angleRad = ((rotateAngle % 360) * Math.PI) / 180;
+            // 简化：对 90/180/270 的情况进行尺寸适配
+            const norm = ((rotateAngle % 360) + 360) % 360;
+            if (norm === 90 || norm === 270) {
+              canvas.width = img.height;
+              canvas.height = img.width;
+            } else {
+              canvas.width = img.width;
+              canvas.height = img.height;
+            }
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angleRad);
+            ctx.drawImage(img, -img.width / 2, -img.height / 2);
+            
+            canvas.toBlob((blob) => {
+              try {
+                const outBlob = blob || dataUrlToBlob(canvas.toDataURL('image/jpeg', 0.9));
+                toast.success(t('common.imageRotationCompleteWithSize', { originalSize: `${img.width}×${img.height}`, newSize: `${canvas.width}×${canvas.height}` }));
+                resolve({ url: URL.createObjectURL(outBlob) });
+              } catch (e) {
+                reject(new Error(t('common.imageRotationError', { error: (e as Error).message })));
+              }
+            }, 'image/jpeg', 0.9);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/jpeg', 0.9);
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
 
   const processImageResize = async (file: File) => {
-    toast.info('正在调整图像尺寸（宽度1000px）...');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const img = new Image();
+    toast.info(t('common.resizingImage'));
     
-    return new Promise<{ url: string }>((resolve) => {
-      img.onload = () => {
-        const targetWidth = 1000;
-        const aspectRatio = img.height / img.width;
-        
-        canvas.width = targetWidth;
-        canvas.height = Math.round(targetWidth * aspectRatio);
-        
-        // 高质量缩放
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        
-        canvas.toBlob((blob) => {
-          if (blob) {
-            toast.success(`✅ 尺寸调整完成！${img.width}×${img.height} → ${canvas.width}×${canvas.height}`);
-            resolve({ url: URL.createObjectURL(blob) });
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        throw new Error(t('common.canvasContextError'));
+      }
+      
+      const img = document.createElement("img");
+      
+      return new Promise<{ url: string }>((resolve, reject) => {
+        img.onload = () => {
+          try {
+            const w = Math.max(1, targetWidth);
+            const aspectRatio = img.height / img.width;
+            canvas.width = w;
+            canvas.height = maintainAspect ? Math.round(w * aspectRatio) : img.height;
+            
+            // 高质量缩放
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            canvas.toBlob((blob) => {
+              try {
+                const outBlob = blob || dataUrlToBlob(canvas.toDataURL('image/jpeg', 0.9));
+                toast.success(t('common.imageResizingCompleteWithSize', { originalSize: `${img.width}×${img.height}`, newSize: `${canvas.width}×${canvas.height}` }));
+                resolve({ url: URL.createObjectURL(outBlob) });
+              } catch (e) {
+                reject(new Error(t('common.imageResizingError', { error: (e as Error).message })));
+              }
+            }, 'image/jpeg', 0.9);
+          } catch (error) {
+            reject(new Error(`${t('common.imageProcessingError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`));
           }
-        }, 'image/jpeg', 0.9);
-      };
-      img.src = URL.createObjectURL(file);
-    });
+        };
+        
+        img.onerror = () => {
+          reject(new Error(t('common.imageLoadError')));
+        };
+        
+        img.src = URL.createObjectURL(file);
+      });
+    } catch (error) {
+      throw new Error(`${t('common.initializationError')}: ${error instanceof Error ? error.message : t('common.unknownError')}`);
+    }
   };
+
+  
 
   const imageTools: ImageTool[] = [
     {
@@ -278,6 +446,17 @@ const ImageTools = () => {
     if (selectedFile) {
       setFile(selectedFile);
       setProcessedImageUrl('');
+      setProcessedSizeMB('');
+      const sizeMB = (selectedFile.size / 1024 / 1024).toFixed(2);
+      setOriginalSizeMB(sizeMB);
+      if (selectedTool?.id === 'image-compressor') {
+        const scale = Math.max(10, Math.min(100, cropPercent)) / 100;
+        const qualityFactor = Math.min(1, Math.max(0.1, quality / 100));
+        const estimated = parseFloat(sizeMB) * (scale * scale) * (0.6 + 0.4 * qualityFactor);
+        setEstimatedSizeMB(estimated.toFixed(2));
+      } else {
+        setEstimatedSizeMB('');
+      }
     }
   };
 
@@ -292,12 +471,12 @@ const ImageTools = () => {
     try {
       // 如果需要OpenCV，加载插件
       if (selectedTool.requiredPlugin === 'opencv') {
-        toast.info('正在加载OpenCV.js图像处理引擎...');
+        toast.info(t('common.loadingOpenCV'));
         await loadOpenCV();
       }
       
       // 使用对应的处理函数
-      toast.info('正在处理图像...');
+      toast.info(t('common.processingImage'));
       const result = await selectedTool.processingFunction(file);
       
       if (result.url) {
@@ -306,7 +485,7 @@ const ImageTools = () => {
       
       toast.success(t('common.processingComplete'));
     } catch (error) {
-      console.error('图像处理错误:', error);
+      console.error(t('common.imageProcessingError'), error);
       toast.error((error as Error).message || t('common.processingError'));
     } finally {
       setIsProcessing(false);
@@ -317,7 +496,8 @@ const ImageTools = () => {
     if (processedImageUrl) {
       const link = document.createElement('a');
       link.href = processedImageUrl;
-      link.download = `processed_${selectedTool?.id}_${Date.now()}.png`;
+      const ext = selectedTool?.id === 'image-converter' ? convertFormat : 'jpg';
+      link.download = `processed_${selectedTool?.id}_${Date.now()}.${ext}`;
       link.click();
     }
   };
@@ -345,7 +525,7 @@ const ImageTools = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
             {selectedTool.requiredPlugin === 'opencv' && !isPluginLoaded && (
-              <ImagePluginLoader className="mb-6" onLoadComplete={() => toast.success('OpenCV.js图像处理引擎加载完成！')} />
+              <ImagePluginLoader className="mb-6" onLoadComplete={() => toast.success(t('common.opencvEngineLoaded'))} />
             )}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
@@ -369,6 +549,95 @@ const ImageTools = () => {
             </div>
 
             <div className="space-y-6">
+              {/* Parameter area: display corresponding controls based on tool type */}
+              {selectedTool.id === 'image-converter' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('common.outputFormat')}</label>
+                    <select
+                      className="w-full border rounded-lg px-3 py-2"
+                      value={convertFormat}
+                      onChange={(e) => setConvertFormat(e.target.value as 'png'|'jpeg'|'webp')}
+                    >
+                      <option value="png">{t('common.pngLossless')}</option>
+                      <option value="jpeg">{t('common.jpegLossy')}</option>
+                      <option value="webp">{t('common.webpBetter')}</option>
+                    </select>
+                  </div>
+                  {(convertFormat === 'jpeg' || convertFormat === 'webp') && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('common.quality')} ({quality}%)</label>
+                      <input type="range" min={1} max={100} value={quality} onChange={(e) => setQuality(parseInt(e.target.value))} className="w-full" />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {selectedTool.id === 'image-compressor' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('common.compressionQuality')} ({quality}%)</label>
+                    <input type="range" min={1} max={100} value={quality} onChange={(e) => setQuality(parseInt(e.target.value))} className="w-full" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('common.scaleRatio')} ({cropPercent}%)</label>
+                    <input
+                      type="range"
+                      min={10}
+                      max={100}
+                      value={cropPercent}
+                      onChange={(e) => {
+                        const v = parseInt(e.target.value);
+                        setCropPercent(v);
+                        if (file) {
+                          const sizeMB = file.size / 1024 / 1024;
+                          const scale = Math.max(10, Math.min(100, v)) / 100;
+                          const qualityFactor = Math.min(1, Math.max(0.1, quality / 100));
+                          setEstimatedSizeMB((sizeMB * (scale * scale) * (0.6 + 0.4 * qualityFactor)).toFixed(2));
+                        }
+                      }}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {selectedTool.id === 'image-resizer' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('common.targetWidth')}</label>
+                    <input type="number" className="w-full border rounded-lg px-3 py-2" value={targetWidth} onChange={(e) => setTargetWidth(parseInt(e.target.value || '0'))} />
+                  </div>
+                  <div className="flex items-end">
+                    <label className="inline-flex items-center space-x-2">
+                      <input type="checkbox" checked={maintainAspect} onChange={(e) => setMaintainAspect(e.target.checked)} />
+                      <span className="text-sm text-gray-700">{t('common.maintainAspectRatio')}</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              {selectedTool.id === 'image-cropper' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">t("common.centerCropRatio")（{cropPercent}%）</label>
+                  <input type="range" min={10} max={100} value={cropPercent} onChange={(e) => setCropPercent(parseInt(e.target.value))} className="w-full" />
+                </div>
+              )}
+
+              {selectedTool.id === 'image-rotator' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">t("common.rotationAngle")</label>
+                  <input type="number" className="w-full border rounded-lg px-3 py-2" value={rotateAngle} onChange={(e) => setRotateAngle(parseInt(e.target.value || '0'))} />
+                </div>
+              )}
+
+              {selectedTool.id === 'photo-enhancer' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">t("common.enhancementStrength")（{enhanceStrength}）</label>
+                  <input type="range" min={0} max={50} value={enhanceStrength} onChange={(e) => setEnhanceStrength(parseInt(e.target.value))} className="w-full" />
+                </div>
+              )}
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {t('common.selectImageFile')}
@@ -386,7 +655,7 @@ const ImageTools = () => {
                     htmlFor="file-upload"
                     className="cursor-pointer text-green-600 hover:text-green-700 font-medium"
                   >
-                    {t('common.clickToSelectImage')}
+                    {t('common.clickToSelectImageFile')}
                   </label>
                   <p className="text-gray-500 text-sm mt-2">
                     {t('common.supportedFormats')}
@@ -408,6 +677,12 @@ const ImageTools = () => {
                       alt={t('common.originalImage')}
                       className="w-full h-64 object-cover rounded-lg border"
                     />
+                    {(selectedTool.id === 'image-compressor' || selectedTool.id === 'image-converter' || selectedTool.id === 'image-resizer') && (
+                      <p className="text-sm text-gray-600 mt-2">{t('common.originalSize')}: {originalSizeMB}MB</p>
+                    )}
+                    {selectedTool.id === 'image-compressor' && estimatedSizeMB && (
+                      <p className="text-sm text-blue-600 mt-1">{t('common.estimatedSize')}: ~{estimatedSizeMB}MB（{t('common.estimated')}）</p>
+                    )}
                   </div>
                   {processedImageUrl && (
                     <div>
@@ -417,6 +692,9 @@ const ImageTools = () => {
                         alt={t('common.processedImage')}
                         className="w-full h-64 object-cover rounded-lg border"
                       />
+                      {processedSizeMB && (
+                        <p className="text-sm text-green-600 mt-2">{t('common.actualSize')}: {processedSizeMB}MB</p>
+                      )}
                     </div>
                   )}
                 </div>

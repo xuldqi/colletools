@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { VideoPluginLoader, ImagePluginLoader, OCRPluginLoader } from '../components/PluginLoader';
 import { pluginManager, loadFFmpeg, loadOpenCV } from '../utils/pluginLoader';
 import { Video, Image as ImageIcon, FileText, Play, Upload } from 'lucide-react';
 
 const PluginDemo: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedDemo, setSelectedDemo] = useState<string | null>(null);
   const [testFile, setTestFile] = useState<File | null>(null);
   const [result, setResult] = useState<string>('');
@@ -11,24 +13,24 @@ const PluginDemo: React.FC = () => {
   const demoOptions = [
     {
       id: 'video',
-      title: '视频处理演示',
-      description: '使用FFmpeg.js进行视频转换和处理',
+      title: t('demo.video.title'),
+      description: t('demo.video.description'),
       icon: Video,
       pluginName: 'ffmpeg',
       loadFunction: loadFFmpeg
     },
     {
       id: 'image',
-      title: '图像处理演示', 
-      description: '使用OpenCV.js进行高级图像处理',
+      title: t('demo.image.title'), 
+      description: t('demo.image.description'),
       icon: ImageIcon,
       pluginName: 'opencv',
       loadFunction: loadOpenCV
     },
     {
       id: 'ocr',
-      title: 'OCR文字识别演示',
-      description: '使用Tesseract.js进行文字识别',
+      title: t('demo.ocr.title'),
+      description: t('demo.ocr.description'),
       icon: FileText,
       pluginName: 'tesseract',
       loadFunction: () => pluginManager.loadPlugin('tesseract')
@@ -49,7 +51,7 @@ const PluginDemo: React.FC = () => {
     const demo = demoOptions.find(d => d.id === selectedDemo);
     if (!demo) return;
 
-    setResult('正在处理...');
+    setResult(t('common.processing'));
 
     try {
       // Load plugin if not already loaded
@@ -58,28 +60,28 @@ const PluginDemo: React.FC = () => {
       // Simulate processing based on demo type
       switch (selectedDemo) {
         case 'video':
-          setResult(`✅ 视频文件 "${testFile.name}" 已成功加载FFmpeg.js引擎！
-📊 文件大小: ${(testFile.size / 1024 / 1024).toFixed(2)} MB
-🎬 可进行格式转换、压缩、剪辑等操作
-🔧 FFmpeg.js已准备就绪，支持所有主流视频格式`);
+          setResult(t('demo.video.success', { 
+            fileName: testFile.name, 
+            fileSize: (testFile.size / 1024 / 1024).toFixed(2) 
+          }));
           break;
           
         case 'image':
-          setResult(`✅ 图像文件 "${testFile.name}" 已成功加载OpenCV.js引擎！
-🖼️ 文件大小: ${(testFile.size / 1024 / 1024).toFixed(2)} MB  
-🎨 可进行滤镜、变换、特征检测等操作
-⚡ OpenCV.js已准备就绪，支持高级图像处理`);
+          setResult(t('demo.image.success', { 
+            fileName: testFile.name, 
+            fileSize: (testFile.size / 1024 / 1024).toFixed(2) 
+          }));
           break;
           
         case 'ocr':
-          setResult(`✅ 图像文件 "${testFile.name}" 已成功加载Tesseract.js引擎！
-📄 文件大小: ${(testFile.size / 1024 / 1024).toFixed(2)} MB
-🔍 可进行文字识别、多语言OCR等操作  
-📝 Tesseract.js已准备就绪，支持40+种语言识别`);
+          setResult(t('demo.ocr.success', { 
+            fileName: testFile.name, 
+            fileSize: (testFile.size / 1024 / 1024).toFixed(2) 
+          }));
           break;
       }
     } catch (error) {
-      setResult(`❌ 处理失败: ${error.message}`);
+      setResult(t('common.processingFailed', { error: error.message }));
     }
   };
 
@@ -89,24 +91,24 @@ const PluginDemo: React.FC = () => {
         return <VideoPluginLoader className="min-h-[300px]">
           <div className="text-center p-6">
             <Video className="w-12 h-12 mx-auto mb-4 text-green-600" />
-            <h3 className="text-lg font-semibold mb-2">FFmpeg.js 已准备就绪!</h3>
-            <p className="text-gray-600">视频处理引擎加载完成，可以开始处理视频文件</p>
+            <h3 className="text-lg font-semibold mb-2">{t('demo.ffmpegReady')}</h3>
+            <p className="text-gray-600">{t('demo.ffmpegReadyDesc')}</p>
           </div>
         </VideoPluginLoader>;
       case 'image':
         return <ImagePluginLoader className="min-h-[300px]">
           <div className="text-center p-6">
             <ImageIcon className="w-12 h-12 mx-auto mb-4 text-green-600" />
-            <h3 className="text-lg font-semibold mb-2">OpenCV.js 已准备就绪!</h3>
-            <p className="text-gray-600">图像处理引擎加载完成，可以开始处理图像文件</p>
+            <h3 className="text-lg font-semibold mb-2">{t('demo.opencvReady')}</h3>
+            <p className="text-gray-600">{t('demo.opencvReadyDesc')}</p>
           </div>
         </ImagePluginLoader>;
       case 'ocr':
         return <OCRPluginLoader className="min-h-[300px]">
           <div className="text-center p-6">
             <FileText className="w-12 h-12 mx-auto mb-4 text-green-600" />
-            <h3 className="text-lg font-semibold mb-2">Tesseract.js 已准备就绪!</h3>
-            <p className="text-gray-600">OCR引擎加载完成，可以开始识别图像中的文字</p>
+            <h3 className="text-lg font-semibold mb-2">{t('demo.tesseractReady')}</h3>
+            <p className="text-gray-600">{t('demo.tesseractReadyDesc')}</p>
           </div>
         </OCRPluginLoader>;
       default:
@@ -119,17 +121,17 @@ const PluginDemo: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🚀 高级插件演示中心
+            {t('demo.title')}
           </h1>
           <p className="text-xl text-gray-600">
-            体验从CDN动态加载的专业工具插件
+            {t('demo.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Plugin Selection */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900">选择演示功能</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{t('demo.selectFunction')}</h2>
             
             {demoOptions.map((option) => {
               const IconComponent = option.icon;
@@ -156,7 +158,7 @@ const PluginDemo: React.FC = () => {
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900">
                         {option.title}
-                        {isLoaded && <span className="ml-2 text-sm text-green-600">✅ 已加载</span>}
+                        {isLoaded && <span className="ml-2 text-sm text-green-600">✅ {t('common.loaded')}</span>}
                       </h3>
                       <p className="text-gray-600 mt-1">{option.description}</p>
                     </div>
@@ -168,7 +170,7 @@ const PluginDemo: React.FC = () => {
             {/* File Upload */}
             {selectedDemo && (
               <div className="bg-white rounded-lg border p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">上传测试文件</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('demo.uploadTestFile')}</h3>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
                   <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                   <input
@@ -179,7 +181,7 @@ const PluginDemo: React.FC = () => {
                   />
                   {testFile && (
                     <p className="text-sm text-green-600 mt-2">
-                      已选择: {testFile.name}
+                      {t('common.selected')}: {testFile.name}
                     </p>
                   )}
                 </div>
@@ -190,7 +192,7 @@ const PluginDemo: React.FC = () => {
                     className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
                   >
                     <Play className="w-4 h-4 mr-2" />
-                    开始演示
+                    {t('demo.startDemo')}
                   </button>
                 )}
               </div>
@@ -199,7 +201,7 @@ const PluginDemo: React.FC = () => {
 
           {/* Plugin Loading Area */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900">插件加载状态</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">{t('demo.pluginLoadingStatus')}</h2>
             
             <div className="bg-white rounded-lg border min-h-[400px]">
               {selectedDemo ? renderPluginLoader() : (
@@ -208,7 +210,7 @@ const PluginDemo: React.FC = () => {
                     <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Play className="w-8 h-8 text-gray-400" />
                     </div>
-                    <p>请选择一个功能开始演示</p>
+                    <p>{t('demo.selectFunctionToStart')}</p>
                   </div>
                 </div>
               )}

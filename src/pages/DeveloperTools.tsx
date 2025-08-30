@@ -4,6 +4,7 @@ import {
   Upload, ArrowLeft, Copy, Download
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 
@@ -19,6 +20,7 @@ interface DeveloperTool {
 }
 
 const DeveloperTools: React.FC = () => {
+  const { t } = useTranslation();
   const [selectedTool, setSelectedTool] = useState<DeveloperTool | null>(null);
   const [textInput, setTextInput] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
@@ -37,7 +39,7 @@ const DeveloperTools: React.FC = () => {
     }
     
     if (!text.trim()) {
-      throw new Error('请输入要生成哈希的文本');
+      throw new Error(t('common.enterTextForHash'));
     }
     
     // 使用Web Crypto API生成哈希
@@ -64,9 +66,19 @@ const DeveloperTools: React.FC = () => {
     }, 0);
     const md5Like = Math.abs(simpleHash).toString(16).padStart(8, '0');
     
-    const result = `🔑 多重哈希生成结果\n\n📝 原始文本：\n${text.substring(0, 200)}${text.length > 200 ? '...' : ''}\n\n🔐 哈希值：\nMD5(模拟)：${md5Like}\nSHA-1：${sha1Hex}\nSHA-256：${sha256Hex}\nSHA-512：${sha512Hex}\n\n📊 统计信息：\n• 原文长度：${text.length} 字符\n• SHA-1 长度：${sha1Hex.length} 字符\n• SHA-256 长度：${sha256Hex.length} 字符\n• SHA-512 长度：${sha512Hex.length} 字符`;
+    const result = t('tools.developer.hashResult', {
+      originalText: text.substring(0, 200) + (text.length > 200 ? '...' : ''),
+      md5Hash: md5Like,
+      sha1Hash: sha1Hex,
+      sha256Hash: sha256Hex,
+      sha512Hash: sha512Hex,
+      textLength: text.length,
+      sha1Length: sha1Hex.length,
+      sha256Length: sha256Hex.length,
+      sha512Length: sha512Hex.length
+    });
     
-    toast.success('✅ 哈希生成完成！');
+    toast.success(t('tools.developer.hashComplete'));
     return { result };
   };
 
@@ -80,7 +92,7 @@ const DeveloperTools: React.FC = () => {
     }
     
     if (!text.trim()) {
-      throw new Error('请输入要编码的文本');
+      throw new Error(t('common.enterTextForEncoding'));
     }
     
     try {
@@ -93,12 +105,20 @@ const DeveloperTools: React.FC = () => {
       // URL安全的Base64
       const urlSafeEncoded = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
       
-      const result = `🔐 Base64 编码/解码结果\n\n📝 原始文本：\n${text.substring(0, 200)}${text.length > 200 ? '...' : ''}\n\n✨ 标准Base64编码：\n${encoded}\n\n🔗 URL安全Base64：\n${urlSafeEncoded}\n\n✅ 解码验证：\n${decoded.substring(0, 200)}${decoded.length > 200 ? '...' : ''}\n\n📊 编码统计：\n• 原文长度：${text.length} 字符\n• 编码长度：${encoded.length} 字符\n• 压缩比：${((encoded.length / text.length) * 100).toFixed(1)}%`;
+      const result = t('tools.developer.base64Result', {
+        originalText: text.substring(0, 200) + (text.length > 200 ? '...' : ''),
+        encoded: encoded,
+        urlSafeEncoded: urlSafeEncoded,
+        decoded: decoded.substring(0, 200) + (decoded.length > 200 ? '...' : ''),
+        textLength: text.length,
+        encodedLength: encoded.length,
+        compressionRatio: ((encoded.length / text.length) * 100).toFixed(1)
+      });
       
-      toast.success('✅ Base64编码完成！');
+      toast.success(t('tools.developer.base64Complete'));
       return { result };
     } catch (error) {
-      throw new Error('Base64编码失败：' + (error as Error).message);
+      throw new Error(t('tools.developer.base64Error') + (error as Error).message);
     }
   };
 
@@ -112,7 +132,7 @@ const DeveloperTools: React.FC = () => {
     }
     
     if (!text.trim()) {
-      throw new Error('请输入要编码的URL或文本');
+      throw new Error(t('common.enterTextForURLEncoding'));
     }
     
     try {
@@ -133,12 +153,21 @@ const DeveloperTools: React.FC = () => {
       // 旧式URL编码（escape）
       const escapeEncoded = escape(text);
       
-      const result = `🔗 URL编码/解码结果\n\n📝 原始文本：\n${text}\n\n🌐 标准URL编码：\n${encoded}\n\n📄 HTML实体编码：\n${htmlEncoded}\n\n🔄 旧式编码(escape)：\n${escapeEncoded}\n\n✅ 解码验证：\n${decoded}\n\n📊 编码统计：\n• 原文长度：${text.length} 字符\n• URL编码长度：${encoded.length} 字符\n• HTML编码长度：${htmlEncoded.length} 字符`;
+      const result = t('tools.developer.urlResult', {
+        originalText: text,
+        encoded: encoded,
+        htmlEncoded: htmlEncoded,
+        escapeEncoded: escapeEncoded,
+        decoded: decoded,
+        textLength: text.length,
+        encodedLength: encoded.length,
+        htmlLength: htmlEncoded.length
+      });
       
-      toast.success('✅ URL编码完成！');
+      toast.success(t('tools.developer.urlComplete'));
       return { result };
     } catch (error) {
-      throw new Error('URL编码失败：' + (error as Error).message);
+      throw new Error(t('tools.developer.urlError') + (error as Error).message);
     }
   };
 
@@ -152,7 +181,7 @@ const DeveloperTools: React.FC = () => {
     }
     
     if (!text.trim()) {
-      throw new Error('请输入JSON文本');
+      throw new Error(t('common.enterJSONText'));
     }
     
     try {
@@ -173,15 +202,27 @@ const DeveloperTools: React.FC = () => {
       const valueCount = Object.keys(JSON.parse(JSON.stringify(jsonObj, (key, value) => value))).length;
       const depth = getJSONDepth(jsonObj);
       
-      const result = `📋 JSON格式化/验证结果\n\n✅ JSON格式有效！\n\n📝 格式化(2空格)：\n${formatted2.substring(0, 500)}${formatted2.length > 500 ? '\n...(已截断)' : ''}\n\n🗜️ 压缩版本：\n${minified.substring(0, 300)}${minified.length > 300 ? '...' : ''}\n\n📊 JSON统计：\n• 原始长度：${text.length} 字符\n• 格式化长度：${formatted2.length} 字符\n• 压缩长度：${minified.length} 字符\n• 键数量：${keyCount}\n• 嵌套深度：${depth} 层\n• 压缩率：${(((formatted2.length - minified.length) / formatted2.length) * 100).toFixed(1)}%`;
+      const result = t('tools.developer.jsonResult', {
+        formatted2: formatted2.substring(0, 500) + (formatted2.length > 500 ? '\n...(已截断)' : ''),
+        minified: minified.substring(0, 300) + (minified.length > 300 ? '...' : ''),
+        textLength: text.length,
+        formattedLength: formatted2.length,
+        minifiedLength: minified.length,
+        keyCount: keyCount,
+        depth: depth,
+        compressionRatio: (((formatted2.length - minified.length) / formatted2.length) * 100).toFixed(1)
+      });
       
-      toast.success('✅ JSON验证通过！');
+      toast.success(t('tools.developer.jsonComplete'));
       return { result };
     } catch (error) {
       const errorMsg = (error as Error).message;
-      const result = `❌ JSON格式错误\n\n🚫 错误信息：\n${errorMsg}\n\n📝 输入内容：\n${text.substring(0, 300)}${text.length > 300 ? '\n...(已截断)' : ''}\n\n💡 常见问题：\n• 检查括号是否匹配\n• 确保字符串用双引号包围\n• 检查逗号使用是否正确\n• 确保没有尾随逗号`;
+      const result = t('tools.developer.jsonError', {
+        errorMsg: errorMsg,
+        inputText: text.substring(0, 300) + (text.length > 300 ? '\n...(已截断)' : '')
+      });
       
-      toast.error('❌ JSON格式无效');
+      toast.error(t('tools.developer.jsonInvalid'));
       return { result };
     }
   };
@@ -196,7 +237,7 @@ const DeveloperTools: React.FC = () => {
     }
     
     if (!text.trim()) {
-      throw new Error('请输入要生成二维码的内容');
+      throw new Error(t('common.enterTextForQRCode'));
     }
     
     // 使用简单的SVG生成二维码模拟
@@ -222,9 +263,14 @@ const DeveloperTools: React.FC = () => {
     const blob = new Blob([svgContent], { type: 'image/svg+xml' });
     const downloadUrl = URL.createObjectURL(blob);
     
-    const result = `📱 二维码生成结果\n\n✅ 二维码生成成功！\n\n📝 编码内容：\n${text}\n\n📊 二维码信息：\n• 内容长度：${text.length} 字符\n• 图片尺寸：${qrSize}×${qrSize} 像素\n• 文件格式：SVG\n• 编码类型：文本\n\n💡 说明：这是演示版本，实际使用中会生成真实的二维码图片。完整版支持：\n• 多种容错级别\n• 自定义颜色和尺寸\n• PNG、JPG等格式导出\n• Logo嵌入功能`;
+    const result = t('tools.developer.qrResult', {
+      content: text,
+      contentLength: text.length,
+      qrSize: qrSize,
+      qrSize2: qrSize
+    });
     
-    toast.success('✅ 二维码生成完成！');
+    toast.success(t('tools.developer.qrComplete'));
     return { result, downloadUrl, fileName: 'qrcode.svg' };
   };
 
@@ -287,12 +333,28 @@ const DeveloperTools: React.FC = () => {
       // 颜色预览块（使用Unicode字符模拟）
       const colorBlock = '█'.repeat(10);
       
-      const result = `🎨 颜色转换结果\n\n🎯 当前颜色：${color}\n${colorBlock} (颜色预览)\n\n📊 颜色格式转换：\n• HEX：${color}\n• RGB：rgb(${r}, ${g}, ${b})\n• HSL：${hsl}\n• CSS：color: ${color}\n\n📈 颜色分析：\n• 红色分量：${r} (${((r/255)*100).toFixed(1)}%)\n• 绿色分量：${g} (${((g/255)*100).toFixed(1)}%)\n• 蓝色分量：${b} (${((b/255)*100).toFixed(1)}%)\n• 亮度：${Math.round(l * 100)}%\n• 饱和度：${Math.round(s * 100)}%\n• 色相：${Math.round(h * 360)}°`;
+      const result = t('tools.developer.colorResult', {
+        color: color,
+        colorBlock: colorBlock,
+        hex: color,
+        rgb: `rgb(${r}, ${g}, ${b})`,
+        hsl: hsl,
+        css: `color: ${color}`,
+        red: r,
+        redPercent: ((r/255)*100).toFixed(1),
+        green: g,
+        greenPercent: ((g/255)*100).toFixed(1),
+        blue: b,
+        bluePercent: ((b/255)*100).toFixed(1),
+        lightness: Math.round(l * 100),
+        saturation: Math.round(s * 100),
+        hue: Math.round(h * 360)
+      });
       
-      toast.success('✅ 颜色转换完成！');
+      toast.success(t('tools.developer.colorComplete'));
       return { result };
     } catch (error) {
-      throw new Error('颜色格式错误，请输入有效的颜色值');
+      throw new Error(t('tools.developer.colorError'));
     }
   };
 
@@ -321,7 +383,7 @@ const DeveloperTools: React.FC = () => {
         // 尝试解析日期字符串
         inputDate = new Date(text);
         if (isNaN(inputDate.getTime())) {
-          throw new Error('无法解析时间格式');
+          throw new Error(t('tools.developer.timestampParseError'));
         }
         timestamp = inputDate.getTime();
       }
@@ -350,9 +412,26 @@ const DeveloperTools: React.FC = () => {
       second: date.getSeconds()
     };
     
-    const result = `🕐 时间戳转换结果\n\n📅 转换时间：${formats.local}\n\n📊 多格式显示：\n• 10位时间戳：${formats.timestamp10}\n• 13位时间戳：${formats.timestamp13}\n• ISO格式：${formats.iso}\n• 本地时间：${formats.local}\n• UTC时间：${formats.utc}\n• 日期：${formats.date}\n• 时间：${formats.time}\n\n📈 详细信息：\n• 年份：${formats.year}\n• 月份：${formats.month}\n• 日期：${formats.day}\n• 小时：${formats.hour}\n• 分钟：${formats.minute}\n• 秒数：${formats.second}\n• 星期：${['日', '一', '二', '三', '四', '五', '六'][date.getDay()]}\n\n⏰ 当前时间：${new Date().toLocaleString('zh-CN')}`;
+    const result = t('tools.developer.timestampResult', {
+      localTime: formats.local,
+      timestamp10: formats.timestamp10,
+      timestamp13: formats.timestamp13,
+      iso: formats.iso,
+      local: formats.local,
+      utc: formats.utc,
+      date: formats.date,
+      time: formats.time,
+      year: formats.year,
+      month: formats.month,
+      day: formats.day,
+      hour: formats.hour,
+      minute: formats.minute,
+      second: formats.second,
+      weekday: ['日', '一', '二', '三', '四', '五', '六'][date.getDay()],
+      currentTime: new Date().toLocaleString('zh-CN')
+    });
     
-    toast.success('✅ 时间戳转换完成！');
+          toast.success(t('tools.developer.timestampComplete'));
     return { result };
   };
 
@@ -379,9 +458,15 @@ const DeveloperTools: React.FC = () => {
       shortUUIDs.push(Math.random().toString(36).substr(2, 8));
     }
     
-    const result = `🆔 UUID生成结果\n\n✅ 已生成多个UUID！\n\n📋 标准UUID v4 (前10个)：\n${uuids.slice(0, 10).join('\n')}\n\n🔗 短UUID (8位)：\n${shortUUIDs.join('\n')}\n\n📊 生成统计：\n• 标准UUID：${uuids.length} 个\n• 短UUID：${shortUUIDs.length} 个\n• UUID格式：8-4-4-4-12\n• 字符集：0-9, a-f\n• 版本：v4 (随机)\n\n💡 使用说明：\n• 标准UUID用于数据库主键\n• 短UUID用于临时标识符\n• 所有UUID保证唯一性\n\n🔄 完整UUID列表：\n${uuids.join('\n')}`;
+    const result = t('tools.developer.uuidResult', {
+      uuids: uuids.slice(0, 10).join('\n'),
+      shortUUIDs: shortUUIDs.join('\n'),
+      uuidCount: uuids.length,
+      shortUUIDCount: shortUUIDs.length,
+      allUUIDs: uuids.join('\n')
+    });
     
-    toast.success('✅ UUID生成完成！');
+    toast.success(t('tools.developer.uuidComplete'));
     return { result };
   };
 
@@ -430,13 +515,23 @@ const DeveloperTools: React.FC = () => {
       if (/[0-9]/.test(pwd)) score += 1;
       if (/[^a-zA-Z0-9]/.test(pwd)) score += 1;
       
-      const levels = ['很弱', '弱', '一般', '强', '很强', '极强'];
-      return levels[score] || '很弱';
+      const levels = [t('tools.developer.veryWeak'), t('tools.developer.weak'), t('tools.developer.medium'), t('tools.developer.strong'), t('tools.developer.veryStrong'), t('tools.developer.extremelyStrong')];
+      return levels[score] || t('tools.developer.veryWeak');
     };
     
-    const result = `🔐 密码生成结果\n\n🛡️ 不同强度密码：\n\n🔹 简单密码 (8位)：\n${passwords.simple} [强度: ${evaluateStrength(passwords.simple)}]\n\n🔸 中等密码 (12位)：\n${passwords.medium} [强度: ${evaluateStrength(passwords.medium)}]\n\n🔶 强密码 (16位)：\n${passwords.strong} [强度: ${evaluateStrength(passwords.strong)}]\n\n🔴 超强密码 (32位)：\n${passwords.ultraStrong} [强度: ${evaluateStrength(passwords.ultraStrong)}]\n\n📋 随机密码列表：\n${randomPasswords.map((pwd, i) => `${i+1}. ${pwd} [${evaluateStrength(pwd)}]`).join('\n')}\n\n💡 密码安全建议：\n• 使用至少12位字符\n• 包含大小写字母、数字和符号\n• 避免使用个人信息\n• 定期更换密码\n• 不同账户使用不同密码`;
+    const result = t('tools.developer.passwordResult', {
+      simplePassword: passwords.simple,
+      simpleStrength: evaluateStrength(passwords.simple),
+      mediumPassword: passwords.medium,
+      mediumStrength: evaluateStrength(passwords.medium),
+      strongPassword: passwords.strong,
+      strongStrength: evaluateStrength(passwords.strong),
+      ultraStrongPassword: passwords.ultraStrong,
+      ultraStrongStrength: evaluateStrength(passwords.ultraStrong),
+      randomPasswords: randomPasswords.map((pwd, i) => `${i+1}. ${pwd} [${evaluateStrength(pwd)}]`).join('\n')
+    });
     
-    toast.success('✅ 密码生成完成！');
+    toast.success(t('tools.developer.passwordComplete'));
     return { result };
   };
 
@@ -455,8 +550,8 @@ const DeveloperTools: React.FC = () => {
   const tools: DeveloperTool[] = [
     {
       id: 'hash-generator',
-      name: 'Hash生成器',
-      description: '生成MD5、SHA1、SHA256、SHA512等多种哈希值',
+      name: t('tools.developer.hashGenerator'),
+      description: t('tools.developer.hashGeneratorDesc'),
       icon: Hash,
       popular: true,
       inputType: 'text',
@@ -465,8 +560,8 @@ const DeveloperTools: React.FC = () => {
     },
     {
       id: 'base64-encoder',
-      name: 'Base64编码/解码',
-      description: '对文本进行Base64编码、解码和URL安全编码',
+      name: t('tools.developer.base64Encoder'),
+      description: t('tools.developer.base64EncoderDesc'),
       icon: Code,
       popular: true,
       inputType: 'text',
@@ -475,8 +570,8 @@ const DeveloperTools: React.FC = () => {
     },
     {
       id: 'url-encoder',
-      name: 'URL编码/解码',
-      description: '对URL和文本进行编码、解码和HTML实体转换',
+      name: t('tools.developer.urlEncoder'),
+      description: t('tools.developer.urlEncoderDesc'),
       icon: LinkIcon,
       popular: true,
       inputType: 'text',
@@ -485,8 +580,8 @@ const DeveloperTools: React.FC = () => {
     },
     {
       id: 'json-formatter',
-      name: 'JSON格式化/验证',
-      description: '格式化、验证JSON数据并提供统计信息',
+      name: t('tools.developer.jsonFormatter'),
+      description: t('tools.developer.jsonFormatterDesc'),
       icon: Braces,
       inputType: 'text',
       outputType: 'text',
@@ -494,8 +589,8 @@ const DeveloperTools: React.FC = () => {
     },
     {
       id: 'qr-generator',
-      name: '二维码生成器',
-      description: '将文本或URL转换为二维码图片',
+      name: t('tools.developer.qrGenerator'),
+      description: t('tools.developer.qrGeneratorDesc'),
       icon: QrCode,
       inputType: 'text',
       outputType: 'download',
@@ -503,8 +598,8 @@ const DeveloperTools: React.FC = () => {
     },
     {
       id: 'color-picker',
-      name: '颜色选择器/转换',
-      description: '颜色格式转换和分析（HEX、RGB、HSL）',
+      name: t('tools.developer.colorPicker'),
+      description: t('tools.developer.colorPickerDesc'),
       icon: Palette,
       inputType: 'text',
       outputType: 'text',
@@ -552,17 +647,17 @@ const DeveloperTools: React.FC = () => {
 
   const handleProcess = async () => {
     if (!selectedTool) {
-      toast.error('请选择一个工具');
+      toast.error(t('common.errors.pleaseSelectTool'));
       return;
     }
 
     if (selectedTool.inputType === 'text' && !textInput.trim()) {
-      toast.error('请输入文本');
+      toast.error(t('common.errors.pleaseEnterText'));
       return;
     }
 
     if (selectedTool.inputType === 'file' && !file) {
-      toast.error('请选择文件');
+      toast.error(t('common.errors.pleaseSelectFile'));
       return;
     }
 
@@ -587,7 +682,7 @@ const DeveloperTools: React.FC = () => {
       }
     } catch (error) {
       console.error('处理错误:', error);
-      toast.error((error as Error).message || '处理失败，请重试');
+      toast.error((error as Error).message || t('common.errors.processingFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -717,7 +812,7 @@ const DeveloperTools: React.FC = () => {
                   disabled={isProcessing || (selectedTool.inputType === 'text' && !textInput.trim()) || (selectedTool.inputType === 'file' && !file)}
                   className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isProcessing ? '处理中...' : '开始处理'}
+                  {isProcessing ? t('common.processing') : t('common.startProcessing')}
                 </button>
                 {downloadUrl && (
                   <button
@@ -801,6 +896,670 @@ const DeveloperTools: React.FC = () => {
                       使用工具
                     </button>
                   </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
+                );
+              })}
+            </div>
+          </div>
+
+          {/* All Tools Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">所有开发者工具</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.map((tool) => {
+                const IconComponent = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    onClick={() => selectTool(tool)}
+                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100 cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <IconComponent className="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors" />
+                      {tool.popular && (
+                        <span className="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          热门
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                      {tool.name}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {tool.description}
+                    </p>
+                    
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>使用工具</span>
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">为什么选择我们的开发者工具？</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Hash className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">多重哈希</h3>
+                <p className="text-gray-600 text-sm">
+                  支持MD5、SHA-1、SHA-256、SHA-512等多种哈希算法
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">编码解码</h3>
+                <p className="text-gray-600 text-sm">
+                  Base64、URL编码等常用编码格式的转换
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Braces className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">格式化</h3>
+                <p className="text-gray-600 text-sm">
+                  JSON格式化、验证和美化工具
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">生成器</h3>
+                <p className="text-gray-600 text-sm">
+                  UUID、密码、二维码等实用生成器工具
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default DeveloperTools;
                 );
               })}
             </div>

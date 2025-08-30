@@ -28,7 +28,7 @@ const PDFTools = () => {
 
   // PDF处理函数
   const processPDFToWord = async (file: File) => {
-    toast.info('PDF转Word功能正在开发中...');
+    toast.info(t('tools.pdf.pdfToWordDevelopment'));
     await loadPDFLib();
     
     // 模拟处理过程
@@ -40,14 +40,14 @@ const PDFTools = () => {
           const pdfDoc = await PDFDocument.load(reader.result);
           const pageCount = pdfDoc.getPageCount();
           
-          toast.success(`✅ PDF分析完成！共${pageCount}页，Word转换功能即将支持`);
+          toast.success(t('tools.pdf.pdfAnalysisComplete', { pageCount }));
           
           // 创建一个简单的文本文件作为演示
-          const textContent = `从PDF提取的内容\n\n文档共有 ${pageCount} 页\n\n这是一个演示版本，完整的PDF转Word功能正在开发中。\n\n将来会支持：\n- 保留格式转换\n- 图片提取\n- 表格识别\n- 多语言支持`;
+          const textContent = `${t('tools.pdf.pdfExtractedContent')}\n\n${t('tools.pdf.documentPageCount', { pageCount })}\n\n${t('tools.pdf.demoVersion')}\n\n${t('tools.pdf.futureFeatures')}\n- ${t('tools.pdf.formatPreservation')}\n- ${t('tools.pdf.imageExtraction')}\n- ${t('tools.pdf.tableRecognition')}\n- ${t('tools.pdf.multilingualSupport')}`;
           const blob = new Blob([textContent], { type: 'text/plain' });
           resolve({ url: URL.createObjectURL(blob) });
         } catch (error) {
-          toast.error('PDF处理失败，请确保文件格式正确');
+          toast.error(t('common.pdfProcessingFailed'));
           throw error;
         }
       };
@@ -56,7 +56,7 @@ const PDFTools = () => {
   };
 
   const processPDFMerge = async (file: File) => {
-    toast.info('正在处理PDF合并...');
+    toast.info(t('common.processingPdfMerge'));
     await loadPDFLib();
     
     const reader = new FileReader();
@@ -84,10 +84,10 @@ const PDFTools = () => {
           const pdfBytes = await newPdf.save();
           const blob = new Blob([pdfBytes], { type: 'application/pdf' });
           
-          toast.success(`✅ PDF合并完成！原${pageCount}页 → 新${newPdf.getPageCount()}页`);
+          toast.success(t('common.pdfMergeComplete', { originalPages: pageCount, newPages: newPdf.getPageCount() }));
           resolve({ url: URL.createObjectURL(blob) });
         } catch (error) {
-          toast.error('PDF合并失败，请确保文件格式正确');
+          toast.error(t('common.pdfMergeFailed'));
           throw error;
         }
       };
@@ -96,7 +96,7 @@ const PDFTools = () => {
   };
 
   const processPDFSplit = async (file: File) => {
-    toast.info('正在拆分PDF...');
+    toast.info(t('common.splittingPdf'));
     await loadPDFLib();
     
     const reader = new FileReader();
@@ -108,7 +108,7 @@ const PDFTools = () => {
           const pageCount = pdfDoc.getPageCount();
           
           if (pageCount < 2) {
-            toast.error('PDF页数太少，无法拆分');
+            toast.error(t('common.pdfTooFewPages'));
             return;
           }
           
@@ -123,10 +123,10 @@ const PDFTools = () => {
           const pdfBytes = await newPdf.save();
           const blob = new Blob([pdfBytes], { type: 'application/pdf' });
           
-          toast.success(`✅ PDF拆分完成！提取前${splitAt}页（共${pageCount}页）`);
+          toast.success(t('common.pdfSplitComplete', { splitPages: splitAt, totalPages: pageCount }));
           resolve({ url: URL.createObjectURL(blob) });
         } catch (error) {
-          toast.error('PDF拆分失败，请确保文件格式正确');
+          toast.error(t('common.pdfSplitFailed'));
           throw error;
         }
       };
@@ -135,7 +135,7 @@ const PDFTools = () => {
   };
 
   const processPDFCompress = async (file: File) => {
-    toast.info('正在压缩PDF...');
+    toast.info(t('common.compressingPdf'));
     await loadPDFLib();
     
     const reader = new FileReader();
@@ -158,10 +158,14 @@ const PDFTools = () => {
           
           const blob = new Blob([compressedBytes], { type: 'application/pdf' });
           
-          toast.success(`✅ PDF压缩完成！${(originalSize/1024/1024).toFixed(2)}MB → ${(compressedSize/1024/1024).toFixed(2)}MB (减少${reduction}%)`);
+          toast.success(t('common.pdfCompressionComplete', { 
+        originalSize: (originalSize/1024/1024).toFixed(2), 
+        compressedSize: (compressedSize/1024/1024).toFixed(2), 
+        reduction 
+      }));
           resolve({ url: URL.createObjectURL(blob) });
         } catch (error) {
-          toast.error('PDF压缩失败，请确保文件格式正确');
+          toast.error(t('common.pdfCompressionFailed'));
           throw error;
         }
       };
@@ -170,7 +174,7 @@ const PDFTools = () => {
   };
 
   const processPDFOCR = async (file: File) => {
-    toast.info('正在加载OCR引擎...');
+    toast.info(t('common.loadingOCREngine'));
     await loadTesseract();
     
     const reader = new FileReader();
@@ -178,7 +182,7 @@ const PDFTools = () => {
       reader.onload = async () => {
         try {
           // 使用PDF.js将PDF转为图片，然后用Tesseract进行OCR
-          toast.info('正在将PDF转换为图片...');
+          toast.info(t('common.convertingPdfToImage'));
           
           const { Tesseract } = (window as any);
           
@@ -321,7 +325,7 @@ const PDFTools = () => {
 
     try {
       // 首先加载所需插件
-      toast.info('正在加载处理插件...');
+      toast.info(t('common.loadingProcessingPlugin'));
       await pluginManager.loadPlugin(selectedTool.requiredPlugin);
       
       // 使用对应的处理函数

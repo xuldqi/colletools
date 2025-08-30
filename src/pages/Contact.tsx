@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // 这里可以添加表单提交逻辑
-    alert('感谢您的反馈！我们会尽快回复您。');
+    alert(t('common.submitSuccess'));
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 

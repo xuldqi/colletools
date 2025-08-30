@@ -49,18 +49,28 @@ export const preloadOCRResources = async () => {
       console.log('✅ Tesseract.js loaded successfully from CDN');
       
       // Create a worker to pre-initialize
-      const scheduler = (window as any).Tesseract.createScheduler();
       const worker = (window as any).Tesseract.createWorker();
       
-      await worker.load();
-      await worker.loadLanguage('eng'); // Preload English
-      await worker.initialize('eng');
-      
-      scheduler.addWorker(worker);
-      
-      // Store globally for use in components
-      (window as any).tessScheduler = scheduler;
-      (window as any).tessWorker = worker;
+      try {
+        // Check if worker has load method (older versions) or use new API
+        if (typeof worker.load === 'function') {
+          await worker.load();
+          await worker.loadLanguage('eng'); // Preload English
+          await worker.initialize('eng');
+        } else {
+          // New Tesseract.js API (v4+)
+          await worker.loadLanguage('eng');
+          await worker.initialize('eng');
+        }
+        
+        // Store globally for use in components
+        (window as any).tessWorker = worker;
+        
+        console.log('✅ OCR engine pre-initialized');
+      } catch (workerError) {
+        console.warn('⚠️ Worker initialization failed, will use on-demand loading:', workerError);
+        // Don't store failed worker
+      }
       
       console.log('✅ OCR engine pre-initialized');
       
@@ -77,9 +87,18 @@ export const initializeOCRForLanguage = async (language: string = 'eng') => {
   try {
     if (typeof window !== 'undefined' && (window as any).Tesseract) {
       const worker = (window as any).Tesseract.createWorker();
-      await worker.load();
-      await worker.loadLanguage(language);
-      await worker.initialize(language);
+      
+      // Check if worker has load method (older versions) or use new API
+      if (typeof worker.load === 'function') {
+        await worker.load();
+        await worker.loadLanguage(language);
+        await worker.initialize(language);
+      } else {
+        // New Tesseract.js API (v4+)
+        await worker.loadLanguage(language);
+        await worker.initialize(language);
+      }
+      
       return worker;
     }
   } catch (error) {

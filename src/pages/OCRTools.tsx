@@ -22,10 +22,10 @@ const OCRTools: React.FC = () => {
 
   // OCR处理函数
   const processImageToText = async (file: File) => {
-    toast.info('正在加载Tesseract.js OCR引擎...');
+    toast.info(t('common.loadingTesseractOCREngine'));
     await loadTesseract();
     
-    toast.info('正在识别图片中的文字 (中英文)...');
+    toast.info(t('common.recognizingImageText'));
     
     try {
       const { Tesseract } = (window as any);
@@ -34,30 +34,30 @@ const OCRTools: React.FC = () => {
         logger: (m) => {
           if (m.status === 'recognizing text') {
             const progress = Math.round(m.progress * 100);
-            toast.info(`正在识别文字... ${progress}%`);
+            toast.info(`${t('common.recognizingText')} ${progress}%`);
           }
         }
       });
       
       const recognizedText = result.data.text.trim();
       if (recognizedText) {
-        toast.success(`✅ 文字识别完成！识别出${recognizedText.length}个字符`);
-        return { text: `📝 OCR识别结果\n\n${recognizedText}\n\n✅ 识别完成 (置信度: ${(result.data.confidence).toFixed(1)}%)` };
+        toast.success(`${t('common.textRecognitionComplete')} ${recognizedText.length}${t('common.characters')}`);
+        return { text: `${t('common.ocrRecognitionResult')}\n\n${recognizedText}\n\n${t('common.recognitionComplete', { confidence: (result.data.confidence).toFixed(1) })}` };
       } else {
-        return { text: '❌ 未识别到文字内容，请确保图片清晰且包含文字。' };
+        return { text: t('common.noTextRecognized') };
       }
       
     } catch (error) {
-      toast.error('OCR识别失败，请重试');
-      return { text: '❌ OCR识别失败，请确保图片格式正确且包含清晰的文字。' };
+      toast.error(t('common.ocrRecognitionFailed'));
+              return { text: t('common.ocrRecognitionFailed') };
     }
   };
 
   const processHandwritingRecognition = async (file: File) => {
-    toast.info('正在加载手写文字识别引擎...');
+    toast.info(t('common.loadingHandwritingRecognitionEngine'));
     await loadTesseract();
     
-    toast.info('正在识别手写文字...');
+    toast.info(t('tools.ocr.recognizingHandwriting'));
     
     try {
       const { Tesseract } = (window as any);
@@ -66,25 +66,25 @@ const OCRTools: React.FC = () => {
         logger: (m) => {
           if (m.status === 'recognizing text') {
             const progress = Math.round(m.progress * 100);
-            toast.info(`正在识别手写文字... ${progress}%`);
+            toast.info(`${t('tools.ocr.recognizingHandwriting')} ${progress}%`);
           }
         }
       });
       
       const recognizedText = result.data.text.trim();
-      toast.success('✅ 手写文字识别完成！');
+      toast.success(t('common.handwritingRecognitionComplete'));
       
       return { 
-        text: `✍️ 手写文字识别结果\n\n${recognizedText || '未识别到手写文字'}\n\n📝 提示：手写文字识别准确率较低，建议使用清晰的印刷体文字。` 
+                  text: `${t('common.handwritingRecognitionResult')}\n\n${recognizedText || t('common.noHandwritingDetected')}\n\n${t('common.handwritingAccuracyNote')}` 
       };
       
     } catch (error) {
-      return { text: '❌ 手写文字识别失败，请确保图片清晰。' };
+              return { text: t('common.handwritingRecognitionFailed') };
     }
   };
 
   const processDocumentScanner = async (file: File) => {
-    toast.info('正在扫描文档...');
+    toast.info(t('common.scanningDocument'));
     await loadTesseract();
     
     try {
@@ -93,19 +93,19 @@ const OCRTools: React.FC = () => {
       const result = await Tesseract.recognize(file, 'chi_sim+eng');
       const text = result.data.text.trim();
       
-      toast.success('✅ 文档扫描完成！');
+      toast.success(t('common.documentScanComplete'));
       
       return {
-        text: `📄 文档扫描结果\n\n${text}\n\n📊 文档统计：\n- 总字符数：${text.length}\n- 置信度：${result.data.confidence.toFixed(1)}%\n- 识别语言：中文+英文`
+                  text: `${t('common.documentScanResult')}\n\n${text}\n\n${t('common.documentStatistics')}：\n- ${t('common.totalCharacters')}：${text.length}\n- ${t('common.confidence')}：${result.data.confidence.toFixed(1)}%\n- ${t('common.recognitionLanguage')}：中文+英文`
       };
       
     } catch (error) {
-      return { text: '❌ 文档扫描失败，请确保文档图片清晰。' };
+              return { text: t('common.documentScanFailed') };
     }
   };
 
   const processReceiptScanner = async (file: File) => {
-    toast.info('正在扫描票据内容...');
+    toast.info(t('common.scanningReceipt'));
     await loadTesseract();
     
     try {
@@ -117,25 +117,25 @@ const OCRTools: React.FC = () => {
       // 模拟提取票据信息
       const lines = text.split('\n').filter(line => line.trim());
       const mockReceiptData = {
-        merchantName: '示例商户',
+        merchantName: t('common.sampleMerchant'),
         date: new Date().toLocaleDateString(),
         amount: '¥88.00',
-        items: lines.slice(0, 3).join('\n') || '商品项目待识别'
+                  items: lines.slice(0, 3).join('\n') || t('common.itemsToBeRecognized')
       };
       
-      toast.success('✅ 票据扫描完成！');
+      toast.success(t('common.receiptScanComplete'));
       
       return {
-        text: `🧾 票据扫描结果\n\n📝 原始文字：\n${text}\n\n📊 结构化信息：\n商户：${mockReceiptData.merchantName}\n日期：${mockReceiptData.date}\n金额：${mockReceiptData.amount}\n项目：\n${mockReceiptData.items}\n\n💡 这是演示版本，实际使用中会提供更精确的票据解析。`
+                  text: `${t('common.receiptScanResult')}\n\n📝 ${t('common.originalText')}：\n${text}\n\n📊 ${t('common.structuredInformation')}：\n${t('common.merchant')}：${mockReceiptData.merchantName}\n${t('common.date')}：${mockReceiptData.date}\n${t('common.amount')}：${mockReceiptData.amount}\n${t('common.items')}：\n${mockReceiptData.items}\n\n💡 ${t('common.demoVersionNote')}`
       };
       
     } catch (error) {
-      return { text: '❌ 票据扫描失败，请确保票据图片清晰完整。' };
+              return { text: t('common.receiptScanFailed') };
     }
   };
 
   const processBusinessCardScanner = async (file: File) => {
-    toast.info('正在扫描名片信息...');
+    toast.info(t('common.scanningBusinessCard'));
     await loadTesseract();
     
     try {
@@ -144,19 +144,19 @@ const OCRTools: React.FC = () => {
       const result = await Tesseract.recognize(file, 'chi_sim+eng');
       const text = result.data.text.trim();
       
-      toast.success('✅ 名片扫描完成！');
+      toast.success(t('common.businessCardScanComplete'));
       
       return {
-        text: `👤 名片扫描结果\n\n📝 识别到的文字：\n${text}\n\n💼 提取的信息：\n• 姓名：[待解析]\n• 公司：[待解析]\n• 职位：[待解析]\n• 电话：[待解析]\n• 邮箱：[待解析]\n\n💡 完整的名片解析功能正在开发中，将支持智能信息提取和联系人创建。`
+                  text: `${t('common.businessCardScanResult')}\n\n📝 ${t('common.recognizedText')}：\n${text}\n\n💼 ${t('common.extractedInformation')}：\n• ${t('common.name')}：[${t('common.pendingParsing')}]\n• ${t('common.company')}：[${t('common.pendingParsing')}]\n• ${t('common.position')}：[${t('common.pendingParsing')}]\n• ${t('common.phone')}：[${t('common.pendingParsing')}]\n• ${t('common.email')}：[${t('common.pendingParsing')}]\n\n💡 ${t('common.businessCardParsingNote')}`
       };
       
     } catch (error) {
-      return { text: '❌ 名片扫描失败，请确保名片图片清晰。' };
+              return { text: t('common.businessCardScanFailed') };
     }
   };
 
   const processLicensePlateReader = async (file: File) => {
-    toast.info('正在识别车牌号码...');
+    toast.info(t('common.recognizingLicensePlate'));
     await loadTesseract();
     
     try {
@@ -168,14 +168,14 @@ const OCRTools: React.FC = () => {
       
       const text = result.data.text.trim().replace(/\s+/g, '');
       
-      toast.success('✅ 车牌识别完成！');
+      toast.success(t('common.licensePlateRecognitionComplete'));
       
       return {
-        text: `🚗 车牌识别结果\n\n识别结果：${text || '[未识别到车牌]'}\n\n📝 说明：\n• 支持标准车牌格式\n• 建议图片清晰、角度正面\n• 光线充足效果更好\n\n💡 这是基础版本，完整版将支持多种车牌类型和更高的识别准确率。`
+        text: `${t('common.licensePlateRecognitionResult')}\n\n${t('common.recognitionResult')}：${text || t('common.noLicensePlateDetected')}\n\n📝 ${t('common.instructions')}：\n• ${t('common.supportsStandardFormat')}\n• ${t('common.recommendClearImage')}\n• ${t('common.betterWithGoodLighting')}\n\n💡 ${t('common.basicVersionNote')}`
       };
       
     } catch (error) {
-      return { text: '❌ 车牌识别失败，请确保车牌图片清晰可见。' };
+              return { text: t('common.licensePlateRecognitionFailed') };
     }
   };
 
@@ -186,7 +186,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.imageToTextDesc'),
       icon: FileText,
       acceptedTypes: 'image/*',
-      languages: '中文+英文',
+      languages: t('common.chineseAndEnglish'),
       processingFunction: processImageToText
     },
     {
@@ -195,7 +195,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.handwritingRecognitionDesc'),
       icon: Camera,
       acceptedTypes: 'image/*',
-      languages: '中文+英文',
+      languages: t('common.chineseAndEnglish'),
       processingFunction: processHandwritingRecognition
     },
     {
@@ -204,7 +204,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.documentScannerDesc'),
       icon: Scan,
       acceptedTypes: 'image/*',
-      languages: '中文+英文',
+      languages: t('common.chineseAndEnglish'),
       processingFunction: processDocumentScanner
     },
     {
@@ -213,7 +213,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.receiptScannerDesc'),
       icon: Receipt,
       acceptedTypes: 'image/*',
-      languages: '中文+英文',
+      languages: t('common.chineseAndEnglish'),
       processingFunction: processReceiptScanner
     },
     {
@@ -222,7 +222,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.businessCardScannerDesc'),
       icon: CreditCard,
       acceptedTypes: 'image/*',
-      languages: '中文+英文',
+      languages: t('common.chineseAndEnglish'),
       processingFunction: processBusinessCardScanner
     },
     {
@@ -231,7 +231,7 @@ const OCRTools: React.FC = () => {
       description: t('tools.ocr.licensePlateReaderDesc'),
       icon: Car,
       acceptedTypes: 'image/*',
-      languages: '英文+数字',
+      languages: t('common.englishAndNumbers'),
       processingFunction: processLicensePlateReader
     }
   ];
@@ -262,7 +262,7 @@ const OCRTools: React.FC = () => {
     } catch (error) {
       console.error(t('tools.ocr.processingError'), error);
       toast.error((error as Error).message || t('tools.ocr.ocrError'));
-      setResult('❌ 处理失败，请重试。');
+              setResult(t('common.processingFailedRetry'));
     } finally {
       setIsProcessing(false);
     }
@@ -285,7 +285,7 @@ const OCRTools: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <OCRPluginLoader className="mb-6" onLoadComplete={() => toast.success('Tesseract.js OCR引擎加载完成！')} />
+            <OCRPluginLoader className="mb-6" onLoadComplete={() => toast.success(t('common.tesseractEngineLoaded'))} />
             
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
@@ -297,7 +297,7 @@ const OCRTools: React.FC = () => {
                     {selectedTool.name}
                   </h2>
                   <p className="text-gray-600">{selectedTool.description}</p>
-                  <p className="text-sm text-blue-600">支持语言: {selectedTool.languages}</p>
+                  <p className="text-sm text-blue-600">{t('common.supportedLanguages')}: {selectedTool.languages}</p>
                 </div>
               </div>
               <button
@@ -330,7 +330,7 @@ const OCRTools: React.FC = () => {
                     {t('common.clickToSelectImage')}
                   </label>
                   <p className="text-gray-500 text-sm mt-2">
-                    支持格式: {selectedTool.acceptedTypes} | 语言: {selectedTool.languages}
+                    {t('common.supportedFormats')}: {selectedTool.acceptedTypes} | {t('common.language')}: {selectedTool.languages}
                   </p>
                   {file && (
                     <p className="text-green-600 text-sm mt-2">
@@ -342,10 +342,10 @@ const OCRTools: React.FC = () => {
 
               {file && (
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">图片预览</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('common.imagePreview')}</h3>
                   <img
                     src={URL.createObjectURL(file)}
-                    alt="上传的图片"
+                                          alt={t('common.uploadedImage')}
                     className="max-w-full h-64 object-contain rounded-lg border mx-auto"
                   />
                 </div>
@@ -363,7 +363,7 @@ const OCRTools: React.FC = () => {
 
               {result && (
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">识别结果</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('common.recognitionResult')}</h3>
                   <div className="bg-gray-50 rounded-lg p-4 border max-h-80 overflow-y-auto">
                     <pre className="whitespace-pre-wrap text-sm text-gray-800">
                       {result}
@@ -397,7 +397,7 @@ const OCRTools: React.FC = () => {
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.ocr.title')}</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              使用 Tesseract.js 强大的 OCR 引擎，支持40+种语言的文字识别
+              {t('tools.ocr.subtitle')}
             </p>
           </div>
 
@@ -433,28 +433,28 @@ const OCRTools: React.FC = () => {
 
           {/* Features */}
           <div className="mt-16 bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">OCR 功能特色</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">{t('tools.ocr.features')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-blue-600 font-bold text-xl">🌍</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">多语言支持</h3>
-                <p className="text-gray-600 text-sm">支持中文、英文等40+种语言的文字识别</p>
+                                  <h3 className="font-semibold text-gray-900 mb-2">{t('tools.ocr.multilingualSupport')}</h3>
+                  <p className="text-gray-600 text-sm">{t('tools.ocr.multilingualSupportDesc')}</p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-green-600 font-bold text-xl">🔒</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">隐私安全</h3>
-                <p className="text-gray-600 text-sm">本地处理，图片不会上传到服务器</p>
+                                  <h3 className="font-semibold text-gray-900 mb-2">{t('tools.ocr.privacySecurity')}</h3>
+                  <p className="text-gray-600 text-sm">{t('tools.ocr.privacySecurityDesc')}</p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-purple-600 font-bold text-xl">⚡</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">快速识别</h3>
-                <p className="text-gray-600 text-sm">基于 Tesseract.js，识别速度快准确率高</p>
+                                  <h3 className="font-semibold text-gray-900 mb-2">{t('tools.ocr.fastRecognition')}</h3>
+                  <p className="text-gray-600 text-sm">{t('tools.ocr.fastRecognitionDesc')}</p>
               </div>
             </div>
           </div>

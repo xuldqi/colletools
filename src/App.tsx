@@ -10,6 +10,7 @@ import AIWriting from './pages/AIWriting'
 import VideoTools from './pages/VideoTools'
 import OCRTools from './pages/OCRTools'
 import DocumentDataTools from './pages/DocumentDataTools'
+import TranslationTest from './pages/TranslationTest'
 import ToolDetail from './pages/ToolDetail'
 import About from './pages/About'
 import Privacy from './pages/Privacy'
@@ -55,6 +56,7 @@ function App() {
           <Route path="/ocr" element={<OCRTools />} />
           <Route path="/ocr-tools" element={<OCRTools />} />
           <Route path="/document-data" element={<DocumentDataTools />} />
+          <Route path="/translation-test" element={<TranslationTest />} />
           <Route path="/document-data-tools" element={<DocumentDataTools />} />
           <Route path="/tool/:toolId" element={<ToolDetail />} />
           <Route path="/about" element={<About />} />

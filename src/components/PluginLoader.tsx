@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loader2, CheckCircle, AlertCircle, Download } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { createUsePluginLoader, LoadingState, pluginManager } from '../utils/pluginLoader';
 
 // Create the hook with React
@@ -20,6 +21,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
   onLoadError,
   className = ''
 }) => {
+  const { t } = useTranslation();
   const { loadingState, loadPlugin, isLoaded } = usePluginLoader(pluginName);
 
   React.useEffect(() => {
@@ -42,10 +44,10 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
           <Download className="w-8 h-8 text-blue-600" />
         </div>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          需要加载高级功能插件
+          {t('common.needLoadAdvancedPlugin')}
         </h3>
         <p className="text-gray-600 text-center mb-4">
-          此功能需要从CDN加载专业插件，点击下方按钮开始加载
+          {t('common.needLoadPluginDesc')}
         </p>
         <button
           onClick={() => {
@@ -55,7 +57,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
           className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
         >
           <Download className="w-4 h-4 mr-2" />
-          加载插件
+          {t('common.loadPlugin')}
         </button>
       </div>
     );
@@ -68,7 +70,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">加载失败</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('common.loadFailed')}</h3>
           <p className="text-red-600 text-center mb-4">{loadingState.error}</p>
           <button
             onClick={() => {
@@ -77,7 +79,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
             }}
             className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
           >
-            重试加载
+            {t('common.retryLoad')}
           </button>
         </>
       ) : (
@@ -90,7 +92,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
             )}
           </div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            {loadingState.progress === 100 ? '加载完成' : '正在加载插件'}
+            {loadingState.progress === 100 ? t('common.loadComplete') : t('common.loadingPlugin')}
           </h3>
           <p className="text-gray-600 text-center mb-4">{loadingState.message}</p>
           
@@ -103,7 +105,7 @@ export const PluginLoader: React.FC<PluginLoaderProps> = ({
               />
             </div>
             <p className="text-sm text-gray-500 text-center">
-              {loadingState.progress}% 完成
+              {loadingState.progress}% {t('common.percentComplete')}
             </p>
           </div>
         </>
@@ -159,7 +161,7 @@ export const PluginLoadingOverlay: React.FC<{
         ) : (
           <div className="text-center">
             <Download className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-            <p className="text-gray-600">需要加载插件</p>
+            <p className="text-gray-600">{t('common.needLoadPlugin')}</p>
           </div>
         )}
       </div>
