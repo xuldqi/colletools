@@ -52,7 +52,7 @@ npm start
 ## Tech Stack
 
 - Next.js 14 (App Router)
-- React 19
+- React 18
 - TypeScript
 - Tailwind CSS
 - Google Gemini AI
