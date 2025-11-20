@@ -24,3 +24,12 @@ html {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Force date input to use English locale */
+input[type="date"] {
+  color-scheme: light;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import SectionHeader from '@/components/SectionHeader'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
+import DateInput from '@/components/DateInput'
 
 interface Assignment {
   id: number
@@ -101,13 +102,11 @@ export default function DeadlineTracker() {
               </div>
               <div className="md:col-span-3">
                 <label className="text-xs font-bold text-gray-500 uppercase">Due Date</label>
-                <input 
-                  type="date" 
-                  lang="en"
-                  value={newDate} 
-                  onChange={e => setNewDate(e.target.value)} 
-                  className="w-full p-2 border rounded" 
-                  style={{ direction: 'ltr' }}
+                <DateInput
+                  value={newDate}
+                  onChange={setNewDate}
+                  className="w-full p-2 border rounded"
+                  placeholder="MM/DD/YYYY"
                 />
               </div>
               <div className="md:col-span-2">
