@@ -5,6 +5,11 @@ import Script from 'next/script'
 export const metadata: Metadata = {
   title: 'ColleTools - The Ultimate Student Toolkit for GPA, Citations & Focus',
   description: 'Calculate exactly what score you need on your final exam to hit your target GPA. Free, fast, and ad-free tools for college students.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -15,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr">
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossOrigin="anonymous" />
         {/* Google Analytics (GA4) - Replace G-XXXXXXXXXX with your actual measurement ID */}
