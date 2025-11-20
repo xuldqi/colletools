@@ -659,14 +659,7 @@ const PomodoroTimer = ({ goBack }: { goBack: () => void }) => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [mode, setMode] = useState<'work' | 'break'>('work');
-  const [station, setStation] = useState('jfKfPfyJRdk');
-
-  const stations = [
-    { name: 'Lofi Girl (Classic)', id: 'jfKfPfyJRdk' },
-    { name: 'Synthwave (Focus)', id: '4xDzrJKXOOY' },
-    { name: 'Sleep / Chill', id: 'rUxyKA_-grg' },
-  ];
-
+  
   useEffect(() => {
     let interval: any = null;
     if (isActive) {
@@ -701,7 +694,7 @@ const PomodoroTimer = ({ goBack }: { goBack: () => void }) => {
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
        <SectionHeader title="Study Room" subtitle="Lo-fi beats and a timer. Pure focus." backAction={goBack} />
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <Card className="flex flex-col items-center justify-center py-12">
              <div className="flex gap-2 mb-8">
                 <button onClick={() => {setMode('work'); setMinutes(25); setSeconds(0); setIsActive(false);}} className={`px-4 py-1 rounded-full text-sm font-bold ${mode === 'work' ? 'bg-primary-100 text-primary-700' : 'text-gray-500'}`}>Work (25m)</button>
@@ -716,33 +709,21 @@ const PomodoroTimer = ({ goBack }: { goBack: () => void }) => {
              </div>
           </Card>
           
-          {/* Video Container - Added min-h to prevent "black hole" look on load */}
-          <Card className="overflow-hidden p-0 bg-black aspect-video relative flex flex-col min-h-[250px]">
-             {/* Controls Overlay */}
-             <div className="flex justify-between items-center px-4 py-2 bg-gray-900 text-white border-b border-gray-800 z-10">
-                <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                    <i className="fa-solid fa-music text-primary-400"></i> 
-                    <span className="hidden sm:inline">Now Playing</span>
-                </span>
-                <select 
-                    value={station} 
-                    onChange={(e) => setStation(e.target.value)}
-                    className="bg-gray-800 text-xs text-gray-200 rounded px-2 py-1 border border-gray-700 focus:ring-1 focus:ring-primary-500 outline-none cursor-pointer hover:bg-gray-700 transition-colors"
-                >
-                    {stations.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-                </select>
-             </div>
-             {/* YouTube Embed */}
-             <div className="flex-grow relative w-full h-full">
-                <iframe 
-                    className="absolute inset-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${station}`} 
-                    title="Lofi Radio" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                ></iframe>
-             </div>
-          </Card>
+          {/* Spotify Embed */}
+          <div className="w-full">
+             <iframe 
+              style={{borderRadius: "12px"}} 
+              src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0" 
+              width="100%" 
+              height="152" 
+              frameBorder="0" 
+              allowFullScreen={false} 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              title="Spotify Lofi Beats"
+            >
+            </iframe>
+          </div>
        </div>
     </div>
   );
