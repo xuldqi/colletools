@@ -9,21 +9,22 @@ interface DateInputProps {
 }
 
 export default function DateInput({ value, onChange, className = '' }: DateInputProps) {
-  const [displayValue, setDisplayValue] = useState('')
-  const [showPicker, setShowPicker] = useState(false)
+  // Initialize displayValue from prop to ensure SSR/CSR match
+  const getDisplayValue = (val: string) => {
+    if (val) {
+      const [year, month, day] = val.split('-')
+      if (year && month && day) {
+        return `${month}/${day}/${year}`
+      }
+    }
+    return ''
+  }
+  
+  const [displayValue, setDisplayValue] = useState(() => getDisplayValue(value))
 
   // Convert YYYY-MM-DD to MM/DD/YYYY for display
   useEffect(() => {
-    if (value) {
-      const [year, month, day] = value.split('-')
-      if (year && month && day) {
-        setDisplayValue(`${month}/${day}/${year}`)
-      } else {
-        setDisplayValue('')
-      }
-    } else {
-      setDisplayValue('')
-    }
+    setDisplayValue(getDisplayValue(value))
   }, [value])
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +79,6 @@ export default function DateInput({ value, onChange, className = '' }: DateInput
         className={className}
         style={{ direction: 'ltr' }}
         maxLength={10}
-        onFocus={() => setShowPicker(true)}
       />
       {/* Hidden native date picker for calendar icon */}
       <input

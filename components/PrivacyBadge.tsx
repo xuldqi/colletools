@@ -5,8 +5,10 @@ import Link from 'next/link'
 
 export default function PrivacyBadge() {
   const [isVisible, setIsVisible] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Check if user has dismissed the badge
     const dismissed = localStorage.getItem('colletools-privacy-badge-dismissed')
     if (!dismissed) {
@@ -19,7 +21,8 @@ export default function PrivacyBadge() {
     localStorage.setItem('colletools-privacy-badge-dismissed', 'true')
   }
 
-  if (!isVisible) {
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted || !isVisible) {
     return null
   }
 
