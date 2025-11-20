@@ -83,7 +83,7 @@ export default function DeadlineTracker() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900" lang="en">
       <Header />
       <main className="flex-grow">
         <div className="max-w-3xl mx-auto py-10 px-4">
@@ -103,10 +103,11 @@ export default function DeadlineTracker() {
                 <label className="text-xs font-bold text-gray-500 uppercase">Due Date</label>
                 <input 
                   type="date" 
-                  lang="en-US"
+                  lang="en"
                   value={newDate} 
                   onChange={e => setNewDate(e.target.value)} 
                   className="w-full p-2 border rounded" 
+                  style={{ direction: 'ltr' }}
                 />
               </div>
               <div className="md:col-span-2">
