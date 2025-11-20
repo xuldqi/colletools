@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI } from "@google/genai";
+import { Analytics } from "@vercel/analytics/next";
 
 // --- Types & Constants ---
-type View = 'home' | 'grade-calc' | 'email-gen' | 'citation' | 'deadlines' | 'pomodoro' | 'decision';
+type View = 'home' | 'grade-calc' | 'email-gen' | 'citation' | 'deadlines' | 'pomodoro' | 'decision' | 'privacy' | 'terms';
 
 interface ToolCardProps {
   title: string;
@@ -43,8 +44,8 @@ const Header = ({ currentView, setView }: { currentView: View; setView: (v: View
           <button onClick={() => setView('deadlines')} className={`hover:text-primary-600 ${currentView === 'deadlines' ? 'text-primary-600' : 'text-gray-500'}`}>Productivity</button>
         </nav>
         <div className="flex items-center space-x-4">
-           {/* Placeholder for User Auth or Settings */}
-           <button className="text-gray-400 hover:text-gray-600"><i className="fa-solid fa-magnifying-glass"></i></button>
+           {/* Click search icon to go to Home where search bar is located */}
+           <button onClick={() => setView('home')} className="text-gray-400 hover:text-gray-600"><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </div>
     </div>
@@ -83,9 +84,9 @@ const Footer = ({ setView }: { setView: (v: View) => void }) => (
       <div>
         <h3 className="font-bold text-gray-900 mb-4 uppercase text-xs tracking-wider">Legal</h3>
         <div className="flex flex-col space-y-2 mb-4">
-          <a href="#" className="hover:text-primary-600 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-primary-600 transition-colors">Terms of Service</a>
-          <a href="#" className="hover:text-primary-600 transition-colors">Contact Us</a>
+          <button onClick={() => setView('privacy')} className="text-left hover:text-primary-600 transition-colors">Privacy Policy</button>
+          <button onClick={() => setView('terms')} className="text-left hover:text-primary-600 transition-colors">Terms of Service</button>
+          <a href="mailto:novemeber11@gmail.com" className="hover:text-primary-600 transition-colors">Contact Us</a>
         </div>
         <p className="text-xs text-gray-400 leading-relaxed">
           <strong>Disclaimer:</strong> ColleTools is an educational tool. Results from calculators are estimates only. Please confirm official grades with your institution.
@@ -735,7 +736,7 @@ const PomodoroTimer = ({ goBack }: { goBack: () => void }) => {
              <div className="flex-grow relative w-full h-full">
                 <iframe 
                     className="absolute inset-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${station}?autoplay=1`} 
+                    src={`https://www.youtube.com/embed/${station}`} 
                     title="Lofi Radio" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
@@ -808,8 +809,55 @@ const DecisionMaker = ({ goBack }: { goBack: () => void }) => {
   );
 };
 
+// --- LEGAL PAGES ---
+const PrivacyPolicy = ({ goBack }: { goBack: () => void }) => (
+  <div className="max-w-4xl mx-auto py-10 px-4">
+    <SectionHeader title="Privacy Policy" subtitle="Your data stays yours." backAction={goBack} />
+    <Card>
+      <div className="prose prose-sm text-gray-600 max-w-none">
+        <p><strong>Last Updated: 2025</strong></p>
+        <p>At ColleTools, we value your privacy. This Privacy Policy explains how we handle your information.</p>
+        
+        <h3>1. Information We Collect</h3>
+        <p>We use Google Analytics (GA4) to collect anonymous usage data (e.g., which pages are visited, how long users stay). This helps us improve the site. We do not collect personal identifiable information (PII) unless you voluntarily provide it (e.g., contacting us via email).</p>
+        
+        <h3>2. Local Storage</h3>
+        <p>Tools like the "Assignment Tracker" save data locally on your device using your browser's LocalStorage. This data never leaves your computer and is not sent to our servers.</p>
+        
+        <h3>3. AI Services</h3>
+        <p>Our Email Generator uses the Gemini API. The prompt text you enter is sent to Google for processing but is not stored by us.</p>
+        
+        <h3>4. Cookies</h3>
+        <p>We use standard cookies for analytics purposes. You can disable cookies in your browser settings at any time.</p>
+      </div>
+    </Card>
+  </div>
+);
+
+const TermsOfService = ({ goBack }: { goBack: () => void }) => (
+  <div className="max-w-4xl mx-auto py-10 px-4">
+    <SectionHeader title="Terms of Service" subtitle="The rules of the road." backAction={goBack} />
+    <Card>
+      <div className="prose prose-sm text-gray-600 max-w-none">
+        <p><strong>Last Updated: 2025</strong></p>
+        
+        <h3>1. Acceptance of Terms</h3>
+        <p>By accessing ColleTools.com, you agree to be bound by these Terms of Service.</p>
+        
+        <h3>2. Educational Use Only</h3>
+        <p>This website is for educational and informational purposes only. The tools provided (such as the Grade Calculator) are estimates. We are not responsible for any discrepancies between our calculations and your official academic records.</p>
+        
+        <h3>3. Limitation of Liability</h3>
+        <p>ColleTools is provided "as is". We make no warranties regarding the accuracy or reliability of the site. We are not liable for any damages arising from the use of this site.</p>
+      </div>
+    </Card>
+  </div>
+);
+
 // --- MAIN HOME PAGE ---
 const Home = ({ setView }: { setView: (v: View) => void }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   const tools = [
     { id: 'grade-calc', title: "Final Grade Calculator", desc: "Calculate exactly what you need on your final to keep your A.", icon: "fa-calculator", color: "text-indigo-600 bg-indigo-50" },
     { id: 'email-gen', title: "Email Template Gen", desc: "Write professional emails to professors in seconds using AI.", icon: "fa-envelope", color: "text-violet-600 bg-violet-50" },
@@ -818,6 +866,11 @@ const Home = ({ setView }: { setView: (v: View) => void }) => {
     { id: 'pomodoro', title: "Study Room", desc: "Pomodoro timer + Lofi beats to get you in the zone.", icon: "fa-headphones", color: "text-amber-600 bg-amber-50" },
     { id: 'decision', title: "Decision Maker", desc: "Can't decide where to eat? Let the wheel decide.", icon: "fa-location-arrow", color: "text-emerald-600 bg-emerald-50" },
   ];
+
+  const filteredTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    tool.desc.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -836,7 +889,13 @@ const Home = ({ setView }: { setView: (v: View) => void }) => {
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <i className="fa-solid fa-search text-gray-400"></i>
                 </div>
-                <input type="text" className="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-3 border" placeholder="Search tools..." />
+                <input 
+                  type="text" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-3 border" 
+                  placeholder="Search tools..." 
+                />
              </div>
           </div>
         </div>
@@ -844,18 +903,21 @@ const Home = ({ setView }: { setView: (v: View) => void }) => {
 
       {/* Tools Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {tools.map((tool) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredTools.map((tool) => (
             <div 
               key={tool.id} 
               onClick={() => setView(tool.id as View)}
-              className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-500 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary-100 transition-all cursor-pointer"
+              className="group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-500 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 cursor-pointer"
             >
-              <div className={`mb-4 inline-flex items-center justify-center p-3 rounded-lg ${tool.color}`}>
-                <i className={`fa-solid ${tool.icon} text-xl`}></i>
+              <div>
+                {/* Updated Icon Container: Fixed size square with slightly rounded corners */}
+                <div className={`shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center ring-4 ring-white ${tool.color}`}>
+                   <i className={`fa-solid ${tool.icon} text-2xl`}></i>
+                </div>
               </div>
-              <div className="">
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
+              <div className="mt-4">
+                <h3 className="text-lg font-medium">
                   <span className="absolute inset-0" aria-hidden="true"></span>
                   {tool.title}
                 </h3>
@@ -864,23 +926,35 @@ const Home = ({ setView }: { setView: (v: View) => void }) => {
                 </p>
               </div>
               <span className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-                <i className="fa-solid fa-arrow-right"></i>
+                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
+                </svg>
               </span>
             </div>
           ))}
+          
+          {filteredTools.length === 0 && (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-500 text-lg">No tools found matching "{searchQuery}".</p>
+              <button onClick={() => setSearchQuery('')} className="mt-4 text-primary-600 font-medium hover:underline">Clear search</button>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 };
 
-// --- ROOT APP COMPONENT ---
 const App = () => {
-  const [view, setView] = useState<View>('home');
+  const [currentView, setView] = useState<View>('home');
 
-  // Simple routing
+  // Scroll to top whenever the view changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentView]);
+
   const renderView = () => {
-    switch(view) {
+    switch(currentView) {
       case 'home': return <Home setView={setView} />;
       case 'grade-calc': return <GradeCalculator goBack={() => setView('home')} />;
       case 'email-gen': return <EmailGenerator goBack={() => setView('home')} />;
@@ -888,18 +962,16 @@ const App = () => {
       case 'citation': return <CitationHelper goBack={() => setView('home')} />;
       case 'pomodoro': return <PomodoroTimer goBack={() => setView('home')} />;
       case 'decision': return <DecisionMaker goBack={() => setView('home')} />;
+      case 'privacy': return <PrivacyPolicy goBack={() => setView('home')} />;
+      case 'terms': return <TermsOfService goBack={() => setView('home')} />;
       default: return <Home setView={setView} />;
     }
   };
 
-  // Auto-scroll to top when view changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [view]);
-
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
-      <Header currentView={view} setView={setView} />
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
+      <Analytics />
+      <Header currentView={currentView} setView={setView} />
       <main className="flex-grow">
         {renderView()}
       </main>
