@@ -5,10 +5,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { details } = body
 
-    // Support both OpenAI-compatible API and Gemini API
-    const apiKey = process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY
-    const apiBaseUrl = process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1'
-    const model = process.env.OPENAI_MODEL || 'gpt-3.5-turbo'
+    // Support OpenAI-compatible APIs (PackyAPI, OpenAI, etc.)
+    const apiKey = process.env.OPENAI_API_KEY || process.env.PACKY_API_KEY || process.env.GEMINI_API_KEY
+    const apiBaseUrl = process.env.OPENAI_API_BASE_URL || process.env.PACKY_API_BASE_URL || 'https://www.packyapi.com/v1'
+    const model = process.env.OPENAI_MODEL || process.env.PACKY_MODEL || 'gpt-5.1'
 
     if (!apiKey) {
       console.error('API key is not configured in environment variables')

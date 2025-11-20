@@ -14,18 +14,32 @@
 3. 进入 **Settings** → **Environment Variables**
 4. 添加以下环境变量：
 
-**方式一：使用 OpenAI 兼容的第三方 API（推荐）**
+**方式一：使用 PackyAPI（推荐）**
+```
+Key: OPENAI_API_KEY 或 PACKY_API_KEY
+Value: (你的 PackyAPI 令牌)
+
+Key: OPENAI_API_BASE_URL 或 PACKY_API_BASE_URL (可选)
+Value: https://www.packyapi.com/v1
+如果不填，默认使用 https://www.packyapi.com/v1
+
+Key: OPENAI_MODEL 或 PACKY_MODEL (可选)
+Value: gpt-5.1
+如果不填，默认使用 gpt-5.1
+```
+
+**方式二：使用其他 OpenAI 兼容的第三方 API**
 ```
 Key: OPENAI_API_KEY
 Value: (你的 API 密钥，通常以 sk- 开头)
 
 Key: OPENAI_API_BASE_URL (可选)
 Value: (你的 API 基础 URL，例如 https://api.example.com/v1)
-如果不填，默认使用 https://api.openai.com/v1
+如果不填，默认使用 https://www.packyapi.com/v1
 
 Key: OPENAI_MODEL (可选)
 Value: (模型名称，例如 gpt-3.5-turbo, gpt-4)
-如果不填，默认使用 gpt-3.5-turbo
+如果不填，默认使用 gpt-5.1
 ```
 
 **方式二：使用 Google Gemini API**
