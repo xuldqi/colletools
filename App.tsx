@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { Analytics } from "@vercel/analytics/next";
 
 // --- Types & Constants ---
 type View = 'home' | 'grade-calc' | 'email-gen' | 'citation' | 'deadlines' | 'pomodoro' | 'decision' | 'privacy' | 'terms';
@@ -951,7 +950,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
-      <Analytics />
       <Header currentView={currentView} setView={setView} />
       <main className="flex-grow">
         {renderView()}
