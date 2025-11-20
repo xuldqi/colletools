@@ -7,9 +7,10 @@ export async function POST(request: NextRequest) {
     const { details } = body
 
     if (!process.env.GEMINI_API_KEY) {
+      console.error('GEMINI_API_KEY is not configured in environment variables')
       return NextResponse.json(
-        { error: 'API key not configured' },
-        { status: 500 }
+        { error: 'Email generation service is temporarily unavailable. Please check back later.' },
+        { status: 503 }
       )
     }
 

@@ -71,14 +71,14 @@ export default function PomodoroTimer() {
             <div className="w-full">
               <iframe 
                 style={{borderRadius: "12px"}} 
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0ExPn?utm_source=generator&theme=0" 
+                src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
                 width="100%" 
                 height="152" 
                 frameBorder="0" 
-                allowFullScreen={false} 
+                allowFullScreen 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy"
-                title="Spotify Lofi Beats"
+                title="Lofi Girl Playlist"
               >
               </iframe>
             </div>

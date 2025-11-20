@@ -106,7 +106,6 @@ export default function DeadlineTracker() {
                   value={newDate}
                   onChange={setNewDate}
                   className="w-full p-2 border rounded"
-                  placeholder="MM/DD/YYYY"
                 />
               </div>
               <div className="md:col-span-2">
