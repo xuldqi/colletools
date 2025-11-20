@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionHeader from '@/components/SectionHeader'
@@ -18,6 +18,26 @@ export default function EmailGenerator() {
   const [generatedEmail, setGeneratedEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('colletools-email-gen')
+      if (saved) {
+        const savedDetails = JSON.parse(saved)
+        setDetails(savedDetails || details)
+      }
+    } catch (e) {
+      console.error("Failed to load saved data", e)
+    }
+  }, [])
+
+  // Save data to localStorage whenever inputs change
+  useEffect(() => {
+    if (details.profName || details.studentName || details.course || details.reason) {
+      localStorage.setItem('colletools-email-gen', JSON.stringify(details))
+    }
+  }, [details])
 
   const generateEmail = async () => {
     setLoading(true)

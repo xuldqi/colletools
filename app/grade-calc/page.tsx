@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionHeader from '@/components/SectionHeader'
@@ -13,6 +13,32 @@ export default function GradeCalculator() {
   const [desiredGrade, setDesiredGrade] = useState<string>('')
   const [finalWeight, setFinalWeight] = useState<string>('')
   const [result, setResult] = useState<number | null>(null)
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('colletools-grade-calc')
+      if (saved) {
+        const data = JSON.parse(saved)
+        setCurrentGrade(data.currentGrade || '')
+        setDesiredGrade(data.desiredGrade || '')
+        setFinalWeight(data.finalWeight || '')
+      }
+    } catch (e) {
+      console.error("Failed to load saved data", e)
+    }
+  }, [])
+
+  // Save data to localStorage whenever inputs change
+  useEffect(() => {
+    if (currentGrade || desiredGrade || finalWeight) {
+      localStorage.setItem('colletools-grade-calc', JSON.stringify({
+        currentGrade,
+        desiredGrade,
+        finalWeight
+      }))
+    }
+  }, [currentGrade, desiredGrade, finalWeight])
 
   const calculate = () => {
     const c = parseFloat(currentGrade)

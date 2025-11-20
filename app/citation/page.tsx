@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionHeader from '@/components/SectionHeader'
@@ -11,6 +11,30 @@ export default function CitationHelper() {
     authorLast: '', authorFirst: '', title: '', publisher: '', year: '', url: ''
   })
   const [format, setFormat] = useState<'apa' | 'mla'>('apa')
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('colletools-citation')
+      if (saved) {
+        const savedData = JSON.parse(saved)
+        setData(savedData.data || data)
+        setFormat(savedData.format || 'apa')
+      }
+    } catch (e) {
+      console.error("Failed to load saved data", e)
+    }
+  }, [])
+
+  // Save data to localStorage whenever inputs change
+  useEffect(() => {
+    if (data.authorLast || data.authorFirst || data.title || data.publisher || data.year || data.url) {
+      localStorage.setItem('colletools-citation', JSON.stringify({
+        data,
+        format
+      }))
+    }
+  }, [data, format])
 
   const generate = () => {
     const { authorLast, authorFirst, title, publisher, year, url } = data

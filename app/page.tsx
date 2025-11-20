@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import PrivacyBadge from '@/components/PrivacyBadge'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -34,8 +35,11 @@ export default function Home() {
               <span className="block text-primary-600">Simplified.</span>
             </h1>
             <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Free tools to help you boost your GPA, write better emails, and manage your time. No sign-up required.
+              Free tools to help you boost your GPA, write better emails, and manage your time. No sign-up required. No tracking. No data selling.
             </p>
+            <div className="mt-6 max-w-2xl mx-auto">
+              <PrivacyBadge />
+            </div>
             <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
               <div className="relative rounded-md shadow-sm w-full max-w-xs">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

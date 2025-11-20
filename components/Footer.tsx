@@ -4,52 +4,103 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 mt-16 py-12 text-sm font-sans text-gray-600">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* Brand Section */}
-        <div className="flex flex-col">
-          <Link 
-            href="/"
-            className="flex items-center cursor-pointer group mb-4" 
-          >
-            <span className="font-bold text-lg text-gray-900">🎓 ColleTools</span>
-          </Link>
-          <p className="text-gray-500 leading-relaxed">
-            The essential digital toolkit for college students. Calculate grades, generate citations, and boost productivity.
-          </p>
-        </div>
+    <>
+      <style jsx>{`
+        .site-footer {
+          background-color: #f9fafb;
+          border-top: 1px solid #e5e7eb;
+          padding: 40px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          color: #6b7280;
+          font-size: 14px;
+          margin-top: 60px;
+        }
+        .footer-content {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 30px;
+        }
+        .footer-section {
+          flex: 1;
+          min-width: 200px;
+        }
+        .footer-logo {
+          font-weight: bold;
+          font-size: 18px;
+          color: #111827;
+          margin-bottom: 10px;
+          display: block;
+          text-decoration: none;
+        }
+        .footer-links a {
+          display: block;
+          color: #6b7280;
+          text-decoration: none;
+          margin-bottom: 8px;
+          transition: color 0.2s;
+        }
+        .footer-links a:hover {
+          color: #4f46e5;
+        }
+        .disclaimer-text {
+          font-size: 12px;
+          line-height: 1.5;
+          color: #9ca3af;
+          margin-top: 10px;
+        }
+        .copyright {
+          text-align: center;
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 1px solid #e5e7eb;
+          font-size: 13px;
+        }
+        .footer-section-title {
+          font-weight: 600;
+          color: #374151;
+          margin-bottom: 12px;
+        }
+      `}</style>
+      <footer className="site-footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <Link href="/" className="footer-logo">🎓 ColleTools</Link>
+            <p>The essential digital toolkit for college students. Calculate grades, generate citations, and boost productivity.</p>
+            <p className="text-xs text-gray-500 mt-2">
+              <strong>No tracking. No data selling.</strong> Just a tool.
+            </p>
+          </div>
 
-        {/* Tools Links */}
-        <div>
-          <h3 className="font-bold text-gray-900 mb-4 uppercase text-xs tracking-wider">Tools</h3>
-          <div className="flex flex-col space-y-2">
-            <Link href="/grade-calc" className="text-left hover:text-primary-600 transition-colors">Final Grade Calculator</Link>
-            <Link href="/email-gen" className="text-left hover:text-primary-600 transition-colors">Email Templates</Link>
-            <Link href="/citation" className="text-left hover:text-primary-600 transition-colors">Citation Helper</Link>
-            <Link href="/pomodoro" className="text-left hover:text-primary-600 transition-colors">Study Room</Link>
+          <div className="footer-section">
+            <div className="footer-section-title">Tools</div>
+            <div className="footer-links">
+              <Link href="/grade-calc">Final Grade Calculator</Link>
+              <Link href="/email-gen">Email Templates</Link>
+              <Link href="/citation">Citation Helper</Link>
+              <Link href="/pomodoro">Study Room</Link>
+            </div>
+          </div>
+
+          <div className="footer-section">
+            <div className="footer-section-title">Legal</div>
+            <div className="footer-links">
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms of Service</Link>
+              <a href="mailto:novemeber11@gmail.com">Contact Us</a>
+            </div>
+            <p className="disclaimer-text">
+              <strong>Disclaimer:</strong> ColleTools is an educational tool. Results from calculators are estimates only. Please confirm official grades with your institution.
+            </p>
           </div>
         </div>
 
-        {/* Legal Section */}
-        <div>
-          <h3 className="font-bold text-gray-900 mb-4 uppercase text-xs tracking-wider">Legal</h3>
-          <div className="flex flex-col space-y-2 mb-4">
-            <Link href="/privacy" className="text-left hover:text-primary-600 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-left hover:text-primary-600 transition-colors">Terms of Service</Link>
-            <a href="mailto:novemeber11@gmail.com" className="hover:text-primary-600 transition-colors">Contact Us</a>
-          </div>
-          <p className="text-xs text-gray-400 leading-relaxed">
-            <strong>Disclaimer:</strong> ColleTools is an educational tool. Results from calculators are estimates only. Please confirm official grades with your institution.
-          </p>
+        <div className="copyright">
+          &copy; 2025 ColleTools.com. All rights reserved. Made for students, by students.
         </div>
-      </div>
-
-      {/* Copyright */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-200 text-center text-gray-400 text-xs">
-        &copy; 2025 ColleTools.com. All rights reserved. Made for students, by students.
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
-
