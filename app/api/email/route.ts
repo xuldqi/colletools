@@ -1,20 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleGenAI } from "@google/genai"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { details } = body
 
-    if (!process.env.GEMINI_API_KEY) {
-      console.error('GEMINI_API_KEY is not configured in environment variables')
+    // Support both OpenAI-compatible API and Gemini API
+    const apiKey = process.env.OPENAI_API_KEY || process.env.GEMINI_API_KEY
+    const apiBaseUrl = process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1'
+    const model = process.env.OPENAI_MODEL || 'gpt-3.5-turbo'
+
+    if (!apiKey) {
+      console.error('API key is not configured in environment variables')
       return NextResponse.json(
         { error: 'Email generation service is temporarily unavailable. Please check back later.' },
         { status: 503 }
       )
     }
-
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
     
     let prompt = `Write a polite, professional email from a college student named "${details.studentName}" to Professor "${details.profName}" for the course "${details.course}". `
     
@@ -35,13 +37,37 @@ export async function POST(request: NextRequest) {
     
     prompt += ` Keep the tone respectful and concise. Do not include subject line in the body, just the message body.`
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: prompt,
+    // Use OpenAI-compatible API format
+    const response = await fetch(`${apiBaseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 500,
+      }),
     })
+
+    if (!response.ok) {
+      const errorData = await response.text()
+      console.error('API Error:', response.status, errorData)
+      throw new Error(`API request failed: ${response.status}`)
+    }
+
+    const data = await response.json()
+    const email = data.choices?.[0]?.message?.content || "Could not generate email. Please try again."
     
     return NextResponse.json({ 
-      email: response.text || "Could not generate email. Please try again." 
+      email: email.trim()
     })
   } catch (error) {
     console.error('Email generation error:', error)
