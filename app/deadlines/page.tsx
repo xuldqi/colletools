@@ -7,6 +7,7 @@ import SectionHeader from '@/components/SectionHeader'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
 import DateInput from '@/components/DateInput'
+import SEOContent from '@/components/SEOContent'
 
 interface Assignment {
   id: number
@@ -154,6 +155,44 @@ export default function DeadlineTracker() {
               </div>
             ))}
           </div>
+
+          {/* SEO Content Section */}
+          <SEOContent>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">How to Use This Deadline Tracker?</h2>
+            <p className="mb-4 leading-relaxed text-gray-600">
+              Managing multiple assignments across different courses can be overwhelming, especially during midterms and finals. Our Deadline Tracker helps you stay organized by providing a clear visual overview of all your upcoming assignments. Simply add each assignment with its due date, course, and priority level, and the tracker automatically sorts them by urgency.
+            </p>
+            <p className="mb-4 leading-relaxed text-gray-600">
+              The tracker uses color-coded borders to show urgency: red for assignments due within 2 days, yellow for those due within a week, and standard colors for others. Completed assignments are marked in green and automatically moved to the bottom. This visual system helps you quickly identify what needs immediate attention.
+            </p>
+            <p className="mb-6 leading-relaxed text-gray-600">
+              All your assignments are saved locally in your browser, so they persist between sessions. You can add notes to each assignment for additional context, set priority levels, and track completion status. The tracker helps reduce college stress by giving you a clear picture of your workload.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">Why Do I Need a Deadline Tracker?</h2>
+            <p className="mb-4 leading-relaxed text-gray-600">
+              Missing assignment deadlines is one of the most common ways students lose points and hurt their GPA. College stress, multiple courses, and competing priorities make it easy to forget important due dates. A deadline tracker helps you stay organized and avoid the panic of realizing an assignment is due tomorrow.
+            </p>
+            <p className="mb-4 leading-relaxed text-gray-600">
+              By tracking all your assignments in one place, you can better manage your time, prioritize effectively, and reduce anxiety about your workload. The visual urgency indicators help you focus on what matters most, ensuring you never miss a critical deadline that could impact your grades.
+            </p>
+            <p className="mb-6 leading-relaxed text-gray-600">
+              The tracker is particularly valuable during finals week when you're juggling multiple final projects, papers, and exams. Being able to see all deadlines at a glance helps you plan your study schedule and allocate time appropriately, reducing the risk of last-minute cramming or missed submissions.
+            </p>
+
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">Priority Levels and Time Management</h2>
+            <p className="mb-4 leading-relaxed text-gray-600">
+              Our tracker includes three priority levels to help you organize your work:
+            </p>
+            <ul className="list-disc pl-5 mb-6 space-y-2 text-gray-600">
+              <li><strong>High Priority:</strong> Assignments worth significant points, final projects, or work with strict deadlines. These should be tackled first.</li>
+              <li><strong>Medium Priority:</strong> Regular assignments and homework. Important but not urgent.</li>
+              <li><strong>Low Priority:</strong> Optional work, extra credit, or assignments with flexible deadlines.</li>
+            </ul>
+            <p className="mb-6 leading-relaxed text-gray-600">
+              Combined with the automatic urgency indicators based on due dates, the priority system helps you make informed decisions about where to focus your energy. This strategic approach to time management can significantly reduce stress and improve your academic performance.
+            </p>
+          </SEOContent>
         </div>
       </main>
       <Footer />
