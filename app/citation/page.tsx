@@ -15,6 +15,12 @@ export default function CitationHelper() {
   const generate = () => {
     const { authorLast, authorFirst, title, publisher, year, url } = data
     
+    // Check if all fields are empty
+    const hasAnyData = authorLast || authorFirst || title || publisher || year || url
+    if (!hasAnyData) {
+      return null // Return null to show placeholder
+    }
+    
     const parts = []
 
     if (format === 'apa') {
@@ -25,9 +31,11 @@ export default function CitationHelper() {
          parts.push(authorPart)
        }
        
-       // Year
-       const yearPart = `(${year || 'n.d.'}).`
-       parts.push(yearPart)
+       // Year - only add if we have author or title
+       if (authorLast || title) {
+         const yearPart = `(${year || 'n.d.'}).`
+         parts.push(yearPart)
+       }
 
        // Title
        if (title) parts.push(`${title}.`)
@@ -38,6 +46,8 @@ export default function CitationHelper() {
        // URL
        if (url) parts.push(url)
 
+       // Only return if we have at least one meaningful part
+       if (parts.length === 0) return null
        return parts.join(' ')
 
     } else {
@@ -62,6 +72,8 @@ export default function CitationHelper() {
       // URL
       if (url) parts.push(url + ".")
       
+      // Only return if we have at least one meaningful part
+      if (parts.length === 0) return null
       return parts.join(' ')
     }
   }
@@ -91,7 +103,7 @@ export default function CitationHelper() {
             <div className="bg-gray-50 p-4 rounded border">
               <p className="text-xs text-gray-500 uppercase font-bold mb-2">Result</p>
               <p className="font-serif text-lg select-all break-words">
-                {(!data.authorLast && !data.title) ? <span className="text-gray-400 italic">Citation will appear here...</span> : generate()}
+                {generate() || <span className="text-gray-400 italic">Citation will appear here...</span>}
               </p>
             </div>
           </Card>

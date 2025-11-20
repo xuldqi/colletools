@@ -131,8 +131,8 @@ export default function GradeCalculator() {
             </ul>
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">Study Tips to Hit Your Target Grade</h2>
-            <p className="mb-4 leading-relaxed text-gray-600">
-              Now that you know the score you need, it's time to focus. Don't forget to check out our <a href="/pomodoro" className="text-primary-600 underline cursor-pointer font-medium">Study Room</a> to use the Pomodoro timer with Lo-Fi music, or use our <a href="/citation" className="text-primary-600 underline cursor-pointer font-medium">Citation Helper</a> to finish those final papers faster.
+            <p className="mb-6 leading-relaxed text-gray-600">
+              Now that you know the score you need, it's time to focus. Don't forget to check out our <a href="/pomodoro" className="text-primary-600 underline font-medium">Study Room</a> to use the Pomodoro timer with Lo-Fi music, or use our <a href="/citation" className="text-primary-600 underline font-medium">Citation Helper</a> to finish those final papers faster.
             </p>
           </SEOContent>
         </div>
