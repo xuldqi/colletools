@@ -432,8 +432,12 @@ const DeadlineTracker = ({ goBack }: { goBack: () => void }) => {
   const [newNotes, setNewNotes] = useState('');
 
   useEffect(() => {
-    const saved = localStorage.getItem('colletools-assignments');
-    if (saved) setAssignments(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem('colletools-assignments');
+      if (saved) setAssignments(JSON.parse(saved));
+    } catch (e) {
+      console.error("Failed to load assignments", e);
+    }
   }, []);
 
   useEffect(() => {
