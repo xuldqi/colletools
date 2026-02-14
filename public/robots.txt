@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://colletools.com/sitemap.xml
+
+# Disallow crawling of admin or private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /node_modules/
+
+# Allow crawling of important pages
+Allow: /pdf
+Allow: /image
+Allow: /video
+Allow: /ocr
+Allow: /document-data
+Allow: /about
+Allow: /contact
+Allow: /help
+Allow: /sitemap
+
+# Crawl delay (optional)
+Crawl-delay: 1

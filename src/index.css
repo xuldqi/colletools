@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* 移动端优化 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* 横屏优化 */
+  @media screen and (max-height: 500px) and (orientation: landscape) {
+    .mobile-landscape-compact {
+      padding: 0.5rem !important;
+      margin: 0.5rem 0 !important;
+    }
+    
+    .mobile-landscape-compact .mobile-upload-zone {
+      min-height: 120px !important;
+      padding: 1rem !important;
+    }
+    
+    .mobile-landscape-compact h1 {
+      font-size: 1.5rem !important;
+    }
+    
+    .mobile-landscape-compact h2 {
+      font-size: 1.25rem !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none;
+    min-height: 44px; /* iOS 推荐的最小触摸区域 */
+    touch-action: manipulation; /* 避免双击缩放 */
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+  
+  /* 移动端优化的拖拽上传区域 */
+  .mobile-upload-zone {
+    @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-all duration-200;
+    min-height: 200px;
+    touch-action: manipulation;
+  }
+  
+  .mobile-upload-zone.drag-over {
+    @apply border-primary-500 bg-primary-50;
+  }
+  
+  /* 改进移动端触摸反馈 */
+  .touch-feedback {
+    @apply active:scale-95 transition-transform duration-150;
+  }
+  
+  .touch-feedback:active {
+    transform: scale(0.95);
+  }
+
+  /* 移动端文字大小优化 */
+  @media (max-width: 640px) {
+    .mobile-text-adjust {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    
+    .mobile-heading-adjust {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+}

@@ -1,58 +1,37 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ColleTools
 
-# ColleTools - Next.js Edition
+统一的在线工具平台：学生工具（GPA 计算器、邮件生成、引用助手、番茄钟等）+ 100+ 通用工具（PDF、图片、视频、OCR 等）。
 
-The ultimate toolkit for college students. Features a GPA Calculator, AI-powered Email Generator, Citation Helper, Deadline Tracker, and Decision Maker to make campus life easier.
+## 子域名
 
-## Run Locally
+| 子域名 | 内容 |
+|--------|------|
+| www.colletools.com / colletools.com | 本应用（学生工具 + 100+ 工具） |
+| i.colletools.com | 个人作品集（独立项目 mycolletools） |
 
-**Prerequisites:** Node.js 18+ 
+## 技术栈
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+- **前端**: React 18 + Vite + TypeScript + Tailwind CSS
+- **后端**: Express (API 服务)
+- **国际化**: React i18next
 
-2. Create a `.env.local` file in the root directory and set your Gemini API key:
-   ```
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
+## 开发
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+```bash
+# 首次安装（若 Puppeteer 下载失败，可设 PUPPETEER_SKIP_DOWNLOAD=1）
+npm install
+npm run dev   # 同时启动前端(Vite)和后端(Express)
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+前端: http://localhost:5173  
+后端 API: http://localhost:3002  
 
-## Build for Production
+## 构建
 
 ```bash
 npm run build
-npm start
 ```
 
-## Project Structure
+## 部署
 
-- `app/` - Next.js App Router pages and API routes
-- `components/` - Reusable React components
-- `app/api/email/` - API route for email generation using Gemini AI
-
-## Features
-
-- **Final Grade Calculator** - Calculate what you need on your final exam
-- **Email Generator** - AI-powered professional email templates
-- **Deadline Tracker** - Track assignments with priority and urgency indicators
-- **Citation Helper** - Format APA & MLA citations instantly
-- **Study Room** - Pomodoro timer with Lo-Fi music
-- **Decision Maker** - Let fate decide for you
-
-## Tech Stack
-
-- Next.js 14 (App Router)
-- React 18
-- TypeScript
-- Tailwind CSS
-- Google Gemini AI
+需要服务器（Docker/PM2），因依赖 FFmpeg、Puppeteer 等。详见 DEPLOYMENT.md。
