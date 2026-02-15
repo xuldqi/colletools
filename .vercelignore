@@ -1,0 +1,3 @@
+# API 需用 Docker/PM2 单独部署（FFmpeg、Puppeteer 等不适合 Vercel serverless）
+# Vercel 只部署前端静态资源
+api/
