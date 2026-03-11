@@ -29,6 +29,7 @@ const Help = lazy(() => import('./pages/Help'))
 const ApiDocs = lazy(() => import('./pages/ApiDocs'))
 const Cookies = lazy(() => import('./pages/Cookies'))
 const Sitemap = lazy(() => import('./pages/Sitemap'))
+const AllToolsHub = lazy(() => import('./pages/AllToolsHub'))
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })))
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/api-docs" element={<ApiDocs />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/all-tools" element={<AllToolsHub />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

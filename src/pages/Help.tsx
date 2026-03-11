@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Search, HelpCircle, FileText, Image, Video, Eye, Database, ChevronDown, ChevronRight } from 'lucide-react';
+import { Search, HelpCircle, FileText, Image, Video, Eye, Database, ChevronDown, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
+import PageHero from '../components/PageHero';
 
 const Help: React.FC = () => {
   const { t } = useTranslation();
@@ -162,45 +163,28 @@ const Help: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEOHead seoKey="help" />
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            {t('common.backToHome')}
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <HelpCircle className="w-16 h-16 text-primary-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {t('help.title')}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-            {t('help.subtitle')}
-          </p>
-          
-          {/* Search */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder={t('help.searchPlaceholder')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            />
-          </div>
-        </div>
+        <PageHero
+          showBack
+          backLabel={t('common.backToHome')}
+          title={t('help.title')}
+          subtitle={t('help.subtitle')}
+          icon={HelpCircle}
+          iconBgClassName="bg-primary-100"
+          iconTextClassName="text-primary-700"
+          action={(
+            <div className="max-w-md relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder={t('help.searchPlaceholder')}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+            </div>
+          )}
+        />
 
         {/* Tool Categories */}
         <div className="mb-16">

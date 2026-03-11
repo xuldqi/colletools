@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import SEOHead from '../components/SEOHead'
 import StructuredData from '../components/StructuredData';
 import { ImagePluginLoader } from '../components/PluginLoader';
+import PageHero from '../components/PageHero';
 import { pluginManager, loadOpenCV } from '../utils/pluginLoader';
 
 interface ImageTool {
@@ -730,16 +731,13 @@ const ImageTools = () => {
       <StructuredData type="SoftwareApplication" />
       <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Image className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.image.title')}</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t('tools.image.pageDescription')}
-          </p>
-        </div>
+        <PageHero
+          title={t('tools.image.title')}
+          subtitle={t('tools.image.pageDescription')}
+          icon={Image}
+          iconBgClassName="bg-green-100"
+          iconTextClassName="text-green-700"
+        />
 
         {/* Popular Tools Section */}
         <div className="mb-12">

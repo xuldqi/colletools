@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Users, Target, Award, Globe } from 'lucide-react';
+import { Users, Target, Award, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
+import PageHero from '../components/PageHero';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
@@ -10,30 +11,16 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEOHead seoKey="about" />
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            {t('common.backToHome')}
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {t('about.title')}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t('about.subtitle')}
-          </p>
-        </div>
+        <PageHero
+          showBack
+          backLabel={t('common.backToHome')}
+          title={t('about.title')}
+          subtitle={t('about.subtitle')}
+          icon={Target}
+          iconBgClassName="bg-emerald-100"
+          iconTextClassName="text-emerald-700"
+        />
 
         {/* Mission Section */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">

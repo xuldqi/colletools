@@ -4,6 +4,7 @@ import { ArrowLeft, Map, FileText, Image, Video, Database, Eye, Wrench, Home, In
 import { useTranslation } from 'react-i18next'
 import SEOHead from '../components/SEOHead'
 import StructuredData from '../components/StructuredData';
+import PageHero from '../components/PageHero';
 
 const Sitemap: React.FC = () => {
   const { t } = useTranslation();
@@ -163,37 +164,22 @@ const Sitemap: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <SEOHead seoKey="sitemap" />
       <StructuredData type="WebPage" />
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-{t('common.backToHome')}
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <Map className="w-16 h-16 text-primary-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {t('sitemap.title')}
-          </h1>
-          <p className="text-lg text-gray-600 mb-6">
-            {t('sitemap.subtitle')}
-          </p>
-          <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full">
-            <Wrench className="w-4 h-4 mr-2" />
-{t('sitemap.totalCount', { count: totalTools })}
-          </div>
-        </div>
+        <PageHero
+          showBack
+          backLabel={t('common.backToHome')}
+          title={t('sitemap.title')}
+          subtitle={t('sitemap.subtitle')}
+          icon={Map}
+          iconBgClassName="bg-cyan-100"
+          iconTextClassName="text-cyan-700"
+          action={(
+            <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-800 rounded-full">
+              <Wrench className="w-4 h-4 mr-2" />
+              {t('sitemap.totalCount', { count: totalTools })}
+            </div>
+          )}
+        />
 
         {/* Site Structure */}
         <div className="space-y-12">

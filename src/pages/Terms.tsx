@@ -1,37 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, FileText, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import { FileText, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
+import PageHero from '../components/PageHero';
 
 const Terms: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            返回首页
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <FileText className="w-16 h-16 text-primary-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            使用条款
-          </h1>
-          <p className="text-lg text-gray-600">
-            最后更新时间：2024年1月
-          </p>
-        </div>
+        <PageHero
+          showBack
+          title="使用条款"
+          subtitle="了解平台服务范围、用户责任与使用规范。"
+          icon={FileText}
+          iconBgClassName="bg-indigo-100"
+          iconTextClassName="text-indigo-700"
+        />
 
         {/* Content */}
         <div className="prose prose-lg max-w-none">

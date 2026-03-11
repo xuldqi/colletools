@@ -6,6 +6,7 @@ import SEOHead from '../components/SEOHead'
 import StructuredData from '../components/StructuredData';
 import FileUpload from '../components/FileUpload';
 import { PDFPluginLoader } from '../components/PluginLoader';
+import PageHero from '../components/PageHero';
 import { pluginManager } from '../utils/pluginLoader';
 
 interface PDFTool {
@@ -905,16 +906,13 @@ const PDFTools = () => {
       <SEOHead seoKey="pdfTools" />
       <StructuredData type="SoftwareApplication" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FileText className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.pdf.title')}</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t('tools.pdf.pageDescription')}
-          </p>
-        </div>
+        <PageHero
+          title={t('tools.pdf.title')}
+          subtitle={t('tools.pdf.pageDescription')}
+          icon={FileText}
+          iconBgClassName="bg-red-100"
+          iconTextClassName="text-red-700"
+        />
 
         {/* Popular Tools Section */}
         <div className="mb-12">

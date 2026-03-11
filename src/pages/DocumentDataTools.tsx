@@ -8,6 +8,7 @@ import {
 import { toast } from 'sonner';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import PageHero from '../components/PageHero';
 
 interface DocumentTool {
   id: string;
@@ -668,16 +669,13 @@ const DocumentDataTools: React.FC = () => {
       <StructuredData type="SoftwareApplication" />
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.documentData.title')}</h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t('tools.documentData.description')}
-            </p>
-          </div>
+          <PageHero
+            title={t('tools.documentData.title')}
+            subtitle={t('tools.documentData.description')}
+            icon={FileText}
+            iconBgClassName="bg-purple-100"
+            iconTextClassName="text-purple-700"
+          />
 
           {/* Popular Tools Section */}
           <div className="mb-12">

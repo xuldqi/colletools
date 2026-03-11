@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Code, Copy, CheckCircle, Book, Zap, Shield, Globe } from 'lucide-react';
+import { Code, Copy, CheckCircle, Book, Zap, Shield, Globe } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
+import PageHero from '../components/PageHero';
 
 const ApiDocs: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -112,33 +113,15 @@ const ApiDocs: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <SEOHead seoKey="apiDocs" />
       <StructuredData data={structuredData} />
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            返回首页
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-4">
-            <Code className="w-16 h-16 text-primary-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            API 文档
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            集成我们的API到您的应用程序中，享受强大的文件处理能力
-          </p>
-        </div>
+        <PageHero
+          showBack
+          title="API 文档"
+          subtitle="接入 ColleTools API，快速完成 PDF、图片、视频与 OCR 处理。"
+          icon={Code}
+          iconBgClassName="bg-indigo-100"
+          iconTextClassName="text-indigo-700"
+        />
 
         {/* Features */}
         <div className="grid md:grid-cols-4 gap-6 mb-16">

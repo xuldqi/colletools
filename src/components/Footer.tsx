@@ -3,15 +3,17 @@ import { FileText, Image, Settings, Sparkles, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 const CATEGORIES = [
-  { key: 'study', href: '/grade-calc', icon: null },
-  { key: 'document', href: '/pdf-tools', icon: FileText },
-  { key: 'media', href: '/image-tools', icon: Image },
-  { key: 'data', href: '/document-data-tools', icon: Settings },
-  { key: 'ai', href: '/ai-writing', icon: Sparkles },
+  { key: 'all-tools', href: '/all-tools', icon: null, label: '' },
+  { key: 'study', href: '/grade-calc', icon: null, label: '' },
+  { key: 'document', href: '/pdf-tools', icon: FileText, label: '' },
+  { key: 'media', href: '/image-tools', icon: Image, label: '' },
+  { key: 'data', href: '/document-data-tools', icon: Settings, label: '' },
+  { key: 'ai', href: '/ai-writing', icon: Sparkles, label: '' },
 ]
 
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const isZh = i18n.language.startsWith('zh')
 
   return (
     <footer className="bg-slate-900 text-white border-t border-slate-800">
@@ -36,7 +38,9 @@ export default function Footer() {
                   <li key={item.key}>
                     <Link to={item.href} className="text-gray-400 hover:text-white text-sm flex items-center gap-2">
                       {Icon && <Icon className="w-4 h-4" />}
-                      {t(`nav.categories.${item.key}`)}
+                      {item.key === 'all-tools'
+                        ? t('nav.categories.allTools', { defaultValue: isZh ? '全站入口' : 'All Tools' })
+                        : item.label || t(`nav.categories.${item.key}`)}
                     </Link>
                   </li>
                 )

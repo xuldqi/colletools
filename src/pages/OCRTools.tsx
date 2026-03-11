@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import StructuredData from '../components/StructuredData';
 import { OCRPluginLoader } from '../components/PluginLoader';
+import PageHero from '../components/PageHero';
 import { loadTesseract } from '../utils/pluginLoader';
 
 interface OCRTool {
@@ -390,16 +391,13 @@ const OCRTools: React.FC = () => {
       <StructuredData type="SoftwareApplication" />
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Scan className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('tools.ocr.title')}</h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t('tools.ocr.subtitle')}
-            </p>
-          </div>
+          <PageHero
+            title={t('tools.ocr.title')}
+            subtitle={t('tools.ocr.subtitle')}
+            icon={Scan}
+            iconBgClassName="bg-violet-100"
+            iconTextClassName="text-violet-700"
+          />
 
           {/* OCR Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

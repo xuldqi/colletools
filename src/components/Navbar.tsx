@@ -4,7 +4,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
 
-const NAV_ITEMS = [
+interface NavItem {
+  key: string
+  href: string
+  label?: string
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { key: 'all-tools', href: '/all-tools' },
   { key: 'study', href: '/grade-calc' },
   { key: 'document', href: '/pdf-tools' },
   { key: 'media', href: '/image-tools' },
@@ -13,8 +20,9 @@ const NAV_ITEMS = [
 ]
 
 export default function Navbar() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
+  const isZh = i18n.language.startsWith('zh')
 
   return (
     <nav className="bg-slate-900 shadow-lg border-b border-slate-800/50">
@@ -34,7 +42,9 @@ export default function Navbar() {
                 to={item.href}
                 className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition-colors"
               >
-                {t(`nav.categories.${item.key}`)}
+                {item.key === 'all-tools'
+                  ? t('nav.categories.allTools', { defaultValue: isZh ? '全站入口' : 'All Tools' })
+                  : item.label || t(`nav.categories.${item.key}`)}
               </Link>
             ))}
             <LanguageSwitcher />
@@ -58,7 +68,9 @@ export default function Navbar() {
               className="block text-slate-300 hover:text-white py-2 text-sm"
               onClick={() => setOpen(false)}
             >
-              {t(`nav.categories.${item.key}`)}
+              {item.key === 'all-tools'
+                ? t('nav.categories.allTools', { defaultValue: isZh ? '全站入口' : 'All Tools' })
+                : item.label || t(`nav.categories.${item.key}`)}
             </Link>
           ))}
         </div>
