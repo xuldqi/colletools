@@ -58,7 +58,6 @@ const EntryCard = ({ item, isZh }: { item: PortalLinkItem; isZh: boolean }) => {
           <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-primary-600" />
         </div>
         <p className="mt-2 text-sm text-slate-600">{descriptionText}</p>
-        <p className="mt-3 text-xs text-slate-400">{item.href}</p>
       </a>
     )
   }
@@ -74,7 +73,6 @@ const EntryCard = ({ item, isZh }: { item: PortalLinkItem; isZh: boolean }) => {
         </span>
       </div>
       <p className="mt-2 text-sm text-slate-600">{descriptionText}</p>
-      <p className="mt-3 text-xs text-slate-400">{item.href}</p>
     </Link>
   )
 }

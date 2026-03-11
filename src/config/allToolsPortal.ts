@@ -121,10 +121,10 @@ export const externalEntryLinks: PortalLinkItem[] = [
     category: '外链站点'
   },
   {
-    id: 'yaso-vercel',
-    name: 'Yaso',
-    description: 'Yaso 项目入口',
-    href: 'https://vercel.com/novcats-projects/yaso',
+    id: 'zipic-site',
+    name: 'ZiPic',
+    description: '轻量好用的在线图片处理工具',
+    href: 'https://zipic.online',
     external: true,
     category: '外链站点'
   },
@@ -149,14 +149,6 @@ export const externalEntryLinks: PortalLinkItem[] = [
     name: 'SEAI',
     description: 'SEAI 项目入口',
     href: 'https://seai.site',
-    external: true,
-    category: '外链站点'
-  },
-  {
-    id: 'zipic-site',
-    name: 'Zipic',
-    description: 'Zipic 项目入口',
-    href: 'https://zipic.online',
     external: true,
     category: '外链站点'
   },
